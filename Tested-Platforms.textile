@@ -21,4 +21,4 @@ fn3. Build fails, see issue "issue 30":http://github.com/behlendorf/zfs/issues/#
 
 fn4. See the wiki for the compilation process, and the see "issue 20":http://github.com/behlendorf/zfs/issues/closed#issue/20
 
-fn5. Fails when the server have less than 512MB of RAM, see "issue 20":http://github.com/behlendorf/zfs/issues/closed#issue/20
+fn5. Fails when the server have less than 512MB of RAM.
