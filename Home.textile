@@ -1,1 +1,1 @@
-Welcome to the zfs wiki!
+<B>Native ZFS for Linux!</b>  ZFS is an advanced file system and volume manager which until now has only been available for Solaris.  This Linux ZFS kernel port includes a fully functional and stable SPA, DMU, and ZVOL which pave the way for the ZPL posix layer.
