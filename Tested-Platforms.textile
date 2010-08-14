@@ -1,4 +1,14 @@
-Native ZFS for Linux has been sanity tested using the ztest, zconfig, and zpios-sanity regression tests on the following platforms.  While this package builds on all of these platforms, the x86 platform is not as well tested and you are likely to encounter "problems":http://wiki.github.com/behlendorf/zfs/faq#fn1.  I _strongly_ suggest you stick to a x86_64 based platform for now.
+Native ZFS for Linux has been sanity tested using the ztest, zconfig, and zpios-sanity regression tests on the following platforms.  While this package builds on all of these platforms, the x86 platform is not as well tested and you are likely to encounter "problems":http://wiki.github.com/behlendorf/zfs/faq#fn1.  I _strongly_ suggest you stick to a x86_64 based platform for now.  Please feel free to add the results for your platform of choice.
+
+|_\8{background:#ddd}. zfs-0.5.0 |
+| | |_\3. x86_64 |_\3. x86 |
+|_. Distro |_. Kernel |_. ztest |_. zconfig |_.zpios-sanity |_. ztest |_. zconfig |_.zpios-sanity |
+| RHEL5 | 2.6.18-194 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
+| CHAOS4 | 2.6.18-96chaos | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
+| RHEL6 (beta) | 2.6.32-19 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
+| CHAOS5 (beta) | 2.6.32-11chaos | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
+| Fedora 13 | 2.6.33.6-147 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
+| Ubuntu 10.04 | 2.6.32-24-generic | ? | ? | ? | %{color:green}PASS% |  %{color:green}PASS% | %{color:green}PASS% |
 
 |_\8{background:#ddd}. zfs-0.4.9 |
 | | |_\3. x86_64 |_\3. x86 |
