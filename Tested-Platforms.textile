@@ -8,7 +8,7 @@ Native ZFS for Linux has been sanity tested using the ztest, zconfig, and zpios-
 | RHEL6 (beta) | 2.6.32-19 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
 | CHAOS5 (beta) | 2.6.32-8chaos | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
 | Fedora 12 | 2.6.32.12-115 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% |
-| Ubuntu 10.04[2] | 2.6.32-16.25 | %{color:yellow}MIXED% | %{color:yellow}MIXED% | %{color:yellow}MIXED% | %{color:yellow}MIXED% |  %{color:red}FAIL%[1] | %{color:red}FAIL%[1] |
+| Ubuntu 10.04 | 2.6.32-16.25 | %{color:green}PASS% | %{color:yellow}MIXED%[2] | %{color:yellow}MIXED%[2] | %{color:green}PASS% |  %{color:red}FAIL%[1] | %{color:red}FAIL%[1] |
 | Gentoo | 2.6.32-gentoo-r7 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
 
 fn1. Hard system lockup fixed in spl master branch; commit "1b4ad25":http://github.com/behlendorf/spl/commit/1b4ad25e2f29172c86d3293b61f0c5232d4a2da8.
