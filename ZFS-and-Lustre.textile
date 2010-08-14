@@ -6,7 +6,7 @@ Our intention is to deploy a 50 petabyte production Lustre file system based on 
 
 To prove we can successfully deploy a Lustre file system of this size based on a Linux port of ZFS, we have purchased a full storage scalable unit (SSU) of our target hardware for development and testing.  An SSU is our fundamental building block when designing a Lustre file system.  The idea is to add as many SSUs as needed to reach the design target for the system.  Our Lustre ZFS SSU looks like this, and this hardware is being used to stabilize this code base for production use.
 
-!>http://github.com/behlendorf/zfs/raw/images/zfs-hardware.png!
+[[/images/zfs-hardware.png|float|align=right]]
 
 
 <b>ZFS SSU Hardware Specifications:</b>
