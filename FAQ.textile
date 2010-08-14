@@ -18,11 +18,12 @@ You can't... at least not today.  While we have ported the majority of the ZFS c
 
 h2. 1.4 Is this useful without the ZFS posix layer?
 
-Absolutely.  While having the ZFS posix layer is ideal even without it you can take advantage of many ZFS features.  For example, our focus is on integrating the ZFS DMU directly with "Lustre":http://www.lustre.org on Linux.  We can then take advantage of ZFS's advanced features to build a scalable multi-petabyte distributed file system with "Lustre":http://www.lustre.org.
+Absolutely.  While having the ZFS posix layer is ideal even without it you can take advantage of many ZFS features.  For example, our focus is on integrating [[ZFS and Lustre]]  so we can take advantage of ZFS's advanced features to build a scalable multi-petabyte distributed file system with "Lustre":http://www.lustre.org.
 
 * Flexible pooled storage and volume manager.
+* Copy-on-write
 * Data integrity (raidz).
-* Online Repair.
+* Online repair.
 * Fast snapshots.
 * Virtual block devices.
 
