@@ -50,7 +50,7 @@ lost+found
 Take a snapshot of the pristine ext2 filesystem and mount it read-only.
 
 <pre>
-zfs snapshot tank/fish@pristine
+zfs snapshot tank/fish@pristine1
 mkdir /mnt/tank/fish@pristine1
 mount /dev/zvol/tank/fish@pristine1 /mnt/tank/fish@pristine1
 ls /mnt/tank/fish\@pristine1
