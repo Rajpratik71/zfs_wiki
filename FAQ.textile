@@ -1,0 +1,7 @@
+h2. 1.1 What about the “licensing” issue?
+
+In a nutshell, the issue is that the Linux kernel which is licensed under the GNU General Public License is incompatible with ZFS which is licensed under the Sun CDDL.  While both the GPL and CDDL are open source licenses their terms are such that it is impossible to simultaneously satisfy both licenses.  This means that a single _derived work_ of the Linux kernel and ZFS cannot be legally _distributed_.
+
+One way to resolve this issue is to implement ZFS in user space with FUSE where it is not considered a _derived work_ of the kernel.  This approach resolves the licensing issues but it has some technical drawbacks.  There is another option though.  The CDDL does not restrict modification and release of the ZFS source code which is publicly available as part of OpenSolaris.  The ZFS code can be modified to build as a CDDL licensed kernel module which is _not distributed_ as part of the Linux kernel.  This makes a native ZFS on Linux implementation possible if you are willing to download and build it yourself.
+
+h2. 1.2 How can I help?
