@@ -1,11 +1,13 @@
-Native ZFS for Linux has been sanity tested using the ztest, zconfig.sh, and zpios-sanity.sh regression tests on the following 64-bit x86_64 platforms.  While this package will likely build on 32-bit platforms it is unlikely to "work well":http://wiki.github.com/behlendorf/zfs/faq#fn1.
+Native ZFS for Linux has been sanity tested using the ztest, zconfig, and zpios-sanity regression tests on the following platforms.  While this package builds on all of these platforms, the x86 platform is not as well tested and you are likely to encounter "problems":http://wiki.github.com/behlendorf/zfs/faq#fn1.  I _strongly_ suggest you stick to a x86_64 based platform for now.
 
-|_\6{background:#ddd}. zfs-0.4.9 |
-| | |_\3. x86_64 |
-|_. Distro |_. Kernel |_. ztest |_. zconfig.sh |_.zpios-sanity.sh |
-| RHEL5 | 2.6.18-194 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% |
-| CHAOS4 | 2.6.18-91chaos | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% |
-| RHEL6 (beta) | 2.6.32-19 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% |
-| CHAOS5 (beta) | 2.6.32-8chaos | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% |
-| Fedora 12 | 2.6.32.12-115 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% |
-| Ubuntu 10.04 | 2.6.32-16.25 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% |
+|_\8{background:#ddd}. zfs-0.4.9 |
+| | |_\3. x86_64 |_\3. x86 |
+|_. Distro |_. Kernel |_. ztest |_. zconfig |_.zpios-sanity |_. ztest |_. zconfig |_.zpios-sanity |
+| RHEL5 | 2.6.18-194 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
+| CHAOS4 | 2.6.18-91chaos | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
+| RHEL6 (beta) | 2.6.32-19 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
+| CHAOS5 (beta) | 2.6.32-8chaos | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
+| Fedora 12 | 2.6.32.12-115 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% |
+| Ubuntu 10.04 | 2.6.32-16.25 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% |  %{color:red}FAIL%[1] | %{color:red}FAIL%[1] |
+
+fn1. Hard system lockup for unknown reason.
