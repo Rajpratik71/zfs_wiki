@@ -5,7 +5,7 @@ The Linux zfs kernel port is built on the "Solaris Porting Layer (spl)":http://g
 make rpm
 </pre>
 
-The result of this with be two source rpm packages.  Source rpms for RHEL6 also available from the "download":http://github.com/behlendorf/zfs/downloads section if you prefer.
+The result of this will be two source rpm packages.  Source rpms for RHEL6 also available from the "download":http://github.com/behlendorf/zfs/downloads section if you prefer.
 * _zfs-w.x.y-z.src.rpm_: Source for the zfs utilities, libraries, and test infrastructure.
 * _zfs-modules-w.x.y-z.src.rpm_: Source for the zfs kernel module stack.
 
