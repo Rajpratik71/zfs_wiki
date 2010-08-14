@@ -23,10 +23,10 @@ rpmbuild --rebuild --define "kdir /usr/src/kernels/2.6.32-19.el6.x86_64" zfs-mod
 
 When the source rpms are built you will have five binary packages for your platform.
 * _zfs-w.x.y-z.arch.rpm_: The zfs utilities and libraries.
-* _zfs-devel-w.x.y-z.arch.rpm_: The development headers.
-* _zfs-test-w.x.y-z.arch.rpm_: The regression test scripts and infrastructure.
+* _zfs-devel-w.x.y-z.arch.rpm_: The zfs development headers.
+* _zfs-test-w.x.y-z.arch.rpm_: The zfs regression test scripts and infrastructure.
 * _zfs-modules-w.x.y-z_kernel.arch.rpm_: The zfs kernel module stack for your kernel version.
-* _zfs-modules-devel-w.x.y-z_kernel.arch.rpm: The development headers and symbols for building dependent kernel modules.
+* _zfs-modules-devel-w.x.y-z_kernel.arch.rpm: The zfs development headers and symbols for building dependent kernel modules.
 
 <pre>
 ls *.x86_64.rpm
