@@ -1,0 +1,29 @@
+The focus of this project at Livermore has been to port the ZFS DMU to the Linux kernel so "Lustre":http://www.lustre.org can use it as a replacement back-end for ldiskfs.  We need a ZFS based back-end to meet the scaling and performance demands our large production Linux clusters.  We would love to see the "ZFS posix layer finished":http://wiki.github.com/behlendorf/zfs/example-zpl as well but it is not a critical part of our plans in the near term.
+
+In particular, ZFS's advanced architecture addresses two of our key performance concerns: random IO, and small IO.  In a large cluster environment a Lustre IO server (OSS) can be expected to generate a random IO workload.  There will be 100's of threads concurrently accessing different files in the back-end file system.  For writes ZFS's copy-on-write transaction model convents this random workload in to a streaming workload which is critical when using SATA disks.  As for small IO, Lustre can leverage a ZIL placed on a separate SSD device to maximize performance.
+
+Our intention is to deploy a 50 petabyte production Lustre file system based on this Linux ZFS port.  With that much hardware on the floor failures of all parts of the system occur on a regular basis.  For this reason, ZFS's ability to detect and repair data corruption online is a critical feature for us.  This includes cleanly handling many different failure modes without the need for an offline file system check.
+
+To prove we can successfully deploy a Lustre file system of this size based on a Linux port of ZFS, we have purchased a full storage scalable unit (SSU) of our target hardware for development and testing.  An SSU is our fundamental building block when designing a Lustre file system.  The idea is to add as many SSUs as needed to reach the design target for the system.  Our Lustre ZFS SSU looks like this, and this hardware is being used to stabilize this code base for production use.
+
+!>http://github.com/behlendorf/zfs/raw/images/zfs-hardware.png!
+
+
+<b>ZFS SSU Hardware Specifications:</b>
+* 8 "Supermicro X8DTH-6F OSSs":http://www.supermicro.com/products/motherboard/QPI/5500/X8DTH-6F.cfm
+** Nahelm dual-socket quad-core 2.5Ghz cpus
+** 24GB of memory
+* 10 dual attached 60-bay SAS enclosures
+* 40 dual-port SAS2 adapters
+** 5 per OSS, one connection to each enclosure
+* 560 2TB SATA Drives
+** 70 per OSS, 7 striped groups of 8+2 raidz2
+** Dual attached for fail-over
+** ~900TB of usable space
+* 40 SSDs
+** 2 per OSS, mirrored ZIL
+** 3 per OSS, striped meta data only L2ARC
+** Dual attached for failover
+* 8 QDR and 8 10GigE adapters
+** 1 QDR per OSS
+** 1 10 GigE per OSS
