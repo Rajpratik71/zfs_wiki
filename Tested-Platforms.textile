@@ -1,27 +1,28 @@
 Native ZFS for Linux has been sanity tested using the ztest, zconfig, and zpios-sanity regression tests on the following platforms.  While this package builds on all of these platforms, the x86 platform is not as well tested and you are likely to encounter "problems":http://wiki.github.com/behlendorf/zfs/faq#fn1.  I _strongly_ suggest you stick to a x86_64 based platform for now.  Please feel free to add the results for your platform of choice.
 
-|_\8{background:#ddd}. zfs-0.5.0 |
+|_\8. [[/images/separator.png|width=640px|height=10px]] |
+|_\8. "zfs-0.5.0":http://github.com/downloads/behlendorf/zfs/zfs-0.5.0.tar.gz |
 | | |_\3. x86_64 |_\3. x86 |
 |_. Distro |_. Kernel |_. ztest |_. zconfig |_.zpios-sanity |_. ztest |_. zconfig |_.zpios-sanity |
-| RHEL5 | 2.6.18-194 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
-| CHAOS4 | 2.6.18-96chaos | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
-| RHEL6 (beta) | 2.6.32-19 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
-| CHAOS5 (beta) | 2.6.32-11chaos | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
-| Fedora 13 | 2.6.33.6-147 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
-| Ubuntu 10.04 | 2.6.32-24-generic | ? | ? | ? | %{color:green}PASS% |  %{color:green}PASS% | %{color:green}PASS% |
-
-|_\8{background:#ddd}. zfs-0.4.9 |
+| RHEL5 | 2.6.18-194 | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
+| CHAOS4 | 2.6.18-96chaos | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
+| RHEL6 (beta) | 2.6.32-19 | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
+| CHAOS5 (beta) | 2.6.32-11chaos | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
+| Fedora 13 | 2.6.33.6-147 | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
+| Ubuntu 10.04 | 2.6.32-24-generic | | | | [[/images/check.png|width=30px|height=30px]] |  [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] |
+|_\8. [[/images/separator.png|width=640px|height=10px]] |
+|_\8. "zfs-0.4.9":http://github.com/downloads/behlendorf/zfs/zfs-0.4.9.tar.gz |
 | | |_\3. x86_64 |_\3. x86 |
-|_. Distro |_. Kernel |_. ztest |_. zconfig |_.zpios-sanity |_. ztest |_. zconfig |_.zpios-sanity |
-| RHEL5 | 2.6.18-194 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
-| CHAOS4 | 2.6.18-91chaos | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
-| RHEL6 (beta) | 2.6.32-19 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
-| CHAOS5 (beta) | 2.6.32-8chaos | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
-| Fedora 12 | 2.6.32.12-115 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% |
-| Ubuntu 10.04 | 2.6.32-16.25 | %{color:green}PASS% | %{color:yellow}MIXED%[2] | %{color:yellow}MIXED%[2] | %{color:green}PASS% |  %{color:red}FAIL%[1] | %{color:red}FAIL%[1] |
-| Gentoo | 2.6.32-gentoo-r7 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
-| Debian 5.0 "Lenny' | 2.6.26-2 | %{color:red}FAIL%[3] | %{color:red}FAIL%[3] | %{color:red}FAIL%[3] | %{color:red}FAIL%[3] | %{color:red}FAIL%[3] | %{color:red}FAIL%[3] |
-| Debian 5.0 "Lenny' | 2.6.32-bpo | %{color:green}PASS%[4] | %{color:green}PASS%[4] |%{color:green}PASS%[4][5] | %{color:green}PASS%[4] |%{color:green}PASS%[4] | %{color:green}PASS%[4][5] |
+|_. Distro |_. Kernel |_. ztest |_. zconfig |_.zpios-sanity |_. ztest |_. zconfig |_. zpios-sanity |
+| RHEL5 | 2.6.18-194 | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
+| CHAOS4 | 2.6.18-91chaos | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
+| RHEL6 (beta) | 2.6.32-19 | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
+| CHAOS5 (beta) | 2.6.32-8chaos | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
+| Fedora 12 | 2.6.32.12-115 | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] |
+| Ubuntu 10.04 | 2.6.32-16.25 | [[/images/check.png|width=30px|height=30px]] | [[/images/question.png|width=30px|height=30px]][2] | [[/images/question.png|width=30px|height=30px]][2] | [[/images/check.png|width=30px|height=30px]] |  [[/images/naught.png|width=30px|height=30px]][1] | [[/images/naught.png|width=30px|height=30px]][1] |
+| Gentoo | 2.6.32-gentoo-r7 | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
+| Debian 5.0 "Lenny' | 2.6.26-2 | [[/images/naught.png|width=30px|height=30px]][3] | [[/images/naught.png|width=30px|height=30px]][3] | [[/images/naught.png|width=30px|height=30px]][3] | [[/images/naught.png|width=30px|height=30px]][3] | [[/images/naught.png|width=30px|height=30px]][3] | [[/images/naught.png|width=30px|height=30px]][3] |
+| Debian 5.0 "Lenny' | 2.6.32-bpo | [[/images/check.png|width=30px|height=30px]][4] | [[/images/check.png|width=30px|height=30px]][4] |[[/images/check.png|width=30px|height=30px]][4][5] | [[/images/check.png|width=30px|height=30px]][4] |[[/images/check.png|width=30px|height=30px]][4] | [[/images/check.png|width=30px|height=30px]][4][5] |
 
 fn1. Hard system lockup fixed in spl master branch; commit "1b4ad25":http://github.com/behlendorf/spl/commit/1b4ad25e2f29172c86d3293b61f0c5232d4a2da8.
 

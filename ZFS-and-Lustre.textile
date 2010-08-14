@@ -8,7 +8,6 @@ To prove we can successfully deploy a Lustre file system of this size based on a
 
 [[/images/zfs-hardware.png|float|align=right]]
 
-
 <b>ZFS SSU Hardware Specifications:</b>
 * 8 "Supermicro X8DTH-6F OSSs":http://www.supermicro.com/products/motherboard/QPI/5500/X8DTH-6F.cfm
 ** Nahelm dual-socket quad-core 2.5Ghz cpus
