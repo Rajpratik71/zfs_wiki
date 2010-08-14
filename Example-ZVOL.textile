@@ -2,6 +2,8 @@ Currently in the ZFS for Linux port the only interface available from user space
 
 Create the _tank_ zpool containing a raidz vdev spread over 4 devices.
 
+NOTE: If you are using the 0.4.9 tag, please replace /dev/zvol with /dev in the examples below.  The naming convention was changed in a recent revision.
+
 <pre>
 > zpool create tank raidz /dev/sdb /dev/sdc /dev/sdd /dev/sde
 > zpool list
