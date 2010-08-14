@@ -6,4 +6,4 @@ One way to resolve this issue is to implement ZFS in user space with FUSE where 
 
 h2. 1.2 How can I help?
 
-The most helpful thing you can do is to try ZFS for Linux on your system and report any "issues":http://github.com/behlendorf/zfs/issues.  If you like what you see and would like to contribute to the project please send "me":http://github.com/behlendorf an email.  There are quite a few open issues on the "issue tracker":http://github.com/behlendorf/zfs/issues which need attention or if you have an idea of your own that fine too.
+The most helpful thing you can do is to try ZFS for Linux on your system and report any "issues":http://github.com/behlendorf/zfs/issues.  If you like what you see and would like to contribute to the project please send "me":http://github.com/behlendorf an email.  There are quite a few open issues on the "issue tracker":http://github.com/behlendorf/zfs/issues which need attention or if you have an idea of your own that is fine too.
