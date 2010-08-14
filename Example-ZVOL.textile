@@ -52,7 +52,7 @@ Take a snapshot of the pristine ext2 filesystem and mount it read-only.
 <pre>
 zfs snapshot tank/fish@pristine
 mkdir /mnt/tank/fish@pristine1
-mount /dev/tank/fish@pristine1 /mnt/tank/fish@pristine1
+mount /dev/zvol/tank/fish@pristine1 /mnt/tank/fish@pristine1
 ls /mnt/tank/fish\@pristine1
 lost+found
 </pre>
