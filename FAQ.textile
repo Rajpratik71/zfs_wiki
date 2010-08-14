@@ -8,7 +8,7 @@ h2. 1.2 Why doesn't it build?
 
 Building a kernel module against an arbitrary kernel version is a complicated thing to do.  Every distro has their own idea of how this should be done.  It depends on the base kernel version, any distro specific patches, and exactly how the kernel was configured and built.  If you run in to problems here are few thing to check.  If none of these things explain your problem please open up a new "SPL issue":http://github.com/behlendorf/spl/issues or a new "ZFS issue":http://github.com/behlendorf/zfs/issues as appropriate.
 
-* The kernel API changes frequently and kernels newer than 2.6.32 are not yet supported.
+* The kernel API changes frequently and kernels newer than 2.6.34 are not yet supported.
 * Check for known "SPL":http://github.com/behlendorf/spl/issues/labels/Build%20Issue and "ZFS":http://github.com/behlendorf/zfs/issues/labels/Build%20Issue build issues.
 * There is also a list of  [[tested platforms]] you might find helpful.
 
