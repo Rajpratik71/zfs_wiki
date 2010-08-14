@@ -1,0 +1,73 @@
+The Linux zfs kernel port is built on the "Solaris Porting Layer (spl)":http://github.com/behlendorf/spl which provides a Solaris style API in the Linux kernel.  This allows for minimal changes to the core zfs code base and simplifies tracking upstream development.  Before building zfs you will need "build and install":http://wiki.github.com/behlendorf/spl/building-the-spl the spl on your system.  Once the spl is installed you can build zfs against it using the standard autoconf style build system.  The zfs build system is designed detect and build against your kernel and SPL module.  Simply build it as you would any other autoconf style project.  The build system will make an educated guess as to which kernel and version of the spl you wish to build against.  If it guesses wrong simply specify your kernel devel headers using the _--with-linux_ configure option.  You can also specify an alternate version of the spl using the _--with-spl_ configure option.  For example, if you wanted to build the rpm packages for RHEL6 you would do the following:
+
+<pre>
+./configure --with-linux=/usr/src/kernels/2.6.32-19.el6.x86_64
+make rpm
+</pre>
+
+The result of this with be two source rpm packages.  Source rpms for RHEL6 also available from the "download":http://github.com/behlendorf/zfs/downloads section if you prefer.
+* _zfs-w.x.y-z.src.rpm_: Source for the zfs utilities, libraries, and test infrastructure.
+* _zfs-modules-w.x.y-z.src.rpm_: Source for the zfs kernel module stack.
+
+<pre>
+zfs-0.4.9-1.src.rpm
+zfs-modules-0.4.9-1.src.rpm
+</pre>
+
+If you built from the source tarball using the _make rpm_ target then binary rpms for your platform will have been automatically built.  If however you started with the pre-packaged source rpms you will need to build the binary packages as follows.
+
+<pre>
+rpmbuild --rebuild zfs-0.4.9-1.src.rpm
+rpmbuild --rebuild --define "kdir /usr/src/kernels/2.6.32-19.el6.x86_64" zfs-modules-0.4.9-1.src.rpm
+</pre>
+
+When the source rpms are built you will have five binary packages for your platform.
+* _zfs-w.x.y-z.arch.rpm_: The zfs utilities and libraries.
+* _zfs-devel-w.x.y-z.arch.rpm_: The development headers.
+* _zfs-test-w.x.y-z.arch.rpm_: The regression test scripts and infrastructure.
+* _zfs-modules-w.x.y-z_kernel.arch.rpm_: The zfs kernel module stack for your kernel version.
+* _zfs-modules-devel-w.x.y-z_kernel.arch.rpm: The development headers and symbols for building dependent kernel modules.
+
+<pre>
+ls *.x86_64.rpm
+zfs-0.4.9-1.x86_64.rpm
+zfs-devel-0.4.9-1.x86_64.rpm
+zfs-modules-0.4.9-1_2.6.32_19.el6.x86_64.rpm
+zfs-modules-devel-0.4.9-1_2.6.32_19.el6.x86_64.rpm
+zfs-test-0.4.9-1.x86_64.rpm
+</pre>
+
+Next go ahead and install the packages.
+
+<pre>
+rpm -Uvh *.x86_64.rpm
+Preparing...                ########################################### [100%]
+   1:zfs                    ########################################### [ 20%]
+   2:zfs-test               ########################################### [ 40%]
+   3:zfs-modules-devel      ########################################### [ 60%]
+   4:zfs-modules            ########################################### [ 80%]
+   5:zfs-devel              ########################################### [100%]
+</pre>
+
+At this point your all set!  You should be able to use the zfs tools just like you would under Solaris.  However, I'd advise you first take a few minutes to run a couple sanity regression tests to make sure everything is working properly.  The first test you'll want to run is called zconfig.sh which validates that the zfs utilities are working properly.  Once that passes you will want to run zpios-sanity.sh which will create several zpool configurations and verify IO is working properly.  Both of these tests will configure zfs to use files and loopback devices so none of your real system data is at risk.  These tests will need to be run as root since you are loading several kernel modules.  If you do observe a failure please record as much debug information as possible and open an "issue":http://github.com/behlendorf/zfs/issues so I can fix it.  The test suite passes for me on these "platforms":http://wiki.github.com/behlendorf/zfs/tested-platforms.
+
+<pre>
+/usr/libexec/zfs/zconfig.sh
+test 1 - persistent zpool.cache: PASS
+test 2 - scan disks for pools to import: PASS
+test 3 - ZVOL sanity: PASS
+</pre>
+
+<pre>
+/usr/libexec/zfs/zpios-sanity.sh
+status    name        id        wr-data wr-ch   wr-bw   rd-data rd-ch   rd-bw
+-------------------------------------------------------------------------------
+PASS:     file-raid0   0        64m     64      407.64m 64m     64      1.11g
+PASS:     file-raid10  0        64m     64      187.13m 64m     64      1.25g
+PASS:     file-raidz   0        64m     64      901.40m 64m     64      1.25g
+PASS:     file-raidz2  0        64m     64      821.82m 64m     64      1.22g
+PASS:     lo-raid0     0        64m     64      916.17m 64m     64      984.17m
+PASS:     lo-raid10    0        64m     64      850.47m 64m     64      1.01g
+PASS:     lo-raidz     0        64m     64      916.01m 64m     64      1.25g
+PASS:     lo-raidz2    0        64m     64      14.63m  64m     64      1.02g
+</pre>
