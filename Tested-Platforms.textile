@@ -1,0 +1,13 @@
+Native ZFS for Linux has been sanity tested using the ztest, zconfig.sh, and zpios-sanity.sh regression tests on the following 64-bit x86_64 platforms.  While this package will likely build on 32-bit platforms it is unlikely to work well[1].
+
+|_\6. zfs-0.4.9 |
+| | |_\3. x86_64 |
+|_. Distro |_. Kernel |_. ztest |_. zconfig.sh |_.zpios-sanity.sh |
+| RHEL5 | 2.6.18-194 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% |
+| CHAOS4 | 2.6.18-91chaos | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% |
+| RHEL6 (beta) | 2.6.32-19 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% |
+| CHAOS5 (beta) | 2.6.32-8chaos | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% |
+| Fedora 12 | 2.6.32.12-115 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% |
+| Ubuntu 10.04 | 2.6.32-16.25 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% |
+
+fn1.  In the Solaris kernel it is common practice to make heavy use of the virtual address space because it is designed to work well.  However, in the Linux kernel most memory is addressed with a physical address and use of the virtual address space is strongly discouraged.  This is particularly true on 32-bit arches where the virtual address space is limited to roughly 100MiB.  Using the virtual address space on 64-bit Linux kernels is also discouraged, but in this case the address space is so much larger than physical memory is not as much of an issue.  The right long term solution would be to update zfs to use scatter-gather lists, but that is a substantial change.  For now just use a 64-bit system.
