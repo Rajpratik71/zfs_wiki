@@ -10,4 +10,4 @@ Native ZFS for Linux has been sanity tested using the ztest, zconfig, and zpios-
 | Fedora 12 | 2.6.32.12-115 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% |
 | Ubuntu 10.04 | 2.6.32-16.25 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% |  %{color:red}FAIL%[1] | %{color:red}FAIL%[1] |
 
-fn1. Hard system lockup for unknown reason.
+fn1. Hard system lockup fixed in spl master, behlendorf/spl@1b4ad25e2f29172c86d3293b61f0c5232d4a2da8
