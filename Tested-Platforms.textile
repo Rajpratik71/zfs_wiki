@@ -11,7 +11,7 @@ Native ZFS for Linux has been sanity tested using the ztest, zconfig, and zpios-
 | Ubuntu 10.04 | 2.6.32-16.25 | %{color:green}PASS% | %{color:yellow}MIXED%[2] | %{color:yellow}MIXED%[2] | %{color:green}PASS% |  %{color:red}FAIL%[1] | %{color:red}FAIL%[1] |
 | Gentoo | 2.6.32-gentoo-r7 | %{color:green}PASS% | %{color:green}PASS% | %{color:green}PASS% | ? | ? | ? |
 | Debian 5.0 "Lenny' | 2.6.26-2 | %{color:red}FAIL%[3] | %{color:red}FAIL%[3] | %{color:red}FAIL%[3] | %{color:red}FAIL%[3] | %{color:red}FAIL%[3] | %{color:red}FAIL%[3] |
-| Debian 5.0 "Lenny' | 2.6.32-bpo | %{color:green}PASS%[4] | %{color:green}PASS%[4] |%{color:green}PASS%[4] | %{color:green}PASS%[4] |%{color:green}PASS%[4] | %{color:green}PASS%[4][5] |
+| Debian 5.0 "Lenny' | 2.6.32-bpo | %{color:green}PASS%[4] | %{color:green}PASS%[4] |%{color:green}PASS%[4][5] | %{color:green}PASS%[4] |%{color:green}PASS%[4] | %{color:green}PASS%[4][5] |
 
 fn1. Hard system lockup fixed in spl master branch; commit "1b4ad25":http://github.com/behlendorf/spl/commit/1b4ad25e2f29172c86d3293b61f0c5232d4a2da8.
 
@@ -21,4 +21,4 @@ fn3. Build fails, see issue "issue 30":http://github.com/behlendorf/zfs/issues/#
 
 fn4. See the wiki for the compilation process, and the see "issue 20":http://github.com/behlendorf/zfs/issues/closed#issue/20
 
-fn5. Fails when the server have less than 512MB of RAM.
+fn5. Fails when the server have less than 512MB of RAM, but if you reboot the server just after the installation of ZFS, it's working well.
