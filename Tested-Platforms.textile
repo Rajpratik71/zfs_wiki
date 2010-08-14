@@ -24,12 +24,12 @@ Native ZFS for Linux has been sanity tested using the ztest, zconfig, and zpios-
 | Debian 5.0 "Lenny' | 2.6.26-2 | [[/images/naught.png|width=30px|height=30px]][3] | [[/images/naught.png|width=30px|height=30px]][3] | [[/images/naught.png|width=30px|height=30px]][3] | [[/images/naught.png|width=30px|height=30px]][3] | [[/images/naught.png|width=30px|height=30px]][3] | [[/images/naught.png|width=30px|height=30px]][3] |
 | Debian 5.0 "Lenny' | 2.6.32-bpo | [[/images/check.png|width=30px|height=30px]][4] | [[/images/check.png|width=30px|height=30px]][4] |[[/images/check.png|width=30px|height=30px]][4][5] | [[/images/check.png|width=30px|height=30px]][4] |[[/images/check.png|width=30px|height=30px]][4] | [[/images/check.png|width=30px|height=30px]][4][5] |
 
-fn1. Hard system lockup fixed in spl master branch; commit "1b4ad25":http://github.com/behlendorf/spl/commit/1b4ad25e2f29172c86d3293b61f0c5232d4a2da8.
+fn1. Hard system lockup fixed in spl master branch; see commit "1b4ad25":http://github.com/behlendorf/spl/commit/1b4ad25e2f29172c86d3293b61f0c5232d4a2da8.
 
 fn2. Mixed reports of success and failure.
 
-fn3. Build fails, see issue "issue 30":http://github.com/behlendorf/zfs/issues/#issue/30.
+fn3. linux-2.6.26 kernel compatibility, see issue "issue 30":http://github.com/behlendorf/zfs/issues/#issue/30.
 
-fn4. See the wiki for the compilation process, and the see "issue 20":http://github.com/behlendorf/zfs/issues/closed#issue/20
+fn4. Build failure with workaround, see "issue 20":http://github.com/behlendorf/zfs/issues/closed#issue/20
 
 fn5. Fails when the server have less than 512MB of RAM, but if you reboot the server just after the installation of ZFS, it's working well.
