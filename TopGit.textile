@@ -1,0 +1,119 @@
+h2. Why use TopGit?
+
+The Native ZFS on Linux project uses the "TopGit patch queue manager":http://repo.or.cz/w/topgit.git for three major reasons.
+
+# I needed to structure the project in such a way that it would be easy to track all of the changes from the latest official ZFS release from Oracle.  I absolutely need to be able to benefit from the upstream improvements and not get locked in to an old version of the code base.
+# I wanted to be able to easily manage our changes in terms of a patch stack or graph.  This allows me to easily isolate specific changes and push them upstream for inclusion.  It also allows me to easily update or drop specific changes based on what occurs upstream.
+# I needed our DVCS to be integrated with the management of this patch stack or graph.  I have tried other methods in the past such as SVN+Quilt but have found managing the patch stack becomes cumbersome.  By using Git+TopGit to more tightly integrate the patches in to the repository I expect several benefits.  One of the most important will be the ability to easily work on the patches with a distributed development team, additionally the repository can track patch history, and I can utilize Git to merge patches and resolve conflicts.
+
+TopGit is designed to specifically address these concerns by providing tools to simplify the handling of large numbers of interdependent topic branches.  When using a TopGit aware repositories every topic branch represents a patch and that branch references its dependent branches.  The union of all these branches is your final source base.
+
+h2. Setting up TopGit
+
+First off, decide if you really need to use TopGit.  I'm using it for the reasons described above, but I do most of my development simply by branching off the "top":http://github.com/behlendorf/zfs/tree/top topic branch.  Once I'm happy with the change I merge it in to the correct topic branches to be tracked long term.  If you don't need to concurrently track several topic branches you can likely work the same way.
+
+If you've decided you need to use TopGit too the latest version can be found "here":http://repo.or.cz/w/topgit.git.  Unfortunately, it has not been packaged so your so you will need to build it from source which is easy since it is just wrapper scripts for git.  Once you have cloned and build the TopGit repository you can use the _make install_ target to install it in your home directory.
+
+<pre>
+> git clone git://repo.or.cz/topgit.git
+> make
+> # Installs by default in $(HOME)
+> make install
+</pre>
+
+h2. TopGit and ZFS
+
+One you have TopGit installed you will want to clone a copy of the Native ZFS on Linux repository.  Cloning a TopGit controlled repository is very similar to cloning a normal Git repo, but you need to remember to use _tg remote_ to populate all the topic branches.
+
+<pre>
+> git clone git://github.com/behlendorf/zfs.git
+> cd zfs
+> tg remote --populate origin
+> git co top
+</pre>
+
+Now that you have TopGit aware ZFS repository the first thing you will probably want to do is have a look at all the topic branches.  TopGit provides a summary command which shows all the branches and a brief summary for each branch obtained from the _.topmsg_ files.
+
+<pre>
+> tg summary
+0      feature-branch                  [PATCH] feature-branch
+       feature-commit-cb               [PATCH] feature commit cb
+       feature-zap-cursor-to-key       [PATCH] feature zap cursor to key
+       ...
+</pre>
+
+By convention all TopGit branches are usually prefixed with _t/_, however I have chosen not to do this for simplicity.  A different convention I have adopted is to tag the top most TopGit branch as _top_ for easy reference.  This provides a consistent label to be used when you need to reference the branch which contains the union of all the topic branches.
+
+One thing you may also notice about the _tg summary_ command is it does not show the branches in dependent order.  This is done because TopGit allows each branch to express multiple dependencies as a DAG.  Initially this seemed like an added complication which I planned to avoid by just implementing a stack using the graph.   However, this ended up being problematic because with a stack when a change was made to a branch near the base, it was a very expensive operation to merge the change up to the top of the stack.  By defining the dependencies as a graph it is possible to keep the depth much shallower thus minimizing the merging.  It has also proved insightful as to each patches actual dependencies.
+
+To see the dependencies you will need to use the --graphviz option and pipe the result to dot for display.  The following command works fairly well for me.
+
+<pre>
+> tg summary --graphviz | dot -Txlib -Nfontsize=8
+</pre>
+
+h2. Updating a Topic Branch
+
+Updating a topic branch in TopGit is a pretty straight forward but there are a few rules you need to be aware of.  The basic process involves checking out the relevant topic branch where the changes need to be made, making the changes, committing the changes to the branch and then merging those changes in to dependent branches.  TopGit provides some tools to make this pretty easy, although it may be a little sluggish depending on how many dependent branches are impacted by the change.  Here is an example:
+
+<pre>
+> git checkout modify-topic-branch  # Checkout the proper branch
+> ...update branch...               # Update the branch
+> git commit -a                     # Commit your changes
+> git checkout top                  # Checkout the top branch
+> tg update                         # Recursively merge in new branch
+</pre>
+
+Assuming you change does not introduce any conflicts your done.  All branches which were dependent on your change will have had the changed merged in.  If your change introduced a conflict you will need to resolve the conflict and then continue on with the update.
+
+h2. Adding a Topic Branch
+
+Adding a topic branch in TopGit can be pretty straight forward.  If your adding a non-conflicting patch in parallel with other patches of the same type, then things are pretty easy and TopGit does all the work.
+
+<pre>
+> git co existing-topic-branch      # Checkout the branch to add after
+> tg create new-topic-branch        # Create a new topic branch
+> ...update .topmsg...              # Update the branch message
+> ...create patch...                # Update with your changes
+> git commit -a                     # Commit your changes
+> git co dependent-topic-branch     # Checkout dependent branch
+> tg depend add new-topic-branch    # Update dependencies
+> git checkout top                  # Checkout the top branch
+> tg update                         # Recursively merge in new branch
+</pre>
+
+If you need to add your patch in series with another change things are a little more complicated.  In this case TopGit does not yet support removing dependencies so you will need to do it by hand, as follows.
+
+<pre>
+> git co existing-topic-branch      # Checkout the branch to add after
+> tg create new-topic-branch        # Create a new topic branch
+> ...update .topmsg...              # Update the branch message
+> ...create patch...                # Update with your changes
+> git commit -a                     # Commit your changes
+> git co dependent-topic-branch     # Checkout dependent branch
+> ...update .topdeps...             # Manually update dependencies
+> git commit -a                     # Commit your changes
+> tg update                         # TopGit update
+> git checkout top                  # Checkout the top branch
+> tg update                         # Recursively merge in new branch
+</pre>
+
+Once your done, I find it is a good idea view the repo using the _tg summary --graphviz_ command and verify the updated dependency graph.
+
+h2. Removing a Topic Branch
+
+Removing a topic branch in TopGit is also currently not very easy.  To remove a dependent branch the basic process is to commit a patch which reverts all changes on the branch.  Then that reversion must be merged in to all dependent branches, the dependencies manually updated and finally the branch removed.  If the branch is not empty you will not be able to remove it.
+
+<pre>
+> git co delete-topic-branch        # Checkout the branch to delete
+> tg patch | patch -R -p1           # Revert all branch changes
+> git commit -a                     # Commit your changes
+> git checkout top                  # Checkout the top branch
+> tg update                         # Recursively merge revert
+> git co dependent-topic-branch     # Checkout dependent branch
+> ...update .topdeps...             # Manually update dependencies
+> git commit -a                     # Commit your changes
+> tg delete delete-topic-branch     # Delete empty topic branch
+</pre>
+
+Once your done, I find it is a good idea view the repo using the _tg summary --graphviz_ command and verify the updated dependency graph.
