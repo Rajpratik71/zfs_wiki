@@ -22,27 +22,27 @@ tank/fish   100G  1.33T  23.9K  -
 Partition _tank/fish_ as if it were a normal block device.
 
 <pre>
-> sfdisk /dev/tank/fish << EOF
+> sfdisk /dev/zvol/tank/fish << EOF
 0,
 EOF
-> sfdisk -l /dev/tank/fish
+> sfdisk -l /dev/zvol/tank/fish
 
-Disk /dev/tank/fish: 208050 cylinders, 16 heads, 63 sectors/track
+Disk /dev/zvol/tank/fish: 208050 cylinders, 16 heads, 63 sectors/track
 Units = cylinders of 516096 bytes, blocks of 1024 bytes, counting from 0
 
    Device Boot Start     End   #cyls    #blocks   Id  System
-/dev/tank/fish1          0+ 208049  208050- 104857199+  83  Linux
-/dev/tank/fish2          0       -       0          0    0  Empty
-/dev/tank/fish3          0       -       0          0    0  Empty
-/dev/tank/fish4          0       -       0          0    0  Empty
+/dev/zvol/tank/fish1          0+ 208049  208050- 104857199+  83  Linux
+/dev/zvol/tank/fish2          0       -       0          0    0  Empty
+/dev/zvol/tank/fish3          0       -       0          0    0  Empty
+/dev/zvol/tank/fish4          0       -       0          0    0  Empty
 </pre>
 
-Format the new /dev/tank/fish1 partition with ext2 and mount it.
+Format the new /dev/zvol/tank/fish1 partition with ext2 and mount it.
 
 <pre>
-> mkfs.ext2 -q /dev/tank/fish1
+> mkfs.ext2 -q /dev/zvol/tank/fish1
 > mkdir -p /mnt/tank/fish1
-> mount /dev/tank/fish1 /mnt/tank/fish1
+> mount /dev/zvol/tank/fish1 /mnt/tank/fish1
 > ls /mnt/tank/fish1
 lost+found
 </pre>
