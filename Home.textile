@@ -1,1 +1,7 @@
-<B>Native ZFS for Linux!</b>  ZFS is an advanced file system and volume manager which until now has only been available for Solaris.  This Linux ZFS kernel port includes a fully functional and stable SPA, DMU, and ZVOL which pave the way for the ZPL posix layer.
+<b>Native ZFS for Linux!</b>  ZFS is an advanced file system and volume manager which until now has only been available for Solaris.  This Linux ZFS kernel port currently includes a fully functional and stable SPA, DMU, and ZVOL with a ZFS Posix Layer (ZPL) on the way!
+
+|_\3. ZFS Core Features |
+| Storage pools | Massive Capacity | Copy-on-write transactional model |
+| Snapshots and clones | Dynamic striping | Variable block sizes |
+| Lightweight filesystem creation | Cache management | Adaptive endianness |
+| Deduplication | Online Repair | |
