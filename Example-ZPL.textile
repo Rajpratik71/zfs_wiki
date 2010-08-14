@@ -1,0 +1,5 @@
+Sorry, there is no working ZFS Posix Layer (ZPL) just yet.
+
+But there is good news.  Work on finishing the posix layer in this code base has been under way by "KQ Infotech":http://kqinfotech.wordpress.com/2009/10/23/hello-world/ for a while now.
+
+Personally, I would love to see a FUSE based implementation too.  Currently all the zfs code in this project builds cleanly in the kernel as a module and in user space as a dynamic library used by ztest.  It seems to me it should mainly be a matter of adding the needed FUSE bits which the "ZFS-FUSE folks":http://zfs-fuse.net/ clearly showed us can be done!  I think it would be very nice to have all this all in a single code base.
