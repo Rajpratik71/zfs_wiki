@@ -11,5 +11,6 @@
 | "zfs-0.4.9":http://github.com/downloads/behlendorf/zfs/zfs-0.4.9.tar.gz | "spl-0.4.9":http://github.com/downloads/behlendorf/spl/spl-0.4.9.tar.gz | onnv_121 | 18 | 4 | [[packages|Building-ZFS]] | [[platforms|Tested-Platforms]] |
 
 |_\2. Examples |
-| [[ZFS example|Example-ZPL]] | Simple ZFS example |
+| [[ZFS example|Example-ZPL]] | Simple ZFS example _(Work in Progress)_ |
 | [[ZVOL example|Example-ZVOL]] | Simple ZVOL example |
+| [[Lustre example|ZFS-and-Lustre]] | Simple Lustre example _(Work in Progress)_ |
