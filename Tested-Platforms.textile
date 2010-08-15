@@ -4,25 +4,25 @@ Native ZFS for Linux has been sanity tested using the ztest, zconfig, and zpios-
 |_\8. "zfs-0.5.0":http://github.com/downloads/behlendorf/zfs/zfs-0.5.0.tar.gz |
 | | |_\3. x86_64 |_\3. x86 |
 |_. Distro |_. Kernel |_. ztest |_. zconfig |_.zpios-sanity |_. ztest |_. zconfig |_.zpios-sanity |
-| RHEL5 | 2.6.18-194 | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
-| CHAOS4 | 2.6.18-96chaos | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
-| RHEL6 (beta) | 2.6.32-19 | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
-| CHAOS5 (beta) | 2.6.32-11chaos | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
-| Fedora 13 | 2.6.33.6-147 | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
-| Ubuntu 10.04 | 2.6.32-24-generic | | | | [[/images/check.png|width=30px|height=30px]] |  [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] |
+| RHEL5 | 2.6.18-194 | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | | | |
+| CHAOS4 | 2.6.18-96chaos | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | | | |
+| RHEL6 (beta) | 2.6.32-19 | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | | | |
+| CHAOS5 (beta) | 2.6.32-11chaos | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | | | |
+| Fedora 13 | 2.6.33.6-147 | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | | | |
+| Ubuntu 10.04 | 2.6.32-24-generic | | | | [[/images/check.png|width=25px|height=25px]] |  [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] |
 |_\8. [[/images/separator.png|width=640px|height=10px]] |
 |_\8. "zfs-0.4.9":http://github.com/downloads/behlendorf/zfs/zfs-0.4.9.tar.gz |
 | | |_\3. x86_64 |_\3. x86 |
 |_. Distro |_. Kernel |_. ztest |_. zconfig |_.zpios-sanity |_. ztest |_. zconfig |_. zpios-sanity |
-| RHEL5 | 2.6.18-194 | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
-| CHAOS4 | 2.6.18-91chaos | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
-| RHEL6 (beta) | 2.6.32-19 | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
-| CHAOS5 (beta) | 2.6.32-8chaos | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
-| Fedora 12 | 2.6.32.12-115 | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] |
-| Ubuntu 10.04 | 2.6.32-16.25 | [[/images/check.png|width=30px|height=30px]] | [[/images/question.png|width=30px|height=30px]][2] | [[/images/question.png|width=30px|height=30px]][2] | [[/images/check.png|width=30px|height=30px]] |  [[/images/naught.png|width=30px|height=30px]][1] | [[/images/naught.png|width=30px|height=30px]][1] |
-| Gentoo | 2.6.32-gentoo-r7 | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | [[/images/check.png|width=30px|height=30px]] | | | |
-| Debian 5.0 "Lenny' | 2.6.26-2 | [[/images/naught.png|width=30px|height=30px]][3] | [[/images/naught.png|width=30px|height=30px]][3] | [[/images/naught.png|width=30px|height=30px]][3] | [[/images/naught.png|width=30px|height=30px]][3] | [[/images/naught.png|width=30px|height=30px]][3] | [[/images/naught.png|width=30px|height=30px]][3] |
-| Debian 5.0 "Lenny' | 2.6.32-bpo | [[/images/check.png|width=30px|height=30px]][4] | [[/images/check.png|width=30px|height=30px]][4] |[[/images/check.png|width=30px|height=30px]][4][5] | [[/images/check.png|width=30px|height=30px]][4] |[[/images/check.png|width=30px|height=30px]][4] | [[/images/check.png|width=30px|height=30px]][4][5] |
+| RHEL5 | 2.6.18-194 | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | | | |
+| CHAOS4 | 2.6.18-91chaos | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | | | |
+| RHEL6 (beta) | 2.6.32-19 | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | | | |
+| CHAOS5 (beta) | 2.6.32-8chaos | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | | | |
+| Fedora 12 | 2.6.32.12-115 | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] |
+| Ubuntu 10.04 | 2.6.32-16.25 | [[/images/check.png|width=25px|height=25px]] | [[/images/question.png|width=25px|height=25px]][2] | [[/images/question.png|width=25px|height=25px]][2] | [[/images/check.png|width=25px|height=25px]] |  [[/images/naught.png|width=25px|height=25px]][1] | [[/images/naught.png|width=25px|height=25px]][1] |
+| Gentoo | 2.6.32-gentoo-r7 | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | | | |
+| Debian 5.0 "Lenny' | 2.6.26-2 | [[/images/naught.png|width=25px|height=25px]][3] | [[/images/naught.png|width=25px|height=25px]][3] | [[/images/naught.png|width=25px|height=25px]][3] | [[/images/naught.png|width=25px|height=25px]][3] | [[/images/naught.png|width=25px|height=25px]][3] | [[/images/naught.png|width=25px|height=25px]][3] |
+| Debian 5.0 "Lenny' | 2.6.32-bpo | [[/images/check.png|width=25px|height=25px]][4] | [[/images/check.png|width=25px|height=25px]][4] |[[/images/check.png|width=25px|height=25px]][4][5] | [[/images/check.png|width=25px|height=25px]][4] |[[/images/check.png|width=25px|height=25px]][4] | [[/images/check.png|width=25px|height=25px]][4][5] |
 
 fn1. Hard system lockup fixed in spl master branch; see commit "1b4ad25":http://github.com/behlendorf/spl/commit/1b4ad25e2f29172c86d3293b61f0c5232d4a2da8.
 
