@@ -1,4 +1,4 @@
-<b>Native ZFS for Linux!</b>  ZFS is an advanced file system and volume manager which was originally developed for Solaris.  It has been successfully ported to FreeBSD and now there is a functional Linux ZFS kernel port too.  The port currently includes a fully functional and stable SPA, DMU, and ZVOL with a ZFS Posix Layer (ZPL) on the way!
+<b>Native ZFS for Linux!</b>  ZFS is an advanced file system and volume manager which was originally developed for Solaris.  It has been successfully ported to FreeBSD and now there is a functional Linux ZFS kernel port too.  The port currently includes a fully functional and stable SPA, DMU, and ZVOL with a ZFS Posix Layer (ZPL) on the way!  Please see our [[FAQ]] and example pages for details.
 
 |_\4. ZFS Core Features |
 | Storage pools | Massive Capacity | Copy-on-write transactional model | Snapshots |
@@ -9,3 +9,7 @@
 | ZFS Release | SPL Release | Onnv Build | Pool Version | Filesystem Version | Building Packages | Tested Platforms |
 | "zfs-0.5.0":http://github.com/downloads/behlendorf/zfs/zfs-0.5.0.tar.gz | "spl-0.5.0":http://github.com/downloads/behlendorf/spl/spl-0.5.0.tar.gz | onnv_141 | 26 | 5 | [[packages|Building-ZFS]] | [[platforms|Tested-Platforms]] |
 | "zfs-0.4.9":http://github.com/downloads/behlendorf/zfs/zfs-0.4.9.tar.gz | "spl-0.4.9":http://github.com/downloads/behlendorf/spl/spl-0.4.9.tar.gz | onnv_121 | 18 | 4 | [[packages|Building-ZFS]] | [[platforms|Tested-Platforms]] |
+
+|_\2. Examples |
+| [[ZFS example|Example-ZPL]] | Simple ZFS example |
+| [[ZVOL example|Example-ZVOL]] | Simple ZVOL example |
