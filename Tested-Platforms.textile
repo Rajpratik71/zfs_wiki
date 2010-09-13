@@ -1,6 +1,17 @@
 Native ZFS for Linux has been sanity tested using the ztest, zconfig, and zpios-sanity regression tests on the following platforms.  While this package builds on all of these platforms, the x86 platform is not as well tested and you are likely to encounter "problems":http://wiki.github.com/behlendorf/zfs/faq#fn1.  I _strongly_ suggest you stick to a x86_64 based platform for now.  Please feel free to add the results for your platform of choice.
 
 |_\8. [[/images/separator.png|width=640px|height=10px]] |
+|_\8. "zfs-0.5.1":http://github.com/downloads/behlendorf/zfs/zfs-0.5.1.tar.gz |
+| | |_\3. x86_64 |_\3. x86 |
+|_. Distro |_. Kernel |_. ztest |_. zconfig |_.zpios-sanity |_. ztest |_. zconfig |_.zpios-sanity |
+| RHEL5 | 2.6.18-194 | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | | | |
+| CHAOS4 | 2.6.18-100chaos | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | | | |
+| RHEL6 (beta) | 2.6.32-63 | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | | | |
+| CHAOS5 (beta) | 2.6.32-12chaos | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | | | |
+| Fedora 13 | 2.6.34.6-47 | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | | | |
+| Ubuntu 10.04 | 2.6.32-24-generic | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | | | |
+| Debian Lenny | 2.6.26-2-amd64 | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | [[/images/check.png|width=25px|height=25px]] | | | |
+|_\8. [[/images/separator.png|width=640px|height=10px]] |
 |_\8. "zfs-0.5.0":http://github.com/downloads/behlendorf/zfs/zfs-0.5.0.tar.gz |
 | | |_\3. x86_64 |_\3. x86 |
 |_. Distro |_. Kernel |_. ztest |_. zconfig |_.zpios-sanity |_. ztest |_. zconfig |_.zpios-sanity |
