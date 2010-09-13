@@ -7,6 +7,7 @@
 
 |_\7. Releases |
 | ZFS Release | SPL Release | Onnv Build | Pool Version | Filesystem Version | Building Packages | Tested Platforms |
+| "zfs-0.5.1":http://github.com/downloads/behlendorf/zfs/zfs-0.5.1.tar.gz | "spl-0.5.1":http://github.com/downloads/behlendorf/spl/spl-0.5.1.tar.gz | onnv_147 | 28 | 5 | [[packages|Building-ZFS]] | [[platforms|Tested-Platforms]] |
 | "zfs-0.5.0":http://github.com/downloads/behlendorf/zfs/zfs-0.5.0.tar.gz | "spl-0.5.0":http://github.com/downloads/behlendorf/spl/spl-0.5.0.tar.gz | onnv_141 | 26 | 5 | [[packages|Building-ZFS]] | [[platforms|Tested-Platforms]] |
 | "zfs-0.4.9":http://github.com/downloads/behlendorf/zfs/zfs-0.4.9.tar.gz | "spl-0.4.9":http://github.com/downloads/behlendorf/spl/spl-0.4.9.tar.gz | onnv_121 | 18 | 4 | [[packages|Building-ZFS]] | [[platforms|Tested-Platforms]] |
 
