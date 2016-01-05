@@ -267,7 +267,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [3641](https://www.illumos.org/issues/3641) | [490d05b](https://github.com/illumos/illumos-gate/commit/490d05b) | [d586964](https://github.com/zfsonlinux/zfs/commit/d586964) | want a histogram of compressed block sizes 
 :large_blue_circle: | [3618](https://www.illumos.org/issues/3618) | [c55e05c](https://github.com/illumos/illumos-gate/commit/c55e05c) | [cb682a1](https://github.com/zfsonlinux/zfs/commit/cb682a1) | ::zio dcmd does not show timestamp data 
 :large_blue_circle: | [3606](https://www.illumos.org/issues/3606) | [b3a6f80](https://github.com/illumos/illumos-gate/commit/b3a6f80) | [c5b247f](https://github.com/zfsonlinux/zfs/commit/c5b247f) | zpool status -x shouldn't warn about old on-disk format 
-:white_circle:        | [3604](https://www.illumos.org/issues/3604) | [7706186](https://github.com/illumos/illumos-gate/commit/7706186) | [PR4156](https://github.com/zfsonlinux/zfs/pull/4156) | zdb should print bpobjs more verbosely (fix zdb hang)
+:large_blue_circle: | [3604](https://www.illumos.org/issues/3604) | [7706186](https://github.com/illumos/illumos-gate/commit/7706186) | [0743485](https://github.com/zfsonlinux/zfs/commit/0743485) | zdb should print bpobjs more verbosely (fix zdb hang)
 :large_blue_circle: | [3598](https://www.illumos.org/issues/3598) | [be6fd75](https://github.com/illumos/illumos-gate/commit/be6fd75) | [2e528b4](https://github.com/zfsonlinux/zfs/commit/2e528b4) | want to dtrace when errors are generated in zfs 
 :large_blue_circle: | [3517](https://www.illumos.org/issues/3517) | [efb4a87](https://github.com/illumos/illumos-gate/commit/efb4a87) | [7011fb6](https://github.com/zfsonlinux/zfs/commit/7011fb6) | importing pool with autoreplace=on and "hole" vdevs crashes syseventd 
 :large_blue_circle: | [3603](https://www.illumos.org/issues/3603) | [d047563](https://github.com/illumos/illumos-gate/commit/d047563) | [d1fada1](https://github.com/zfsonlinux/zfs/commit/d1fada1) | panic from bpobj_enqueue_subobj() 3604 zdb should print bpobjs more verbosely 
@@ -372,8 +372,8 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 272 - Applied to master branch
-- :white_circle:      13 - Open pull request against master branch pending review
+- :large_blue_circle: 273 - Applied to master branch
+- :white_circle:      12 - Open pull request against master branch pending review
 - :red_circle:        64 - No existing pull request against the master branch
 - :black_circle:      20 - Not applicable to Linux
 
