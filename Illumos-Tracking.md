@@ -372,10 +372,10 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: Applied to master branch
-- :white_circle:      Open pull request against master branch pending review
-- :red_circle:        No existing pull request against the master branch
-- :black_circle:      Not applicable to Linux
+- :large_blue_circle: 272 - Applied to master branch
+- :white_circle:      13 - Open pull request against master branch pending review
+- :red_circle:        64 - No existing pull request against the master branch
+- :black_circle:      20 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
                                                                 
