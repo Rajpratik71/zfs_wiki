@@ -31,8 +31,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [6267](https://www.illumos.org/issues/6267) | [d205810](https://github.com/illumos/illumos-gate/commit/d205810) | [bc4501f](https://github.com/zfsonlinux/zfs/commit/bc4501f) | dn_bonus evicted too early 
 :white_circle:      | [6295](https://www.illumos.org/issues/6295) | [daec38e](https://github.com/illumos/illumos-gate/commit/daec38e) | [PR4137](https://github.com/zfsonlinux/zfs/pull/4137)      | metaslab_condense's dbgmsg should include vdev id 
 :red_circle:        | [6293](https://www.illumos.org/issues/6293) | [8fe00bf](https://github.com/illumos/illumos-gate/commit/8fe00bf) |                                                             | ztest failure: error == 28 (0xc == 0x1c) in ztest_tx_assign() 
-:red_circle:        | [2605](https://www.illumos.org/issues/2605) | [9c3fd12](https://github.com/illumos/illumos-gate/commit/9c3fd12) |                                                             | want to resume interrupted zfs send 
-:white_circle:      | [6268](https://www.illumos.org/issues/6268) | [aab0441](https://github.com/illumos/illumos-gate/commit/aab0441) | [PR4008](https://github.com/zfsonlinux/zfs/pull/4008)      | zfs diff confused by moving a file to another directory 
+:white_circle:        | [2605](https://www.illumos.org/issues/2605) | [9c3fd12](https://github.com/illumos/illumos-gate/commit/9c3fd12) | [PR4176](https://github.com/zfsonlinux/zfs/pull/4176) | want to resume interrupted zfs send :white_circle:      | [6268](https://www.illumos.org/issues/6268) | [aab0441](https://github.com/illumos/illumos-gate/commit/aab0441) | [PR4008](https://github.com/zfsonlinux/zfs/pull/4008)      | zfs diff confused by moving a file to another directory 
 :large_blue_circle:        | [6290](https://www.illumos.org/issues/6290) | [3f84190](https://github.com/illumos/illumos-gate/commit/3f84190) | [PR3522](https://github.com/zfsonlinux/zfs/pull/3522) | zdb -h overflows stack 
 :red_circle:        | [6286](https://www.illumos.org/issues/6286) | [6de9bb5](https://github.com/illumos/illumos-gate/commit/6de9bb5) |                                                             | ZFS internal error when set large block on bootfs 
 :white_circle:      | [6288](https://www.illumos.org/issues/6288) | [0f2e7d0](https://github.com/illumos/illumos-gate/commit/0f2e7d0) | [PR3987](https://github.com/zfsonlinux/zfs/pull/3987)      | dmu_buf_will_dirty could be faster 
@@ -373,8 +372,8 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
 - :large_blue_circle: 273 - Applied to master branch
-- :white_circle:      12 - Open pull request against master branch pending review
-- :red_circle:        64 - No existing pull request against the master branch
+- :white_circle:      13 - Open pull request against master branch pending review
+- :red_circle:        63 - No existing pull request against the master branch
 - :black_circle:      20 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
