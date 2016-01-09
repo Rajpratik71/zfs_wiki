@@ -90,7 +90,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [5769](https://www.illumos.org/issues/5769) | [8c76e07](https://github.com/illumos/illumos-gate/commit/8c76e07) | [dd26aa5](https://github.com/zfsonlinux/zfs/commit/dd26aa5) | Cast 'zfs bad bloc' to ULL for x86 
 :red_circle:        | [5692](https://www.illumos.org/issues/5692) | [2bcf024](https://github.com/illumos/illumos-gate/commit/2bcf024) |                                                             | expose the number of hole blocks in a file 
 :large_blue_circle: | [5770](https://www.illumos.org/issues/5770) | [a45f1c3](https://github.com/illumos/illumos-gate/commit/a45f1c3) | [c3275b5](https://github.com/zfsonlinux/zfs/commit/c3275b5) | Add load_nvlist() error handling 
-:red_circle:        | [5704](https://www.illumos.org/issues/5704) | [bde3d61](https://github.com/illumos/illumos-gate/commit/bde3d61) |                                                             | libzfs can only handle 255 file descriptors 
+:white_circle:        | [5704](https://www.illumos.org/issues/5704) | [bde3d61](https://github.com/illumos/illumos-gate/commit/bde3d61) | [PR4193](https://github.com/zfsonlinux/zfs/pull/4193) | libzfs can only handle 255 file descriptors 
 :large_blue_circle: | [5694](https://www.illumos.org/issues/5694) | [34d7ce0](https://github.com/illumos/illumos-gate/commit/34d7ce0) | [b738bc5](https://github.com/zfsonlinux/zfs/commit/b738bc5) | traverse_prefetcher does not prefetch enough 
 :large_blue_circle: | [5695](https://www.illumos.org/issues/5695) | [70163ac](https://github.com/illumos/illumos-gate/commit/70163ac) | [a4069ee](https://github.com/zfsonlinux/zfs/commit/a4069ee) | dmu_sync'ed holes do not retain birth time 
 :large_blue_circle: | [5693](https://www.illumos.org/issues/5693) | [7f7ace3](https://github.com/illumos/illumos-gate/commit/7f7ace3) | [0f7d2a4](https://github.com/zfsonlinux/zfs/commit/0f7d2a4) | ztest fails in dbuf_verify: buf[i] == 0, due to dedup and bp_override 
@@ -150,7 +150,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [5138](https://www.illumos.org/issues/5138) | [af3465d](https://github.com/illumos/illumos-gate/commit/af3465d) | [36283ca](https://github.com/zfsonlinux/zfs/commit/36283ca) | add tunable for maximum number of blocks freed in one txg 
 :large_blue_circle: | [5136](https://www.illumos.org/issues/5136) | [d85a1e9](https://github.com/illumos/illumos-gate/commit/d85a1e9) | [e8b96c6](https://github.com/zfsonlinux/zfs/commit/e8b96c6) | fix write throttle comment in dsl_pool.c 
 :large_blue_circle: | [5135](https://www.illumos.org/issues/5135) | [b18d6b0](https://github.com/illumos/illumos-gate/commit/b18d6b0) | [ab2894e](https://github.com/zfsonlinux/zfs/commit/ab2894e) | zpool_find_import_cached() can use fnvlist_* 
-:red_circle:        | [5141](https://www.illumos.org/issues/5141) | [e94f268](https://github.com/illumos/illumos-gate/commit/e94f268) |                                                             | zfs minimum indirect block size is 4K 
+:white_circle:        | [5141](https://www.illumos.org/issues/5141) | [e94f268](https://github.com/illumos/illumos-gate/commit/e94f268) | [PR4194](https://github.com/zfsonlinux/zfs/pull/4194) | zfs minimum indirect block size is 4K 
 :large_blue_circle: | [5118](https://www.illumos.org/issues/5118) | [75fbdf9](https://github.com/illumos/illumos-gate/commit/75fbdf9) | [de0a9d7](https://github.com/zfsonlinux/zfs/commit/de0a9d7) | When verifying or creating a storage pool, error messages only show one device 
 :large_blue_circle: | [5116](https://www.illumos.org/issues/5116) | [3339867](https://github.com/illumos/illumos-gate/commit/3339867) | [1f6f97f](https://github.com/zfsonlinux/zfs/commit/1f6f97f) | zpool history -i goes into infinite loop 
 :large_blue_circle: | [5117](https://www.illumos.org/issues/5117) | [e503a68](https://github.com/illumos/illumos-gate/commit/e503a68) | [4f68d78](https://github.com/zfsonlinux/zfs/commit/4f68d78) | space map reallocation can cause corruption 
@@ -373,8 +373,8 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
 - :large_blue_circle: 276 - Applied to master branch
-- :white_circle:      16 - Open pull request against master branch pending review
-- :red_circle:        57 - No existing pull request against the master branch
+- :white_circle:      18 - Open pull request against master branch pending review
+- :red_circle:        55 - No existing pull request against the master branch
 - :black_circle:      20 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
