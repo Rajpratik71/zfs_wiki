@@ -7,7 +7,7 @@ Status              | Illumos Issue                               | Illumos     
 :red_circle:        | [6495](https://www.illumos.org/issues/6495) | [2bad225](https://github.com/illumos/illumos-gate/commit/2bad225) |                                                             | Fix mutex leak in dmu_objset_find_dp 
 :red_circle:        | [6494](https://www.illumos.org/issues/6494) | [f693d30](https://github.com/illumos/illumos-gate/commit/f693d30) |                                                             | ASSERT supported zio_types for file and disk vdevs 
 :red_circle:        | [4986](https://www.illumos.org/issues/4986) | [5878fad](https://github.com/illumos/illumos-gate/commit/5878fad) |                                                             | receiving replication stream fails if any snapshot exceeds refquota 
-:red_circle:        | [6358](https://www.illumos.org/issues/6358) | [b289d04](https://github.com/illumos/illumos-gate/commit/b289d04) |                                                             | A faulted pool with only unavailable vdevs triggers assertion failure in libzfs 
+:white_circle:        | [6358](https://www.illumos.org/issues/6358) | [b289d04](https://github.com/illumos/illumos-gate/commit/b289d04) | [PR4190](https://github.com/zfsonlinux/zfs/pull/4190) | A faulted pool with only unavailable vdevs triggers assertion failure in libzfs 
 :red_circle:        | [6393](https://www.illumos.org/issues/6393) | [68ecb2e](https://github.com/illumos/illumos-gate/commit/68ecb2e) |                                                             | zfs receive a full send as a clone 
 :red_circle:        | [6451](https://www.illumos.org/issues/6451) | [f9eb9fd](https://github.com/illumos/illumos-gate/commit/f9eb9fd) |                                                             | ztest fails due to checksum errors 
 :red_circle:        | [6051](https://www.illumos.org/issues/6051) | [620f322](https://github.com/illumos/illumos-gate/commit/620f322) |                                                             | lzc_receive: allow the caller to read the begin record 
@@ -63,8 +63,8 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [5912](https://www.illumos.org/issues/5912) | [5bae108](https://github.com/illumos/illumos-gate/commit/5bae108) | [cf50a2b](https://github.com/zfsonlinux/zfs/commit/cf50a2b) | full stream can not be force-received into a dataset if it has a snapshot 
 :black_circle:      | [5961](https://www.illumos.org/issues/5961) | [c701fde](https://github.com/illumos/illumos-gate/commit/c701fde) |                                                             | Fix stack overflow in zfs_create_fs 
 :red_circle:        | [5669](https://www.illumos.org/issues/5669) | [c423721](https://github.com/illumos/illumos-gate/commit/c423721) |                                                             | altroot not set in zpool create when specified with -o 
-:red_circle:        | [5438](https://www.illumos.org/issues/5438) | [5897eb4](https://github.com/illumos/illumos-gate/commit/5897eb4) |                                                             | zfs_blkptr_verify should continue after zfs_panic_recover 
-:red_circle:        | [5515](https://www.illumos.org/issues/5515) | [752fd8d](https://github.com/illumos/illumos-gate/commit/752fd8d) |                                                             | dataset user hold doesn't reject empty tags 
+:white_circle:        | [5438](https://www.illumos.org/issues/5438) | [5897eb4](https://github.com/illumos/illumos-gate/commit/5897eb4) | [PR4192](https://github.com/zfsonlinux/zfs/pull/4192) | zfs_blkptr_verify should continue after zfs_panic_recover 
+:white_circle:        | [5515](https://www.illumos.org/issues/5515) | [752fd8d](https://github.com/illumos/illumos-gate/commit/752fd8d) | [PR4191](https://github.com/zfsonlinux/zfs/pull/4191) | dataset user hold doesn't reject empty tags 
 :large_blue_circle: | [5818](https://www.illumos.org/issues/5818) | [81cd5c5](https://github.com/illumos/illumos-gate/commit/81cd5c5) | [c3520e7](https://github.com/zfsonlinux/zfs/commit/c3520e7) | zfs {ref}compressratio is incorrect with 4k sector size 
 :red_circle:        | [5815](https://www.illumos.org/issues/5815) | [fae6347](https://github.com/illumos/illumos-gate/commit/fae6347) |                                                             | libzpool's panic function doesn't set global panicstr, ::status not as useful 
 :large_blue_circle: | [5269](https://www.illumos.org/issues/5269) | [12380e1](https://github.com/illumos/illumos-gate/commit/12380e1) | [9c43027](https://github.com/zfsonlinux/zfs/commit/9c43027) | zpool import slow 
@@ -373,8 +373,8 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
 - :large_blue_circle: 274 - Applied to master branch
-- :white_circle:      13 - Open pull request against master branch pending review
-- :red_circle:        62 - No existing pull request against the master branch
+- :white_circle:      16 - Open pull request against master branch pending review
+- :red_circle:        59 - No existing pull request against the master branch
 - :black_circle:      20 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
