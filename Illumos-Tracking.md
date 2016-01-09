@@ -36,7 +36,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle:        | [6290](https://www.illumos.org/issues/6290) | [3f84190](https://github.com/illumos/illumos-gate/commit/3f84190) | [PR3522](https://github.com/zfsonlinux/zfs/pull/3522) | zdb -h overflows stack 
 :red_circle:        | [6286](https://www.illumos.org/issues/6286) | [6de9bb5](https://github.com/illumos/illumos-gate/commit/6de9bb5) |                                                             | ZFS internal error when set large block on bootfs 
 :white_circle:      | [6288](https://www.illumos.org/issues/6288) | [0f2e7d0](https://github.com/illumos/illumos-gate/commit/0f2e7d0) | [PR3987](https://github.com/zfsonlinux/zfs/pull/3987)      | dmu_buf_will_dirty could be faster 
-:red_circle:        | [6281](https://www.illumos.org/issues/6281) | [6328027](https://github.com/illumos/illumos-gate/commit/6328027) |                                                             | prefetching should apply to 1MB reads 
+:white_circle: | [6281](https://www.illumos.org/issues/6281) | [6328027](https://github.com/illumos/illumos-gate/commit/6328027) | [PR4189](https://github.com/zfsonlinux/zfs/pull/4189) | prefetching should apply to 1MB reads 
 :red_circle:        | [5219](https://www.illumos.org/issues/5219) | [d7d9a6d](https://github.com/illumos/illumos-gate/commit/d7d9a6d) |                                                             | l2arc_write_buffers() may write beyond target_sz 
 :red_circle:        | [6280](https://www.illumos.org/issues/6280) | [d1672ef](https://github.com/illumos/illumos-gate/commit/d1672ef) |                                                             | libzfs: unshare_one() could fail with EZFS_SHARENFSFAILED 
 :red_circle:        | [6251](https://www.illumos.org/issues/6251) | [139510f](https://github.com/illumos/illumos-gate/commit/139510f) |                                                             | add tunable to disable free_bpobj processing 
@@ -373,8 +373,8 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
 - :large_blue_circle: 274 - Applied to master branch
-- :white_circle:      12 - Open pull request against master branch pending review
-- :red_circle:        63 - No existing pull request against the master branch
+- :white_circle:      13 - Open pull request against master branch pending review
+- :red_circle:        62 - No existing pull request against the master branch
 - :black_circle:      20 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
