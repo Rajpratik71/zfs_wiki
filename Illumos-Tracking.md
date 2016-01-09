@@ -51,7 +51,7 @@ Status              | Illumos Issue                               | Illumos     
 :red_circle:        | [6096](https://www.illumos.org/issues/6096) | [8f5190a](https://github.com/illumos/illumos-gate/commit/8f5190a) |                                                             | ZFS_SMB_ACL_RENAME needs to cleanup better 
 :red_circle:        | [6093](https://www.illumos.org/issues/6093) | [0f92170](https://github.com/illumos/illumos-gate/commit/0f92170) |                                                             | zfsctl_shares_lookup should only VN_RELE() on zfs_zget() success 
 :large_blue_circle: | [5959](https://www.illumos.org/issues/5959) | [ca0cc39](https://github.com/illumos/illumos-gate/commit/ca0cc39) | [241b541](https://github.com/zfsonlinux/zfs/commit/241b541) | clean up per-dataset feature count code 
-:white_circle:      | [5960](https://www.illumos.org/issues/5960) | [a2cdcdd](https://github.com/illumos/illumos-gate/commit/a2cdcdd) | [PR4179](https://github.com/zfsonlinux/zfs/pull/4179)      | zfs recv should prefetch indirect blocks 5925 zfs receive -o origin= 
+:large_blue_circle: | [5960](https://www.illumos.org/issues/5960) | [a2cdcdd](https://github.com/illumos/illumos-gate/commit/a2cdcdd) | [fcff0f3](https://github.com/zfsonlinux/zfs/commit/fcff0f3) | zfs recv should prefetch indirect blocks 5925 zfs receive -o origin=
 :large_blue_circle: | [6033](https://www.illumos.org/issues/6033) | [31c46cf](https://github.com/illumos/illumos-gate/commit/31c46cf) | [a7b10a9](https://github.com/zfsonlinux/zfs/commit/a7b10a9) | arc_adjust() should search MFU lists for oldest buffer when adjusting MFU size 
 :large_blue_circle: | [5981](https://www.illumos.org/issues/5981) | [1d3f896](https://github.com/illumos/illumos-gate/commit/1d3f896) | [5e8cd5d](https://github.com/zfsonlinux/zfs/commit/5e8cd5d) | Deadlock in dmu_objset_find_dp 
 :large_blue_circle: | [5911](https://www.illumos.org/issues/5911) | [46e1baa](https://github.com/illumos/illumos-gate/commit/46e1baa) | [4bda3bd](https://github.com/zfsonlinux/zfs/commit/4bda3bd) | ZFS "hangs" while deleting file 
@@ -372,8 +372,8 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 273 - Applied to master branch
-- :white_circle:      13 - Open pull request against master branch pending review
+- :large_blue_circle: 274 - Applied to master branch
+- :white_circle:      12 - Open pull request against master branch pending review
 - :red_circle:        63 - No existing pull request against the master branch
 - :black_circle:      20 - Not applicable to Linux
 
