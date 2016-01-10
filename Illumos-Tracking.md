@@ -38,7 +38,7 @@ Status              | Illumos Issue                               | Illumos     
 :white_circle:      | [6288](https://www.illumos.org/issues/6288) | [0f2e7d0](https://github.com/illumos/illumos-gate/commit/0f2e7d0) | [PR3987](https://github.com/zfsonlinux/zfs/pull/3987)      | dmu_buf_will_dirty could be faster 
 :white_circle: | [6281](https://www.illumos.org/issues/6281) | [6328027](https://github.com/illumos/illumos-gate/commit/6328027) | [PR4189](https://github.com/zfsonlinux/zfs/pull/4189) | prefetching should apply to 1MB reads 
 :red_circle:        | [5219](https://www.illumos.org/issues/5219) | [d7d9a6d](https://github.com/illumos/illumos-gate/commit/d7d9a6d) |                                                             | l2arc_write_buffers() may write beyond target_sz 
-:red_circle:        | [6280](https://www.illumos.org/issues/6280) | [d1672ef](https://github.com/illumos/illumos-gate/commit/d1672ef) |                                                             | libzfs: unshare_one() could fail with EZFS_SHARENFSFAILED 
+:white_circle:        | [6280](https://www.illumos.org/issues/6280) | [d1672ef](https://github.com/illumos/illumos-gate/commit/d1672ef) | [PR4200)(https://github.com/zfsonlinux/zfs/pull/4200) | libzfs: unshare_one() could fail with EZFS_SHARENFSFAILED 
 :red_circle:        | [6251](https://www.illumos.org/issues/6251) | [139510f](https://github.com/illumos/illumos-gate/commit/139510f) |                                                             | add tunable to disable free_bpobj processing 
 :black_circle:      | [6250](https://www.illumos.org/issues/6250) | [b10bba7](https://github.com/illumos/illumos-gate/commit/b10bba7) |                                                             | zvol_dump_init() can hold txg open 
 :white_circle:      | [6171](https://www.illumos.org/issues/6171) | [03bad06](https://github.com/illumos/illumos-gate/commit/03bad06) | [PR3988](https://github.com/zfsonlinux/zfs/pull/3988)      | dsl_prop_unregister() slows down dataset eviction. 
@@ -199,7 +199,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [4571](https://www.illumos.org/issues/4571) | [b55998b](https://github.com/illumos/illumos-gate/commit/b55998b) | [6e1b9d0](https://github.com/zfsonlinux/zfs/commit/6e1b9d0) | Add documentation for -T and interval to "zpool list" 
 :large_blue_circle: | [4570](https://www.illumos.org/issues/4570) | [e902ed8](https://github.com/illumos/illumos-gate/commit/e902ed8) | [b1d13a6](https://github.com/zfsonlinux/zfs/commit/b1d13a6) | Document dedupditto pool property 4572 Dedup-related documentation additions for zpool and zdb. 1371 Add -D option description to zpool(1M) manpage 
 :red_circle:        | [3947](https://www.illumos.org/issues/3947) | [409f1c0](https://github.com/illumos/illumos-gate/commit/409f1c0) |                                                             | zpool(1M) references nonexistent zfs-features(5) 4540 zpool(1M) man page doesn't describe "readonly" property 3948 zfs sync=default is not accepted 4611 zfs(1M) still mentions 'send -r' in synopsis 4415 zpool(1M) man page missing "import -m" description 
-:red_circle:        | [4638](https://www.illumos.org/issues/4638) | [2144b12](https://github.com/illumos/illumos-gate/commit/2144b12) |                                                             | Panic in ZFS via rfs3_setattr()/rfs3_write(): dirtying snapshot! 
+:white_circle:        | [4638](https://www.illumos.org/issues/4638) | [2144b12](https://github.com/illumos/illumos-gate/commit/2144b12) | [PR4201](https://github.com/zfsonlinux/zfs/pull/4201) | Panic in ZFS via rfs3_setattr()/rfs3_write(): dirtying snapshot! 
 :large_blue_circle: | [4626](https://www.illumos.org/issues/4626) | [fb13f48](https://github.com/illumos/illumos-gate/commit/fb13f48) | [02f8fe4](https://github.com/zfsonlinux/zfs/commit/02f8fe4) | libzfs memleak in zpool_in_use() 
 :large_blue_circle: | [4574](https://www.illumos.org/issues/4574) | [03d1795](https://github.com/illumos/illumos-gate/commit/03d1795) | [36f92e9](https://github.com/zfsonlinux/zfs/commit/36f92e9) | get_clones_stat does not call zap_count in non-debug kernel 
 :large_blue_circle: | [4504](https://www.illumos.org/issues/4504) | [48f1b90](https://github.com/illumos/illumos-gate/commit/48f1b90) | [8b46464](https://github.com/zfsonlinux/zfs/commit/8b46464) | traverse_visitbp: visit DMU_GROUPUSED_OBJECT before DMU_USERUSED_OBJECT 
@@ -373,8 +373,8 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
 - :large_blue_circle: 276 - Applied to master branch
-- :white_circle:      18 - Open pull request against master branch pending review
-- :red_circle:        55 - No existing pull request against the master branch
+- :white_circle:      20 - Open pull request against master branch pending review
+- :red_circle:        53 - No existing pull request against the master branch
 - :black_circle:      20 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
