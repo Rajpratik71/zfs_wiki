@@ -16,7 +16,7 @@ Status              | Illumos Issue                               | Illumos     
 :red_circle:        | [6414](https://www.illumos.org/issues/6414) | [eb5bb58](https://github.com/illumos/illumos-gate/commit/eb5bb58) |                                                             | vdev_config_sync could be simpler 
 :red_circle:        | [6391](https://www.illumos.org/issues/6391) | [ae24175](https://github.com/illumos/illumos-gate/commit/ae24175) |                                                             | Override default SPA config location via environment 
 :red_circle:        | [6421](https://www.illumos.org/issues/6421) | [57deb23](https://github.com/illumos/illumos-gate/commit/57deb23) |                                                             | Add missing multilist_destroy calls to arc_fini 
-:red_circle:        | [6388](https://www.illumos.org/issues/6388) | [c71c00b](https://github.com/illumos/illumos-gate/commit/c71c00b) |                                                             | Failure of userland copy should return EFAULT 
+:large_blue_circle:        | [6388](https://www.illumos.org/issues/6388) | [c71c00b](https://github.com/illumos/illumos-gate/commit/c71c00b) | [PR3575](https://github.com/zfsonlinux/zfs/pull/3575) | Failure of userland copy should return EFAULT 
 :red_circle:        | [6368](https://www.illumos.org/issues/6368) | [7c5a457](https://github.com/illumos/illumos-gate/commit/7c5a457) |                                                             | Remove superfluous statement 
 :large_blue_circle:        | [6386](https://www.illumos.org/issues/6386) | [5bdd995](https://github.com/illumos/illumos-gate/commit/5bdd995) | [PR2330](https://github.com/zfsonlinux/zfs/pull/2330) | Fix function call with uninitialized value in vdev_inuse 
 :red_circle:        | [6334](https://www.illumos.org/issues/6334) | [6575bca](https://github.com/illumos/illumos-gate/commit/6575bca) |                                                             | Cannot unlink files when over quota 
@@ -372,9 +372,9 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 276 - Applied to master branch
+- :large_blue_circle: 277 - Applied to master branch
 - :white_circle:      20 - Open pull request against master branch pending review
-- :red_circle:        53 - No existing pull request against the master branch
+- :red_circle:        52 - No existing pull request against the master branch
 - :black_circle:      20 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
