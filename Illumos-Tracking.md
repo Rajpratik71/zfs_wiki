@@ -284,7 +284,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [3537](https://www.illumos.org/issues/3537) | [c3a6601](https://github.com/illumos/illumos-gate/commit/c3a6601) | [330847f](https://github.com/zfsonlinux/zfs/commit/330847f) | want pool io kstats 
 :large_blue_circle: | [3522](https://www.illumos.org/issues/3522) | [d5285ca](https://github.com/illumos/illumos-gate/commit/d5285ca) | [a117a6d](https://github.com/zfsonlinux/zfs/commit/a117a6d) | zfs module should not allow uninitialized variables 
 :large_blue_circle: | [3512](https://www.illumos.org/issues/3512) | [644b952](https://github.com/illumos/illumos-gate/commit/644b952) | [67629d0](https://github.com/zfsonlinux/zfs/commit/67629d0) | rounding discrepancy in sa_find_sizes() 3513 mismatch between SA header size and layout 
-:red_circle:        | [3507](https://www.illumos.org/issues/3507) | [9dc3941](https://github.com/illumos/illumos-gate/commit/9dc3941) |                                                             | Tunable to allow block allocation even on degraded vdevs 
+:large_blue_circle: | [3507](https://www.illumos.org/issues/3507) | [9dc3941](https://github.com/illumos/illumos-gate/commit/9dc3941) | [43a696e](https://github.com/zfsonlinux/zfs/commit/43a696e) | Tunable to allow block allocation even on degraded vdevs 
 :large_blue_circle: | [3498](https://www.illumos.org/issues/3498) | [1b912ec](https://github.com/illumos/illumos-gate/commit/1b912ec) | [294f680](https://github.com/zfsonlinux/zfs/commit/294f680) | panic in arc_read(): !refcount_is_zero(&pbuf->b_hdr->b_refcnt) 
 :red_circle:        | [3465](https://www.illumos.org/issues/3465) | [28e4da2](https://github.com/illumos/illumos-gate/commit/28e4da2) |                                                             | ::walk ... ::<dcmd> misinterprets input as symbol names 3466 ::tsd should handle missing/NULL values better 3467 mdb_ctf_vread() could be more useful 3468 mdb enhancements for zfs development 3470 ::whatis does not print callers from KMF_LITE 3473 mdb_get_module() returns wrong module 
 :red_circle:        | [3371](https://www.illumos.org/issues/3371) | [52fd748](https://github.com/illumos/illumos-gate/commit/52fd748) |                                                             | dumpadm -z is not documented in manpage 3380 zfs man page: documentation for zfs allow is confusing 
@@ -372,9 +372,9 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 278 - Applied to master branch
+- :large_blue_circle: 279 - Applied to master branch
 - :white_circle:      19 - Open pull request against master branch pending review
-- :red_circle:        52 - No existing pull request against the master branch
+- :red_circle:        51 - No existing pull request against the master branch
 - :black_circle:      20 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
