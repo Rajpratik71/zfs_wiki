@@ -199,7 +199,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [4571](https://www.illumos.org/issues/4571) | [b55998b](https://github.com/illumos/illumos-gate/commit/b55998b) | [6e1b9d0](https://github.com/zfsonlinux/zfs/commit/6e1b9d0) | Add documentation for -T and interval to "zpool list" 
 :large_blue_circle: | [4570](https://www.illumos.org/issues/4570) | [e902ed8](https://github.com/illumos/illumos-gate/commit/e902ed8) | [b1d13a6](https://github.com/zfsonlinux/zfs/commit/b1d13a6) | Document dedupditto pool property 4572 Dedup-related documentation additions for zpool and zdb. 1371 Add -D option description to zpool(1M) manpage 
 :red_circle:        | [3947](https://www.illumos.org/issues/3947) | [409f1c0](https://github.com/illumos/illumos-gate/commit/409f1c0) |                                                             | zpool(1M) references nonexistent zfs-features(5) 4540 zpool(1M) man page doesn't describe "readonly" property 3948 zfs sync=default is not accepted 4611 zfs(1M) still mentions 'send -r' in synopsis 4415 zpool(1M) man page missing "import -m" description 
-:white_circle:        | [4638](https://www.illumos.org/issues/4638) | [2144b12](https://github.com/illumos/illumos-gate/commit/2144b12) | [PR4201](https://github.com/zfsonlinux/zfs/pull/4201) | Panic in ZFS via rfs3_setattr()/rfs3_write(): dirtying snapshot! 
+:large_blue_circle: | [4638](https://www.illumos.org/issues/4638) | [2144b12](https://github.com/illumos/illumos-gate/commit/2144b12) | [f3c9dca](https://github.com/zfsonlinux/zfs/commit/f3c9dca) | Panic in ZFS via rfs3_setattr()/rfs3_write(): dirtying snapshot! 
 :large_blue_circle: | [4626](https://www.illumos.org/issues/4626) | [fb13f48](https://github.com/illumos/illumos-gate/commit/fb13f48) | [02f8fe4](https://github.com/zfsonlinux/zfs/commit/02f8fe4) | libzfs memleak in zpool_in_use() 
 :large_blue_circle: | [4574](https://www.illumos.org/issues/4574) | [03d1795](https://github.com/illumos/illumos-gate/commit/03d1795) | [36f92e9](https://github.com/zfsonlinux/zfs/commit/36f92e9) | get_clones_stat does not call zap_count in non-debug kernel 
 :large_blue_circle: | [4504](https://www.illumos.org/issues/4504) | [48f1b90](https://github.com/illumos/illumos-gate/commit/48f1b90) | [8b46464](https://github.com/zfsonlinux/zfs/commit/8b46464) | traverse_visitbp: visit DMU_GROUPUSED_OBJECT before DMU_USERUSED_OBJECT 
@@ -372,8 +372,8 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 279 - Applied to master branch
-- :white_circle:      19 - Open pull request against master branch pending review
+- :large_blue_circle: 280 - Applied to master branch
+- :white_circle:      18 - Open pull request against master branch pending review
 - :red_circle:        51 - No existing pull request against the master branch
 - :black_circle:      20 - Not applicable to Linux
 
