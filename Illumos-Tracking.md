@@ -180,7 +180,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [4914](https://www.illumos.org/issues/4914) | [7802d7b](https://github.com/illumos/illumos-gate/commit/7802d7b) | [5dbd68a](https://github.com/zfsonlinux/zfs/commit/5dbd68a) | zfs on-disk bookmark structure should be named *_phys_t 
 :large_blue_circle: | [4756](https://www.illumos.org/issues/4756) | [30beaff](https://github.com/illumos/illumos-gate/commit/30beaff) | [080b310](https://github.com/zfsonlinux/zfs/commit/080b310) | metaslab_group_preload() could deadlock 
 :large_blue_circle: | [4897](https://www.illumos.org/issues/4897) | [3038a2b](https://github.com/illumos/illumos-gate/commit/3038a2b) | [3bec585](https://github.com/zfsonlinux/zfs/commit/3bec585) | Space accounting mismatch in L2ARC/zpool 
-:white_circle:        | [4891](https://www.illumos.org/issues/4891) | [df15e41](https://github.com/illumos/illumos-gate/commit/df15e41) | [PR4160](https://github.com/zfsonlinux/zfs/pull/4160) | want zdb option to dump all metadata 
+:large_blue_circle: | [4891](https://www.illumos.org/issues/4891) | [df15e41](https://github.com/illumos/illumos-gate/commit/df15e41) | [9867e8b](https://github.com/zfsonlinux/zfs/commit/9867e8b) | want zdb option to dump all metadata 
 :large_blue_circle: | [4881](https://www.illumos.org/issues/4881) | [06315b7](https://github.com/illumos/illumos-gate/commit/06315b7) | [1fa8f79](https://github.com/zfsonlinux/zfs/commit/1fa8f79) | zfs send performance degradation when embedded block pointers are encountered 
 :large_blue_circle: | [4390](https://www.illumos.org/issues/4390) | [7fd05ac](https://github.com/illumos/illumos-gate/commit/7fd05ac) | [fbeddd6](https://github.com/zfsonlinux/zfs/commit/fbeddd6) | i/o errors when deleting filesystem/zvol can lead to space map corruption 
 :large_blue_circle: | [4757](https://www.illumos.org/issues/4757) | [5d7b4d4](https://github.com/illumos/illumos-gate/commit/5d7b4d4) | [9b67f60](https://github.com/zfsonlinux/zfs/commit/9b67f60) | ZFS embedded-data block pointers ("zero block compression") 4913 zfs release should not be subject to space checks 
@@ -372,8 +372,8 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 280 - Applied to master branch
-- :white_circle:      18 - Open pull request against master branch pending review
+- :large_blue_circle: 281 - Applied to master branch
+- :white_circle:      17 - Open pull request against master branch pending review
 - :red_circle:        51 - No existing pull request against the master branch
 - :black_circle:      20 - Not applicable to Linux
 
