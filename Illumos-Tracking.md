@@ -174,7 +174,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [4966](https://www.illumos.org/issues/4966) | [cd67d23](https://github.com/illumos/illumos-gate/commit/cd67d23) | [3e43edd](https://github.com/zfsonlinux/zfs/commit/3e43edd) | zpool list iterator does not update output 
 :red_circle:        | [4953](https://www.illumos.org/issues/4953) | [33cde0d](https://github.com/illumos/illumos-gate/commit/33cde0d) |                                                             | zfs rename <snapshot> need not involve libshare 4954 "zfs create" need not involve libshare if we are not sharing 4955 libshare's get_zfs_dataset need not sort the datasets 
 :red_circle:        | [4950](https://www.illumos.org/issues/4950) | [4bb7380](https://github.com/illumos/illumos-gate/commit/4bb7380) |                                                             | files sometimes can't be removed from a full filesystem 
-:white_circle:        | [4929](https://www.illumos.org/issues/4929) | [b461c74](https://github.com/illumos/illumos-gate/commit/b461c74) | [PR4159](https://github.com/zfsonlinux/zfs/pull/4159) | want prevsnap property 
+:large_blue_circle: | [4929](https://www.illumos.org/issues/4929) | [b461c74](https://github.com/illumos/illumos-gate/commit/b461c74) | [1715493](https://github.com/zfsonlinux/zfs/commit/1715493) | want prevsnap property 
 :large_blue_circle: | [4924](https://www.illumos.org/issues/4924) | [b8289d2](https://github.com/illumos/illumos-gate/commit/b8289d2) | [62bdd5e](https://github.com/zfsonlinux/zfs/commit/62bdd5e) | LZ4 Compression for metadata 
 :large_blue_circle: | [4936](https://www.illumos.org/issues/4936) | [58d0718](https://github.com/illumos/illumos-gate/commit/58d0718) | [ee47122](https://github.com/zfsonlinux/zfs/commit/ee47122) | lz4 could theoretically overflow a pointer with a certain input 
 :large_blue_circle: | [4914](https://www.illumos.org/issues/4914) | [7802d7b](https://github.com/illumos/illumos-gate/commit/7802d7b) | [5dbd68a](https://github.com/zfsonlinux/zfs/commit/5dbd68a) | zfs on-disk bookmark structure should be named *_phys_t 
@@ -372,8 +372,8 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 281 - Applied to master branch
-- :white_circle:      17 - Open pull request against master branch pending review
+- :large_blue_circle: 282 - Applied to master branch
+- :white_circle:      16 - Open pull request against master branch pending review
 - :red_circle:        51 - No existing pull request against the master branch
 - :black_circle:      20 - Not applicable to Linux
 
