@@ -38,7 +38,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [6288](https://www.illumos.org/issues/6288) | [0f2e7d0](https://github.com/illumos/illumos-gate/commit/0f2e7d0) | [5a28a97](https://github.com/zfsonlinux/zfs/commit/5a28a97) | dmu_buf_will_dirty could be faster 
 :large_blue_circle: | [6281](https://www.illumos.org/issues/6281) | [6328027](https://github.com/illumos/illumos-gate/commit/6328027) | [a6fb32b8](https://github.com/zfsonlinux/zfs/commit/6fb32b8) | prefetching should apply to 1MB reads 
 :red_circle:        | [5219](https://www.illumos.org/issues/5219) | [d7d9a6d](https://github.com/illumos/illumos-gate/commit/d7d9a6d) |                                                             | l2arc_write_buffers() may write beyond target_sz 
-:white_circle:        | [6280](https://www.illumos.org/issues/6280) | [d1672ef](https://github.com/illumos/illumos-gate/commit/d1672ef) | [PR4200](https://github.com/zfsonlinux/zfs/pull/4200) | libzfs: unshare_one() could fail with EZFS_SHARENFSFAILED 
+:large_blue_circle: | [6280](https://www.illumos.org/issues/6280) | [d1672ef](https://github.com/illumos/illumos-gate/commit/d1672ef) | [7ea4f88](https://github.com/zfsonlinux/zfs/commit/7ea4f88) | libzfs: unshare_one() could fail with EZFS_SHARENFSFAILED 
 :red_circle:        | [6251](https://www.illumos.org/issues/6251) | [139510f](https://github.com/illumos/illumos-gate/commit/139510f) |                                                             | add tunable to disable free_bpobj processing 
 :black_circle:      | [6250](https://www.illumos.org/issues/6250) | [b10bba7](https://github.com/illumos/illumos-gate/commit/b10bba7) |                                                             | zvol_dump_init() can hold txg open 
 :large_blue_circle: | [6171](https://www.illumos.org/issues/6171) | [03bad06](https://github.com/illumos/illumos-gate/commit/03bad06) | [0eb2161](https://github.com/zfsonlinux/zfs/commit/0eb2161) | dsl_prop_unregister() slows down dataset eviction. 
@@ -372,8 +372,8 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 294 - Applied to master branch
-- :white_circle:      3 - Open pull request against master branch pending review
+- :large_blue_circle: 295 - Applied to master branch
+- :white_circle:      2 - Open pull request against master branch pending review
 - :red_circle:        49 - No existing pull request against the master branch
 - :black_circle:      21 - Not applicable to Linux
 
