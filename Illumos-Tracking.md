@@ -36,7 +36,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [6290](https://www.illumos.org/issues/6290) | [3f84190](https://github.com/illumos/illumos-gate/commit/3f84190) | [017da6](https://github.com/zfsonlinux/zfs/commit/017da6f) | zdb -h overflows stack 
 :red_circle:        | [6286](https://www.illumos.org/issues/6286) | [6de9bb5](https://github.com/illumos/illumos-gate/commit/6de9bb5) |                                                             | ZFS internal error when set large block on bootfs 
 :large_blue_circle: | [6288](https://www.illumos.org/issues/6288) | [0f2e7d0](https://github.com/illumos/illumos-gate/commit/0f2e7d0) | [5a28a97](https://github.com/zfsonlinux/zfs/commit/5a28a97) | dmu_buf_will_dirty could be faster 
-:white_circle: | [6281](https://www.illumos.org/issues/6281) | [6328027](https://github.com/illumos/illumos-gate/commit/6328027) | [PR4189](https://github.com/zfsonlinux/zfs/pull/4189) | prefetching should apply to 1MB reads 
+:large_blue_circle: | [6281](https://www.illumos.org/issues/6281) | [6328027](https://github.com/illumos/illumos-gate/commit/6328027) | [a6fb32b8](https://github.com/zfsonlinux/zfs/commit/6fb32b8) | prefetching should apply to 1MB reads 
 :red_circle:        | [5219](https://www.illumos.org/issues/5219) | [d7d9a6d](https://github.com/illumos/illumos-gate/commit/d7d9a6d) |                                                             | l2arc_write_buffers() may write beyond target_sz 
 :white_circle:        | [6280](https://www.illumos.org/issues/6280) | [d1672ef](https://github.com/illumos/illumos-gate/commit/d1672ef) | [PR4200](https://github.com/zfsonlinux/zfs/pull/4200) | libzfs: unshare_one() could fail with EZFS_SHARENFSFAILED 
 :red_circle:        | [6251](https://www.illumos.org/issues/6251) | [139510f](https://github.com/illumos/illumos-gate/commit/139510f) |                                                             | add tunable to disable free_bpobj processing 
@@ -63,8 +63,8 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [5912](https://www.illumos.org/issues/5912) | [5bae108](https://github.com/illumos/illumos-gate/commit/5bae108) | [cf50a2b](https://github.com/zfsonlinux/zfs/commit/cf50a2b) | full stream can not be force-received into a dataset if it has a snapshot 
 :black_circle:      | [5961](https://www.illumos.org/issues/5961) | [c701fde](https://github.com/illumos/illumos-gate/commit/c701fde) |                                                             | Fix stack overflow in zfs_create_fs 
 :red_circle:        | [5669](https://www.illumos.org/issues/5669) | [c423721](https://github.com/illumos/illumos-gate/commit/c423721) |                                                             | altroot not set in zpool create when specified with -o 
-:white_circle:        | [5438](https://www.illumos.org/issues/5438) | [5897eb4](https://github.com/illumos/illumos-gate/commit/5897eb4) | [PR4192](https://github.com/zfsonlinux/zfs/pull/4192) | zfs_blkptr_verify should continue after zfs_panic_recover 
-:white_circle:        | [5515](https://www.illumos.org/issues/5515) | [752fd8d](https://github.com/illumos/illumos-gate/commit/752fd8d) | [PR4191](https://github.com/zfsonlinux/zfs/pull/4191) | dataset user hold doesn't reject empty tags 
+:large_blue_circle: | [5438](https://www.illumos.org/issues/5438) | [5897eb4](https://github.com/illumos/illumos-gate/commit/5897eb4) | [ee3a23b](https://github.com/zfsonlinux/zfs/commit/ee3a23b) | zfs_blkptr_verify should continue after zfs_panic_recover 
+:large_blue_circle: | [5515](https://www.illumos.org/issues/5515) | [752fd8d](https://github.com/illumos/illumos-gate/commit/752fd8d) | [fc581e0](https://github.com/zfsonlinux/zfs/commit/fc581e0) | dataset user hold doesn't reject empty tags 
 :large_blue_circle: | [5818](https://www.illumos.org/issues/5818) | [81cd5c5](https://github.com/illumos/illumos-gate/commit/81cd5c5) | [c3520e7](https://github.com/zfsonlinux/zfs/commit/c3520e7) | zfs {ref}compressratio is incorrect with 4k sector size 
 :red_circle:        | [5815](https://www.illumos.org/issues/5815) | [fae6347](https://github.com/illumos/illumos-gate/commit/fae6347) |                                                             | libzpool's panic function doesn't set global panicstr, ::status not as useful 
 :large_blue_circle: | [5269](https://www.illumos.org/issues/5269) | [12380e1](https://github.com/illumos/illumos-gate/commit/12380e1) | [9c43027](https://github.com/zfsonlinux/zfs/commit/9c43027) | zpool import slow 
@@ -90,7 +90,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [5769](https://www.illumos.org/issues/5769) | [8c76e07](https://github.com/illumos/illumos-gate/commit/8c76e07) | [dd26aa5](https://github.com/zfsonlinux/zfs/commit/dd26aa5) | Cast 'zfs bad bloc' to ULL for x86 
 :red_circle:        | [5692](https://www.illumos.org/issues/5692) | [2bcf024](https://github.com/illumos/illumos-gate/commit/2bcf024) |                                                             | expose the number of hole blocks in a file 
 :large_blue_circle: | [5770](https://www.illumos.org/issues/5770) | [a45f1c3](https://github.com/illumos/illumos-gate/commit/a45f1c3) | [c3275b5](https://github.com/zfsonlinux/zfs/commit/c3275b5) | Add load_nvlist() error handling 
-:white_circle:        | [5704](https://www.illumos.org/issues/5704) | [bde3d61](https://github.com/illumos/illumos-gate/commit/bde3d61) | [PR4193](https://github.com/zfsonlinux/zfs/pull/4193) | libzfs can only handle 255 file descriptors 
+:black_circle:      | [5704](https://www.illumos.org/issues/5704) | [bde3d61](https://github.com/illumos/illumos-gate/commit/bde3d61) |                                                             | libzfs can only handle 255 file descriptors 
 :large_blue_circle: | [5694](https://www.illumos.org/issues/5694) | [34d7ce0](https://github.com/illumos/illumos-gate/commit/34d7ce0) | [b738bc5](https://github.com/zfsonlinux/zfs/commit/b738bc5) | traverse_prefetcher does not prefetch enough 
 :large_blue_circle: | [5695](https://www.illumos.org/issues/5695) | [70163ac](https://github.com/illumos/illumos-gate/commit/70163ac) | [a4069ee](https://github.com/zfsonlinux/zfs/commit/a4069ee) | dmu_sync'ed holes do not retain birth time 
 :large_blue_circle: | [5693](https://www.illumos.org/issues/5693) | [7f7ace3](https://github.com/illumos/illumos-gate/commit/7f7ace3) | [0f7d2a4](https://github.com/zfsonlinux/zfs/commit/0f7d2a4) | ztest fails in dbuf_verify: buf[i] == 0, due to dedup and bp_override 
@@ -150,7 +150,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [5138](https://www.illumos.org/issues/5138) | [af3465d](https://github.com/illumos/illumos-gate/commit/af3465d) | [36283ca](https://github.com/zfsonlinux/zfs/commit/36283ca) | add tunable for maximum number of blocks freed in one txg 
 :large_blue_circle: | [5136](https://www.illumos.org/issues/5136) | [d85a1e9](https://github.com/illumos/illumos-gate/commit/d85a1e9) | [e8b96c6](https://github.com/zfsonlinux/zfs/commit/e8b96c6) | fix write throttle comment in dsl_pool.c 
 :large_blue_circle: | [5135](https://www.illumos.org/issues/5135) | [b18d6b0](https://github.com/illumos/illumos-gate/commit/b18d6b0) | [ab2894e](https://github.com/zfsonlinux/zfs/commit/ab2894e) | zpool_find_import_cached() can use fnvlist_* 
-:white_circle:        | [5141](https://www.illumos.org/issues/5141) | [e94f268](https://github.com/illumos/illumos-gate/commit/e94f268) | [PR4194](https://github.com/zfsonlinux/zfs/pull/4194) | zfs minimum indirect block size is 4K 
+:large_blue_circle: | [5141](https://www.illumos.org/issues/5141) | [e94f268](https://github.com/illumos/illumos-gate/commit/e94f268) | [d25b449](https://github.com/zfsonlinux/zfs/commit/d25b449) | zfs minimum indirect block size is 4K 
 :large_blue_circle: | [5118](https://www.illumos.org/issues/5118) | [75fbdf9](https://github.com/illumos/illumos-gate/commit/75fbdf9) | [de0a9d7](https://github.com/zfsonlinux/zfs/commit/de0a9d7) | When verifying or creating a storage pool, error messages only show one device 
 :large_blue_circle: | [5116](https://www.illumos.org/issues/5116) | [3339867](https://github.com/illumos/illumos-gate/commit/3339867) | [1f6f97f](https://github.com/zfsonlinux/zfs/commit/1f6f97f) | zpool history -i goes into infinite loop 
 :large_blue_circle: | [5117](https://www.illumos.org/issues/5117) | [e503a68](https://github.com/illumos/illumos-gate/commit/e503a68) | [4f68d78](https://github.com/zfsonlinux/zfs/commit/4f68d78) | space map reallocation can cause corruption 
@@ -372,10 +372,10 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 292 - Applied to master branch
-- :white_circle:      8 - Open pull request against master branch pending review
+- :large_blue_circle: 294 - Applied to master branch
+- :white_circle:      3 - Open pull request against master branch pending review
 - :red_circle:        49 - No existing pull request against the master branch
-- :black_circle:      20 - Not applicable to Linux
+- :black_circle:      21 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
                                                                 
