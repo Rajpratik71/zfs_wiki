@@ -46,7 +46,7 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      | [6209](https://www.illumos.org/issues/6209) | [0d045c0](https://github.com/illumos/illumos-gate/commit/0d045c0) |                                                             | libc mutexes break kernel writers hearts 
 :red_circle:        | [6220](https://www.illumos.org/issues/6220) | [c546f36](https://github.com/illumos/illumos-gate/commit/c546f36) |                                                             | memleak in l2arc on debug build 
 :large_blue_circle: | [6214](https://www.illumos.org/issues/6214) | [d4cd038](https://github.com/illumos/illumos-gate/commit/d4cd038) | [4e0f33f](https://github.com/zfsonlinux/zfs/commit/4e0f33f) | zpools going south 
-:white_circle:      | [5987](https://www.illumos.org/issues/5987) | [cf6106c](https://github.com/illumos/illumos-gate/commit/cf6106c) | [PR4188](https://github.com/zfsonlinux/zfs/pull/4188)      | zfs prefetch code needs work 
+:large_blue_circle: | [5987](https://www.illumos.org/issues/5987) | [cf6106c](https://github.com/illumos/illumos-gate/commit/cf6106c) | [7f60329](https://github.com/zfsonlinux/zfs/commit/7f60329) | zfs prefetch code needs work 
 :red_circle:        | [5997](https://www.illumos.org/issues/5997) | [1437283](https://github.com/illumos/illumos-gate/commit/1437283) |                                                             | FRU field not set during pool creation and never updated 
 :red_circle:        | [6096](https://www.illumos.org/issues/6096) | [8f5190a](https://github.com/illumos/illumos-gate/commit/8f5190a) |                                                             | ZFS_SMB_ACL_RENAME needs to cleanup better 
 :red_circle:        | [6093](https://www.illumos.org/issues/6093) | [0f92170](https://github.com/illumos/illumos-gate/commit/0f92170) |                                                             | zfsctl_shares_lookup should only VN_RELE() on zfs_zget() success 
@@ -372,8 +372,8 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 286 - Applied to master branch
-- :white_circle:      14 - Open pull request against master branch pending review
+- :large_blue_circle: 287 - Applied to master branch
+- :white_circle:      13 - Open pull request against master branch pending review
 - :red_circle:        49 - No existing pull request against the master branch
 - :black_circle:      20 - Not applicable to Linux
 
