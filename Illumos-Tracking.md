@@ -22,8 +22,8 @@ Status              | Illumos Issue                               | Illumos     
 :red_circle:        | [6334](https://www.illumos.org/issues/6334) | [6575bca](https://github.com/illumos/illumos-gate/commit/6575bca) |                                                             | Cannot unlink files when over quota 
 :red_circle:        | [6390](https://www.illumos.org/issues/6390) | [1df447e](https://github.com/illumos/illumos-gate/commit/1df447e) |                                                             | Free props in ztest_init() 
 :large_blue_circle:        | [6385](https://www.illumos.org/issues/6385) | [eaef6a9](https://github.com/illumos/illumos-gate/commit/eaef6a9) | [PR2212](https://github.com/zfsonlinux/zfs/pull/2212) | Fix unlocking order in zfs_zget 
-:white_circle:      | [6292](https://www.illumos.org/issues/6292) | [a443cc8](https://github.com/illumos/illumos-gate/commit/a443cc8) | [PR3984](https://github.com/zfsonlinux/zfs/pull/3984)      | exporting a pool while an async destroy is running can leave entries in the deferred tree 
-:white_circle:      | [6319](https://www.illumos.org/issues/6319) | [b39b744](https://github.com/illumos/illumos-gate/commit/b39b744) | [PR3985](https://github.com/zfsonlinux/zfs/pull/3985)      | assertion failed in zio_ddt_write: bp->blk_birth == txg 
+:large_blue_circle: | [6292](https://www.illumos.org/issues/6292) | [a443cc8](https://github.com/illumos/illumos-gate/commit/a443cc8) | [2e8efe1](https://github.com/zfsonlinux/zfs/commit/2e8efe1) | exporting a pool while an async destroy is running can leave entries in the deferred tree 
+:large_blue_circle: | [6319](https://www.illumos.org/issues/6319) | [b39b744](https://github.com/illumos/illumos-gate/commit/b39b744) | [5511754](https://github.com/zfsonlinux/zfs/commit/5511754) | assertion failed in zio_ddt_write: bp->blk_birth == txg 
 :white_circle:      | [6367](https://www.illumos.org/issues/6367) | [e495b6e](https://github.com/illumos/illumos-gate/commit/e495b6e) | [PR4138](https://github.com/zfsonlinux/zfs/pull/4138)      | spa_config_tryenter incorrectly handles the multiple-lock case 
 :red_circle:        | [5984](https://www.illumos.org/issues/5984) | [780828c](https://github.com/illumos/illumos-gate/commit/780828c) |                                                             | zfs clone should not mount the clone if canmount == noauto 
 :red_circle:        | [6328](https://www.illumos.org/issues/6328) | [9a686fb](https://github.com/illumos/illumos-gate/commit/9a686fb) |                                                             | Fix cstyle errors in zfs codebase 
@@ -35,7 +35,7 @@ Status              | Illumos Issue                               | Illumos     
 :white_circle:      | [6268](https://www.illumos.org/issues/6268) | [aab0441](https://github.com/illumos/illumos-gate/commit/aab0441) | [PR4008](https://github.com/zfsonlinux/zfs/pull/4008)      | zfs diff confused by moving a file to another directory 
 :large_blue_circle:        | [6290](https://www.illumos.org/issues/6290) | [3f84190](https://github.com/illumos/illumos-gate/commit/3f84190) | [PR3522](https://github.com/zfsonlinux/zfs/pull/3522) | zdb -h overflows stack 
 :red_circle:        | [6286](https://www.illumos.org/issues/6286) | [6de9bb5](https://github.com/illumos/illumos-gate/commit/6de9bb5) |                                                             | ZFS internal error when set large block on bootfs 
-:white_circle:      | [6288](https://www.illumos.org/issues/6288) | [0f2e7d0](https://github.com/illumos/illumos-gate/commit/0f2e7d0) | [PR3987](https://github.com/zfsonlinux/zfs/pull/3987)      | dmu_buf_will_dirty could be faster 
+:large_blue_circle: | [6288](https://www.illumos.org/issues/6288) | [0f2e7d0](https://github.com/illumos/illumos-gate/commit/0f2e7d0) | [5a28a97](https://github.com/zfsonlinux/zfs/commit/5a28a97) | dmu_buf_will_dirty could be faster 
 :white_circle: | [6281](https://www.illumos.org/issues/6281) | [6328027](https://github.com/illumos/illumos-gate/commit/6328027) | [PR4189](https://github.com/zfsonlinux/zfs/pull/4189) | prefetching should apply to 1MB reads 
 :red_circle:        | [5219](https://www.illumos.org/issues/5219) | [d7d9a6d](https://github.com/illumos/illumos-gate/commit/d7d9a6d) |                                                             | l2arc_write_buffers() may write beyond target_sz 
 :white_circle:        | [6280](https://www.illumos.org/issues/6280) | [d1672ef](https://github.com/illumos/illumos-gate/commit/d1672ef) | [PR4200](https://github.com/zfsonlinux/zfs/pull/4200) | libzfs: unshare_one() could fail with EZFS_SHARENFSFAILED 
@@ -372,8 +372,8 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 283 - Applied to master branch
-- :white_circle:      17 - Open pull request against master branch pending review
+- :large_blue_circle: 286 - Applied to master branch
+- :white_circle:      14 - Open pull request against master branch pending review
 - :red_circle:        49 - No existing pull request against the master branch
 - :black_circle:      20 - Not applicable to Linux
 
