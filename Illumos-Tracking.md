@@ -330,7 +330,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [2619](https://www.illumos.org/issues/2619) | [ad135b5](https://github.com/illumos/illumos-gate/commit/ad135b5) | [9ae529e](https://github.com/zfsonlinux/zfs/commit/9ae529e) | asynchronous destruction of ZFS file systems 2747 SPA versioning with zfs feature flags 
 :large_blue_circle: | [2703](https://www.illumos.org/issues/2703) | [4e3c9f4](https://github.com/illumos/illumos-gate/commit/4e3c9f4) | [37abac6](https://github.com/zfsonlinux/zfs/commit/37abac6) | add mechanism to report ZFS send progress 
 :black_circle:      | [1618](https://www.illumos.org/issues/1618) | [94dd93a](https://github.com/illumos/illumos-gate/commit/94dd93a) |                                                             | zfs causing system to hang in vmem_xalloc() 
-:red_circle:        | [2665](https://www.illumos.org/issues/2665) | [2384d9f](https://github.com/illumos/illumos-gate/commit/2384d9f) |                                                             | sd.conf should be able to override physical-block-size 2671 zpool import should not fail if vdev ashift has increased 
+:large_blue_circle: | [2665](https://www.illumos.org/issues/2665) | [2384d9f](https://github.com/illumos/illumos-gate/commit/2384d9f) | [32a9872](https://github.com/zfsonlinux/zfs/commit/32a9872) | sd.conf should be able to override physical-block-size 2671 zpool import should not fail if vdev ashift has increased 
 :large_blue_circle: | [2635](https://www.illumos.org/issues/2635) | [6a9cb0e](https://github.com/illumos/illumos-gate/commit/6a9cb0e) | [db49968](https://github.com/zfsonlinux/zfs/commit/db49968) | 'zfs rename -f' to perform force unmount 
 :large_blue_circle: | [2077](https://www.illumos.org/issues/2077) | [33f5ff1](https://github.com/illumos/illumos-gate/commit/33f5ff1) | [cfe86c0](https://github.com/zfsonlinux/zfs/commit/cfe86c0) | lots of unreachable breaks in illumos gate
 :large_blue_circle: |  [934](https://www.illumos.org/issues/9348) | [e21ea67](https://github.com/illumos/illumos-gate/commit/e21ea67) | [fc80384](https://github.com/zfsonlinux/zfs/commit/fc80384) | FreeBSD's GPT not recognized
@@ -372,9 +372,9 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 296 - Applied to master branch
+- :large_blue_circle: 297 - Applied to master branch
 - :white_circle:      1 - Open pull request against master branch pending review
-- :red_circle:        49 - No existing pull request against the master branch
+- :red_circle:        48 - No existing pull request against the master branch
 - :black_circle:      21 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
