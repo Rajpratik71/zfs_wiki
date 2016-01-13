@@ -234,7 +234,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [4061](https://www.illumos.org/issues/4061) | [2fbdf8d](https://github.com/illumos/illumos-gate/commit/2fbdf8d) | [8ce0af0](https://github.com/zfsonlinux/zfs/commit/8ce0af0) | libzfs: memory leak in iter_dependents_cb() 
 :large_blue_circle: | [4047](https://www.illumos.org/issues/4047) | [713d6c2](https://github.com/illumos/illumos-gate/commit/713d6c2) | [b663a23](https://github.com/zfsonlinux/zfs/commit/b663a23) | panic from dbuf_free_range() from dmu_free_object() while doing zfs receive 
 :large_blue_circle: | [3996](https://www.illumos.org/issues/3996) | [a7027df](https://github.com/illumos/illumos-gate/commit/a7027df) | [46ba1e5](https://github.com/zfsonlinux/zfs/commit/46ba1e5) | want a libzfs_core API to rollback to latest snapshot 
-:red_circle:        | [4039](https://www.illumos.org/issues/4039) | [18e6497](https://github.com/illumos/illumos-gate/commit/18e6497) |                                                             | zfs_rename()/zfs_link() needs stronger test for XDEV 
+:white_circle:      | [4039](https://www.illumos.org/issues/4039) | [18e6497](https://github.com/illumos/illumos-gate/commit/18e6497) | [PR4218](https://github.com/zfsonlinux/zfs/pull/4218)       | zfs_rename()/zfs_link() needs stronger test for XDEV 
 :large_blue_circle: | [3956](https://www.illumos.org/issues/3956) | [b4952e1](https://github.com/illumos/illumos-gate/commit/b4952e1) | [5d1f7fb](https://github.com/zfsonlinux/zfs/commit/5d1f7fb) | ::vdev -r should work with pipelines 3957 ztest should update the cachefile before killing itself 3958 multiple scans can lead to partial resilvering 3959 ddt entries are not always resilvered 3960 dsl_scan can skip over dedup-ed blocks if physical birth != logical birth 3961 freed gang blocks are not resilvered and can cause pool to suspend 3962 ztest should print out zfs debug buffer before exiting 
 :large_blue_circle: | [3955](https://www.illumos.org/issues/3955) | [be9000c](https://github.com/illumos/illumos-gate/commit/be9000c) | [383fc4a](https://github.com/zfsonlinux/zfs/commit/383fc4a) | ztest failure: assertion refcount_count(&tx->tx_space_written) + delta <= tx->tx_space_towrite 
 :large_blue_circle: | [3949](https://www.illumos.org/issues/3949) | [2c1e2b4](https://github.com/illumos/illumos-gate/commit/2c1e2b4) | [621dd7b](https://github.com/zfsonlinux/zfs/commit/621dd7b) | ztest fault injection should avoid resilvering devices 3950 ztest: deadman fires when we're doing a scan 3951 ztest hang when running dedup test 3952 ztest: ztest_reguid test and ztest_fault_inject don't place nice together 
@@ -373,8 +373,8 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
 - :large_blue_circle: 298 - Applied to master branch
-- :white_circle:      4 - Open pull request against master branch pending review
-- :red_circle:        44 - No existing pull request against the master branch
+- :white_circle:      5 - Open pull request against master branch pending review
+- :red_circle:        43 - No existing pull request against the master branch
 - :black_circle:      21 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
