@@ -287,7 +287,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [3507](https://www.illumos.org/issues/3507) | [9dc3941](https://github.com/illumos/illumos-gate/commit/9dc3941) | [43a696e](https://github.com/zfsonlinux/zfs/commit/43a696e) | Tunable to allow block allocation even on degraded vdevs 
 :large_blue_circle: | [3498](https://www.illumos.org/issues/3498) | [1b912ec](https://github.com/illumos/illumos-gate/commit/1b912ec) | [294f680](https://github.com/zfsonlinux/zfs/commit/294f680) | panic in arc_read(): !refcount_is_zero(&pbuf->b_hdr->b_refcnt) 
 :large_blue_circle: | [3465](https://www.illumos.org/issues/3465) | [28e4da2](https://github.com/illumos/illumos-gate/commit/28e4da2) | [d21f279](https://github.com/zfsonlinux/zfs/commit/d21f279) | ::walk ... ::<dcmd> misinterprets input as symbol names 3466 ::tsd should handle missing/NULL values better 3467 mdb_ctf_vread() could be more useful 3468 mdb enhancements for zfs development 3470 ::whatis does not print callers from KMF_LITE 3473 mdb_get_module() returns wrong module 
-:red_circle:        | [3371](https://www.illumos.org/issues/3371) | [52fd748](https://github.com/illumos/illumos-gate/commit/52fd748) |                                                             | dumpadm -z is not documented in manpage 3380 zfs man page: documentation for zfs allow is confusing 
+:black_circle:      | [3371](https://www.illumos.org/issues/3371) | [52fd748](https://github.com/illumos/illumos-gate/commit/52fd748) |                                                             | dumpadm -z is not documented in manpage 3380 zfs man page: documentation for zfs allow is confusing 
 :large_blue_circle: | [3422](https://www.illumos.org/issues/3422) | [bda8819](https://github.com/illumos/illumos-gate/commit/bda8819) | [295304b](https://github.com/zfsonlinux/zfs/commit/295304b) | zpool create/syseventd race yield non-importable pool 3425 first write to a new zvol can fail with EFBIG 
 :large_blue_circle: | [3035](https://www.illumos.org/issues/3035) | [a6f561b](https://github.com/illumos/illumos-gate/commit/a6f561b) | [9759c60](https://github.com/zfsonlinux/zfs/commit/9759c60) | LZ4 compression support in ZFS and GRUB 
 :large_blue_circle: | [3447](https://www.illumos.org/issues/3447) | [adbbcff](https://github.com/illumos/illumos-gate/commit/adbbcff) | [89103a2](https://github.com/zfsonlinux/zfs/commit/89103a2) | improve the comment in txg.c 
@@ -374,8 +374,8 @@ Status              | Illumos Issue                               | Illumos     
 
 - :large_blue_circle: 298 - Applied to master branch
 - :white_circle:      5 - Open pull request against master branch pending review
-- :red_circle:        43 - No existing pull request against the master branch
-- :black_circle:      21 - Not applicable to Linux
+- :red_circle:        42 - No existing pull request against the master branch
+- :black_circle:      22 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
                                                                 
