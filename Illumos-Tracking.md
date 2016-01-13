@@ -286,7 +286,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [3512](https://www.illumos.org/issues/3512) | [644b952](https://github.com/illumos/illumos-gate/commit/644b952) | [67629d0](https://github.com/zfsonlinux/zfs/commit/67629d0) | rounding discrepancy in sa_find_sizes() 3513 mismatch between SA header size and layout 
 :large_blue_circle: | [3507](https://www.illumos.org/issues/3507) | [9dc3941](https://github.com/illumos/illumos-gate/commit/9dc3941) | [43a696e](https://github.com/zfsonlinux/zfs/commit/43a696e) | Tunable to allow block allocation even on degraded vdevs 
 :large_blue_circle: | [3498](https://www.illumos.org/issues/3498) | [1b912ec](https://github.com/illumos/illumos-gate/commit/1b912ec) | [294f680](https://github.com/zfsonlinux/zfs/commit/294f680) | panic in arc_read(): !refcount_is_zero(&pbuf->b_hdr->b_refcnt) 
-:red_circle:        | [3465](https://www.illumos.org/issues/3465) | [28e4da2](https://github.com/illumos/illumos-gate/commit/28e4da2) |                                                             | ::walk ... ::<dcmd> misinterprets input as symbol names 3466 ::tsd should handle missing/NULL values better 3467 mdb_ctf_vread() could be more useful 3468 mdb enhancements for zfs development 3470 ::whatis does not print callers from KMF_LITE 3473 mdb_get_module() returns wrong module 
+:large_blue_circle: | [3465](https://www.illumos.org/issues/3465) | [28e4da2](https://github.com/illumos/illumos-gate/commit/28e4da2) | [d21f279](https://github.com/zfsonlinux/zfs/commit/d21f279) | ::walk ... ::<dcmd> misinterprets input as symbol names 3466 ::tsd should handle missing/NULL values better 3467 mdb_ctf_vread() could be more useful 3468 mdb enhancements for zfs development 3470 ::whatis does not print callers from KMF_LITE 3473 mdb_get_module() returns wrong module 
 :red_circle:        | [3371](https://www.illumos.org/issues/3371) | [52fd748](https://github.com/illumos/illumos-gate/commit/52fd748) |                                                             | dumpadm -z is not documented in manpage 3380 zfs man page: documentation for zfs allow is confusing 
 :large_blue_circle: | [3422](https://www.illumos.org/issues/3422) | [bda8819](https://github.com/illumos/illumos-gate/commit/bda8819) | [295304b](https://github.com/zfsonlinux/zfs/commit/295304b) | zpool create/syseventd race yield non-importable pool 3425 first write to a new zvol can fail with EFBIG 
 :large_blue_circle: | [3035](https://www.illumos.org/issues/3035) | [a6f561b](https://github.com/illumos/illumos-gate/commit/a6f561b) | [9759c60](https://github.com/zfsonlinux/zfs/commit/9759c60) | LZ4 compression support in ZFS and GRUB 
@@ -372,9 +372,9 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 297 - Applied to master branch
+- :large_blue_circle: 298 - Applied to master branch
 - :white_circle:      2 - Open pull request against master branch pending review
-- :red_circle:        47 - No existing pull request against the master branch
+- :red_circle:        46 - No existing pull request against the master branch
 - :black_circle:      21 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
