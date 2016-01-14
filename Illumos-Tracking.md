@@ -115,7 +115,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [5347](https://www.illumos.org/issues/5347) | [231aab8](https://github.com/illumos/illumos-gate/commit/231aab8) | [905edb4](https://github.com/zfsonlinux/zfs/commit/905edb4) | idle pool may run itself out of space 
 :large_blue_circle: | [5368](https://www.illumos.org/issues/5368) | [3a5286a](https://github.com/illumos/illumos-gate/commit/3a5286a) | [c52fca1](https://github.com/zfsonlinux/zfs/commit/c52fca1) | ARC should cache more metadata 
 :large_blue_circle: | [5349](https://www.illumos.org/issues/5349) | [f63ab3d](https://github.com/illumos/illumos-gate/commit/f63ab3d) | [63e3a86](https://github.com/zfsonlinux/zfs/commit/63e3a86) | verify that block pointer is plausible before reading 
-:red_circle:        | [4181](https://www.illumos.org/issues/4181) | [5619b3f](https://github.com/illumos/illumos-gate/commit/5619b3f) |                                                             | zfs(1m): 'zfs allow' examples in the man page are outdated 
+:black_circle:      | [4181](https://www.illumos.org/issues/4181) | [5619b3f](https://github.com/illumos/illumos-gate/commit/5619b3f) |                                                             | zfs(1m): 'zfs allow' examples in the man page are outdated 
 :large_blue_circle: | [5351](https://www.illumos.org/issues/5351) | [6f6a76a](https://github.com/illumos/illumos-gate/commit/6f6a76a) | [10400bf](https://github.com/zfsonlinux/zfs/commit/10400bf) | scrub goes for an extra second each txg 5352 scrub should pause when there is some dirty data 
 :large_blue_circle: | [5348](https://www.illumos.org/issues/5348) | [373dc1c](https://github.com/illumos/illumos-gate/commit/373dc1c) | [7a3066f](https://github.com/zfsonlinux/zfs/commit/7a3066f) | zio_checksum_error() only fills in info if ECKSUM 
 :large_blue_circle: | [5350](https://www.illumos.org/issues/5350) | [e651831](https://github.com/illumos/illumos-gate/commit/e651831) | [08dc1b2](https://github.com/zfsonlinux/zfs/commit/08dc1b2) | clean up code in dnode_sync() 
@@ -374,8 +374,8 @@ Status              | Illumos Issue                               | Illumos     
 
 - :large_blue_circle: 298 - Applied to master branch
 - :white_circle:      5 - Open pull request against master branch pending review
-- :red_circle:        42 - No existing pull request against the master branch
-- :black_circle:      22 - Not applicable to Linux
+- :red_circle:        41 - No existing pull request against the master branch
+- :black_circle:      23 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
                                                                 
