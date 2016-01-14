@@ -156,7 +156,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [5117](https://www.illumos.org/issues/5117) | [e503a68](https://github.com/illumos/illumos-gate/commit/e503a68) | [4f68d78](https://github.com/zfsonlinux/zfs/commit/4f68d78) | space map reallocation can cause corruption 
 :large_blue_circle: | [5095](https://www.illumos.org/issues/5095) | [86bb58a](https://github.com/illumos/illumos-gate/commit/86bb58a) | [9925c28](https://github.com/zfsonlinux/zfs/commit/9925c28) | panic when adding a duplicate dbuf to dn_dbufs 
 :large_blue_circle: | [5047](https://www.illumos.org/issues/5047) | [640c167](https://github.com/illumos/illumos-gate/commit/640c167) | [73ad4a9](https://github.com/zfsonlinux/zfs/commit/73ad4a9) | don't use atomic_*_nv if you discard the return value 
-:red_circle:        | [5045](https://www.illumos.org/issues/5045) | [1a5e258](https://github.com/illumos/illumos-gate/commit/1a5e258) |                                                             | use atomic_{inc,dec}_* instead of atomic_add_* 
+:white_circle:      | [5045](https://www.illumos.org/issues/5045) | [1a5e258](https://github.com/illumos/illumos-gate/commit/1a5e258) | [PR4220](https://github.com/zfsonlinux/zfs/pull/4220)       | use atomic_{inc,dec}_* instead of atomic_add_* 
 :large_blue_circle: | [5049](https://www.illumos.org/issues/5049) | [2986efa](https://github.com/illumos/illumos-gate/commit/2986efa) | [f38dfec](https://github.com/zfsonlinux/zfs/commit/f38dfec) | panic when removing log device 
 :large_blue_circle: | [5038](https://www.illumos.org/issues/5038) | [7f18da4](https://github.com/illumos/illumos-gate/commit/7f18da4) | [5aea364](https://github.com/zfsonlinux/zfs/commit/5aea364) | Remove "old-style" flexible array usage in ZFS. 
 :large_blue_circle: | [5039](https://www.illumos.org/issues/5039) | [539eed8](https://github.com/illumos/illumos-gate/commit/539eed8) | [4d6369c](https://github.com/zfsonlinux/zfs/commit/4d6369c) | ztest should default to larger device sizes 
@@ -373,8 +373,8 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
 - :large_blue_circle: 299 - Applied to master branch
-- :white_circle:      6 - Open pull request against master branch pending review
-- :red_circle:        39 - No existing pull request against the master branch
+- :white_circle:      7 - Open pull request against master branch pending review
+- :red_circle:        38 - No existing pull request against the master branch
 - :black_circle:      23 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
