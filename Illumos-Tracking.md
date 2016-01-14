@@ -8,7 +8,7 @@ Status              | Illumos Issue                               | Illumos     
 :red_circle:        | [6494](https://www.illumos.org/issues/6494) | [f693d30](https://github.com/illumos/illumos-gate/commit/f693d30) |                                                             | ASSERT supported zio_types for file and disk vdevs 
 :red_circle:        | [4986](https://www.illumos.org/issues/4986) | [5878fad](https://github.com/illumos/illumos-gate/commit/5878fad) |                                                             | receiving replication stream fails if any snapshot exceeds refquota 
 :large_blue_circle: | [6358](https://www.illumos.org/issues/6358) | [b289d04](https://github.com/illumos/illumos-gate/commit/b289d04) | [fe467e0](https://github.com/zfsonlinux/zfs/commit/fe467e0) | A faulted pool with only unavailable vdevs triggers assertion failure in libzfs 
-:red_circle:        | [6393](https://www.illumos.org/issues/6393) | [68ecb2e](https://github.com/illumos/illumos-gate/commit/68ecb2e) |                                                             | zfs receive a full send as a clone 
+:white_circle:        | [6393](https://www.illumos.org/issues/6393) | [68ecb2e](https://github.com/illumos/illumos-gate/commit/68ecb2e) | [PR4221](https://github.com/zfsonlinux/zfs/pull/4221) | zfs receive a full send as a clone 
 :red_circle:        | [6451](https://www.illumos.org/issues/6451) | [f9eb9fd](https://github.com/illumos/illumos-gate/commit/f9eb9fd) |                                                             | ztest fails due to checksum errors 
 :red_circle:        | [6051](https://www.illumos.org/issues/6051) | [620f322](https://github.com/illumos/illumos-gate/commit/620f322) |                                                             | lzc_receive: allow the caller to read the begin record 
 :red_circle:        | [6434](https://www.illumos.org/issues/6434) | [3502ed6](https://github.com/illumos/illumos-gate/commit/3502ed6) |                                                             | sa_find_sizes() may compute wrong SA header size 
@@ -373,8 +373,8 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
 - :large_blue_circle: 299 - Applied to master branch
-- :white_circle:      7 - Open pull request against master branch pending review
-- :red_circle:        38 - No existing pull request against the master branch
+- :white_circle:      8 - Open pull request against master branch pending review
+- :red_circle:        37 - No existing pull request against the master branch
 - :black_circle:      23 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
