@@ -8,19 +8,19 @@ Status              | Illumos Issue                               | Illumos     
 :red_circle:        | [6494](https://www.illumos.org/issues/6494) | [f693d30](https://github.com/illumos/illumos-gate/commit/f693d30) |                                                             | ASSERT supported zio_types for file and disk vdevs 
 :red_circle:        | [4986](https://www.illumos.org/issues/4986) | [5878fad](https://github.com/illumos/illumos-gate/commit/5878fad) |                                                             | receiving replication stream fails if any snapshot exceeds refquota 
 :large_blue_circle: | [6358](https://www.illumos.org/issues/6358) | [b289d04](https://github.com/illumos/illumos-gate/commit/b289d04) | [fe467e0](https://github.com/zfsonlinux/zfs/commit/fe467e0) | A faulted pool with only unavailable vdevs triggers assertion failure in libzfs 
-:white_circle:      | [6393](https://www.illumos.org/issues/6393) | [68ecb2e](https://github.com/illumos/illumos-gate/commit/68ecb2e) | [PR4221](https://github.com/zfsonlinux/zfs/pull/4221) | zfs receive a full send as a clone 
-:white_circle:      | [6451](https://www.illumos.org/issues/6451) | [f9eb9fd](https://github.com/illumos/illumos-gate/commit/f9eb9fd) | [PR4259](https://github.com/zfsonlinux/zfs/pull/4259)       | ztest fails due to checksum errors 
+:white_circle:      | [6393](https://www.illumos.org/issues/6393) | [68ecb2e](https://github.com/illumos/illumos-gate/commit/68ecb2e) | [PR4221](https://github.com/zfsonlinux/zfs/pull/4221)       | zfs receive a full send as a clone 
+:white_circle:      | [6451](https://www.illumos.org/issues/6451) | [f9eb9fd](https://github.com/illumos/illumos-gate/commit/f9eb9fd) | [PR4261](https://github.com/zfsonlinux/zfs/pull/4261)       | ztest fails due to checksum errors 
 :red_circle:        | [6051](https://www.illumos.org/issues/6051) | [620f322](https://github.com/illumos/illumos-gate/commit/620f322) |                                                             | lzc_receive: allow the caller to read the begin record 
 :red_circle:        | [6434](https://www.illumos.org/issues/6434) | [3502ed6](https://github.com/illumos/illumos-gate/commit/3502ed6) |                                                             | sa_find_sizes() may compute wrong SA header size 
 :red_circle:        | [6346](https://www.illumos.org/issues/6346) | [1058dba](https://github.com/illumos/illumos-gate/commit/1058dba) |                                                             | zfs(1M) has spurious comma 
 :red_circle:        | [6414](https://www.illumos.org/issues/6414) | [eb5bb58](https://github.com/illumos/illumos-gate/commit/eb5bb58) |                                                             | vdev_config_sync could be simpler 
-:red_circle:        | [6391](https://www.illumos.org/issues/6391) | [ae24175](https://github.com/illumos/illumos-gate/commit/ae24175) |                                                             | Override default SPA config location via environment 
-:red_circle:        | [6421](https://www.illumos.org/issues/6421) | [57deb23](https://github.com/illumos/illumos-gate/commit/57deb23) |                                                             | Add missing multilist_destroy calls to arc_fini 
+:large_blue_circle: | [6391](https://www.illumos.org/issues/6391) | [ae24175](https://github.com/illumos/illumos-gate/commit/ae24175) | [64d7b6c](https://github.com/zfsonlinux/zfs/commit/64d7b6c) | Override default SPA config location via environment 
+:large_blue_circle: | [6421](https://www.illumos.org/issues/6421) | [57deb23](https://github.com/illumos/illumos-gate/commit/57deb23) | [ca0bf58](https://github.com/zfsonlinux/zfs/commit/ca0bf58) | Add missing multilist_destroy calls to arc_fini 
 :large_blue_circle: | [6388](https://www.illumos.org/issues/6388) | [c71c00b](https://github.com/illumos/illumos-gate/commit/c71c00b) | [0de7c55](https://github.com/zfsonlinux/zfs/commit/0de7c55) | Failure of userland copy should return EFAULT 
 :large_blue_circle: | [6368](https://www.illumos.org/issues/6368) | [7c5a457](https://github.com/illumos/illumos-gate/commit/7c5a457) | [2024041](https://github.com/zfsonlinux/zfs/commit/2024041) | Remove superfluous statement 
 :large_blue_circle: | [6386](https://www.illumos.org/issues/6386) | [5bdd995](https://github.com/illumos/illumos-gate/commit/5bdd995) | [485c581](https://github.com/zfsonlinux/zfs/commit/485c581) | Fix function call with uninitialized value in vdev_inuse 
-:red_circle:        | [6334](https://www.illumos.org/issues/6334) | [6575bca](https://github.com/illumos/illumos-gate/commit/6575bca) |                                                             | Cannot unlink files when over quota 
-:red_circle:        | [6390](https://www.illumos.org/issues/6390) | [1df447e](https://github.com/illumos/illumos-gate/commit/1df447e) |                                                             | Free props in ztest_init() 
+:white_circle:      | [6334](https://www.illumos.org/issues/6334) | [6575bca](https://github.com/illumos/illumos-gate/commit/6575bca) | [PR4259](https://github.com/zfsonlinux/zfs/pull/4259)       | Cannot unlink files when over quota 
+:large_blue_circle: | [6390](https://www.illumos.org/issues/6390) | [1df447e](https://github.com/illumos/illumos-gate/commit/1df447e) | [85802aa](https://github.com/zfsonlinux/zfs/commit/85802aa) | Free props in ztest_init() 
 :large_blue_circle: | [6385](https://www.illumos.org/issues/6385) | [eaef6a9](https://github.com/illumos/illumos-gate/commit/eaef6a9) | [f3ad9cd](https://github.com/zfsonlinux/zfs/commit/f3ad9cd) | Fix unlocking order in zfs_zget 
 :large_blue_circle: | [6292](https://www.illumos.org/issues/6292) | [a443cc8](https://github.com/illumos/illumos-gate/commit/a443cc8) | [2e8efe1](https://github.com/zfsonlinux/zfs/commit/2e8efe1) | exporting a pool while an async destroy is running can leave entries in the deferred tree 
 :large_blue_circle: | [6319](https://www.illumos.org/issues/6319) | [b39b744](https://github.com/illumos/illumos-gate/commit/b39b744) | [5511754](https://github.com/zfsonlinux/zfs/commit/5511754) | assertion failed in zio_ddt_write: bp->blk_birth == txg 
@@ -31,9 +31,9 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [6267](https://www.illumos.org/issues/6267) | [d205810](https://github.com/illumos/illumos-gate/commit/d205810) | [bc4501f](https://github.com/zfsonlinux/zfs/commit/bc4501f) | dn_bonus evicted too early 
 :large_blue_circle: | [6295](https://www.illumos.org/issues/6295) | [daec38e](https://github.com/illumos/illumos-gate/commit/daec38e) | [5f3d9c6](https://github.com/zfsonlinux/zfs/commit/5f3d9c6) | metaslab_condense's dbgmsg should include vdev id 
 :large_blue_circle: | [6293](https://www.illumos.org/issues/6293) | [8fe00bf](https://github.com/illumos/illumos-gate/commit/8fe00bf) | [ab5cbbd](https://github.com/zfsonlinux/zfs/commit/ab5cbbd) | ztest failure: error == 28 (0xc == 0x1c) in ztest_tx_assign() 
-:white_circle:        | [2605](https://www.illumos.org/issues/2605) | [9c3fd12](https://github.com/illumos/illumos-gate/commit/9c3fd12) | [PR4213](https://github.com/zfsonlinux/zfs/pull/4213) | want to resume interrupted zfs send
+:white_circle:        | [2605](https://www.illumos.org/issues/2605) | [9c3fd12](https://github.com/illumos/illumos-gate/commit/9c3fd12) | [PR4213](https://github.com/zfsonlinux/zfs/pull/4213)     | want to resume interrupted zfs send
 :large_blue_circle: | [6268](https://www.illumos.org/issues/6268) | [aab0441](https://github.com/illumos/illumos-gate/commit/aab0441) | [616a57b](https://github.com/zfsonlinux/zfs/commit/616a57b) | zfs diff confused by moving a file to another directory 
-:large_blue_circle: | [6290](https://www.illumos.org/issues/6290) | [3f84190](https://github.com/illumos/illumos-gate/commit/3f84190) | [017da6](https://github.com/zfsonlinux/zfs/commit/017da6f) | zdb -h overflows stack 
+:large_blue_circle: | [6290](https://www.illumos.org/issues/6290) | [3f84190](https://github.com/illumos/illumos-gate/commit/3f84190) | [017da6](https://github.com/zfsonlinux/zfs/commit/017da6f)  | zdb -h overflows stack 
 :red_circle:        | [6286](https://www.illumos.org/issues/6286) | [6de9bb5](https://github.com/illumos/illumos-gate/commit/6de9bb5) |                                                             | ZFS internal error when set large block on bootfs 
 :large_blue_circle: | [6288](https://www.illumos.org/issues/6288) | [0f2e7d0](https://github.com/illumos/illumos-gate/commit/0f2e7d0) | [5a28a97](https://github.com/zfsonlinux/zfs/commit/5a28a97) | dmu_buf_will_dirty could be faster 
 :large_blue_circle: | [6281](https://www.illumos.org/issues/6281) | [6328027](https://github.com/illumos/illumos-gate/commit/6328027) | [a6fb32b8](https://github.com/zfsonlinux/zfs/commit/6fb32b8) | prefetching should apply to 1MB reads 
@@ -372,9 +372,9 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 308 - Applied to master branch
-- :white_circle:      4 - Open pull request against master branch pending review
-- :red_circle:        32 - No existing pull request against the master branch
+- :large_blue_circle: 311 - Applied to master branch
+- :white_circle:      5 - Open pull request against master branch pending review
+- :red_circle:        28 - No existing pull request against the master branch
 - :black_circle:      23 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
