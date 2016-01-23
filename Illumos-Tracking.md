@@ -39,7 +39,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [6281](https://www.illumos.org/issues/6281) | [6328027](https://github.com/illumos/illumos-gate/commit/6328027) | [a6fb32b8](https://github.com/zfsonlinux/zfs/commit/6fb32b8) | prefetching should apply to 1MB reads 
 :red_circle:        | [5219](https://www.illumos.org/issues/5219) | [d7d9a6d](https://github.com/illumos/illumos-gate/commit/d7d9a6d) |                                                             | l2arc_write_buffers() may write beyond target_sz 
 :large_blue_circle: | [6280](https://www.illumos.org/issues/6280) | [d1672ef](https://github.com/illumos/illumos-gate/commit/d1672ef) | [7ea4f88](https://github.com/zfsonlinux/zfs/commit/7ea4f88) | libzfs: unshare_one() could fail with EZFS_SHARENFSFAILED 
-:red_circle:        | [6251](https://www.illumos.org/issues/6251) | [139510f](https://github.com/illumos/illumos-gate/commit/139510f) |                                                             | add tunable to disable free_bpobj processing 
+:white_circle:      | [6251](https://www.illumos.org/issues/6251) | [139510f](https://github.com/illumos/illumos-gate/commit/139510f) | [PR4260](https://github.com/zfsonlinux/zfs/pull/4260)       | add tunable to disable free_bpobj processing 
 :black_circle:      | [6250](https://www.illumos.org/issues/6250) | [b10bba7](https://github.com/illumos/illumos-gate/commit/b10bba7) |                                                             | zvol_dump_init() can hold txg open 
 :large_blue_circle: | [6171](https://www.illumos.org/issues/6171) | [03bad06](https://github.com/illumos/illumos-gate/commit/03bad06) | [0eb2161](https://github.com/zfsonlinux/zfs/commit/0eb2161) | dsl_prop_unregister() slows down dataset eviction. 
 :red_circle:        | [4185](https://www.illumos.org/issues/4185) | [45818ee](https://github.com/illumos/illumos-gate/commit/45818ee) |                                                             | add new cryptographic checksums to ZFS: SHA-512, Skein, Edon-R 
@@ -373,8 +373,8 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
 - :large_blue_circle: 307 - Applied to master branch
-- :white_circle:      2 - Open pull request against master branch pending review
-- :red_circle:        35 - No existing pull request against the master branch
+- :white_circle:      3 - Open pull request against master branch pending review
+- :red_circle:        34 - No existing pull request against the master branch
 - :black_circle:      23 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
