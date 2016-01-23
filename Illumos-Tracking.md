@@ -44,7 +44,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [6171](https://www.illumos.org/issues/6171) | [03bad06](https://github.com/illumos/illumos-gate/commit/03bad06) | [0eb2161](https://github.com/zfsonlinux/zfs/commit/0eb2161) | dsl_prop_unregister() slows down dataset eviction. 
 :red_circle:        | [4185](https://www.illumos.org/issues/4185) | [45818ee](https://github.com/illumos/illumos-gate/commit/45818ee) |                                                             | add new cryptographic checksums to ZFS: SHA-512, Skein, Edon-R 
 :black_circle:      | [6209](https://www.illumos.org/issues/6209) | [0d045c0](https://github.com/illumos/illumos-gate/commit/0d045c0) |                                                             | libc mutexes break kernel writers hearts 
-:red_circle:        | [6220](https://www.illumos.org/issues/6220) | [c546f36](https://github.com/illumos/illumos-gate/commit/c546f36) |                                                             | memleak in l2arc on debug build 
+:black_circle:      | [6220](https://www.illumos.org/issues/6220) | [c546f36](https://github.com/illumos/illumos-gate/commit/c546f36) |                                                             | memleak in l2arc on debug build 
 :large_blue_circle: | [6214](https://www.illumos.org/issues/6214) | [d4cd038](https://github.com/illumos/illumos-gate/commit/d4cd038) | [4e0f33f](https://github.com/zfsonlinux/zfs/commit/4e0f33f) | zpools going south 
 :large_blue_circle: | [5987](https://www.illumos.org/issues/5987) | [cf6106c](https://github.com/illumos/illumos-gate/commit/cf6106c) | [7f60329](https://github.com/zfsonlinux/zfs/commit/7f60329) | zfs prefetch code needs work 
 :red_circle:        | [5997](https://www.illumos.org/issues/5997) | [1437283](https://github.com/illumos/illumos-gate/commit/1437283) |                                                             | FRU field not set during pool creation and never updated 
@@ -374,8 +374,8 @@ Status              | Illumos Issue                               | Illumos     
 
 - :large_blue_circle: 307 - Applied to master branch
 - :white_circle:      2 - Open pull request against master branch pending review
-- :red_circle:        36 - No existing pull request against the master branch
-- :black_circle:      22 - Not applicable to Linux
+- :red_circle:        35 - No existing pull request against the master branch
+- :black_circle:      23 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
                                                                 
