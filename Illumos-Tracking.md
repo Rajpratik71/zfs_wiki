@@ -56,7 +56,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [5981](https://www.illumos.org/issues/5981) | [1d3f896](https://github.com/illumos/illumos-gate/commit/1d3f896) | [5e8cd5d](https://github.com/zfsonlinux/zfs/commit/5e8cd5d) | Deadlock in dmu_objset_find_dp 
 :large_blue_circle: | [5911](https://www.illumos.org/issues/5911) | [46e1baa](https://github.com/illumos/illumos-gate/commit/46e1baa) | [4bda3bd](https://github.com/zfsonlinux/zfs/commit/4bda3bd) | ZFS "hangs" while deleting file 
 :large_blue_circle: | [5409](https://www.illumos.org/issues/5409) | [b3cff10](https://github.com/illumos/illumos-gate/commit/b3cff10) | [b23d543](https://github.com/zfsonlinux/zfs/commit/b23d543) | Remove shareiscsi description and example from zfs(1M) 5988 zfs(1M) diff is excessively indented 
-:black_circle:      | [1778](https://www.illumos.org/issues/1778) | [bd0f709](https://github.com/illumos/illumos-gate/commit/bd0f709) |                                                             | Assertion failed: rn->rn_nozpool == B_FALSE, file ../common/libzfs_import.c, line 1077, function zpool_open_func 
+:large_blue_circle: | [1778](https://www.illumos.org/issues/1778) | [bd0f709](https://github.com/illumos/illumos-gate/commit/bd0f709) | [ee42b3d](https://github.com/zfsonlinux/zfs/commit/ee42b3d) | Assertion failed: rn->rn_nozpool == B_FALSE, file ../common/libzfs_import.c, line 1077, function zpool_open_func 
 :large_blue_circle: | [5946](https://www.illumos.org/issues/5946) | [24218be](https://github.com/illumos/illumos-gate/commit/24218be) | [71e2fe4](https://github.com/zfsonlinux/zfs/commit/71e2fe4) | zfs_ioc_space_snaps must check that firstsnap and lastsnap refer to snapshots 5945 zfs_ioc_send_space must ensure that fromsnap refers to a snapshot 
 :large_blue_circle: | [5909](https://www.illumos.org/issues/5909) | [cb5842f](https://github.com/illumos/illumos-gate/commit/cb5842f) | [fec4170](https://github.com/zfsonlinux/zfs/commit/fec4170) | ensure that shared snap names don't become too long after promotion 
 :large_blue_circle: | [5870](https://www.illumos.org/issues/5870) | [beddaa9](https://github.com/illumos/illumos-gate/commit/beddaa9) | [b664011](https://github.com/zfsonlinux/zfs/commit/b664011) | dmu_recv_end_check() leaks origin_head hold if error happens in drc_force branch 
@@ -100,7 +100,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [5592](https://www.illumos.org/issues/5592) | [9d47dec](https://github.com/illumos/illumos-gate/commit/9d47dec) | [6186e29](https://github.com/zfsonlinux/zfs/commit/6186e29) | NULL pointer dereference in dsl_prop_notify_all_cb() 
 :large_blue_circle: | [5531](https://www.illumos.org/issues/5531) | [e57a022](https://github.com/illumos/illumos-gate/commit/e57a022) | [6ebebac](https://github.com/zfsonlinux/zfs/commit/6ebebac) | NULL pointer dereference in dsl_prop_get_ds() 
 :large_blue_circle: | [5562](https://www.illumos.org/issues/5562) | [0fda3cc](https://github.com/illumos/illumos-gate/commit/0fda3cc) | [63b33e8](https://github.com/zfsonlinux/zfs/commit/63b33e8) | ZFS sa_handle's violate kmem invariants, debug kernels panic on boot 
-:red_circle:        | [5518](https://www.illumos.org/issues/5518) | [078266a](https://github.com/illumos/illumos-gate/commit/078266a) |                                                             | Memory leaks in libzfs import implementation 
+:large_blue_circle: | [5518](https://www.illumos.org/issues/5518) | [078266a](https://github.com/illumos/illumos-gate/commit/078266a) | [0fdd8d6](https://github.com/zfsonlinux/zfs/commit/0fdd8d6) | Memory leaks in libzfs import implementation 
 :large_blue_circle: | [5497](https://www.illumos.org/issues/5497) | [244781f](https://github.com/illumos/illumos-gate/commit/244781f) | [ca0bf58](https://github.com/zfsonlinux/zfs/commit/ca0bf58) | lock contention on arcs_mtx 
 :large_blue_circle: | [5313](https://www.illumos.org/issues/5313) | [fe31923](https://github.com/illumos/illumos-gate/commit/fe31923) | [ec8501e](https://github.com/zfsonlinux/zfs/commit/ec8501e) | Allow I/Os to be aggregated across ZIO priority classes 
 :large_blue_circle: | [5410](https://www.illumos.org/issues/5410) | [5ff8cfa](https://github.com/illumos/illumos-gate/commit/5ff8cfa) | [0bf8501](https://github.com/zfsonlinux/zfs/commit/0bf8501) | Document -S option to zfs inherit 5412 Mention -S option when zfs inherit fails on quota 
@@ -173,7 +173,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [4951](https://www.illumos.org/issues/4951) | [7d46dc6](https://github.com/illumos/illumos-gate/commit/7d46dc6) | [3d45fdd](https://github.com/zfsonlinux/zfs/commit/3d45fdd) | ZFS administrative commands should use reserved space, not fail with ENOSPC 
 :large_blue_circle: | [4966](https://www.illumos.org/issues/4966) | [cd67d23](https://github.com/illumos/illumos-gate/commit/cd67d23) | [3e43edd](https://github.com/zfsonlinux/zfs/commit/3e43edd) | zpool list iterator does not update output 
 :large_blue_circle: | [4953](https://www.illumos.org/issues/4953) | [33cde0d](https://github.com/illumos/illumos-gate/commit/33cde0d) | [e3e670d](https://github.com/zfsonlinux/zfs/commit/e3e670d) | zfs rename <snapshot> need not involve libshare 4954 "zfs create" need not involve libshare if we are not sharing 4955 libshare's get_zfs_dataset need not sort the datasets 
-:white_circle:      | [4950](https://www.illumos.org/issues/4950) | [4bb7380](https://github.com/illumos/illumos-gate/commit/4bb7380) | [PR4207](https://github.com/zfsonlinux/zfs/pull/4207) | files sometimes can't be removed from a full filesystem 
+:large_blue_circle: | [4950](https://www.illumos.org/issues/4950) | [4bb7380](https://github.com/illumos/illumos-gate/commit/4bb7380) | [19d5507](https://github.com/zfsonlinux/zfs/commit/19d5507) | files sometimes can't be removed from a full filesystem 
 :large_blue_circle: | [4929](https://www.illumos.org/issues/4929) | [b461c74](https://github.com/illumos/illumos-gate/commit/b461c74) | [1715493](https://github.com/zfsonlinux/zfs/commit/1715493) | want prevsnap property 
 :large_blue_circle: | [4924](https://www.illumos.org/issues/4924) | [b8289d2](https://github.com/illumos/illumos-gate/commit/b8289d2) | [62bdd5e](https://github.com/zfsonlinux/zfs/commit/62bdd5e) | LZ4 Compression for metadata 
 :large_blue_circle: | [4936](https://www.illumos.org/issues/4936) | [58d0718](https://github.com/illumos/illumos-gate/commit/58d0718) | [ee47122](https://github.com/zfsonlinux/zfs/commit/ee47122) | lz4 could theoretically overflow a pointer with a certain input 
@@ -372,10 +372,10 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 304 - Applied to master branch
-- :white_circle:      3 - Open pull request against master branch pending review
-- :red_circle:        37 - No existing pull request against the master branch
-- :black_circle:      23 - Not applicable to Linux
+- :large_blue_circle: 307 - Applied to master branch
+- :white_circle:      2 - Open pull request against master branch pending review
+- :red_circle:        36 - No existing pull request against the master branch
+- :black_circle:      22 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
                                                                 
