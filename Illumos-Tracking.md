@@ -9,7 +9,7 @@ Status              | Illumos Issue                               | Illumos     
 :red_circle:        | [4986](https://www.illumos.org/issues/4986) | [5878fad](https://github.com/illumos/illumos-gate/commit/5878fad) |                                                             | receiving replication stream fails if any snapshot exceeds refquota 
 :large_blue_circle: | [6358](https://www.illumos.org/issues/6358) | [b289d04](https://github.com/illumos/illumos-gate/commit/b289d04) | [fe467e0](https://github.com/zfsonlinux/zfs/commit/fe467e0) | A faulted pool with only unavailable vdevs triggers assertion failure in libzfs 
 :white_circle:      | [6393](https://www.illumos.org/issues/6393) | [68ecb2e](https://github.com/illumos/illumos-gate/commit/68ecb2e) | [PR4221](https://github.com/zfsonlinux/zfs/pull/4221)       | zfs receive a full send as a clone 
-:white_circle:      | [6451](https://www.illumos.org/issues/6451) | [f9eb9fd](https://github.com/illumos/illumos-gate/commit/f9eb9fd) | [PR4261](https://github.com/zfsonlinux/zfs/pull/4261)       | ztest fails due to checksum errors 
+:large_blue_circle: | [6451](https://www.illumos.org/issues/6451) | [f9eb9fd](https://github.com/illumos/illumos-gate/commit/f9eb9fd) | [91d8884](https://github.com/zfsonlinux/zfs/commit/91d8884) | ztest fails due to checksum errors 
 :red_circle:        | [6051](https://www.illumos.org/issues/6051) | [620f322](https://github.com/illumos/illumos-gate/commit/620f322) |                                                             | lzc_receive: allow the caller to read the begin record 
 :red_circle:        | [6434](https://www.illumos.org/issues/6434) | [3502ed6](https://github.com/illumos/illumos-gate/commit/3502ed6) |                                                             | sa_find_sizes() may compute wrong SA header size 
 :red_circle:        | [6346](https://www.illumos.org/issues/6346) | [1058dba](https://github.com/illumos/illumos-gate/commit/1058dba) |                                                             | zfs(1M) has spurious comma 
@@ -19,7 +19,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [6388](https://www.illumos.org/issues/6388) | [c71c00b](https://github.com/illumos/illumos-gate/commit/c71c00b) | [0de7c55](https://github.com/zfsonlinux/zfs/commit/0de7c55) | Failure of userland copy should return EFAULT 
 :large_blue_circle: | [6368](https://www.illumos.org/issues/6368) | [7c5a457](https://github.com/illumos/illumos-gate/commit/7c5a457) | [2024041](https://github.com/zfsonlinux/zfs/commit/2024041) | Remove superfluous statement 
 :large_blue_circle: | [6386](https://www.illumos.org/issues/6386) | [5bdd995](https://github.com/illumos/illumos-gate/commit/5bdd995) | [485c581](https://github.com/zfsonlinux/zfs/commit/485c581) | Fix function call with uninitialized value in vdev_inuse 
-:white_circle:      | [6334](https://www.illumos.org/issues/6334) | [6575bca](https://github.com/illumos/illumos-gate/commit/6575bca) | [PR4259](https://github.com/zfsonlinux/zfs/pull/4259)       | Cannot unlink files when over quota 
+:large_blue_circle: | [6334](https://www.illumos.org/issues/6334) | [6575bca](https://github.com/illumos/illumos-gate/commit/6575bca) | [1a04bab](https://github.com/zfsonlinux/zfs/commit/1a04bab) | Cannot unlink files when over quota 
 :large_blue_circle: | [6390](https://www.illumos.org/issues/6390) | [1df447e](https://github.com/illumos/illumos-gate/commit/1df447e) | [85802aa](https://github.com/zfsonlinux/zfs/commit/85802aa) | Free props in ztest_init() 
 :large_blue_circle: | [6385](https://www.illumos.org/issues/6385) | [eaef6a9](https://github.com/illumos/illumos-gate/commit/eaef6a9) | [f3ad9cd](https://github.com/zfsonlinux/zfs/commit/f3ad9cd) | Fix unlocking order in zfs_zget 
 :large_blue_circle: | [6292](https://www.illumos.org/issues/6292) | [a443cc8](https://github.com/illumos/illumos-gate/commit/a443cc8) | [2e8efe1](https://github.com/zfsonlinux/zfs/commit/2e8efe1) | exporting a pool while an async destroy is running can leave entries in the deferred tree 
@@ -39,7 +39,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [6281](https://www.illumos.org/issues/6281) | [6328027](https://github.com/illumos/illumos-gate/commit/6328027) | [a6fb32b8](https://github.com/zfsonlinux/zfs/commit/6fb32b8) | prefetching should apply to 1MB reads 
 :red_circle:        | [5219](https://www.illumos.org/issues/5219) | [d7d9a6d](https://github.com/illumos/illumos-gate/commit/d7d9a6d) |                                                             | l2arc_write_buffers() may write beyond target_sz 
 :large_blue_circle: | [6280](https://www.illumos.org/issues/6280) | [d1672ef](https://github.com/illumos/illumos-gate/commit/d1672ef) | [7ea4f88](https://github.com/zfsonlinux/zfs/commit/7ea4f88) | libzfs: unshare_one() could fail with EZFS_SHARENFSFAILED 
-:white_circle:      | [6251](https://www.illumos.org/issues/6251) | [139510f](https://github.com/illumos/illumos-gate/commit/139510f) | [PR4260](https://github.com/zfsonlinux/zfs/pull/4260)       | add tunable to disable free_bpobj processing 
+:large_blue_circle: | [6251](https://www.illumos.org/issues/6251) | [139510f](https://github.com/illumos/illumos-gate/commit/139510f) | [ba5ad9a](https://github.com/zfsonlinux/zfs/commit/ba5ad9a) | add tunable to disable free_bpobj processing 
 :black_circle:      | [6250](https://www.illumos.org/issues/6250) | [b10bba7](https://github.com/illumos/illumos-gate/commit/b10bba7) |                                                             | zvol_dump_init() can hold txg open 
 :large_blue_circle: | [6171](https://www.illumos.org/issues/6171) | [03bad06](https://github.com/illumos/illumos-gate/commit/03bad06) | [0eb2161](https://github.com/zfsonlinux/zfs/commit/0eb2161) | dsl_prop_unregister() slows down dataset eviction. 
 :red_circle:        | [4185](https://www.illumos.org/issues/4185) | [45818ee](https://github.com/illumos/illumos-gate/commit/45818ee) |                                                             | add new cryptographic checksums to ZFS: SHA-512, Skein, Edon-R 
@@ -372,8 +372,8 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 311 - Applied to master branch
-- :white_circle:      5 - Open pull request against master branch pending review
+- :large_blue_circle: 314 - Applied to master branch
+- :white_circle:      2 - Open pull request against master branch pending review
 - :red_circle:        28 - No existing pull request against the master branch
 - :black_circle:      23 - Not applicable to Linux
 
