@@ -7,7 +7,7 @@ Status              | Illumos Issue                               | Illumos     
 :red_circle:        | [6531](https://www.illumos.org/issues/6531) | [97e8130](https://github.com/illumos/illumos-gate/commit/97e8130) |                                                             | Provide mechanism to artificially limit disk performance 
 :red_circle:        | [6544](https://www.illumos.org/issues/6544) | [cb605c4](https://github.com/illumos/illumos-gate/commit/cb605c4) |                                                             | incorrect comment in libzfs.h about offline status 
 :red_circle:        | [6529](https://www.illumos.org/issues/6529) | [e7e978b](https://github.com/illumos/illumos-gate/commit/e7e978b) |                                                             | Properly handle updates of variably-sized SA entries. 
-:red_circle:        | [6527](https://www.illumos.org/issues/6527) | [2bd7a8d](https://github.com/illumos/illumos-gate/commit/2bd7a8d) |                                                             | Possible access beyond end of string in zpool comment
+:white_circle:      | [6527](https://www.illumos.org/issues/6527) | [2bd7a8d](https://github.com/illumos/illumos-gate/commit/2bd7a8d) | [PR4279](https://github.com/zfsonlinux/zfs/pull/4279)       | Possible access beyond end of string in zpool comment
 :white_circle:      | [6495](https://www.illumos.org/issues/6495) | [2bad225](https://github.com/illumos/illumos-gate/commit/2bad225) | [PR4278](https://github.com/zfsonlinux/zfs/pull/4278)       | Fix mutex leak in dmu_objset_find_dp 
 :red_circle:        | [6494](https://www.illumos.org/issues/6494) | [f693d30](https://github.com/illumos/illumos-gate/commit/f693d30) |                                                             | ASSERT supported zio_types for file and disk vdevs 
 :red_circle:        | [4986](https://www.illumos.org/issues/4986) | [5878fad](https://github.com/illumos/illumos-gate/commit/5878fad) |                                                             | receiving replication stream fails if any snapshot exceeds refquota 
@@ -377,8 +377,8 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
 - :large_blue_circle: 315 - Applied to master branch
-- :white_circle:      3 - Open pull request against master branch pending review
-- :red_circle:        30 - No existing pull request against the master branch
+- :white_circle:      4 - Open pull request against master branch pending review
+- :red_circle:        29 - No existing pull request against the master branch
 - :black_circle:      23 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
