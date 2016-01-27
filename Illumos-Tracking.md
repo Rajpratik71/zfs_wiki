@@ -2,6 +2,10 @@
 
 Status              | Illumos Issue                               | Illumos                                                           | Linux                                                       | Description
 ------------------- | ------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------
+:red_circle:        | [6450](https://www.illumos.org/issues/6450) | [38d6103](https://github.com/illumos/illumos-gate/commit/38d6103) |                                                             | scrub/resilver unnecessarily traverses snapshots created after the scrub started 
+:red_circle:        | [6537](https://www.illumos.org/issues/6537) | [8c04a1f](https://github.com/illumos/illumos-gate/commit/8c04a1f) |                                                             | Panic on zpool scrub with DEBUG kernel 
+:red_circle:        | [6531](https://www.illumos.org/issues/6531) | [97e8130](https://github.com/illumos/illumos-gate/commit/97e8130) |                                                             | Provide mechanism to artificially limit disk performance 
+:red_circle:        | [6544](https://www.illumos.org/issues/6544) | [cb605c4](https://github.com/illumos/illumos-gate/commit/cb605c4) |                                                             | incorrect comment in libzfs.h about offline status 
 :red_circle:        | [6529](https://www.illumos.org/issues/6529) | [e7e978b](https://github.com/illumos/illumos-gate/commit/e7e978b) |                                                             | Properly handle updates of variably-sized SA entries. 
 :red_circle:        | [6527](https://www.illumos.org/issues/6527) | [2bd7a8d](https://github.com/illumos/illumos-gate/commit/2bd7a8d) |                                                             | Possible access beyond end of string in zpool comment
 :red_circle:        | [6495](https://www.illumos.org/issues/6495) | [2bad225](https://github.com/illumos/illumos-gate/commit/2bad225) |                                                             | Fix mutex leak in dmu_objset_find_dp 
@@ -374,7 +378,7 @@ Status              | Illumos Issue                               | Illumos     
 
 - :large_blue_circle: 314 - Applied to master branch
 - :white_circle:      2 - Open pull request against master branch pending review
-- :red_circle:        28 - No existing pull request against the master branch
+- :red_circle:        32 - No existing pull request against the master branch
 - :black_circle:      23 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
