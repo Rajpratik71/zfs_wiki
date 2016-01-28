@@ -7,8 +7,8 @@ Status              | Illumos Issue                               | Illumos     
 :red_circle:        | [6531](https://www.illumos.org/issues/6531) | [97e8130](https://github.com/illumos/illumos-gate/commit/97e8130) |                                                             | Provide mechanism to artificially limit disk performance 
 :red_circle:        | [6544](https://www.illumos.org/issues/6544) | [cb605c4](https://github.com/illumos/illumos-gate/commit/cb605c4) |                                                             | incorrect comment in libzfs.h about offline status 
 :red_circle:        | [6529](https://www.illumos.org/issues/6529) | [e7e978b](https://github.com/illumos/illumos-gate/commit/e7e978b) |                                                             | Properly handle updates of variably-sized SA entries. 
-:white_circle:      | [6527](https://www.illumos.org/issues/6527) | [2bd7a8d](https://github.com/illumos/illumos-gate/commit/2bd7a8d) | [PR4279](https://github.com/zfsonlinux/zfs/pull/4279)       | Possible access beyond end of string in zpool comment
-:white_circle:      | [6495](https://www.illumos.org/issues/6495) | [2bad225](https://github.com/illumos/illumos-gate/commit/2bad225) | [PR4278](https://github.com/zfsonlinux/zfs/pull/4278)       | Fix mutex leak in dmu_objset_find_dp 
+:large_blue_circle: | [6527](https://www.illumos.org/issues/6527) | [2bd7a8d](https://github.com/illumos/illumos-gate/commit/2bd7a8d) | [4b9ed69](https://github.com/zfsonlinux/zfs/commit/4b9ed69) | Possible access beyond end of string in zpool comment
+:large_blue_circle: | [6495](https://www.illumos.org/issues/6495) | [2bad225](https://github.com/illumos/illumos-gate/commit/2bad225) | [e567663](https://github.com/zfsonlinux/zfs/commit/e567663) | Fix mutex leak in dmu_objset_find_dp 
 :red_circle:        | [6494](https://www.illumos.org/issues/6494) | [f693d30](https://github.com/illumos/illumos-gate/commit/f693d30) |                                                             | ASSERT supported zio_types for file and disk vdevs 
 :red_circle:        | [4986](https://www.illumos.org/issues/4986) | [5878fad](https://github.com/illumos/illumos-gate/commit/5878fad) |                                                             | receiving replication stream fails if any snapshot exceeds refquota 
 :large_blue_circle: | [6358](https://www.illumos.org/issues/6358) | [b289d04](https://github.com/illumos/illumos-gate/commit/b289d04) | [fe467e0](https://github.com/zfsonlinux/zfs/commit/fe467e0) | A faulted pool with only unavailable vdevs triggers assertion failure in libzfs 
@@ -17,7 +17,7 @@ Status              | Illumos Issue                               | Illumos     
 :red_circle:        | [6051](https://www.illumos.org/issues/6051) | [620f322](https://github.com/illumos/illumos-gate/commit/620f322) |                                                             | lzc_receive: allow the caller to read the begin record 
 :red_circle:        | [6434](https://www.illumos.org/issues/6434) | [3502ed6](https://github.com/illumos/illumos-gate/commit/3502ed6) |                                                             | sa_find_sizes() may compute wrong SA header size 
 :black_circle:      | [6346](https://www.illumos.org/issues/6346) | [1058dba](https://github.com/illumos/illumos-gate/commit/1058dba) |                                                             | zfs(1M) has spurious comma 
-:white_circle:      | [6414](https://www.illumos.org/issues/6414) | [eb5bb58](https://github.com/illumos/illumos-gate/commit/eb5bb58) | [PR4277](https://github.com/zfsonlinux/zfs/pull/4277)       | vdev_config_sync could be simpler 
+:large_blue_circle: | [6414](https://www.illumos.org/issues/6414) | [eb5bb58](https://github.com/illumos/illumos-gate/commit/eb5bb58) | [b6fcb79](https://github.com/zfsonlinux/zfs/commit/b6fcb79) | vdev_config_sync could be simpler 
 :large_blue_circle: | [6391](https://www.illumos.org/issues/6391) | [ae24175](https://github.com/illumos/illumos-gate/commit/ae24175) | [64d7b6c](https://github.com/zfsonlinux/zfs/commit/64d7b6c) | Override default SPA config location via environment 
 :large_blue_circle: | [6421](https://www.illumos.org/issues/6421) | [57deb23](https://github.com/illumos/illumos-gate/commit/57deb23) | [ca0bf58](https://github.com/zfsonlinux/zfs/commit/ca0bf58) | Add missing multilist_destroy calls to arc_fini 
 :large_blue_circle: | [6388](https://www.illumos.org/issues/6388) | [c71c00b](https://github.com/illumos/illumos-gate/commit/c71c00b) | [0de7c55](https://github.com/zfsonlinux/zfs/commit/0de7c55) | Failure of userland copy should return EFAULT 
@@ -376,8 +376,8 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 315 - Applied to master branch
-- :white_circle:      4 - Open pull request against master branch pending review
+- :large_blue_circle: 318 - Applied to master branch
+- :white_circle:      1 - Open pull request against master branch pending review
 - :red_circle:        29 - No existing pull request against the master branch
 - :black_circle:      23 - Not applicable to Linux
 
