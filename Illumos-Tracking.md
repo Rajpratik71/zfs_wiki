@@ -2,9 +2,8 @@
 
 Status              | Illumos Issue                               | Illumos                                                           | Linux                                                       | Description
 ------------------- | ------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------
-:white_circle:        | [6450](https://www.illumos.org/issues/6450) | [38d6103](https://github.com/illumos/illumos-gate/commit/38d6103) | [PR4292](https://github.com/zfsonlinux/zfs/pull/4292) | Illumos 6450 scrub/resilver unnecessarily traverses snapshots created after the scrub started
 :white_circle:        | [4448](https://www.illumos.org/issues/4448) | [b211eb9](https://github.com/illumos/illumos-gate/commit/b211eb9) | [PR4291](https://github.com/zfsonlinux/zfs/pull/4291) | zfs diff misprints unicode characters
-:red_circle:        | [6450](https://www.illumos.org/issues/6450) | [38d6103](https://github.com/illumos/illumos-gate/commit/38d6103) |                                                             | scrub/resilver unnecessarily traverses snapshots created after the scrub started 
+:large_blue_circle: | [6450](https://www.illumos.org/issues/6450) | [38d6103](https://github.com/illumos/illumos-gate/commit/38d6103) | [b77222c](https://github.com/zfsonlinux/zfs/commit/b77222c) | scrub/resilver unnecessarily traverses snapshots created after the scrub started
 :red_circle:        | [6537](https://www.illumos.org/issues/6537) | [8c04a1f](https://github.com/illumos/illumos-gate/commit/8c04a1f) |                                                             | Panic on zpool scrub with DEBUG kernel 
 :red_circle:        | [6531](https://www.illumos.org/issues/6531) | [97e8130](https://github.com/illumos/illumos-gate/commit/97e8130) |                                                             | Provide mechanism to artificially limit disk performance 
 :red_circle:        | [6544](https://www.illumos.org/issues/6544) | [cb605c4](https://github.com/illumos/illumos-gate/commit/cb605c4) |                                                             | incorrect comment in libzfs.h about offline status 
@@ -378,8 +377,8 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 318 - Applied to master branch
-- :white_circle:      3 - Open pull request against master branch pending review
+- :large_blue_circle: 319 - Applied to master branch
+- :white_circle:      2 - Open pull request against master branch pending review
 - :red_circle:        29 - No existing pull request against the master branch
 - :black_circle:      23 - Not applicable to Linux
 
