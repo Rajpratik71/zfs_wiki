@@ -76,9 +76,9 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [5814](https://www.illumos.org/issues/5814) | [b67dde1](https://github.com/illumos/illumos-gate/commit/b67dde1) | [50f9ea0](https://github.com/zfsonlinux/zfs/commit/50f9ea0) | bpobj_iterate_impl(): Close a refcount leak iterating on a sublist. 
 :large_blue_circle: | [5812](https://www.illumos.org/issues/5812) | [8df1730](https://github.com/illumos/illumos-gate/commit/8df1730) | [8dd86a1](https://github.com/zfsonlinux/zfs/commit/8dd86a1) | assertion failed in zrl_tryenter(): zr_owner==NULL 
 :large_blue_circle: | [5810](https://www.illumos.org/issues/5810) | [732885f](https://github.com/illumos/illumos-gate/commit/732885f) | [252e1a5](https://github.com/zfsonlinux/zfs/commit/252e1a5) | zdb should print details of bpobj 
-:red_circle:        | [5809](https://www.illumos.org/issues/5809) | [f40b29c](https://github.com/illumos/illumos-gate/commit/f40b29c) |                                                             | Blowaway full receive in v1 pool causes kernel panic 
+:white_circle:      | [5809](https://www.illumos.org/issues/5809) | [f40b29c](https://github.com/illumos/illumos-gate/commit/f40b29c) | [PR4314](https://github.com/zfsonlinux/zfs/pull/4314)       | Blowaway full receive in v1 pool causes kernel panic 
 :large_blue_circle: | [5808](https://www.illumos.org/issues/5808) | [23367a2](https://github.com/illumos/illumos-gate/commit/23367a2) | [36c6ffb](https://github.com/zfsonlinux/zfs/commit/36c6ffb) | spa_check_logs is not necessary on readonly pools 
-:red_circle:        | [5767](https://www.illumos.org/issues/5767) | [52244c0](https://github.com/illumos/illumos-gate/commit/52244c0) |                                                             | fix several problems with zfs test suite 
+:white_circle:      | [5767](https://www.illumos.org/issues/5767) | [52244c0](https://github.com/illumos/illumos-gate/commit/52244c0) | [PR4313](https://github.com/zfsonlinux/zfs/pull/4313)       | fix several problems with zfs test suite 
 :large_blue_circle: | [5847](https://www.illumos.org/issues/5847) | [8430278](https://github.com/illumos/illumos-gate/commit/8430278) | [7fec46b](https://github.com/zfsonlinux/zfs/commit/7fec46b) | libzfs_diff should check zfs_prop_get() return 
 :large_blue_circle: | [5701](https://www.illumos.org/issues/5701) | [a52fc31](https://github.com/illumos/illumos-gate/commit/a52fc31) | [d962d5d](https://github.com/zfsonlinux/zfs/commit/d962d5d) | zpool list reports incorrect "alloc" value for cache devices 
 :large_blue_circle: | [5610](https://www.illumos.org/issues/5610) | [03b1c29](https://github.com/illumos/illumos-gate/commit/03b1c29) | [1cddb8c](https://github.com/zfsonlinux/zfs/commit/1cddb8c) | zfs clone from different source and target pools produces coredump 
@@ -378,8 +378,8 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
 - :large_blue_circle: 322 - Applied to master branch
-- :white_circle:      1 - Open pull request against master branch pending review
-- :red_circle:        27 - No existing pull request against the master branch
+- :white_circle:      3 - Open pull request against master branch pending review
+- :red_circle:        25 - No existing pull request against the master branch
 - :black_circle:      23 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
