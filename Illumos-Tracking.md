@@ -2,9 +2,9 @@
 
 Status              | Illumos Issue                               | Illumos                                                           | Linux                                                       | Description
 ------------------- | ------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------
-:white_circle:        | [4448](https://www.illumos.org/issues/4448) | [b211eb9](https://github.com/illumos/illumos-gate/commit/b211eb9) | [PR4291](https://github.com/zfsonlinux/zfs/pull/4291) | zfs diff misprints unicode characters
+:large_blue_circle: | [4448](https://www.illumos.org/issues/4448) | [b211eb9](https://github.com/illumos/illumos-gate/commit/b211eb9) | [0075955](https://github.com/zfsonlinux/zfs/commit/0075955) | zfs diff misprints unicode characters
 :large_blue_circle: | [6450](https://www.illumos.org/issues/6450) | [38d6103](https://github.com/illumos/illumos-gate/commit/38d6103) | [b77222c](https://github.com/zfsonlinux/zfs/commit/b77222c) | scrub/resilver unnecessarily traverses snapshots created after the scrub started
-:white_circle:      | [6537](https://www.illumos.org/issues/6537) | [8c04a1f](https://github.com/illumos/illumos-gate/commit/8c04a1f) | [PR4302](https://github.com/zfsonlinux/zfs/pull/4302)       | Panic on zpool scrub with DEBUG kernel 
+:large_blue_circle: | [6537](https://www.illumos.org/issues/6537) | [8c04a1f](https://github.com/illumos/illumos-gate/commit/8c04a1f) | [7c9abfa](https://github.com/zfsonlinux/zfs/commit/7c9abfa) | Panic on zpool scrub with DEBUG kernel 
 :red_circle:        | [6531](https://www.illumos.org/issues/6531) | [97e8130](https://github.com/illumos/illumos-gate/commit/97e8130) |                                                             | Provide mechanism to artificially limit disk performance 
 :red_circle:        | [6544](https://www.illumos.org/issues/6544) | [cb605c4](https://github.com/illumos/illumos-gate/commit/cb605c4) |                                                             | incorrect comment in libzfs.h about offline status 
 :red_circle:        | [6529](https://www.illumos.org/issues/6529) | [e7e978b](https://github.com/illumos/illumos-gate/commit/e7e978b) |                                                             | Properly handle updates of variably-sized SA entries. 
@@ -53,7 +53,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [6214](https://www.illumos.org/issues/6214) | [d4cd038](https://github.com/illumos/illumos-gate/commit/d4cd038) | [4e0f33f](https://github.com/zfsonlinux/zfs/commit/4e0f33f) | zpools going south 
 :large_blue_circle: | [5987](https://www.illumos.org/issues/5987) | [cf6106c](https://github.com/illumos/illumos-gate/commit/cf6106c) | [7f60329](https://github.com/zfsonlinux/zfs/commit/7f60329) | zfs prefetch code needs work 
 :red_circle:        | [5997](https://www.illumos.org/issues/5997) | [1437283](https://github.com/illumos/illumos-gate/commit/1437283) |                                                             | FRU field not set during pool creation and never updated 
-:red_circle:        | [6096](https://www.illumos.org/issues/6096) | [8f5190a](https://github.com/illumos/illumos-gate/commit/8f5190a) |                                                             | ZFS_SMB_ACL_RENAME needs to cleanup better 
+:large_blue_circle: | [6096](https://www.illumos.org/issues/6096) | [8f5190a](https://github.com/illumos/illumos-gate/commit/8f5190a) | [a4d179e](https://github.com/zfsonlinux/zfs/commit/a4d179e) | ZFS_SMB_ACL_RENAME needs to cleanup better 
 :red_circle:        | [6093](https://www.illumos.org/issues/6093) | [0f92170](https://github.com/illumos/illumos-gate/commit/0f92170) |                                                             | zfsctl_shares_lookup should only VN_RELE() on zfs_zget() success 
 :large_blue_circle: | [5959](https://www.illumos.org/issues/5959) | [ca0cc39](https://github.com/illumos/illumos-gate/commit/ca0cc39) | [241b541](https://github.com/zfsonlinux/zfs/commit/241b541) | clean up per-dataset feature count code 
 :large_blue_circle: | [5960](https://www.illumos.org/issues/5960) | [a2cdcdd](https://github.com/illumos/illumos-gate/commit/a2cdcdd) | [fcff0f3](https://github.com/zfsonlinux/zfs/commit/fcff0f3) | zfs recv should prefetch indirect blocks 5925 zfs receive -o origin=
@@ -377,9 +377,9 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 319 - Applied to master branch
-- :white_circle:      3 - Open pull request against master branch pending review
-- :red_circle:        28 - No existing pull request against the master branch
+- :large_blue_circle: 322 - Applied to master branch
+- :white_circle:      1 - Open pull request against master branch pending review
+- :red_circle:        27 - No existing pull request against the master branch
 - :black_circle:      23 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
