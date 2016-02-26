@@ -2,6 +2,7 @@
 
 Status              | Illumos Issue                               | Illumos                                                           | Linux                                                       | Description
 ------------------- | ------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------
+:red_circle:        | [6370](https://www.illumos.org/issues/6370) |                                                             | [PR4369](https://github.com/zfsonlinux/zfs/pull/4369) | ZFS send fails to transmit some holes
 :large_blue_circle: | [4448](https://www.illumos.org/issues/4448) | [b211eb9](https://github.com/illumos/illumos-gate/commit/b211eb9) | [0075955](https://github.com/zfsonlinux/zfs/commit/0075955) | zfs diff misprints unicode characters
 :large_blue_circle: | [6450](https://www.illumos.org/issues/6450) | [38d6103](https://github.com/illumos/illumos-gate/commit/38d6103) | [b77222c](https://github.com/zfsonlinux/zfs/commit/b77222c) | scrub/resilver unnecessarily traverses snapshots created after the scrub started
 :large_blue_circle: | [6537](https://www.illumos.org/issues/6537) | [8c04a1f](https://github.com/illumos/illumos-gate/commit/8c04a1f) | [7c9abfa](https://github.com/zfsonlinux/zfs/commit/7c9abfa) | Panic on zpool scrub with DEBUG kernel 
