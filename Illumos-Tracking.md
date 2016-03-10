@@ -2,7 +2,22 @@
 
 Status              | Illumos Issue                               | Illumos                                                           | Linux                                                       | Description
 ------------------- | ------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------
-:white_circle:        | [6370](https://www.illumos.org/issues/6370) |                                                             | [PR4369](https://github.com/zfsonlinux/zfs/pull/4369) | ZFS send fails to transmit some holes
+:large_blue_circle: | [6370](https://www.illumos.org/issues/6370) | [286ef71](https://github.com/illumos/illumos-gate/commit/286ef71) | [c352ec2](https://github.com/zfsonlinux/zfs/commit/c352ec2) | ZFS send fails to transmit some holes
+:red_circle:        | [6672](https://www.illumos.org/issues/6672) | [a8f6344](https://github.com/illumos/illumos-gate/commit/a8f6344) |                                                             | arc_reclaim_thread() should use gethrtime() instead of ddi_get_lbolt() 6673 want a macro to convert seconds to nanoseconds and vice-versa 
+:red_circle:        | [2897](https://www.illumos.org/issues/2897) | [879bece](https://github.com/illumos/illumos-gate/commit/879bece) |                                                             | "zpool split" documentation missing from manpage 
+:red_circle:        | [4465](https://www.illumos.org/issues/4465) | [c8323d4](https://github.com/illumos/illumos-gate/commit/c8323d4) |                                                             | zpool(1M) is able to offline cache vdevs despite what man page says 5659 in the manual page for zpool(1M), one misuse of the word 'zpool' to describe a pool 
+:red_circle:        | [6659](https://www.illumos.org/issues/6659) | [aab83bb](https://github.com/illumos/illumos-gate/commit/aab83bb) |                                                             | nvlist_free(NULL) is a no-op 
+:red_circle:        | [4521](https://www.illumos.org/issues/4521) | [8808ac5](https://github.com/illumos/illumos-gate/commit/8808ac5) |                                                             | zfstest is trying to execute evil "zfs unmount -a" 
+:red_circle:        | [6603](https://www.illumos.org/issues/6603) | [0803e91](https://github.com/illumos/illumos-gate/commit/0803e91) |                                                             | zfeature_register() should verify ZFEATURE_FLAG_PER_DATASET implies SPA_FEATURE_EXTENSIBLE_DATASET 
+:red_circle:        | [6586](https://www.illumos.org/issues/6586) | [22b6687](https://github.com/illumos/illumos-gate/commit/22b6687) |                                                             | Whitespace inconsistencies in the spa feature dependency arrays in zfeature_common.c 
+:red_circle:        | [6585](https://www.illumos.org/issues/6585) | [892586e8](https://github.com/illumos/illumos-gate/commit/892586e8) |                                                           | sha512, skein, and edonr have an unenforced dependency on extensible dataset 
+:red_circle:        | [6541](https://www.illumos.org/issues/6541) | [971640e](https://github.com/illumos/illumos-gate/commit/971640e) |                                                             | Pool feature-flag check defeated if "verify" is included in the dedup property value 
+:red_circle:        | [6550](https://www.illumos.org/issues/6550) | [c16bcc4](https://github.com/illumos/illumos-gate/commit/c16bcc4) |                                                             | cmd/zfs: cleanup gcc warnings 
+:red_circle:        | [6551](https://www.illumos.org/issues/6551) | [b327cd3](https://github.com/illumos/illumos-gate/commit/b327cd3) |                                                             | cmd/zpool: cleanup gcc warnings 
+:red_circle:        | [6637](https://www.illumos.org/issues/6637) | [d189620](https://github.com/illumos/illumos-gate/commit/d189620) |                                                             | replacing "dontclose" with "should_close" 
+:red_circle:        | [6562](https://www.illumos.org/issues/6562) | [5f7a8e6](https://github.com/illumos/illumos-gate/commit/5f7a8e6) |                                                             | Refquota on receive doesn't account for overage 
+:red_circle:        | [5027](https://www.illumos.org/issues/5027) | [c3d26ab](https://github.com/illumos/illumos-gate/commit/c3d26ab) |                                                             | zfs large block support (add copyright)
+:red_circle:        | [6536](https://www.illumos.org/issues/6536) | [880094b](https://github.com/illumos/illumos-gate/commit/880094b) |                                                             | zfs send: want a way to disable setting of DRR_FLAG_FREERECORDS 
 :large_blue_circle: | [4448](https://www.illumos.org/issues/4448) | [b211eb9](https://github.com/illumos/illumos-gate/commit/b211eb9) | [0075955](https://github.com/zfsonlinux/zfs/commit/0075955) | zfs diff misprints unicode characters
 :large_blue_circle: | [6450](https://www.illumos.org/issues/6450) | [38d6103](https://github.com/illumos/illumos-gate/commit/38d6103) | [b77222c](https://github.com/zfsonlinux/zfs/commit/b77222c) | scrub/resilver unnecessarily traverses snapshots created after the scrub started
 :large_blue_circle: | [6537](https://www.illumos.org/issues/6537) | [8c04a1f](https://github.com/illumos/illumos-gate/commit/8c04a1f) | [7c9abfa](https://github.com/zfsonlinux/zfs/commit/7c9abfa) | Panic on zpool scrub with DEBUG kernel 
@@ -378,9 +393,9 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 323 - Applied to master branch
+- :large_blue_circle: 326 - Applied to master branch
 - :white_circle:      3 - Open pull request against master branch pending review
-- :red_circle:        25 - No existing pull request against the master branch
+- :red_circle:        40 - No existing pull request against the master branch
 - :black_circle:      23 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
