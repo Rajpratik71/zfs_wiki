@@ -2,6 +2,7 @@
 
 Status              | Illumos Issue                               | Illumos                                                           | Linux                                                       | Description
 ------------------- | ------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------
+:white_circle:      | [6681](https://www.illumos.org/issues/6681) | [d09e447](https://github.com/illumos/illumos-gate/commit/d09e447) | [PR4406](https://github.com/zfsonlinux/zfs/pull/4406)       | zfs list burning lots of time in dodefault() via dsl_prop_*
 :large_blue_circle: | [6370](https://www.illumos.org/issues/6370) | [286ef71](https://github.com/illumos/illumos-gate/commit/286ef71) | [c352ec2](https://github.com/zfsonlinux/zfs/commit/c352ec2) | ZFS send fails to transmit some holes
 :red_circle:        | [6672](https://www.illumos.org/issues/6672) | [a8f6344](https://github.com/illumos/illumos-gate/commit/a8f6344) |                                                             | arc_reclaim_thread() should use gethrtime() instead of ddi_get_lbolt() 6673 want a macro to convert seconds to nanoseconds and vice-versa 
 :red_circle:        | [2897](https://www.illumos.org/issues/2897) | [879bece](https://github.com/illumos/illumos-gate/commit/879bece) |                                                             | "zpool split" documentation missing from manpage 
@@ -394,7 +395,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
 - :large_blue_circle: 326 - Applied to master branch
-- :white_circle:      3 - Open pull request against master branch pending review
+- :white_circle:      4 - Open pull request against master branch pending review
 - :red_circle:        40 - No existing pull request against the master branch
 - :black_circle:      23 - Not applicable to Linux
 
