@@ -7,7 +7,7 @@ Status              | Illumos Issue                               | Illumos     
 :red_circle:        | [6672](https://www.illumos.org/issues/6672) | [a8f6344](https://github.com/illumos/illumos-gate/commit/a8f6344) |                                                             | arc_reclaim_thread() should use gethrtime() instead of ddi_get_lbolt() 6673 want a macro to convert seconds to nanoseconds and vice-versa 
 :red_circle:        | [2897](https://www.illumos.org/issues/2897) | [879bece](https://github.com/illumos/illumos-gate/commit/879bece) |                                                             | "zpool split" documentation missing from manpage 
 :red_circle:        | [4465](https://www.illumos.org/issues/4465) | [c8323d4](https://github.com/illumos/illumos-gate/commit/c8323d4) |                                                             | zpool(1M) is able to offline cache vdevs despite what man page says 5659 in the manual page for zpool(1M), one misuse of the word 'zpool' to describe a pool 
-:white_circle:       | [6659](https://www.illumos.org/issues/6659) | [aab83bb](https://github.com/illumos/illumos-gate/commit/aab83bb) |                                                             | nvlist_free(NULL) is a no-op 
+:large_blue_circle: | [6659](https://www.illumos.org/issues/6659) | [aab83bb](https://github.com/illumos/illumos-gate/commit/aab83bb) | [8a5fc74](https://github.com/zfsonlinux/zfs/commit/8a5fc74) | nvlist_free(NULL) is a no-op 
 :red_circle:        | [4521](https://www.illumos.org/issues/4521) | [8808ac5](https://github.com/illumos/illumos-gate/commit/8808ac5) |                                                             | zfstest is trying to execute evil "zfs unmount -a" 
 :red_circle:        | [6603](https://www.illumos.org/issues/6603) | [0803e91](https://github.com/illumos/illumos-gate/commit/0803e91) |                                                             | zfeature_register() should verify ZFEATURE_FLAG_PER_DATASET implies SPA_FEATURE_EXTENSIBLE_DATASET 
 :red_circle:        | [6586](https://www.illumos.org/issues/6586) | [22b6687](https://github.com/illumos/illumos-gate/commit/22b6687) |                                                             | Whitespace inconsistencies in the spa feature dependency arrays in zfeature_common.c 
@@ -394,9 +394,9 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 327 - Applied to master branch
+- :large_blue_circle: 328 - Applied to master branch
 - :white_circle:      3 - Open pull request against master branch pending review
-- :red_circle:        40 - No existing pull request against the master branch
+- :red_circle:        39 - No existing pull request against the master branch
 - :black_circle:      23 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
