@@ -2,6 +2,26 @@
 
 Status              | Illumos Issue                               | Illumos                                                           | Linux                                                       | Description
 ------------------- | ------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------
+:red_circle:        | [6873](https://www.illumos.org/issues/6873) | [4cde22c](https://github.com/illumos/illumos-gate/commit/4cde22c) |                                                             | zfs_destroy_snaps_nvl leaks errlist 
+:red_circle:        | [6052](https://www.illumos.org/issues/6052) | [26455f9](https://github.com/illumos/illumos-gate/commit/26455f9) |                                                             | decouple lzc_create() from the implementation details 
+:red_circle:        | [6879](https://www.illumos.org/issues/6879) | [20fea7a](https://github.com/illumos/illumos-gate/commit/20fea7a) |                                                             | incorrect endianness swap for drr_spill.drr_length in libzfs_sendrecv.c 
+:red_circle:        | [6880](https://www.illumos.org/issues/6880) | [c5d1600](https://github.com/illumos/illumos-gate/commit/c5d1600) |                                                             | zdb incorrectly reports feature count mismatch when feature is disabled 
+:red_circle:        | [6871](https://www.illumos.org/issues/6871) | [8fc9228](https://github.com/illumos/illumos-gate/commit/8fc9228) |                                                             | libzpool implementation of thread_create should enforce length is 0 
+:red_circle:        | [6872](https://www.illumos.org/issues/6872) | [f83b46b](https://github.com/illumos/illumos-gate/commit/f83b46b) |                                                             | zfs libraries should not allow uninitialized variables 
+:red_circle:        | [6765](https://www.illumos.org/issues/6765) | [da41274](https://github.com/illumos/illumos-gate/commit/da41274) |                                                             | zfs_zaccess_delete() comments do not accurately reflect delete permissions for ACLs 
+:red_circle:        | [6764](https://www.illumos.org/issues/6764) | [de0f1dd](https://github.com/illumos/illumos-gate/commit/de0f1dd) |                                                             | zfs issues with inheritance flags during chmod(2) with aclmode=passthrough 
+:red_circle:        | [6763](https://www.illumos.org/issues/6763) | [851632d](https://github.com/illumos/illumos-gate/commit/851632d) |                                                             | aclinherit=restricted masks inherited permissions by group perms (groupmask) 
+:red_circle:        | [6762](https://www.illumos.org/issues/6762) | [1eb4e90](https://github.com/illumos/illumos-gate/commit/1eb4e90) |                                                             | POSIX write should imply DELETE_CHILD on directories - and some additional considerations 
+:red_circle:        | [6736](https://www.illumos.org/issues/6736) | [215198a](https://github.com/illumos/illumos-gate/commit/215198a) |                                                             | ZFS per-vdev ZAPs 
+:red_circle:        | [6322](https://www.illumos.org/issues/6322) | [cb92f41](https://github.com/illumos/illumos-gate/commit/cb92f41) |                                                             | ZFS indirect block predictive prefetch 
+:red_circle:        | [6418](https://www.illumos.org/issues/6418) | [6401734](https://github.com/illumos/illumos-gate/commit/6401734) |                                                             | zpool should have a label clearing command 
+:red_circle:        | [6842](https://www.illumos.org/issues/6842) | [02525cd](https://github.com/illumos/illumos-gate/commit/02525cd) |                                                             | Fix empty xattr dir causing lockup 
+:red_circle:        | [6843](https://www.illumos.org/issues/6843) | [399cc7d](https://github.com/illumos/illumos-gate/commit/399cc7d) |                                                             | Make xattr dir truncate and remove in one tx 
+:red_circle:        | [6841](https://www.illumos.org/issues/6841) | [445e678](https://github.com/illumos/illumos-gate/commit/445e678) |                                                             | Undirty freed spill blocks 
+:red_circle:        | [6738](https://www.illumos.org/issues/6738) | [c20404f](https://github.com/illumos/illumos-gate/commit/c20404f) |                                                             | zfs send stream padding needs documentation 
+:red_circle:        | [6739](https://www.illumos.org/issues/6739) | [41c6413](https://github.com/illumos/illumos-gate/commit/41c6413) |                                                             | userland version of cv_timedwait_hires() always assumes absolute time 
+:red_circle:        | [6781](https://www.illumos.org/issues/6781) | [e4cb59f](https://github.com/illumos/illumos-gate/commit/e4cb59f) |                                                             | zpool man page needs updated to remove duplicate entry of "cannot be" where it discusses cache devices 
+:red_circle:        | [4242](https://www.illumos.org/issues/4242) | [54207fd](https://github.com/illumos/illumos-gate/commit/54207fd) |                                                             | file rename event fires before the rename happens 
 :large_blue_circle: | [6681](https://www.illumos.org/issues/6681) | [d09e447](https://github.com/illumos/illumos-gate/commit/d09e447) | [887d1e6](https://github.com/zfsonlinux/zfs/commit/887d1e6) | zfs list burning lots of time in dodefault() via dsl_prop_*
 :large_blue_circle: | [6370](https://www.illumos.org/issues/6370) | [286ef71](https://github.com/illumos/illumos-gate/commit/286ef71) | [c352ec2](https://github.com/zfsonlinux/zfs/commit/c352ec2) | ZFS send fails to transmit some holes
 :red_circle:        | [6672](https://www.illumos.org/issues/6672) | [a8f6344](https://github.com/illumos/illumos-gate/commit/a8f6344) |                                                             | arc_reclaim_thread() should use gethrtime() instead of ddi_get_lbolt() 6673 want a macro to convert seconds to nanoseconds and vice-versa 
@@ -396,7 +416,7 @@ Status              | Illumos Issue                               | Illumos     
 
 - :large_blue_circle: 328 - Applied to master branch
 - :white_circle:      3 - Open pull request against master branch pending review
-- :red_circle:        39 - No existing pull request against the master branch
+- :red_circle:        59 - No existing pull request against the master branch
 - :black_circle:      23 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
