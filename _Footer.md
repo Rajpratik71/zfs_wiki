@@ -1,1 +1,1 @@
-[[Home]] / [[Project and Community]] / [[Developer Resources]]
+[[Home]] / [[Project & Community]] / [[Developer Resources]]
