@@ -1,7 +1,8 @@
 * [[Home]]
-* Getting Started
+* [[Getting Started]]
   * [[Debian]]
   * [[EPEL]]
   * [[Fedora]]
-* Development
+* [[Project & Community]]
+* [[Developer Resources]]
   * [[OpenZFS Tracking]]
