@@ -1,6 +1,6 @@
-# Generic DEB Packages
+# Custom Packages
 
-The following instructions assume you are building from an official [release tarball][release] or directly from the [git repository][git]. Most users should not need to do this and should preferentially use the [[Debian]] or [[Ubuntu]] packages. As a general rule the distribution packages will be more tightly integrated, widely tested, and better supported. However, if your distribution of choice doesn't provide packages or you're a developer and want to roll your own here's the way to do it.
+The following instructions assume you are building from an official [release tarball][release] or directly from the [git repository][git]. Most users should not need to do this and should preferentially use the distribution packages. As a general rule the distribution packages will be more tightly integrated, widely tested, and better supported. However, if your distribution of choice doesn't provide packages or you're a developer and want to roll your own here's the way to do it.
 
 The first thing to be aware of is that the build system is capable of generating several different types of packages. Which type of package you choose depends on what's supported on your platform and exactly what your needs are.
 
@@ -19,6 +19,13 @@ For Debian and Ubuntu:
 ```
 $ sudo apt-get install build-essential gawk alien fakeroot gdebi linux-headers-$(uname -r)
 $ sudo apt-get install zlib1g-dev uuid-dev libblkid-dev libselinux-dev libudev-dev parted lsscsi wget ksh
+```
+
+For RHEL, CentOS, and Fedora:
+
+```
+$ sudo yum groupinstall "Development Tools" parted lsscsi wget ksh
+$ sudo yum install kernel-devel zlib-devel libuuid-devel libblkid-devel libselinux-devel libudev-devel
 ```
 
 If you want to use the official released tarballs, then use the following commands to fetch and prepare the source.
@@ -44,39 +51,116 @@ $ ./autogen.sh
 $ cd ..
 ```
 
-Once the source has been prepared you'll need to decide what kind of packages you're building and jump the to appropriate section below.
+Once the source has been prepared you'll need to decide what kind of packages you're building and jump the to appropriate section below.  Note that not all package types are supported for all platforms.
 
-## DKMS
+## DKMS (rpm-only)
 
-The build system does not support building DKMS deb packages.
+Building rpm-based DKMS and user packages can be done as follows.  However, be aware that the build system currently does does support building deb-based DKMS packages.
 
-## kmod
+
+```
+$ cd spl
+$ ./configure
+$ make pkg-utils rpm-dkms
+```
+
+Install the spl packages.  They are required dependencies to build zfs in the next step.
+
+For RHEL, Centos and Fedora:
+
+```
+$ sudo yum localinstall *.<arch>.rpm
+```
+
+Next change to the zfs directory and repeat the same process.
+
+```
+$ cd ../zfs
+$ ./configure
+$ make pkg-utils rpm-dkms
+```
+
+For RHEL, Centos and Fedora:
+
+```
+$ sudo yum localinstall *.<arch>.rpm
+```
+
+## kmod (rpm and deb)
 
 The key thing to know when building a kmod package is that a specific Linux kernel must be specified. At configure time the build system will make an educated guess as to which kernel you want to build against. However, if configure is unable to locate your kernel development headers, or you want to build against a different kernel, you must specify the exact path with the *--with-linux* and *--with-linux-obj* options.
 
 ```
 $ cd spl
 $ ./configure
-$ make pkg
+$ make pkg-utils pkg-kmod
+```
 
-#  Install the spl packages, they are required to build zfs.
+Install the spl packages.  They are required dependencies to build zfs in the next step.
+
+For Debian and Ubuntu:
+
+```
 $ for file in *.deb; do sudo gdebi -q --non-interactive $file; done
 ```
 
-Then move on to the zfs directory.
+For RHEL, Centos, and Fedora:
+
+```
+$ sudo yum localinstall *.<arch>.rpm
+```
+
+Next change to the zfs directory and repeat the same process.
 
 ```
 $ cd ../zfs
 $ ./configure
-$ make pkg
+$ make pkg-utils pkg-kmod
+```
 
-#  Install the zfs packages.
+For Debian and Ubuntu:
+
+```
 $ for file in *.deb; do sudo gdebi -q --non-interactive $file; done
 ```
 
-## kABI-tracking kmod
+For RHEL, Centos, and Fedora:
 
-The build system does not support building kABI-tracking deb packages.
+```
+$ sudo yum localinstall *.<arch>.rpm
+```
+
+## kABI-tracking kmod (rpm-only)
+
+The process for building kABI-tracking kmods is almost identical to for building normal kmods.  However, it will only produce binaries which can be used by multiple kernels if the distribution supports a stable kABI.  Enterprise Linux distributions such as RHEL and CentOS provide this but faster moving distributions like Fedora do not.  The build system also does not support building kABI-tracking deb packages.  In order to request kABI-tracking package the *--with-spec=redhat* option must be passed to configure.
+
+```
+$ cd spl
+$ ./configure --with-spec=redhat
+$ make pkg-utils pkg-kmod
+```
+
+Install the spl packages.  They are required dependencies to build zfs in the next step.
+
+For RHEL and Centos:
+
+```
+$ sudo yum localinstall *.<arch>.rpm
+```
+
+Next change to the zfs directory and repeat the same process.
+
+```
+$ cd ../zfs
+$ ./configure --with-spec=redhat
+$ make pkg-utils pkg-kmod
+```
+
+For RHEL and Centos:
+
+```
+$ sudo yum localinstall *.<arch>.rpm
+```
 
 [release]: https://github.com/zfsonlinux/zfs/release
 [git]: https://github.com/zfsonlinux/zfs
