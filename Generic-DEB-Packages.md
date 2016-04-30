@@ -21,15 +21,7 @@ $ sudo apt-get install build-essential gawk alien fakeroot gdebi linux-headers-$
 $ sudo apt-get install zlib1g-dev uuid-dev libblkid-dev libselinux-dev libudev-dev parted lsscsi wget ksh
 ```
 
-## DKMS
-
-The build system does not support building DKMS deb packages.
-
-## kmod
-
-The key thing to know when building a kmod package is that a specific Linux kernel must be specified. At configure time the build system will make an educated guess as to which kernel you want to build against. However, if configure is unable to locate your kernel development headers, or you want to build against a different kernel, you must specify the exact path with the *--with-linux* and *--with-linux-obj* options.
-
-If you want to use the official released tarballs, use the following commands:
+If you want to use the official released tarballs, then use the following commands to fetch and prepare the source.
 
 ```
 $ wget http://archive.zfsonlinux.org/downloads/zfsonlinux/spl/spl-x.y.z.tar.gz
@@ -39,7 +31,7 @@ $ tar -xzf spl-x.y.z.tar.gz
 $ tar -xzf zfs-x.y.z.tar.gz
 ```
 	
-If instead you would like to use the git version, you can clone it like this from github.
+If instead you would like to use the git version, you can clone it from Github and prepare the source like this.
 
 ```
 $ git clone https://github.com/zfsonlinux/spl.git
@@ -52,7 +44,15 @@ $ ./autogen.sh
 $ cd ..
 ```
 
-After you have the source you'll need to configure, compile, and install the packages.  These steps are the same regardless of if you downloaded a tarball or the git repository.  Start off with the spl directory.
+Once the source has been prepared you'll need to decide what kind of packages you're building and jump the to appropriate section below.
+
+## DKMS
+
+The build system does not support building DKMS deb packages.
+
+## kmod
+
+The key thing to know when building a kmod package is that a specific Linux kernel must be specified. At configure time the build system will make an educated guess as to which kernel you want to build against. However, if configure is unable to locate your kernel development headers, or you want to build against a different kernel, you must specify the exact path with the *--with-linux* and *--with-linux-obj* options.
 
 ```
 $ cd spl
