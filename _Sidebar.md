@@ -5,4 +5,5 @@
   * [[Fedora]]
 * [[Project & Community]]
 * [[Developer Resources]]
+  * [[Custom Packages]]
   * [[OpenZFS Tracking]]
