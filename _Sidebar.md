@@ -9,6 +9,9 @@
   * [openSUSE][opensuse]
   * [[Ubuntu]]
 * [[Project & Community]]
+  * [[Mailing Lists]]
+  * [Issue Tracker][issues]
+  * [Roadmap][roadmap]
 * [[Developer Resources]]
   * [[Custom Packages]]
   * [[OpenZFS Tracking]]
@@ -17,3 +20,5 @@
 [funtoo]: http://www.funtoo.org/ZFS_Fun
 [gentoo]: https://wiki.gentoo.org/wiki/ZFS
 [opensuse]: https://software.opensuse.org/package/zfs
+[issues]: https://github.com/zfsonlinux/zfs/issues
+[roadmap]: https://github.com/zfsonlinux/zfs/milestones
