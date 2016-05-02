@@ -12,7 +12,7 @@ Status              | Illumos Issue                               | Illumos     
 :red_circle:        | [6764](https://www.illumos.org/issues/6764) | [de0f1dd](https://github.com/illumos/illumos-gate/commit/de0f1dd) |                                                             | zfs issues with inheritance flags during chmod(2) with aclmode=passthrough 
 :red_circle:        | [6763](https://www.illumos.org/issues/6763) | [851632d](https://github.com/illumos/illumos-gate/commit/851632d) |                                                             | aclinherit=restricted masks inherited permissions by group perms (groupmask) 
 :red_circle:        | [6762](https://www.illumos.org/issues/6762) | [1eb4e90](https://github.com/illumos/illumos-gate/commit/1eb4e90) |                                                             | POSIX write should imply DELETE_CHILD on directories - and some additional considerations 
-:red_circle:        | [6736](https://www.illumos.org/issues/6736) | [215198a](https://github.com/illumos/illumos-gate/commit/215198a) |                                                             | ZFS per-vdev ZAPs 
+:large_blue_circle: | [6736](https://www.illumos.org/issues/6736) | [215198a](https://github.com/illumos/illumos-gate/commit/215198a) | [e0ab3ab](https://github.com/zfsonlinux/zfs/commit/e0ab3ab) | ZFS per-vdev ZAPs 
 :red_circle:        | [6322](https://www.illumos.org/issues/6322) | [cb92f41](https://github.com/illumos/illumos-gate/commit/cb92f41) |                                                             | ZFS indirect block predictive prefetch 
 :red_circle:        | [6418](https://www.illumos.org/issues/6418) | [6401734](https://github.com/illumos/illumos-gate/commit/6401734) |                                                             | zpool should have a label clearing command 
 :red_circle:        | [6842](https://www.illumos.org/issues/6842) | [02525cd](https://github.com/illumos/illumos-gate/commit/02525cd) |                                                             | Fix empty xattr dir causing lockup 
@@ -414,9 +414,9 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-- :large_blue_circle: 328 - Applied to master branch
-- :white_circle:      3 - Open pull request against master branch pending review
-- :red_circle:        59 - No existing pull request against the master branch
+- :large_blue_circle: 329 - Applied to master branch
+- :white_circle:      4 - Open pull request against master branch pending review
+- :red_circle:        58 - No existing pull request against the master branch
 - :black_circle:      23 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
