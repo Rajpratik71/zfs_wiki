@@ -12,6 +12,7 @@
   * [[Mailing Lists]]
   * [Issue Tracker][issues]
   * [Roadmap][roadmap]
+  * [[Signing Keys]]
 * [[Developer Resources]]
   * [[Custom Packages]]
   * [[OpenZFS Tracking]]
