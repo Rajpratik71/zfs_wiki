@@ -4,7 +4,6 @@
   * [[Debian]]
   * [[RHEL & CentOS]]
   * [[Fedora]]
-  * [Funtoo][funtoo]
   * [Gentoo][gentoo]
   * [openSUSE][opensuse]
   * [[Ubuntu]]
