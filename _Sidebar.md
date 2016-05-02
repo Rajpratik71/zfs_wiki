@@ -16,6 +16,7 @@
 * [[Developer Resources]]
   * [[Custom Packages]]
   * [[OpenZFS Tracking]]
+  * [OpenZFS Documentation][openzfs-devel]
 
 [arch]: https://wiki.archlinux.org/index.php/ZFS
 [funtoo]: http://www.funtoo.org/ZFS_Fun
@@ -24,3 +25,4 @@
 [admin-docs]: https://pthree.org/2012/04/17/install-zfs-on-debian-gnulinux/
 [issues]: https://github.com/zfsonlinux/zfs/issues
 [roadmap]: https://github.com/zfsonlinux/zfs/milestones
+[openzfs-devel]: http://open-zfs.org/wiki/Developer_resources
