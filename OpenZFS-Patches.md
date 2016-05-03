@@ -1,4 +1,4 @@
-# OpenZFS Patch Integration
+# OpenZFS Patches
 
 The ZFS on Linux project is a adaptation of the upstream [OpenZFS repository][openzfs-repo] designed to work in a Linux environment.  This upstream repository acts as a location where new features, bug fixes, and performance improvements from all the OpenZFS platforms can be integrated.  Each platform is responsible for tracking the OpenZFS repository and merging the relevant improvements back in to their release process.
 
