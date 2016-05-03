@@ -26,7 +26,7 @@ $ git remote add openzfs https://github.com/openzfs/openzfs.git
 $ git fetch --all
 ```
 
-**Build the source.** Compile the spl and zfs master branches.  While these branches are always kept in stable state this is a useful verification that there is a full build environment installed and all the required dependencies are available.  This may also speed up the compile time latter for small patches where incremental builds are an option.
+**Build the source.** Compile the spl and zfs master branches.  These branches are always kept stable and this is a useful verification that you have a full build environment installed and all the required dependencies are available.  This may also speed up the compile time latter for small patches where incremental builds are an option.
 
 ```
 $ cd ../spl
