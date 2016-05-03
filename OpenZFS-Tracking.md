@@ -419,12 +419,12 @@ Status              | Illumos Issue                               | Illumos     
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
 
-The list of Illumos commits was automatically generated as follows:
+The list of OpenZFS commits was automatically generated as follows:
                                                                 
 ```
-> git clone https://github.com/illumos/illumos-gate.git illumos
-> cd illumos
-> git log --oneline -- \                                          
+$ git clone https://github.com/openzfs/openzfs.git openzfs
+$ cd openzfs
+$ git log --oneline -- \                                          
   usr/src/uts/common/fs/zfs/sys usr/src/uts/common/fs/zfs usr/src/cmd/zdb \
   usr/src/cmd/zfs usr/src/cmd/zhack usr/src/cmd/zinject usr/src/cmd/zpool \
   usr/src/cmd/zstreamdump usr/src/cmd/ztest usr/src/lib/libzfs \
