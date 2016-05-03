@@ -17,6 +17,7 @@
 * [[Developer Resources]]
   * [[Custom Packages]]
   * [[OpenZFS Tracking]]
+  * [[OpenZFS Patch Integration]]
   * [OpenZFS Documentation][openzfs-devel]
 
 [arch]: https://wiki.archlinux.org/index.php/ZFS
