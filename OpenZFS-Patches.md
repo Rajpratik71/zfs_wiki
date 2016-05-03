@@ -38,7 +38,7 @@ $ sh autogen.sh && ./configure --enable-debug && make -s -j$(nproc)
 
 ### Porting a Patch
 
-**Pick a patch.**  Consult the [[OpenZFS tracking]] page and select a patch which has not yet been applied.  For your first patch you will want to select a small patch to familiarize yourself with the process.  For the purposes of this example [Illumos 5669][openzfs-5669] is used.
+**Pick a patch.**  Consult the [[OpenZFS tracking]] page and select a patch which has not yet been applied.  For your first patch you will want to select a small patch to familiarize yourself with the process.  For the purposes of this example [OpenZFS 5669][openzfs-5669] is used.
 
 **Create a new branch.**  It is important to create a new branch for every commit you port to ZFS on Linux.  This will allow you to easily submit your work as a GitHub pull request and it makes it possible to work on multiple OpenZFS changes concurrently.  All development branches need to be based off of the zfs master branch and it's helpful to name the branches after the issue your working on.
 
