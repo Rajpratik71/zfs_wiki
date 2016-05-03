@@ -120,7 +120,7 @@ $ git push --force behlendorf openzfs-5669
 
 ### Merging the Patch
 
-**Review.**  Lastly one of the ZFS on Linux maintainers will make a final review of the patch and may request additional changes.  Once the maintainer is happy with the final version of the patch they will add their signed-off-by, merge it to the master branch, and thank you for your contribution to the project!
+**Review.**  Lastly one of the ZFS on Linux maintainers will make a final review of the patch and may request additional changes.  Once the maintainer is happy with the final version of the patch they will add their signed-off-by, merge it to the master branch, mark it complete on the tracking page, and thank you for your contribution to the project!
 
 ## Porting ZFS on Linux changes to OpenZFS
 
