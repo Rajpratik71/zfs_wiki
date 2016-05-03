@@ -40,19 +40,19 @@ $ sh autogen.sh && ./configure --enable-debug && make -s -j$(nproc)
 
 **Pick a patch.**  Consult the [[OpenZFS tracking]] page and select a patch which has not yet been applied.  For your first patch you will want to select a small patch to familiarize yourself with the process.  For the purposes of this example [OpenZFS 5669][openzfs-5669] is used.
 
-**Create a new branch.**  It is important to create a new branch for every commit you port to ZFS on Linux.  This will allow you to easily submit your work as a GitHub pull request and it makes it possible to work on multiple OpenZFS changes concurrently.  All development branches need to be based off of the zfs master branch and it's helpful to name the branches after the issue your working on.
+**Create a new branch.**  It is important to create a new branch for every commit you port to ZFS on Linux.  This will allow you to easily submit your work as a GitHub pull request and it makes it possible to work on multiple OpenZFS changes concurrently.  All development branches need to be based off of the zfs master branch and it's helpful to name the branches after the issue you're working on.
 
 ```
 $ git checkout -b openzfs-5669 master
 ```
 
-**Generate a patch.**  One of the first things you'll notice about the ZFS on Linux repository is that it is laid out differently than the OpenZFS repository.  Organizationally it is much flatter, this is possible because it only contains the code for OpenZFS.  That means in order to apply a patch from OpenZFS the path names  in the patch must be changed.  A script located in the top level scripts directory has been provided to perform this translation, and the git format-patch command can be used to generate the patch.
+**Generate a patch.**  One of the first things you'll notice about the ZFS on Linux repository is that it is laid out differently than the OpenZFS repository.  Organizationally it is much flatter, this is possible because it only contains the code for OpenZFS not an entire OS.  That means that in order to apply a patch from OpenZFS the path names in the patch must be changed.  A script called zfs2zol-patch.sed has been provided to perform this translation.  Use the `git format-patch` command and this script to generate a patch.
 
 ```
 $ git format-patch --stdout c423721^..c423721 | ./scripts/zfs2zol-patch.sed >openzfs-5669.diff
 ```
 
-**Apply the patch.**  In many cases the generated patch will apply cleanly to the repository.  However, it's important to keep in mind the zfs2zol-patch.sed script only translates the paths.  There are often additional reasons why a patch might not apply.  In some cases hunks of the patch may not be applicable to Linux and should be dropped.  In other cases a patch may depend on other changes which must be applied first.  The changes may also conflict with Linux specific modifications.  In all of these cases the patch may need to be manually modified so it applies cleanly while preserving the original intent of the change.
+**Apply the patch.**  In many cases the generated patch will apply cleanly to the repository.  However, it's important to keep in mind the zfs2zol-patch.sed script only translates the paths.  There are often additional reasons why a patch might not apply.  In some cases hunks of the patch may not be applicable to Linux and should be dropped.  In other cases a patch may depend on other changes which must be applied first.  The changes may also conflict with Linux specific modifications.  In all of these cases the patch will need to be manually modified to apply cleanly while preserving the its original intent.
 
 ```
 $ git am ./openzfs-5669.diff
