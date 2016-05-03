@@ -1,5 +1,10 @@
 ## Tracking OpenZFS Commits
 
+:large_blue_circle: 329 - Applied to master branch  
+:white_circle:      4 - Open pull request against master branch pending review  
+:red_circle:        58 - No existing pull request against the master branch  
+:black_circle:      23 - Not applicable to Linux  
+
 Status              | Illumos Issue                               | Illumos                                                           | Linux                                                       | Description
 ------------------- | ------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------
 :red_circle:        | [6873](https://www.illumos.org/issues/6873) | [4cde22c](https://github.com/illumos/illumos-gate/commit/4cde22c) |                                                             | zfs_destroy_snaps_nvl leaks errlist 
@@ -413,11 +418,6 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: |  [510](https://www.illumos.org/issues/510)  | [5ead3ed](https://github.com/illumos/illumos-gate/commit/5ead3ed) | [bb939d1](https://github.com/zfsonlinux/zfs/commit/bb939d1) | 'zfs get' enhancement - mountpoint as an argument 
 :black_circle:      |  [184](https://www.illumos.org/issues/184)  | [c4fc6b2](https://github.com/illumos/illumos-gate/commit/c4fc6b2) |                                                             | zfs_putpage() optimization 
 :large_blue_circle: |  [278](https://www.illumos.org/issues/278)  | [1af68be](https://github.com/illumos/illumos-gate/commit/1af68be) | [0b7936d](https://github.com/zfsonlinux/zfs/commit/0b7936d5) | get rid zfs of python and pyzfs dependencies 
-
-- :large_blue_circle: 329 - Applied to master branch
-- :white_circle:      4 - Open pull request against master branch pending review
-- :red_circle:        58 - No existing pull request against the master branch
-- :black_circle:      23 - Not applicable to Linux
 
 The list of Illumos commits was automatically generated as follows:
                                                                 
