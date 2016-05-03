@@ -58,7 +58,7 @@ $ git format-patch --stdout c423721^..c423721 | ./scripts/zfs2zol-patch.sed >ope
 $ git am ./openzfs-5669.diff
 ```
 
-**Update the commit message.** By using `git format-patch` to generate the patch and then `git am` to apply it the original comment and authorship will be preserved.  The commit should then be amended to match the standard form used for all changes applied from OpenZFS:  This following information should be included:
+**Update the commit message.** By using `git format-patch` to generate the patch and then `git am` to apply it the original comment and authorship will be preserved.  The commit should then be amended to match the standard form used for all changes applied from OpenZFS:  The following information should be included:
 
   * A short subject line of the form: "OpenZFS issue - short description".
   * The original patch authorship should be preserved.
@@ -67,9 +67,9 @@ $ git am ./openzfs-5669.diff
     * **Reviewed by:** All OpenZFS reviewers from the original patch.
     * **Approved by:** All OpenZFS reviewers from the original patch.
     * **Ported-by:** Your name and email address.
-    * **OpenZFS-issue:** https://www.illumos.org/issues/<issue>
-    * **OpenZFS-commit:** https://github.com/openzfs/openzfs/commit/<hash>
-  * Optionally a **Porting Notes:** section describing any changes required when porting.
+    * **OpenZFS-issue:** https ://www.illumos.org/issues/issue
+    * **OpenZFS-commit:** https ://github.com/openzfs/openzfs/commit/hash
+  * **Porting Notes:** An optional section describing any changes required when porting.
 
 For example:
 
