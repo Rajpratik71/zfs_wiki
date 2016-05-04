@@ -9,6 +9,7 @@
   * [[Ubuntu]]
 * [[Project & Community]]
   * [Admin Documentation][admin-docs]
+  * [[FAQ]]
   * [[Mailing Lists]]
   * [Releases][releases]
   * [Issue Tracker][issues]
