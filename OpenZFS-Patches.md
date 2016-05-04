@@ -17,11 +17,11 @@ $ git clone -o zfsonlinux https://github.com/zfsonlinux/spl.git
 $ git clone -o zfsonlinux https://github.com/zfsonlinux/zfs.git
 ```
 
-**Add remote repositories.** Using the GitHub web interface [fork][github-fork] the [zfs][zfs-repo] repository in to your personal GitHub account.  Add your new fork and the [openzfs][openzfs-repo] repository as remotes and then fetch both repositories.  The OpenZFS repository is large and the initial fetch may take some time over a slow connection.
+**Add remote repositories.** Using the GitHub web interface [fork][github-fork] the [zfs][zfs-repo] repository in to your personal GitHub account.  Add your new zfs fork and the [openzfs][openzfs-repo] repository as remotes and then fetch both repositories.  The OpenZFS repository is large and the initial fetch may take some time over a slow connection.
 
 ```
 $ cd zfs 
-$ git remote add behlendorf git@github.com:behlendorf/zfs.git
+$ git remote add your-github-account git@github.com:your-github-account/zfs.git
 $ git remote add openzfs https://github.com/openzfs/openzfs.git
 $ git fetch --all
 ```
@@ -58,7 +58,7 @@ $ git format-patch --stdout c423721^..c423721 | ./scripts/zfs2zol-patch.sed >ope
 $ git am ./openzfs-5669.diff
 ```
 
-**Update the commit message.** By using `git format-patch` to generate the patch and then `git am` to apply it the original comment and authorship will be preserved.  The commit should then be amended to match the standard form used for all changes applied from OpenZFS:  The following information should be included:
+**Update the commit message.** By using `git format-patch` to generate the patch and then `git am` to apply it the original comment and authorship will be preserved.  Due to the formatting of the OpenZFS commit you may find that the entire commit comment has been squashed in to the subject line.  Use `git commit --amend` to fix the commit and update it to match the form used for all changes applied from OpenZFS.  The following information should be included:
 
   * A short subject line of the form: "OpenZFS issue - short description".
   * The original patch authorship should be preserved.
@@ -83,11 +83,10 @@ Date:   Wed May 27 16:10:16 2015 +0200
     Reviewed by: Matthew Ahrens <mahrens@delphix.com>
     Reviewed by: George Wilson <george@delphix.com>
     Approved by: Dan McDonald <danmcd@omniti.com>
+    Ported-by: Brian Behlendorf <behlendorf1@llnl.gov>
     
     OpenZFS-issue: https://www.illumos.org/issues/5669
-    OpenZFS-commit: https://github.com/openzfs/openzfs/commit/c423721
-    
-    Ported-by: Brian Behlendorf <behlendorf1@llnl.gov>
+    OpenZFS-commit: https://github.com/openzfs/openzfs/commit/c423721   
 ```
 
 ### Testing a Patch
@@ -107,7 +106,7 @@ $ make cstyle
 **Open a Pull Request.**  When your patch builds cleanly and passes the style checks [open a new pull request][github-pr].  The pull request will be queued for [automated testing][buildbot].  As part of the testing the change is built for a wide range of Linux distributions and a battery of functional and stress tests are run to detect regressions.
 
 ```
-$ git push behlendorf openzfs-5669
+$ git push your-github-account openzfs-5669
 ```
 
 **Fix any issues.**  Testing takes approximately 2 hours to fully complete and the results are posted in the GitHub [pull request][openzfs-pr].  All the tests are expected to pass and you should investigate and resolve any test failures.  The [test scripts][buildbot-scripts] are all available and designed to run locally in order reproduce an issue.  Once you've resolved the issue force update the pull request to trigger a new round of testing.  Iterate until all the tests are passing.
@@ -115,7 +114,7 @@ $ git push behlendorf openzfs-5669
 ```
 # Fix issue, amend commit, force update branch.
 $ git commit --amend
-$ git push --force behlendorf openzfs-5669
+$ git push --force your-github-account openzfs-5669
 ```
 
 ### Merging the Patch
