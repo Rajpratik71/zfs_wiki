@@ -1,5 +1,3 @@
-# Getting Started
-
 To get started with ZFS on Linux refer to the provided documentation for your distribution.  It will cover the recommended installation method and any distribution specific information.  First time OpenZFS users are encouraged to check out Aaron Toponce's  [excellent documentation][docs].
 
 [ArchLinux][arch]  
