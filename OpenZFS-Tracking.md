@@ -1,5 +1,3 @@
-## Tracking OpenZFS Commits
-
 :large_blue_circle: 331 - Applied to master branch  
 :white_circle:      4 - Open pull request against master branch pending review  
 :red_circle:        56 - No existing pull request against the master branch  
