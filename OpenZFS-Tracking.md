@@ -1,8 +1,8 @@
 ## Tracking OpenZFS Commits
 
-:large_blue_circle: 329 - Applied to master branch  
+:large_blue_circle: 331 - Applied to master branch  
 :white_circle:      4 - Open pull request against master branch pending review  
-:red_circle:        58 - No existing pull request against the master branch  
+:red_circle:        56 - No existing pull request against the master branch  
 :black_circle:      23 - Not applicable to Linux  
 
 Status              | Illumos Issue                               | Illumos                                                           | Linux                                                       | Description
@@ -48,7 +48,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [6450](https://www.illumos.org/issues/6450) | [38d6103](https://github.com/illumos/illumos-gate/commit/38d6103) | [b77222c](https://github.com/zfsonlinux/zfs/commit/b77222c) | scrub/resilver unnecessarily traverses snapshots created after the scrub started
 :large_blue_circle: | [6537](https://www.illumos.org/issues/6537) | [8c04a1f](https://github.com/illumos/illumos-gate/commit/8c04a1f) | [7c9abfa](https://github.com/zfsonlinux/zfs/commit/7c9abfa) | Panic on zpool scrub with DEBUG kernel 
 :red_circle:        | [6531](https://www.illumos.org/issues/6531) | [97e8130](https://github.com/illumos/illumos-gate/commit/97e8130) |                                                             | Provide mechanism to artificially limit disk performance 
-:red_circle:        | [6544](https://www.illumos.org/issues/6544) | [cb605c4](https://github.com/illumos/illumos-gate/commit/cb605c4) |                                                             | incorrect comment in libzfs.h about offline status 
+:large_blue_circle: | [6544](https://www.illumos.org/issues/6544) | [cb605c4](https://github.com/illumos/illumos-gate/commit/cb605c4) | [f7c63cd](https://github.com/zfsonlinux/zfs/commit/f7c63cd) | incorrect comment in libzfs.h about offline status 
 :red_circle:        | [6529](https://www.illumos.org/issues/6529) | [e7e978b](https://github.com/illumos/illumos-gate/commit/e7e978b) |                                                             | Properly handle updates of variably-sized SA entries. 
 :large_blue_circle: | [6527](https://www.illumos.org/issues/6527) | [2bd7a8d](https://github.com/illumos/illumos-gate/commit/2bd7a8d) | [4b9ed69](https://github.com/zfsonlinux/zfs/commit/4b9ed69) | Possible access beyond end of string in zpool comment
 :large_blue_circle: | [6495](https://www.illumos.org/issues/6495) | [2bad225](https://github.com/illumos/illumos-gate/commit/2bad225) | [e567663](https://github.com/zfsonlinux/zfs/commit/e567663) | Fix mutex leak in dmu_objset_find_dp 
@@ -109,7 +109,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [5870](https://www.illumos.org/issues/5870) | [beddaa9](https://github.com/illumos/illumos-gate/commit/beddaa9) | [b664011](https://github.com/zfsonlinux/zfs/commit/b664011) | dmu_recv_end_check() leaks origin_head hold if error happens in drc_force branch 
 :large_blue_circle: | [5912](https://www.illumos.org/issues/5912) | [5bae108](https://github.com/illumos/illumos-gate/commit/5bae108) | [cf50a2b](https://github.com/zfsonlinux/zfs/commit/cf50a2b) | full stream can not be force-received into a dataset if it has a snapshot 
 :black_circle:      | [5961](https://www.illumos.org/issues/5961) | [c701fde](https://github.com/illumos/illumos-gate/commit/c701fde) |                                                             | Fix stack overflow in zfs_create_fs 
-:red_circle:        | [5669](https://www.illumos.org/issues/5669) | [c423721](https://github.com/illumos/illumos-gate/commit/c423721) |                                                             | altroot not set in zpool create when specified with -o 
+:large_blue_circle: | [5669](https://www.illumos.org/issues/5669) | [c423721](https://github.com/illumos/illumos-gate/commit/c423721) | [3ac2794](https://github.com/zfsonlinux/zfs/commit/3ac2794) | altroot not set in zpool create when specified with -o 
 :large_blue_circle: | [5438](https://www.illumos.org/issues/5438) | [5897eb4](https://github.com/illumos/illumos-gate/commit/5897eb4) | [ee3a23b](https://github.com/zfsonlinux/zfs/commit/ee3a23b) | zfs_blkptr_verify should continue after zfs_panic_recover 
 :large_blue_circle: | [5515](https://www.illumos.org/issues/5515) | [752fd8d](https://github.com/illumos/illumos-gate/commit/752fd8d) | [fc581e0](https://github.com/zfsonlinux/zfs/commit/fc581e0) | dataset user hold doesn't reject empty tags 
 :large_blue_circle: | [5818](https://www.illumos.org/issues/5818) | [81cd5c5](https://github.com/illumos/illumos-gate/commit/81cd5c5) | [c3520e7](https://github.com/zfsonlinux/zfs/commit/c3520e7) | zfs {ref}compressratio is incorrect with 4k sector size 
