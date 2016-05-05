@@ -1,5 +1,5 @@
-:large_blue_circle: 331 - Applied to master branch  
-:white_circle:      4 - Open pull request against master branch pending review  
+:large_blue_circle: 332 - Applied to master branch  
+:white_circle:      3 - Open pull request against master branch pending review  
 :red_circle:        56 - No existing pull request against the master branch  
 :black_circle:      23 - Not applicable to Linux  
 
@@ -76,10 +76,10 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [6267](https://www.illumos.org/issues/6267) | [d205810](https://github.com/illumos/illumos-gate/commit/d205810) | [bc4501f](https://github.com/zfsonlinux/zfs/commit/bc4501f) | dn_bonus evicted too early 
 :large_blue_circle: | [6295](https://www.illumos.org/issues/6295) | [daec38e](https://github.com/illumos/illumos-gate/commit/daec38e) | [5f3d9c6](https://github.com/zfsonlinux/zfs/commit/5f3d9c6) | metaslab_condense's dbgmsg should include vdev id 
 :large_blue_circle: | [6293](https://www.illumos.org/issues/6293) | [8fe00bf](https://github.com/illumos/illumos-gate/commit/8fe00bf) | [ab5cbbd](https://github.com/zfsonlinux/zfs/commit/ab5cbbd) | ztest failure: error == 28 (0xc == 0x1c) in ztest_tx_assign() 
-:white_circle:        | [2605](https://www.illumos.org/issues/2605) | [9c3fd12](https://github.com/illumos/illumos-gate/commit/9c3fd12) | [PR4396](https://github.com/zfsonlinux/zfs/pull/4396)     | want to resume interrupted zfs send
+:white_circle:      | [2605](https://www.illumos.org/issues/2605) | [9c3fd12](https://github.com/illumos/illumos-gate/commit/9c3fd12) | [PR4396](https://github.com/zfsonlinux/zfs/pull/4396)     | want to resume interrupted zfs send
 :large_blue_circle: | [6268](https://www.illumos.org/issues/6268) | [aab0441](https://github.com/illumos/illumos-gate/commit/aab0441) | [616a57b](https://github.com/zfsonlinux/zfs/commit/616a57b) | zfs diff confused by moving a file to another directory 
 :large_blue_circle: | [6290](https://www.illumos.org/issues/6290) | [3f84190](https://github.com/illumos/illumos-gate/commit/3f84190) | [017da6](https://github.com/zfsonlinux/zfs/commit/017da6f)  | zdb -h overflows stack 
-:white_circle:      | [6286](https://www.illumos.org/issues/6286) | [6de9bb5](https://github.com/illumos/illumos-gate/commit/6de9bb5) | [PR4585](https://github.com/zfsonlinux/zfs/pull/4585                                               ) | ZFS internal error when set large block on bootfs 
+:large_blue_circle: | [6286](https://www.illumos.org/issues/6286) | [6de9bb5](https://github.com/illumos/illumos-gate/commit/6de9bb5) | [4b2a3e0](https://github.com/zfsonlinux/zfs/commit/4b2a3e0) | ZFS internal error when set large block on bootfs 
 :large_blue_circle: | [6288](https://www.illumos.org/issues/6288) | [0f2e7d0](https://github.com/illumos/illumos-gate/commit/0f2e7d0) | [5a28a97](https://github.com/zfsonlinux/zfs/commit/5a28a97) | dmu_buf_will_dirty could be faster 
 :large_blue_circle: | [6281](https://www.illumos.org/issues/6281) | [6328027](https://github.com/illumos/illumos-gate/commit/6328027) | [a6fb32b8](https://github.com/zfsonlinux/zfs/commit/6fb32b8) | prefetching should apply to 1MB reads 
 :large_blue_circle: | [5219](https://www.illumos.org/issues/5219) | [d7d9a6d](https://github.com/illumos/illumos-gate/commit/d7d9a6d) | [ef56b07](https://github.com/zfsonlinux/zfs/commit/ef56b07) | l2arc_write_buffers() may write beyond target_sz 
