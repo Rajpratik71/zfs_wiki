@@ -1,5 +1,3 @@
-# Mailing Lists
-
 | List                     | Description | List Archive | Old Archive |
 |--------------------------|-------------|--------------|-------------|
 | [zfs-announce][zfs-ann]  | A low-traffic list for announcements such as new releases | [archive][zfs-ann-archive] | [archive][zfs-ann-groups] |
