@@ -1,5 +1,3 @@
-# Project and Community
-
 [Admin Documentation][admin-docs]  
 [[Mailing Lists]]  
 [Releases][releases]  
