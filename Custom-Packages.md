@@ -1,5 +1,3 @@
-# Custom Packages
-
 The following instructions assume you are building from an official [release tarball][release] or directly from the [git repository][git]. Most users should not need to do this and should preferentially use the distribution packages. As a general rule the distribution packages will be more tightly integrated, widely tested, and better supported. However, if your distribution of choice doesn't provide packages or you're a developer and want to roll your own here's the way to do it.
 
 The first thing to be aware of is that the build system is capable of generating several different types of packages. Which type of package you choose depends on what's supported on your platform and exactly what your needs are.
