@@ -1,5 +1,3 @@
-# Fedora
-
 Only [DKMS][dkms] style packages can be provided for Fedora from the official zfsonlinux.org repository.  This is because Fedora is a fast moving distribution which does not provide a stable kABI. These packages track the official ZFS on Linux tags and are updated as new versions are released.  Packages are available for the following configurations:
 
 **Fedora Releases:** 21, 22, 23  
