@@ -1,5 +1,3 @@
-# RHEL / CentOS
-
 [kABI-tracking kmod][kmod] or [DKMS][dkms] style packages are provided for RHEL / CentOS based distributions from the official zfsonlinux.org repository. These packages track the official ZFS on Linux tags and are updated as new versions are released.  Packages are available for the following configurations:
 
 **EL Releases:** 6.x, 7.x  
