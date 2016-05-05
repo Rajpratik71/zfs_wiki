@@ -1,5 +1,3 @@
-# Debian
-
 [DKMS][dkms] style packages are provided for Debian from the official zfsonlinux.org repository.  These packages are less actively maintained and may not be updated as new releases are tagged.  The Debian project has [announced their intention][debian-announce] to ship ZFS on Linux as part of Debian and that work is [currently ongoing][debian-itp].  Packages are available for the following configurations:
 
 **Debian Releases:** 7.x (Wheezy), 8.x (Jessie)  
