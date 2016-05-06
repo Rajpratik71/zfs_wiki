@@ -75,16 +75,16 @@ For example:
 Author: Xin Li <delphij@freebsd.org>
 Date:   Wed May 27 16:10:16 2015 +0200
 
-    OpenZFS 5669 - altroot not set in zpool create
+OpenZFS 5669 - altroot not set in zpool create
     
-    5669 altroot not set in zpool create when specified with -o
-    Reviewed by: Matthew Ahrens <mahrens@delphix.com>
-    Reviewed by: George Wilson <george@delphix.com>
-    Approved by: Dan McDonald <danmcd@omniti.com>
-    Ported-by: Brian Behlendorf <behlendorf1@llnl.gov>
+5669 altroot not set in zpool create when specified with -o
+Reviewed by: Matthew Ahrens <mahrens@delphix.com>
+Reviewed by: George Wilson <george@delphix.com>
+Approved by: Dan McDonald <danmcd@omniti.com>
+Ported-by: Brian Behlendorf <behlendorf1@llnl.gov>
     
-    OpenZFS-issue: https://www.illumos.org/issues/5669
-    OpenZFS-commit: https://github.com/openzfs/openzfs/commit/c423721   
+OpenZFS-issue: https://www.illumos.org/issues/5669
+OpenZFS-commit: https://github.com/openzfs/openzfs/commit/c423721   
 ```
 
 ### Testing a Patch
