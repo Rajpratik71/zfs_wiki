@@ -1,6 +1,6 @@
-:large_blue_circle: 332 - Applied to master branch  
+:large_blue_circle: 333 - Applied to master branch  
 :white_circle:      3 - Open pull request against master branch pending review  
-:red_circle:        56 - No existing pull request against the master branch  
+:red_circle:        55 - No existing pull request against the master branch  
 :black_circle:      23 - Not applicable to Linux  
 
 Status              | Illumos Issue                               | Illumos                                                           | Linux                                                       | Description
@@ -27,7 +27,7 @@ Status              | Illumos Issue                               | Illumos     
 :red_circle:        | [4242](https://www.illumos.org/issues/4242) | [54207fd](https://github.com/illumos/illumos-gate/commit/54207fd) |                                                             | file rename event fires before the rename happens 
 :large_blue_circle: | [6681](https://www.illumos.org/issues/6681) | [d09e447](https://github.com/illumos/illumos-gate/commit/d09e447) | [887d1e6](https://github.com/zfsonlinux/zfs/commit/887d1e6) | zfs list burning lots of time in dodefault() via dsl_prop_*
 :large_blue_circle: | [6370](https://www.illumos.org/issues/6370) | [286ef71](https://github.com/illumos/illumos-gate/commit/286ef71) | [c352ec2](https://github.com/zfsonlinux/zfs/commit/c352ec2) | ZFS send fails to transmit some holes
-:red_circle:        | [6672](https://www.illumos.org/issues/6672) | [a8f6344](https://github.com/illumos/illumos-gate/commit/a8f6344) |                                                             | arc_reclaim_thread() should use gethrtime() instead of ddi_get_lbolt() 6673 want a macro to convert seconds to nanoseconds and vice-versa 
+:large_blue_circle: | [6672](https://www.illumos.org/issues/6672) | [a8f6344](https://github.com/illumos/illumos-gate/commit/a8f6344) | [ae6d0c6](https://github/com/zfsonlinux/zfs/commit/ae6d0c6) | arc_reclaim_thread() should use gethrtime() instead of ddi_get_lbolt() 6673 want a macro to convert seconds to nanoseconds and vice-versa 
 :red_circle:        | [2897](https://www.illumos.org/issues/2897) | [879bece](https://github.com/illumos/illumos-gate/commit/879bece) |                                                             | "zpool split" documentation missing from manpage 
 :red_circle:        | [4465](https://www.illumos.org/issues/4465) | [c8323d4](https://github.com/illumos/illumos-gate/commit/c8323d4) |                                                             | zpool(1M) is able to offline cache vdevs despite what man page says 5659 in the manual page for zpool(1M), one misuse of the word 'zpool' to describe a pool 
 :large_blue_circle: | [6659](https://www.illumos.org/issues/6659) | [aab83bb](https://github.com/illumos/illumos-gate/commit/aab83bb) | [8a5fc74](https://github.com/zfsonlinux/zfs/commit/8a5fc74) | nvlist_free(NULL) is a no-op 
