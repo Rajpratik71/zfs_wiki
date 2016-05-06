@@ -77,6 +77,7 @@ For example:
 OpenZFS 5669 - altroot not set in zpool create
     
 5669 altroot not set in zpool create when specified with -o
+
 Reviewed by: Matthew Ahrens <mahrens@delphix.com>
 Reviewed by: George Wilson <george@delphix.com>
 Approved by: Dan McDonald <danmcd@omniti.com>
