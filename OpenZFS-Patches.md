@@ -56,9 +56,11 @@ $ git format-patch --stdout c423721^..c423721 | ./scripts/zfs2zol-patch.sed >ope
 $ git am ./openzfs-5669.diff
 ```
 
-**Update the commit message.** By using `git format-patch` to generate the patch and then `git am` to apply it the original comment and authorship will be preserved.  Due to the formatting of the OpenZFS commit you may find that the entire commit comment has been squashed in to the subject line.  Use `git commit --amend` to fix the commit and update it to match the form used for all changes applied from OpenZFS.  The following information should be included:
+**Update the commit message.** By using `git format-patch` to generate the patch and then `git am` to apply it the original comment and authorship will be preserved.  However, due to the formatting of the OpenZFS commit you will likely find that the entire commit comment has been squashed in to the subject line.  Use `git commit --amend` to cleanup the comment and be careful to follow [these standard guidelines][guidelines].
 
-  * A short subject line of the form: "OpenZFS issue - short description".
+The summary line of an OpenZFS commit is often very long and you should truncate it to 50 characters.  This is useful because it preserves the correct formatting of `git log --pretty=oneline` command.  Make sure to leave a blank line between the summary and body of the commit.  Then include the full OpenZFS commit message wrapping any lines which exceed 72 characters.  Finally, add a `Ported-by` tag with your contact information and both a `OpenZFS-issue` and `OpenZFS-commit` tag with appropriate links.  You'll want to verify your commit contains all of the following information:
+
+  * A short (50 character) subject line of the form: "OpenZFS issue - short description".
   * The original patch authorship should be preserved.
   * The OpenZFS commit message.
   * The following tags:
@@ -72,9 +74,6 @@ $ git am ./openzfs-5669.diff
 For example:
 
 ```
-Author: Xin Li <delphij@freebsd.org>
-Date:   Wed May 27 16:10:16 2015 +0200
-
 OpenZFS 5669 - altroot not set in zpool create
     
 5669 altroot not set in zpool create when specified with -o
@@ -133,3 +132,4 @@ Often an issue will be first fixed in ZFS on Linux or a new feature developed.  
 [openzfs-repo]: https://github.com/openzfs/openzfs/
 [openzfs-5669]: https://github.com/openzfs/openzfs/commit/c423721
 [openzfs-pr]: https://github.com/zfsonlinux/zfs/pull/4594
+[guidelines]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
