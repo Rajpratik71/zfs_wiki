@@ -23,7 +23,7 @@ For RHEL, CentOS, and Fedora:
 
 ```
 $ sudo yum groupinstall "Development Tools" parted lsscsi wget ksh
-$ sudo yum install kernel-devel zlib-devel libuuid-devel libblkid-devel libselinux-devel libudev-devel
+$ sudo yum install kernel-devel zlib-devel libattr-devel libuuid-devel libblkid-devel libselinux-devel libudev-devel
 ```
 
 If you want to use the official released tarballs, then use the following commands to fetch and prepare the source.
