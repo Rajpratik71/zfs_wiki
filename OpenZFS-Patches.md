@@ -19,7 +19,7 @@ $ git clone -o zfsonlinux https://github.com/zfsonlinux/zfs.git
 
 ```
 $ cd zfs 
-$ git remote add your-github-account git@github.com:your-github-account/zfs.git
+$ git remote add <your-github-account> git@github.com:<your-github-account>/zfs.git
 $ git remote add openzfs https://github.com/openzfs/openzfs.git
 $ git fetch --all
 ```
@@ -36,34 +36,36 @@ $ sh autogen.sh && ./configure --enable-debug && make -s -j$(nproc)
 
 ### Porting a Patch
 
-**Pick a patch.**  Consult the [[OpenZFS tracking]] page and select a patch which has not yet been applied.  For your first patch you will want to select a small patch to familiarize yourself with the process.  For the purposes of this example [OpenZFS 5669][openzfs-5669] is used.
+**Pick a patch.**  Consult the [[OpenZFS tracking]] page and select a patch which has not yet been applied.  For your first patch you will want to select a small patch to familiarize yourself with the process.
 
-**Create a new branch.**  It is important to create a new branch for every commit you port to ZFS on Linux.  This will allow you to easily submit your work as a GitHub pull request and it makes it possible to work on multiple OpenZFS changes concurrently.  All development branches need to be based off of the zfs master branch and it's helpful to name the branches after the issue you're working on.
+**Create a new branch.**  It is important to create a new branch for every commit you port to ZFS on Linux.  This will allow you to easily submit your work as a GitHub pull request and it makes it possible to work on multiple OpenZFS changes concurrently.  All development branches need to be based off of the ZFS master branch and it's helpful to name the branches after the issue number you're working on.
 
 ```
-$ git checkout -b openzfs-5669 master
+$ git checkout -b openzfs-<issue-nr> master
 ```
 
 **Generate a patch.**  One of the first things you'll notice about the ZFS on Linux repository is that it is laid out differently than the OpenZFS repository.  Organizationally it is much flatter, this is possible because it only contains the code for OpenZFS not an entire OS.  That means that in order to apply a patch from OpenZFS the path names in the patch must be changed.  A script called zfs2zol-patch.sed has been provided to perform this translation.  Use the `git format-patch` command and this script to generate a patch.
 
 ```
-$ git format-patch --stdout c423721^..c423721 | ./scripts/zfs2zol-patch.sed >openzfs-5669.diff
+$ git format-patch --stdout <commit-hash>^..<commit-hash> | \
+    ./scripts/zfs2zol-patch.sed >openzfs-<issue-nr>.diff
 ```
 
 **Apply the patch.**  In many cases the generated patch will apply cleanly to the repository.  However, it's important to keep in mind the zfs2zol-patch.sed script only translates the paths.  There are often additional reasons why a patch might not apply.  In some cases hunks of the patch may not be applicable to Linux and should be dropped.  In other cases a patch may depend on other changes which must be applied first.  The changes may also conflict with Linux specific modifications.  In all of these cases the patch will need to be manually modified to apply cleanly while preserving the its original intent.
 
 ```
-$ git am ./openzfs-5669.diff
+$ git am ./openzfs-<commit-nr>.diff
 ```
 
 **Update the commit message.** By using `git format-patch` to generate the patch and then `git am` to apply it the original comment and authorship will be preserved.  However, due to the formatting of the OpenZFS commit you will likely find that the entire commit comment has been squashed in to the subject line.  Use `git commit --amend` to cleanup the comment and be careful to follow [these standard guidelines][guidelines].
 
 The summary line of an OpenZFS commit is often very long and you should truncate it to 50 characters.  This is useful because it preserves the correct formatting of `git log --pretty=oneline` command.  Make sure to leave a blank line between the summary and body of the commit.  Then include the full OpenZFS commit message wrapping any lines which exceed 72 characters.  Finally, add a `Ported-by` tag with your contact information and both a `OpenZFS-issue` and `OpenZFS-commit` tag with appropriate links.  You'll want to verify your commit contains all of the following information:
 
-  * A short (50 character) subject line of the form: "OpenZFS issue - short description".
+  * A short (50 character) subject line of the form: "OpenZFS \<issue-nr\> - short description".
   * The original patch authorship should be preserved.
   * The OpenZFS commit message.
   * The following tags:
+    * **Authored by:** Original patch author
     * **Reviewed by:** All OpenZFS reviewers from the original patch.
     * **Approved by:** All OpenZFS reviewers from the original patch.
     * **Ported-by:** Your name and email address.
@@ -71,20 +73,22 @@ The summary line of an OpenZFS commit is often very long and you should truncate
     * **OpenZFS-commit:** https ://github.com/openzfs/openzfs/commit/hash
   * **Porting Notes:** An optional section describing any changes required when porting.
 
-For example:
+For example, OpenZFS issue 6873 was [applied to Linux][zol-6873] from this upstream [OpenZFS commit][openzfs-6873].
 
 ```
-OpenZFS 5669 - altroot not set in zpool create
-    
-5669 altroot not set in zpool create when specified with -o
-
+OpenZFS 6873 - zfs_destroy_snaps_nvl leaks errlist
+   
+Authored by: Chris Williamson <chris.williamson@delphix.com>
 Reviewed by: Matthew Ahrens <mahrens@delphix.com>
-Reviewed by: George Wilson <george@delphix.com>
-Approved by: Dan McDonald <danmcd@omniti.com>
-Ported-by: Brian Behlendorf <behlendorf1@llnl.gov>
+Reviewed by: Paul Dagnelie <pcd@delphix.com>
+Ported-by: Denys Rtveliashvili <denys@rtveliashvili.name>
+Signed-off-by: Brian Behlendorf <behlendorf1@llnl.gov>
     
-OpenZFS-issue: https://www.illumos.org/issues/5669
-OpenZFS-commit: https://github.com/openzfs/openzfs/commit/c423721   
+lzc_destroy_snaps() returns an nvlist in errlist.
+zfs_destroy_snaps_nvl() should nvlist_free() it before returning.
+    
+OpenZFS-issue: https://www.illumos.org/issues/6873
+OpenZFS-commit: https://github.com/openzfs/openzfs/commit/ee06391
 ```
 
 ### Testing a Patch
@@ -104,7 +108,7 @@ $ make cstyle
 **Open a Pull Request.**  When your patch builds cleanly and passes the style checks [open a new pull request][github-pr].  The pull request will be queued for [automated testing][buildbot].  As part of the testing the change is built for a wide range of Linux distributions and a battery of functional and stress tests are run to detect regressions.
 
 ```
-$ git push your-github-account openzfs-5669
+$ git push <your-github-account> openzfs-<issue-nr>
 ```
 
 **Fix any issues.**  Testing takes approximately 2 hours to fully complete and the results are posted in the GitHub [pull request][openzfs-pr].  All the tests are expected to pass and you should investigate and resolve any test failures.  The [test scripts][buildbot-scripts] are all available and designed to run locally in order reproduce an issue.  Once you've resolved the issue force update the pull request to trigger a new round of testing.  Iterate until all the tests are passing.
@@ -112,7 +116,7 @@ $ git push your-github-account openzfs-5669
 ```
 # Fix issue, amend commit, force update branch.
 $ git commit --amend
-$ git push --force your-github-account openzfs-5669
+$ git push --force <your-github-account> openzfs-<issue-nr>
 ```
 
 ### Merging the Patch
@@ -131,6 +135,7 @@ Often an issue will be first fixed in ZFS on Linux or a new feature developed.  
 [spl-repo]: https://github.com/zfsonlinux/spl
 [zfs-repo]: https://github.com/zfsonlinux/zfs
 [openzfs-repo]: https://github.com/openzfs/openzfs/
-[openzfs-5669]: https://github.com/openzfs/openzfs/commit/c423721
+[openzfs-6873]: https://github.com/openzfs/openzfs/commit/ee06391
+[zol-6873]: https://github.com/zfsonlinux/zfs/commit/b3744ae
 [openzfs-pr]: https://github.com/zfsonlinux/zfs/pull/4594
 [guidelines]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
