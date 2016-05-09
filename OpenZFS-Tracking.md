@@ -1,13 +1,13 @@
-:large_blue_circle: 333 - Applied to master branch  
+:large_blue_circle: 335 - Applied to master branch  
 :white_circle:      3 - Open pull request against master branch pending review  
-:red_circle:        55 - No existing pull request against the master branch  
+:red_circle:        53 - No existing pull request against the master branch  
 :black_circle:      23 - Not applicable to Linux  
 
 Status              | Illumos Issue                               | Illumos                                                           | Linux                                                       | Description
 ------------------- | ------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------
-:red_circle:        | [6873](https://www.illumos.org/issues/6873) | [4cde22c](https://github.com/illumos/illumos-gate/commit/4cde22c) |                                                             | zfs_destroy_snaps_nvl leaks errlist 
+:large_blue_circle: | [6873](https://www.illumos.org/issues/6873) | [4cde22c](https://github.com/illumos/illumos-gate/commit/4cde22c) | [ee06391](https://github.com/zfsonlinux/zfs/commit/ee06391) | zfs_destroy_snaps_nvl leaks errlist 
 :red_circle:        | [6052](https://www.illumos.org/issues/6052) | [26455f9](https://github.com/illumos/illumos-gate/commit/26455f9) |                                                             | decouple lzc_create() from the implementation details 
-:red_circle:        | [6879](https://www.illumos.org/issues/6879) | [20fea7a](https://github.com/illumos/illumos-gate/commit/20fea7a) |                                                             | incorrect endianness swap for drr_spill.drr_length in libzfs_sendrecv.c 
+:large_blue_circle: | [6879](https://www.illumos.org/issues/6879) | [20fea7a](https://github.com/illumos/illumos-gate/commit/20fea7a) | [9f8026c](https://github.com/zfsonlinux/zfs/commit/9f8026c) | incorrect endianness swap for drr_spill.drr_length in libzfs_sendrecv.c 
 :red_circle:        | [6880](https://www.illumos.org/issues/6880) | [c5d1600](https://github.com/illumos/illumos-gate/commit/c5d1600) |                                                             | zdb incorrectly reports feature count mismatch when feature is disabled 
 :red_circle:        | [6871](https://www.illumos.org/issues/6871) | [8fc9228](https://github.com/illumos/illumos-gate/commit/8fc9228) |                                                             | libzpool implementation of thread_create should enforce length is 0 
 :red_circle:        | [6872](https://www.illumos.org/issues/6872) | [f83b46b](https://github.com/illumos/illumos-gate/commit/f83b46b) |                                                             | zfs libraries should not allow uninitialized variables 
