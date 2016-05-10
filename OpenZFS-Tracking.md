@@ -1,6 +1,6 @@
-:large_blue_circle: 338 - Applied to master branch  
+:large_blue_circle: 339 - Applied to master branch  
 :white_circle:      3 - Open pull request against master branch pending review  
-:red_circle:        50 - No existing pull request against the master branch  
+:red_circle:        49 - No existing pull request against the master branch  
 :black_circle:      23 - Not applicable to Linux  
 
 Status              | Illumos Issue                               | Illumos                                                           | Linux                                                       | Description
@@ -56,7 +56,7 @@ Status              | Illumos Issue                               | Illumos     
 :white_circle:      | [6393](https://www.illumos.org/issues/6393) | [68ecb2e](https://github.com/illumos/illumos-gate/commit/68ecb2e) | [PR4221](https://github.com/zfsonlinux/zfs/pull/4221)       | zfs receive a full send as a clone 
 :large_blue_circle: | [6451](https://www.illumos.org/issues/6451) | [f9eb9fd](https://github.com/illumos/illumos-gate/commit/f9eb9fd) | [91d8884](https://github.com/zfsonlinux/zfs/commit/91d8884) | ztest fails due to checksum errors 
 :red_circle:        | [6051](https://www.illumos.org/issues/6051) | [620f322](https://github.com/illumos/illumos-gate/commit/620f322) |                                                             | lzc_receive: allow the caller to read the begin record 
-:red_circle:        | [6434](https://www.illumos.org/issues/6434) | [3502ed6](https://github.com/illumos/illumos-gate/commit/3502ed6) |                                                             | sa_find_sizes() may compute wrong SA header size 
+:large_blue_circle: | [6434](https://www.illumos.org/issues/6434) | [3502ed6](https://github.com/illumos/illumos-gate/commit/3502ed6) | [472e7c6](https://github.com/zfsonlinux/zfs/commit/472e7c6) | sa_find_sizes() may compute wrong SA header size 
 :black_circle:      | [6346](https://www.illumos.org/issues/6346) | [1058dba](https://github.com/illumos/illumos-gate/commit/1058dba) |                                                             | zfs(1M) has spurious comma 
 :large_blue_circle: | [6414](https://www.illumos.org/issues/6414) | [eb5bb58](https://github.com/illumos/illumos-gate/commit/eb5bb58) | [b6fcb79](https://github.com/zfsonlinux/zfs/commit/b6fcb79) | vdev_config_sync could be simpler 
 :large_blue_circle: | [6391](https://www.illumos.org/issues/6391) | [ae24175](https://github.com/illumos/illumos-gate/commit/ae24175) | [64d7b6c](https://github.com/zfsonlinux/zfs/commit/64d7b6c) | Override default SPA config location via environment 
