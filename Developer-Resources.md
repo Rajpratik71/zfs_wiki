@@ -1,7 +1,9 @@
 # Developer Resources
 
-[[Custom Packages]]  
-[[OpenZFS Tracking]]  
+[[Custom Packages]]
+[[Building ZFS]]
+[[OpenZFS Tracking]]
+[[OpenZFS Patches]]
 [OpenZFS Documentation][openzfs-devel]
 
 [openzfs-devel]: http://open-zfs.org/wiki/Developer_resources
