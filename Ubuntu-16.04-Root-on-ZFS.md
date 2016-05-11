@@ -1,4 +1,4 @@
-### Warnings
+### Caution
 * This HOWTO uses a whole physical disk.
 * Do not use these instructions for dual-booting.
 * Backup your data. Any existing data will be lost.
@@ -333,10 +333,10 @@ Choose one of the following options.  If you are going to do an encrypted home d
 
 7.2a  Create an unencrypted (regular) swap device:
 
+**Caution**: Always use long `/dev/zvol` aliases in configuration files. Never use a short `/dev/zdX` device name.
+
     # mkswap -f /dev/zvol/rpool/swap
     # echo /dev/zvol/rpool/swap none swap defaults 0 0 >> /etc/fstab
-
-**Warning**: Always use long `/dev/zvol` aliases in configuration files. Never use a short `/dev/zdX` device name.
 
 7.2b  Create an encrypted swap device:
 
@@ -349,8 +349,6 @@ Choose one of the following options.  If you are going to do an encrypted home d
 7.3  Enable the swap device:
 
     # swapon -av
-
-**Warning**: Always use long `/dev/zvol` aliases in configuration files. Never use a short `/dev/zdX` device name.
 
 ## Step 8: Full Software Installation
 
