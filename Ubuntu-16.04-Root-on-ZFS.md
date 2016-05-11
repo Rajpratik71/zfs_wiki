@@ -50,7 +50,7 @@ Set a password on the “ubuntu” (Live CD user) account:
     Run this for UEFI booting (for use now or in the future):
     # sgdisk     -n3:1M:+512M -t3:EF00 /dev/disk/by-id/scsi-SATA_disk1
 
-    Run this in all cases:
+    Run these in all cases:
     # sgdisk     -n9:-8M:0    -t9:BF07 /dev/disk/by-id/scsi-SATA_disk1
     # sgdisk     -n1:0:0      -t1:BF01 /dev/disk/by-id/scsi-SATA_disk1
 
