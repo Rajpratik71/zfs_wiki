@@ -333,9 +333,6 @@ Choose one of the following options.  If you are going to do an encrypted home d
 7.2a  Create an unencrypted (regular) swap device:
 
     # mkswap -f /dev/zvol/rpool/swap
-    Setting up swapspace version 1, size = 4194300 KiB
-    no label, UUID=...
-
     # echo /dev/zvol/rpool/swap none swap defaults 0 0 >> /etc/fstab
 
 **Warning**: Always use long `/dev/zvol` aliases in configuration files. Never use a short `/dev/zdX` device name.
