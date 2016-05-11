@@ -17,6 +17,7 @@
   * [Roadmap][roadmap]
 * [[Developer Resources]]
   * [[Custom Packages]]
+  * [[Building ZFS]]
   * [[OpenZFS Tracking]]
   * [[OpenZFS Patches]]
   * [OpenZFS Documentation][openzfs-devel]
