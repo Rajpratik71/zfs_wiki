@@ -61,8 +61,8 @@ sh autogen.sh
 make -s -j$(nproc)
 ```
 
-* **tip:** `--with-linux=PATH` and `--with-linux-obj=PATH` can be passed to configure to specify a kernel installed in a non-default location.  This option is also supported when building ZFS.
-* **tip:** `--enable-debug` can be set to enable all ASSERTs and additional correctness tests.  This option is also supported when building ZFS.
+**tip:** `--with-linux=PATH` and `--with-linux-obj=PATH` can be passed to configure to specify a kernel installed in a non-default location.  This option is also supported when building ZFS.  
+**tip:** `--enable-debug` can be set to enable all ASSERTs and additional correctness tests.  This option is also supported when building ZFS.  
 
 Next move to the ZFS source tree and build it the same way.
 
@@ -74,7 +74,7 @@ sh autogen.sh
 make -s -j$(nproc)
 ```
 
-* **tip:**  `--with-spl=PATH` and `--with-spl-obj=PATH` can be passed to configure if it is unable to locate the SPL.
+**tip:**  `--with-spl=PATH` and `--with-spl-obj=PATH` can be passed to configure if it is unable to locate the SPL.  
 
 #### Run the ZFS Test Suite
 
@@ -97,6 +97,8 @@ sudo ./scripts/zfs.sh
 ```
  ./scripts/zfs-tests.sh -vx
 ```
+
+**tip:** The **delegate** tests will be skipped unless group read permission is set on the zfs directory and its parents.
 
 [zol-org]: https://github.com/zfsonlinux/
 [spl-repo]: https://github.com/zfsonlinux/spl
