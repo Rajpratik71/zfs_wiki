@@ -44,12 +44,13 @@ Set a password on the “ubuntu” (Live CD user) account:
 
 2.2  Partition your disk:
 
-    For legacy (MBR) booting:
+    Run this if you need legacy (BIOS) booting:
     # sgdisk -a1 -n2:34:2047  -t2:EF02 /dev/disk/by-id/scsi-SATA_disk1
 
-    For UEFI booting (for use now or in the future):
+    Run this for UEFI booting (for use now or in the future):
     # sgdisk     -n3:1M:+512M -t3:EF00 /dev/disk/by-id/scsi-SATA_disk1
 
+    Run this in all cases:
     # sgdisk     -n9:-8M:0    -t9:BF07 /dev/disk/by-id/scsi-SATA_disk1
     # sgdisk     -n1:0:0      -t1:BF01 /dev/disk/by-id/scsi-SATA_disk1
 
