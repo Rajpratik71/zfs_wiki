@@ -1,6 +1,6 @@
-:large_blue_circle: 339 - Applied to master branch  
+:large_blue_circle: 340 - Applied to master branch  
 :white_circle:      3 - Open pull request against master branch pending review  
-:red_circle:        49 - No existing pull request against the master branch  
+:red_circle:        48 - No existing pull request against the master branch  
 :black_circle:      23 - Not applicable to Linux  
 
 Status              | Illumos Issue                               | Illumos                                                           | Linux                                                       | Description
@@ -239,7 +239,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [4754](https://www.illumos.org/issues/4754) | [b6240e8](https://github.com/illumos/illumos-gate/commit/b6240e8) | [672692c](https://github.com/zfsonlinux/zfs/commit/672692c) | io issued to near-full luns even after setting noalloc threshold 4755 mg_alloc_failures is no longer needed 
 :large_blue_circle: | [4752](https://www.illumos.org/issues/4752) | [1b497ab](https://github.com/illumos/illumos-gate/commit/1b497ab) | [aa9af22](https://github.com/zfsonlinux/zfs/commit/aa9af22) | fan out read zio taskqs 
 :large_blue_circle: | [4374](https://www.illumos.org/issues/4374) | [bf16b11](https://github.com/illumos/illumos-gate/commit/bf16b11) | [9bd274d](https://github.com/zfsonlinux/zfs/commit/9bd274d) | dn_free_ranges should use range_tree_t 
-:red_circle:        | [3993](https://www.illumos.org/issues/3993) | [c58b352](https://github.com/illumos/illumos-gate/commit/c58b352) |                                                             | zpool(1M) and zfs(1M) should support -p for "list" and "get" 4700 "zpool get" doesn't support -H or -o options 
+:large_blue_circle: | [3993](https://www.illumos.org/issues/3993) | [c58b352](https://github.com/illumos/illumos-gate/commit/c58b352) | [2a8b84b](https://github.com/zfsonlinux/zfs/commit/2a8b84b) | zpool(1M) and zfs(1M) should support -p for "list" and "get" 4700 "zpool get" doesn't support -H or -o options 
 :large_blue_circle: | [4573](https://www.illumos.org/issues/4573) | [7dbbcd8](https://github.com/illumos/illumos-gate/commit/7dbbcd8) | [10b7549](https://github.com/zfsonlinux/zfs/commit/10b7549) | ZFS snapshot alias 
 :large_blue_circle: | [4571](https://www.illumos.org/issues/4571) | [b55998b](https://github.com/illumos/illumos-gate/commit/b55998b) | [6e1b9d0](https://github.com/zfsonlinux/zfs/commit/6e1b9d0) | Add documentation for -T and interval to "zpool list" 
 :large_blue_circle: | [4570](https://www.illumos.org/issues/4570) | [e902ed8](https://github.com/illumos/illumos-gate/commit/e902ed8) | [b1d13a6](https://github.com/zfsonlinux/zfs/commit/b1d13a6) | Document dedupditto pool property 4572 Dedup-related documentation additions for zpool and zdb. 1371 Add -D option description to zpool(1M) manpage 
