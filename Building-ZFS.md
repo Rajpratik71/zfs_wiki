@@ -76,7 +76,7 @@ make -s -j$(nproc)
 
 **tip:**  `--with-spl=PATH` and `--with-spl-obj=PATH` can be passed to configure if it is unable to locate the SPL.  
 
-#### Run the ZFS Test Suite
+#### Running zloop.sh and zfs-tests.sh
 
 There are a few helper scripts provided in the top-level scripts directory designed to aid developers working with in-tree builds.
 
@@ -90,6 +90,12 @@ sudo ./scripts/zfs-helpers.sh -i
 
 ```
 sudo ./scripts/zfs.sh
+```
+
+* **zloop.sh:** A wrapper to run ztest repeatedly with randomized arguments.  The ztest command is a user space stress test designed to detect correctness issues by concurrently running a random set of test cases.  If a crash is encountered, the ztest logs, any associated vdev files, and core file (if one exists) are collected and moved to the output directory for analysis.
+
+```
+sudo ./scripts/zloop.sh
 ```
 
 * **zfs-tests.sh:** A wrapper which can be used to launch the ZFS Test Suite.  Three loopback devices are created on top of sparse files located in `/var/tmp/` and used for the regression test.  Detailed directions for the ZFS Test Suite can be found in the [README][zts-readme] located in the top-level tests directory.
