@@ -1,6 +1,6 @@
-:large_blue_circle: 340 - Applied to master branch  
+:large_blue_circle: 341 - Applied to master branch  
 :white_circle:      3 - Open pull request against master branch pending review  
-:red_circle:        48 - No existing pull request against the master branch  
+:red_circle:        47 - No existing pull request against the master branch  
 :black_circle:      23 - Not applicable to Linux  
 
 Status              | Illumos Issue                               | Illumos                                                           | Linux                                                       | Description
@@ -94,7 +94,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [5987](https://www.illumos.org/issues/5987) | [cf6106c](https://github.com/illumos/illumos-gate/commit/cf6106c) | [7f60329](https://github.com/zfsonlinux/zfs/commit/7f60329) | zfs prefetch code needs work 
 :red_circle:        | [5997](https://www.illumos.org/issues/5997) | [1437283](https://github.com/illumos/illumos-gate/commit/1437283) |                                                             | FRU field not set during pool creation and never updated 
 :large_blue_circle: | [6096](https://www.illumos.org/issues/6096) | [8f5190a](https://github.com/illumos/illumos-gate/commit/8f5190a) | [a4d179e](https://github.com/zfsonlinux/zfs/commit/a4d179e) | ZFS_SMB_ACL_RENAME needs to cleanup better 
-:red_circle:        | [6093](https://www.illumos.org/issues/6093) | [0f92170](https://github.com/illumos/illumos-gate/commit/0f92170) |                                                             | zfsctl_shares_lookup should only VN_RELE() on zfs_zget() success 
+:large_blue_circle: | [6093](https://www.illumos.org/issues/6093) | [0f92170](https://github.com/illumos/illumos-gate/commit/0f92170) | [8adb798](https://github.com/zfsonlinux/zfs/commit/8adb798) | zfsctl_shares_lookup should only VN_RELE() on zfs_zget() success 
 :large_blue_circle: | [5959](https://www.illumos.org/issues/5959) | [ca0cc39](https://github.com/illumos/illumos-gate/commit/ca0cc39) | [241b541](https://github.com/zfsonlinux/zfs/commit/241b541) | clean up per-dataset feature count code 
 :large_blue_circle: | [5960](https://www.illumos.org/issues/5960) | [a2cdcdd](https://github.com/illumos/illumos-gate/commit/a2cdcdd) | [fcff0f3](https://github.com/zfsonlinux/zfs/commit/fcff0f3) | zfs recv should prefetch indirect blocks 5925 zfs receive -o origin=
 :large_blue_circle: | [6033](https://www.illumos.org/issues/6033) | [31c46cf](https://github.com/illumos/illumos-gate/commit/31c46cf) | [a7b10a9](https://github.com/zfsonlinux/zfs/commit/a7b10a9) | arc_adjust() should search MFU lists for oldest buffer when adjusting MFU size 
