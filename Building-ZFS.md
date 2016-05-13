@@ -29,7 +29,7 @@ sudo yum install parted lsscsi ksh
 For Fedora:
 
 ```
-sudo dnf groupinstall "Development Tools"
+sudo dnf groupinstall "C Development Tools and Libraries"
 sudo dnf install kernel-devel zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
 sudo dnf install parted lsscsi ksh
 ```
