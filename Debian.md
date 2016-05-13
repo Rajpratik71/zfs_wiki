@@ -44,3 +44,4 @@ $ apt-get install debian-zfs
 
 [[Debian GNU Linux initrd documentation]]  
 [[HOWTO install Debian GNU Linux to a Native ZFS Root Filesystem]]
+[[Dual booting OS X and Debian Jessie with ZFS root, cross mounting and full disk encryption]]
