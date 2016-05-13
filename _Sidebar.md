@@ -2,6 +2,7 @@
 * [[Getting Started]]
   * [ArchLinux][arch]
   * [[Debian]]
+    * [[Debian GNU Linux initrd documentation]]
   * [[Fedora]]
   * [Gentoo][gentoo]
   * [openSUSE][opensuse]
