@@ -10,6 +10,7 @@
   * [openSUSE][opensuse]
   * [[RHEL & CentOS]]
   * [[Ubuntu]]
+    * [[Ubuntu ZFS mountall FAQ and troubleshooting]]
 * [[Project & Community]]
   * [[Admin Documentation]]
   * [[FAQ]]
