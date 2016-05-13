@@ -33,13 +33,13 @@ pub  2048R/F14AB620 2013-03-21 ZFS on Linux <zfs@zfsonlinux.org>
 
 The ZFS on Linux packages can now be installed with dnf on Fedora 22 and newer and yum on previous Fedora releases. Note that it is important to make sure that the matching *kernel-devel* package is installed for the running kernel since DKMS requires it to build ZFS.
 
-Fedora 22 and newer:
+Fedora 22, 23:
 
 ```
 $ sudo dnf install kernel-devel zfs
 ```
 
-Fedora 21 and older:
+Fedora 21:
 
 ```
 $ sudo yum install kernel-devel zfs
