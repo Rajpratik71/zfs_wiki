@@ -43,3 +43,4 @@ $ apt-get install debian-zfs
 [debian-itp]: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=686447
 
 [[Debian GNU Linux initrd documentation]]  
+[[HOWTO install Debian GNU Linux to a Native ZFS Root Filesystem]]
