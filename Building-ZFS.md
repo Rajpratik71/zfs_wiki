@@ -18,12 +18,20 @@ sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-de
 sudo apt-get install parted lsscsi ksh
 ```
 
-For RHEL, CentOS, and Fedora:
+For RHEL and CentOS:
 
 ```
-sudo yum groupinstall "Development Tools" kernel-devel
-sudo yum install zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
+sudo yum groupinstall "Development Tools"
+sudo yum install kernel-devel zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
 sudo yum install parted lsscsi ksh
+```
+
+For Fedora:
+
+```
+sudo dnf groupinstall "Development Tools"
+sudo dnf install kernel-devel zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
+sudo dnf install parted lsscsi ksh
 ```
 
 ### Build Options
