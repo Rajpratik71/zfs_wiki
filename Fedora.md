@@ -6,9 +6,9 @@ Only [DKMS][dkms] style packages can be provided for Fedora from the official zf
 To simplify installation a zfs-release package is provided which includes a zfs.repo configuration file and the ZFS on Linux public signing key.  All official ZFS on Linux packages are signed using this key, and by default both yum and dnf will verify a package's signature before allowing it be to installed.  Users are strongly encouraged to verify the authenticity of the ZFS on Linux public key using the fingerprint listed here.
 
 **Location:** /etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux  
-**Fedora Package:** http://archive.zfsonlinux.org/fedora/zfs-release.fc21.noarch.rpm  
-**Fedora Package:** http://archive.zfsonlinux.org/fedora/zfs-release.fc22.noarch.rpm  
-**Fedora Package:** http://archive.zfsonlinux.org/fedora/zfs-release.fc23.noarch.rpm  
+**Fedora 21 Package:** http://archive.zfsonlinux.org/fedora/zfs-release.fc21.noarch.rpm  
+**Fedora 22 Package:** http://archive.zfsonlinux.org/fedora/zfs-release.fc22.noarch.rpm  
+**Fedora 23 Package:** http://archive.zfsonlinux.org/fedora/zfs-release.fc23.noarch.rpm  
 **Download from:** [pgp.mit.edu][pubkey]  
 **Fingerprint:** C93A FFFD 9F3F 7B03 C310  CEB6 A9D5 A1C0 F14A B620
 
