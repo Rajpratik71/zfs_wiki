@@ -41,3 +41,5 @@ $ apt-get install debian-zfs
 [pubkey-zol]: http://zfsonlinux.org/4D5843EA.asc
 [debian-announce]: https://lists.debian.org/debian-devel-announce/2015/04/msg00006.html
 [debian-itp]: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=686447
+
+[[Debian GNU Linux initrd documentation]]  
