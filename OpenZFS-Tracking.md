@@ -1,6 +1,6 @@
-:large_blue_circle: 341 - Applied to master branch  
+:large_blue_circle: 342 - Applied to master branch  
 :white_circle:      3 - Open pull request against master branch pending review  
-:red_circle:        47 - No existing pull request against the master branch  
+:red_circle:        46 - No existing pull request against the master branch  
 :black_circle:      23 - Not applicable to Linux  
 
 Status              | Illumos Issue                               | Illumos                                                           | Linux                                                       | Description
@@ -22,7 +22,7 @@ Status              | Illumos Issue                               | Illumos     
 :large_blue_circle: | [6843](https://www.illumos.org/issues/6843) | [399cc7d](https://github.com/illumos/illumos-gate/commit/399cc7d) | [f5f087e](https://github.com/zfsonlinux/zfs/commit/f5f087e) | Make xattr dir truncate and remove in one tx 
 :large_blue_circle: | [6841](https://www.illumos.org/issues/6841) | [445e678](https://github.com/illumos/illumos-gate/commit/445e678) | [4254acb](https://github.com/zfsonlinux/zfs/commit/4254acb) | Undirty freed spill blocks 
 :red_circle:        | [6738](https://www.illumos.org/issues/6738) | [c20404f](https://github.com/illumos/illumos-gate/commit/c20404f) |                                                             | zfs send stream padding needs documentation 
-:red_circle:        | [6739](https://www.illumos.org/issues/6739) | [41c6413](https://github.com/illumos/illumos-gate/commit/41c6413) |                                                             | userland version of cv_timedwait_hires() always assumes absolute time 
+:large_blue_circle: | [6739](https://www.illumos.org/issues/6739) | [41c6413](https://github.com/illumos/illumos-gate/commit/41c6413) | [206971d](https://github.com/zfsonlinux/zfs/commit/206971d) | userland version of cv_timedwait_hires() always assumes absolute time 
 :red_circle:        | [6781](https://www.illumos.org/issues/6781) | [e4cb59f](https://github.com/illumos/illumos-gate/commit/e4cb59f) |                                                             | zpool man page needs updated to remove duplicate entry of "cannot be" where it discusses cache devices 
 :red_circle:        | [4242](https://www.illumos.org/issues/4242) | [54207fd](https://github.com/illumos/illumos-gate/commit/54207fd) |                                                             | file rename event fires before the rename happens 
 :large_blue_circle: | [6681](https://www.illumos.org/issues/6681) | [d09e447](https://github.com/illumos/illumos-gate/commit/d09e447) | [887d1e6](https://github.com/zfsonlinux/zfs/commit/887d1e6) | zfs list burning lots of time in dodefault() via dsl_prop_*
