@@ -1,12 +1,16 @@
-[DKMS][dkms] style packages are provided for Debian from the official zfsonlinux.org repository.  These packages are less actively maintained and may not be updated as new releases are tagged.  The Debian project has [announced their intention][debian-announce] to ship ZFS on Linux as part of Debian and that work is [currently ongoing][debian-itp].  Packages are available for the following configurations:
+[DKMS][dkms] style packages are provided for Debian from the official zfsonlinux.org repository.
 
-**Debian Releases:** 7.x (Wheezy), 8.x (Jessie)  
+Packages from ZFS On Linux are available for the following configurations:
+
+**Debian Releases:** 7.x (Wheezy), 8.x (Jessie), Sid (Eternal unstable)
 **Architectures:** amd64  
 
-To add the repository to your system install the zfsonlinux package as shown below. This will add the /etc/apt/sources.list.d/zfsonlinux.list and /etc/apt/trusted.gpg.d/zfsonlinux.gpg files to your computer. Afterwards, you can install zfs like any other Debian package using apt-get. As new updated packages are made available they will be detected and installed as part of the standard update process.
+Although ZFS On Linux is now officially in the Debian GNU/Linux repository, we will continue to provide packages for Wheezy and Jessie (but only in the amd64 architecture). The ZoL packages differ slightly compared to the official Debian GNU/Linux packages, mostly in that it provides new, improved **sharenfs**, **sharesmb** and **shareiscsi** options.
+
+To add the repository to your system, install the zfsonlinux package as shown below. This will add the /etc/apt/sources.list.d/zfsonlinux.list and /etc/apt/trusted.gpg.d/zfsonlinux.gpg files to your computer. Afterwards, you can install zfs like any other Debian package using apt-get. As new updated packages are made available they will be detected and installed as part of the standard update process.
 
 **Location:** /etc/apt/trusted.gpg.d/zfsonlinux.gpg  
-**Debian Package:** http://archive.zfsonlinux.org/debian/pool/main/z/zfsonlinux/zfsonlinux_6_all.deb  
+**Debian Package:** http://archive.zfsonlinux.org/debian/pool/main/z/zfsonlinux/zfsonlinux_7_all.deb  
 **Download from:** [pgp.mit.edu][pubkey]  
 **Download from:** [zfsonlinux.org][pubkey-zol]  
 **Key ID:** 4D5843EA  
@@ -15,8 +19,8 @@ To add the repository to your system install the zfsonlinux package as shown bel
 ```
 $ su -
 $ apt-get install lsb-release
-$ wget http://archive.zfsonlinux.org/debian/pool/main/z/zfsonlinux/zfsonlinux_6_all.deb
-$ dpkg -i zfsonlinux_6_all.deb
+$ wget http://archive.zfsonlinux.org/debian/pool/main/z/zfsonlinux/zfsonlinux_7_all.deb
+$ dpkg -i zfsonlinux_7_all.deb
 $ gpg --quiet --with-fingerprint /etc/apt/trusted.gpg.d/zfsonlinux.gpg
 pub  4096R/4D5843EA 2014-09-24 Turbo Fredriksson <turbo@bayour.com>
       Key fingerprint = 5EB3 5C47 B97A C11F 551D  B287 201C 3129 4D58 43EA
@@ -30,7 +34,9 @@ sub  4096R/7DFFA34D 2014-09-24
 
 If you wish to use the Debian GNU/Linux ZoL snapshot packages (pre-releases), you will need to uncomment the line(s) related to the 'dailies' repository (at the end of the /etc/apt/sources.list.d/zfsonlinux.list file) by removing the hash mark at the beginning of the line.
 
-Then run apt-get to update and install ZoL:
+There is an auto builder in place to build packages two hours after a commit have been done in the *spl* and *zfs* repositories. After the two hour wait period (to catch concecutive commits) packages will then be build and uploaded to the ZoL package repositories automatically.
+
+After changing the *sources.list* file, run apt-get to update and install ZoL:
 
 ```
 $ apt-get update
