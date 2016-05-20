@@ -217,11 +217,9 @@ For extra verification, manually install GRUB again to be certain that the syste
     # grub-probe /
     zfs
 
-5.2  Verify that the ZFS modules are installed:
+5.2  Verify that the ZFS module is installed:
 
-    # ls /boot/grub/i386-pc/zfs*
-    /boot/grub/i386-pc/zfscrypt.mod  /boot/grub/i386-pc/zfs.mod
-    /boot/grub/i386-pc/zfsinfo.mod
+    # ls /boot/grub/*/zfs.mod
 
 5.3  Refresh the initrd files:
 
