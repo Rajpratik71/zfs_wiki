@@ -34,7 +34,7 @@ sub  4096R/7DFFA34D 2014-09-24
 
 If you wish to use the Debian GNU/Linux ZoL snapshot packages (pre-releases), you will need to uncomment the line(s) related to the 'dailies' repository (at the end of the /etc/apt/sources.list.d/zfsonlinux.list file) by removing the hash mark at the beginning of the line.
 
-There is an auto builder in place to build packages two hours after a commit have been done in the *spl* and *zfs* repositories. After the two hour wait period (to catch concecutive commits) packages will then be build and uploaded to the ZoL package repositories automatically.
+There is an auto builder in place to build packages two hours after a commit have been done in the *spl* and *zfs* repositories. After the two hour wait period (to catch consecutive commits) packages will then be build and uploaded to the ZoL package repositories automatically.
 
 After changing the *sources.list* file, run apt-get to update and install ZoL:
 
