@@ -2,7 +2,7 @@
 
 Packages from ZFS On Linux are available for the following configurations:
 
-**Debian Releases:** 7.x (Wheezy), 8.x (Jessie), Sid (Eternal unstable) 
+**Debian Releases:** 7.x (Wheezy), 8.x (Jessie), Sid (Eternal unstable)  
 **Architectures:** amd64  
 
 Although ZFS On Linux is now officially in the Debian GNU/Linux repository, we will continue to provide packages for Wheezy and Jessie (but only in the amd64 architecture). The ZoL packages differ slightly compared to the official Debian GNU/Linux packages, mostly in that it provides new, improved **sharenfs**, **sharesmb** and **shareiscsi** options.
