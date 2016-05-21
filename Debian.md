@@ -10,7 +10,7 @@ Although ZFS On Linux is now officially in the Debian GNU/Linux repository, we w
 To add the repository to your system, install the zfsonlinux package as shown below. This will add the /etc/apt/sources.list.d/zfsonlinux.list and /etc/apt/trusted.gpg.d/zfsonlinux.gpg files to your computer. Afterwards, you can install zfs like any other Debian package using apt-get. As new updated packages are made available they will be detected and installed as part of the standard update process.
 
 **Location:** /etc/apt/trusted.gpg.d/zfsonlinux.gpg  
-**Debian Package:** http://archive.zfsonlinux.org/debian/pool/main/z/zfsonlinux/zfsonlinux_7_all.deb  
+**Debian Package:** http://archive.zfsonlinux.org/debian/pool/main/z/zfsonlinux/zfsonlinux_8_all.deb  
 **Download from:** [pgp.mit.edu][pubkey]  
 **Download from:** [zfsonlinux.org][pubkey-zol]  
 **Key ID:** 4D5843EA  
@@ -19,8 +19,8 @@ To add the repository to your system, install the zfsonlinux package as shown be
 ```
 $ su -
 $ apt-get install lsb-release
-$ wget http://archive.zfsonlinux.org/debian/pool/main/z/zfsonlinux/zfsonlinux_7_all.deb
-$ dpkg -i zfsonlinux_7_all.deb
+$ wget http://archive.zfsonlinux.org/debian/pool/main/z/zfsonlinux/zfsonlinux_8_all.deb
+$ dpkg -i zfsonlinux_8_all.deb
 $ gpg --quiet --with-fingerprint /etc/apt/trusted.gpg.d/zfsonlinux.gpg
 pub  4096R/4D5843EA 2014-09-24 Turbo Fredriksson <turbo@bayour.com>
       Key fingerprint = 5EB3 5C47 B97A C11F 551D  B287 201C 3129 4D58 43EA
