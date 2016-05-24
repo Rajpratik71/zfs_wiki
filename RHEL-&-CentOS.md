@@ -48,6 +48,19 @@ To install DKMS style packages issue the following yum command.  Note that it is
 $ sudo yum install kernel-devel zfs
 ```
 
+## Switching from DKMS to kABI-tracking kmod
+
+When switching from DKMS to kABI-tracking kmods first uninstall the existing DKMS packages.  This should remove the kernel modules for all installed kernels but in practice it's not always perfectly reliable.  Therefore, it's recommended that you manually remove any remaining ZFS kernel modules as shown.  At this point the kABI-tracking kmods can be installed as described in the section above.
+
+```
+$ sudo yum remove $(rpm -qa | egrep "zfs|spl" | grep -v "zfs-release")
+
+$ sudo find /lib/modules/ -name "splat.ko" -or -name "zcommon.ko" \
+-or -name "zpios.ko" -or -name "spl.ko" -or -name "zavl.ko" -or \
+-name "zfs.ko" -or -name "znvpair.ko" -or -name "zunicode.ko" \
+-exec /bin/rm {} \;
+```
+
 ## Testing Repositories
 
 In addition to the primary *zfs* repository a *zfs-testing* repository is available. This repository, which is disabled by default, contains the latest version of ZFS on Linux which is under active development. These packages are made available in order to get feedback from users regarding the functionality and stability of upcoming releases. These packages **should not** be used on production systems. Packages from the testing repository can be installed as follows.
