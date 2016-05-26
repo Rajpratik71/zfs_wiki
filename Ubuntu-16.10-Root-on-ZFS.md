@@ -175,7 +175,6 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
     deb-src http://archive.ubuntu.com/ubuntu yakkety-updates main universe
     # ln -s /proc/mounts /etc/mtab
     # apt-get update
-    # apt-get install --yes ubuntu-minimal
 
 4.5  Install ZFS in the chroot environment for the new system:
 
