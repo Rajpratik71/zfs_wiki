@@ -44,7 +44,7 @@ However, even after making this change your system will likely not be entirely s
 
 ### Booting from ZFS
 
-Booting from ZFS on Linux is possible and many people do it.  However, because it often requires the latest versions of grub and is distribution specific we don't recommend it. Instead we suggest using ZFS on Linux as your root file system. There are excellent walk throughs available for [Debian][debian-root], [Ubuntu][ubuntu-root] and [Gentoo][gentoo-root].
+Booting from ZFS on Linux is possible and many people do it.  There are excellent walk throughs available for [[Debian]], [[Ubuntu]] and [Gentoo][gentoo-root].
 
 ### Selecting /dev/ names when creating a pool
 
@@ -297,8 +297,6 @@ When a new issue is opened it's not uncommon for a developer to request addition
 [wikipedia]: https://en.wikipedia.org/wiki/OpenZFS
 [releases]: https://github.com/zfsonlinux/zfs/releases
 [kernel]: https://www.kernel.org/
-[debian-root]: https://github.com/zfsonlinux/pkg-zfs/wiki/HOWTO-install-Debian-GNU-Linux-to-a-Native-ZFS-Root-Filesystem
-[ubuntu-root]: https://github.com/zfsonlinux/pkg-zfs/wiki/HOWTO-install-Ubuntu-to-a-Native-ZFS-Root-Filesystem
 [gentoo-root]: https://github.com/pendor/gentoo-zfs-install/tree/master/install
 [xen-bug]: https://github.com/zfsonlinux/zfs/issues/1067
 [cddl]: http://hub.opensolaris.org/bin/view/Main/opensolaris_license
