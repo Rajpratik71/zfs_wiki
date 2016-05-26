@@ -235,14 +235,16 @@ $ zpool add -o ashift=12 tank mirror sdc sdd
 
 You may use a zvol as a swap device but you'll need to configure it appropriately.
 
-* Set the volume block size to match your systems page size, for x86_64 systems that is 4k.  This tuning prevents ZFS from having to perform read-modify-write options on a larger block while the system is already low on memory.
-* Set the `sync=always` property.  Data written to the volume will be flushed immediately to disk freeing up memory as quickly as possible.
+* Set the volume block size to match your systems page size.  This tuning prevents ZFS from having to perform read-modify-write options on a larger block while the system is already low on memory.
+* Set the `logbias=throughput` and `sync=always` properties.  Data written to the volume will be flushed immediately to disk freeing up memory as quickly as possible.
+* Set `primarycache=metadata` to avoid keeping swap data in RAM via the ARC.
 * Disable automatic snapshots of the swap device.
 
 ```
-$ zfs create -V 4G -b 4K rpool/swap
-$ zfs set com.sun:auto-snapshot=false rpool/swap
-$ zfs set sync=always rpool/swap
+$ zfs create -V 4G -b $(getconf PAGESIZE) \
+    -o logbias=throughput -o sync=always \
+    -o primarycache=metadata \
+    -o com.sun:auto-snapshot=false rpool/swap
 ```
 
 ### Using ZFS on Xen Hypervisor or Xen Dom0
