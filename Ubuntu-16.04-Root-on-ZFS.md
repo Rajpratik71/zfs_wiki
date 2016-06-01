@@ -170,7 +170,7 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
     deb http://archive.ubuntu.com/ubuntu xenial-updates main universe
     deb-src http://archive.ubuntu.com/ubuntu xenial-updates main universe
-    # ln -s /proc/mounts /etc/mtab
+    # ln -s /proc/self/mounts /etc/mtab
     # apt-get update
     # apt-get install --yes ubuntu-minimal
 
