@@ -428,6 +428,14 @@ Upgrade or downgrade the Areca driver if something like `RIP: 0010:[<ffffffff810
 
 ### QEMU/KVM/XEN
 
-* In the `/etc/default/grub` file,  enable the `GRUB_TERMINAL=console` line and remove the `splash` option from the `GRUB_CMDLINE_LINUX_DEFAULT` line.  Plymouth can cause boot errors in these virtual environments that are difficult to diagnose.
+In the `/etc/default/grub` file,  enable the `GRUB_TERMINAL=console` line and remove the `splash` option from the `GRUB_CMDLINE_LINUX_DEFAULT` line.  Plymouth can cause boot errors in these virtual environments that are difficult to diagnose.
 
-* Set a unique serial number on each virtual disk (e.g.: `-drive if=none,id=disk1,file=disk1.qcow2,serial=1234567890`).
+Set a unique serial number on each virtual disk (e.g.: `-drive if=none,id=disk1,file=disk1.qcow2,serial=1234567890`).
+
+To be able to use UEFI in guests (instead of only BIOS booting):
+
+    $ sudo apt-get install ovmf
+    $ sudo vi /etc/libvirt/qemu.conf
+    Uncomment this line:
+    nvram = [ "/usr/share/OVMF/OVMF_CODE.fd:/usr/share/OVMF/OVMF_VARS.fd" ]
+    $ sudo service libvirt-bin restart
