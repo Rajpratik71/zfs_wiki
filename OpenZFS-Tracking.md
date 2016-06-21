@@ -1,10 +1,27 @@
-:large_blue_circle: 342 - Applied to master branch  
+:large_blue_circle: 345 - Applied to master branch  
 :white_circle:      3 - Open pull request against master branch pending review  
-:red_circle:        46 - No existing pull request against the master branch  
+:red_circle:        60 - No existing pull request against the master branch  
 :black_circle:      23 - Not applicable to Linux  
 
-Status              | Illumos Issue                               | Illumos                                                           | Linux                                                       | Description
+Status              | OpenZFS Issue                               | OpenZFS                                                           | Linux                                                       | Description
 ------------------- | ------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------
+:red_circle:        | [7082](https://www.illumos.org/issues/7082) | [b8a389e](https://github.com/illumos/illumos-gate/commit/b8a389e) |                                                             | bptree_iterate() passes wrong args to zfs_dbgmsg()
+:red_circle:        | [6314](https://www.illumos.org/issues/6314) | [d6160ee](https://github.com/illumos/illumos-gate/commit/d6160ee) |                                                             | buffer overflow in dsl_dataset_name
+:red_circle:        | [7054](https://www.illumos.org/issues/7054) | [de9cc02](https://github.com/illumos/illumos-gate/commit/de9cc02) |                                                             | dmu_tx_hold_t should use refcount_t to track space
+:red_circle:        | [6940](https://www.illumos.org/issues/6940) | [9918916](https://github.com/illumos/illumos-gate/commit/9918916) |                                                             | Cannot unlink directories when over quota
+:red_circle:        | [7016](https://www.illumos.org/issues/7016) | [0dd053d](https://github.com/illumos/illumos-gate/commit/0dd053d) |                                                             | arc_available_memory is not 32-bit safe
+:red_circle:        | [6931](https://www.illumos.org/issues/6931) | [88f61de](https://github.com/illumos/illumos-gate/commit/88f61de) |                                                             | lib/libzfs: cleanup gcc warnings
+:red_circle:        | [7019](https://www.illumos.org/issues/7019) | [45b1747](https://github.com/illumos/illumos-gate/commit/45b1747) |                                                             | zfsdev_ioctl skips secpolicy when FKIOCTL is set 7020 sdev_cleandir can loop forever
+:red_circle:        | [6922](https://www.illumos.org/issues/6922) | [63364b0](https://github.com/illumos/illumos-gate/commit/63364b0) |                                                             | Emit ESC_ZFS_VDEV_REMOVE_AUX after removing an aux device
+:red_circle:        | [6980](https://www.illumos.org/issues/6980) | [ea4a67f](https://github.com/illumos/illumos-gate/commit/ea4a67f) |                                                             | 6902 causes zfs send to break due to 32-bit/64-bit struct mismatch
+:red_circle:        | [6878](https://www.illumos.org/issues/6878) | [1825bc5](https://github.com/illumos/illumos-gate/commit/1825bc5) |                                                             | Add scrub completion info to "zpool history"
+:large_blue_circle: | [6513](https://www.illumos.org/issues/6513) | [8df0bcf](https://github.com/illumos/illumos-gate/commit/8df0bcf) | [bc77ba7](https://github.com/zfsonlinux/zfs/commit/bc77ba7) | partially filled holes lose birth time
+:large_blue_circle: | [6902](https://www.illumos.org/issues/6902) | [0d8fa8f](https://github.com/illumos/illumos-gate/commit/0d8fa8f) | [0cee240](https://github.com/zfsonlinux/zfs/commit/0cee240) | speed up listing of snapshots if requesting name only and sorting by name
+:red_circle:        | [6876](https://www.illumos.org/issues/6876) | [c971037](https://github.com/illumos/illumos-gate/commit/c971037) |                                                             | Stack corruption after importing a pool with a too-long name
+:large_clue_circle: | [6844](https://www.illumos.org/issues/6844) | [11ceac7](https://github.com/illumos/illumos-gate/commit/11ceac7) | [463a8cf](https://github.com/zfsonlinux/zfs/commit/463a8cf) | dnode_next_offset can detect fictional holes
+:red_circle:        | [6111](https://www.illumos.org/issues/6111) | [4a20c93](https://github.com/illumos/illumos-gate/commit/4a20c93) |                                                             | zfs send should ignore datasets created after the ending snapshot
+:red_circle:        | [6874](https://www.illumos.org/issues/6874) | [1fdcbd0](https://github.com/illumos/illumos-gate/commit/1fdcbd0) |                                                             | rollback and receive need to reset ZPL state to what's on disk
+:red_circle:        | [6914](https://www.illumos.org/issues/6914) | [af868f4](https://github.com/illumos/illumos-gate/commit/af868f4) |                                                             | kernel virtual memory fragmentation leads to hang
 :large_blue_circle: | [6873](https://www.illumos.org/issues/6873) | [4cde22c](https://github.com/illumos/illumos-gate/commit/4cde22c) | [ee06391](https://github.com/zfsonlinux/zfs/commit/ee06391) | zfs_destroy_snaps_nvl leaks errlist 
 :red_circle:        | [6052](https://www.illumos.org/issues/6052) | [26455f9](https://github.com/illumos/illumos-gate/commit/26455f9) |                                                             | decouple lzc_create() from the implementation details 
 :large_blue_circle: | [6879](https://www.illumos.org/issues/6879) | [20fea7a](https://github.com/illumos/illumos-gate/commit/20fea7a) | [9f8026c](https://github.com/zfsonlinux/zfs/commit/9f8026c) | incorrect endianness swap for drr_spill.drr_length in libzfs_sendrecv.c 
