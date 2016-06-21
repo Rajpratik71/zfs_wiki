@@ -1,4 +1,4 @@
-:large_blue_circle: 345 - Applied to master branch  
+:large_blue_circle: 346 - Applied to master branch  
 :white_circle:      3 - Open pull request against master branch pending review  
 :red_circle:        60 - No existing pull request against the master branch  
 :black_circle:      23 - Not applicable to Linux  
@@ -34,7 +34,7 @@ Status              | OpenZFS Issue                               | OpenZFS     
 :red_circle:        | [6762](https://www.illumos.org/issues/6762) | [1eb4e90](https://github.com/illumos/illumos-gate/commit/1eb4e90) |                                                             | POSIX write should imply DELETE_CHILD on directories - and some additional considerations 
 :large_blue_circle: | [6736](https://www.illumos.org/issues/6736) | [215198a](https://github.com/illumos/illumos-gate/commit/215198a) | [e0ab3ab](https://github.com/zfsonlinux/zfs/commit/e0ab3ab) | ZFS per-vdev ZAPs 
 :red_circle:        | [6322](https://www.illumos.org/issues/6322) | [cb92f41](https://github.com/illumos/illumos-gate/commit/cb92f41) |                                                             | ZFS indirect block predictive prefetch 
-:red_circle:        | [6418](https://www.illumos.org/issues/6418) | [6401734](https://github.com/illumos/illumos-gate/commit/6401734) |                                                             | zpool should have a label clearing command 
+:large_blue_circle: | [6418](https://www.illumos.org/issues/6418) | [6401734](https://github.com/illumos/illumos-gate/commit/6401734) | [131cc95](https://github.com/zfsonlinux/zfs/commit/131cc95) | zpool should have a label clearing command 
 :large_blue_circle: | [6842](https://www.illumos.org/issues/6842) | [02525cd](https://github.com/illumos/illumos-gate/commit/02525cd) | [32c8c94](https://github.com/zfsonlinux/zfs/commit/32c8c94) | Fix empty xattr dir causing lockup 
 :large_blue_circle: | [6843](https://www.illumos.org/issues/6843) | [399cc7d](https://github.com/illumos/illumos-gate/commit/399cc7d) | [f5f087e](https://github.com/zfsonlinux/zfs/commit/f5f087e) | Make xattr dir truncate and remove in one tx 
 :large_blue_circle: | [6841](https://www.illumos.org/issues/6841) | [445e678](https://github.com/illumos/illumos-gate/commit/445e678) | [4254acb](https://github.com/zfsonlinux/zfs/commit/4254acb) | Undirty freed spill blocks 
