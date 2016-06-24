@@ -1,6 +1,6 @@
-:large_blue_circle: 346 - Applied to master branch  
+:large_blue_circle: 347 - Applied to master branch  
 :white_circle:      3 - Open pull request against master branch pending review  
-:red_circle:        60 - No existing pull request against the master branch  
+:red_circle:        59 - No existing pull request against the master branch  
 :black_circle:      23 - Not applicable to Linux  
 
 Status              | OpenZFS Issue                               | OpenZFS                                                           | Linux                                                       | Description
@@ -14,7 +14,7 @@ Status              | OpenZFS Issue                               | OpenZFS     
 :red_circle:        | [7019](https://www.illumos.org/issues/7019) | [45b1747](https://github.com/illumos/illumos-gate/commit/45b1747) |                                                             | zfsdev_ioctl skips secpolicy when FKIOCTL is set 7020 sdev_cleandir can loop forever
 :red_circle:        | [6922](https://www.illumos.org/issues/6922) | [63364b0](https://github.com/illumos/illumos-gate/commit/63364b0) |                                                             | Emit ESC_ZFS_VDEV_REMOVE_AUX after removing an aux device
 :red_circle:        | [6980](https://www.illumos.org/issues/6980) | [ea4a67f](https://github.com/illumos/illumos-gate/commit/ea4a67f) |                                                             | 6902 causes zfs send to break due to 32-bit/64-bit struct mismatch
-:red_circle:        | [6878](https://www.illumos.org/issues/6878) | [1825bc5](https://github.com/illumos/illumos-gate/commit/1825bc5) |                                                             | Add scrub completion info to "zpool history"
+:large_blue_circle: | [6878](https://www.illumos.org/issues/6878) | [1825bc5](https://github.com/illumos/illumos-gate/commit/1825bc5) | [784d15c](https://github.com/zfsonlinux/zfs/commit/784d15c) | Add scrub completion info to "zpool history"
 :large_blue_circle: | [6513](https://www.illumos.org/issues/6513) | [8df0bcf](https://github.com/illumos/illumos-gate/commit/8df0bcf) | [bc77ba7](https://github.com/zfsonlinux/zfs/commit/bc77ba7) | partially filled holes lose birth time
 :large_blue_circle: | [6902](https://www.illumos.org/issues/6902) | [0d8fa8f](https://github.com/illumos/illumos-gate/commit/0d8fa8f) | [0cee240](https://github.com/zfsonlinux/zfs/commit/0cee240) | speed up listing of snapshots if requesting name only and sorting by name
 :red_circle:        | [6876](https://www.illumos.org/issues/6876) | [c971037](https://github.com/illumos/illumos-gate/commit/c971037) |                                                             | Stack corruption after importing a pool with a too-long name
