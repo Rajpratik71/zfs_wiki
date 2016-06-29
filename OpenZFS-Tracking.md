@@ -1,7 +1,7 @@
 :large_blue_circle: 358 - Applied to master branch  
 :white_circle:      0 - Open pull request against master branch pending review  
-:red_circle:        51 - No existing pull request against the master branch  
-:black_circle:      23 - Not applicable to Linux  
+:red_circle:        49 - No existing pull request against the master branch  
+:black_circle:      25 - Not applicable to Linux  
 
 Status              | OpenZFS Issue                               | OpenZFS                                                           | Linux                                                       | Description
 ------------------- | ------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------
@@ -67,7 +67,7 @@ Status              | OpenZFS Issue                               | OpenZFS     
 :red_circle:        | [6529](https://www.illumos.org/issues/6529) | [e7e978b](https://github.com/illumos/illumos-gate/commit/e7e978b) |                                                             | Properly handle updates of variably-sized SA entries. 
 :large_blue_circle: | [6527](https://www.illumos.org/issues/6527) | [2bd7a8d](https://github.com/illumos/illumos-gate/commit/2bd7a8d) | [4b9ed69](https://github.com/zfsonlinux/zfs/commit/4b9ed69) | Possible access beyond end of string in zpool comment
 :large_blue_circle: | [6495](https://www.illumos.org/issues/6495) | [2bad225](https://github.com/illumos/illumos-gate/commit/2bad225) | [e567663](https://github.com/zfsonlinux/zfs/commit/e567663) | Fix mutex leak in dmu_objset_find_dp 
-:red_circle:        | [6494](https://www.illumos.org/issues/6494) | [f693d30](https://github.com/illumos/illumos-gate/commit/f693d30) |                                                             | ASSERT supported zio_types for file and disk vdevs 
+:black_circle:      | [6494](https://www.illumos.org/issues/6494) | [f693d30](https://github.com/illumos/illumos-gate/commit/f693d30) |                                                             | ASSERT supported zio_types for file and disk vdevs 
 :large_blue_circle: | [4986](https://www.illumos.org/issues/4986) | [5878fad](https://github.com/illumos/illumos-gate/commit/5878fad) | [671c935](https://github.com/zfsonlinux/zfs/commit/671c935) | receiving replication stream fails if any snapshot exceeds refquota 
 :large_blue_circle: | [6358](https://www.illumos.org/issues/6358) | [b289d04](https://github.com/illumos/illumos-gate/commit/b289d04) | [fe467e0](https://github.com/zfsonlinux/zfs/commit/fe467e0) | A faulted pool with only unavailable vdevs triggers assertion failure in libzfs 
 :large_blue_circle: | [6393](https://www.illumos.org/issues/6393) | [68ecb2e](https://github.com/illumos/illumos-gate/commit/68ecb2e) | [e6d3a84](https://github.com/zfsonlinux/zfs/commit/e6d3a84) | zfs receive a full send as a clone 
@@ -128,7 +128,7 @@ Status              | OpenZFS Issue                               | OpenZFS     
 :large_blue_circle: | [5438](https://www.illumos.org/issues/5438) | [5897eb4](https://github.com/illumos/illumos-gate/commit/5897eb4) | [ee3a23b](https://github.com/zfsonlinux/zfs/commit/ee3a23b) | zfs_blkptr_verify should continue after zfs_panic_recover 
 :large_blue_circle: | [5515](https://www.illumos.org/issues/5515) | [752fd8d](https://github.com/illumos/illumos-gate/commit/752fd8d) | [fc581e0](https://github.com/zfsonlinux/zfs/commit/fc581e0) | dataset user hold doesn't reject empty tags 
 :large_blue_circle: | [5818](https://www.illumos.org/issues/5818) | [81cd5c5](https://github.com/illumos/illumos-gate/commit/81cd5c5) | [c3520e7](https://github.com/zfsonlinux/zfs/commit/c3520e7) | zfs {ref}compressratio is incorrect with 4k sector size 
-:red_circle:        | [5815](https://www.illumos.org/issues/5815) | [fae6347](https://github.com/illumos/illumos-gate/commit/fae6347) |                                                             | libzpool's panic function doesn't set global panicstr, ::status not as useful 
+:black_circle:      | [5815](https://www.illumos.org/issues/5815) | [fae6347](https://github.com/illumos/illumos-gate/commit/fae6347) |                                                             | libzpool's panic function doesn't set global panicstr, ::status not as useful 
 :large_blue_circle: | [5269](https://www.illumos.org/issues/5269) | [12380e1](https://github.com/illumos/illumos-gate/commit/12380e1) | [9c43027](https://github.com/zfsonlinux/zfs/commit/9c43027) | zpool import slow 
 :large_blue_circle: | [5814](https://www.illumos.org/issues/5814) | [b67dde1](https://github.com/illumos/illumos-gate/commit/b67dde1) | [50f9ea0](https://github.com/zfsonlinux/zfs/commit/50f9ea0) | bpobj_iterate_impl(): Close a refcount leak iterating on a sublist. 
 :large_blue_circle: | [5812](https://www.illumos.org/issues/5812) | [8df1730](https://github.com/illumos/illumos-gate/commit/8df1730) | [8dd86a1](https://github.com/zfsonlinux/zfs/commit/8dd86a1) | assertion failed in zrl_tryenter(): zr_owner==NULL 
