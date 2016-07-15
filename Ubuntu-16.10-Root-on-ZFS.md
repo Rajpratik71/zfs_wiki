@@ -416,7 +416,7 @@ Most problem reports for this tutorial involve `mpt2sas` hardware that does slow
 
 The basic problem is that disks on these controllers are not visible to the Linux kernel until after the regular system is started, and ZoL does not hotplug pool members.  See https://github.com/zfsonlinux/zfs/issues/330.
 
-Most LSI cards are perfectly compatible with ZoL, but there is no known fix if your card has this glitch.  Please use different equipment until the `mpt2sas` incompatibility is diagnosed and fixed, or donate an affected part if you want solution sooner.
+Most LSI cards are perfectly compatible with ZoL. If your card has this glitch, try setting rootdelay=X in GRUB_CMDLINE_LINUX. The system will wait up to X seconds for all drives to appear before importing the pool.
 
 ### Areca
 
