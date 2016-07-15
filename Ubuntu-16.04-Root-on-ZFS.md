@@ -196,7 +196,6 @@ Choose one of the following options:
           /dev/disk/by-id/scsi-SATA_disk1-part3) \
           /boot/efi vfat defaults 0 1 >> /etc/fstab
     # mount /boot/efi
-    # modprobe efivars
     # apt-get install --yes grub-efi-amd64
 
 4.7  Setup system groups:
