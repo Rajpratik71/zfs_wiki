@@ -219,16 +219,12 @@ For extra verification, manually install GRUB again to be certain that the syste
     # grub-probe /
     zfs
 
-5.2  Verify that the ZFS module is installed:
-
-    # ls /boot/grub/*/zfs.mod
-
-5.3  Refresh the initrd files:
+5.2  Refresh the initrd files:
 
     # update-initramfs -c -k all
     update-initramfs: Generating /boot/initrd.img-4.4.0-21-generic
 
-5.4  Optional (but highly recommended): Make debugging GRUB easier:
+5.3  Optional (but highly recommended): Make debugging GRUB easier:
 
     # vi /etc/default/grub
     Comment out GRUB_HIDDEN_TIMEOUT=0
@@ -238,7 +234,7 @@ For extra verification, manually install GRUB again to be certain that the syste
 
 Later, once the system has rebooted twice and you are sure everything is working, you can undo these changes, if desired.
 
-5.5  Update the boot configuration:
+5.4  Update the boot configuration:
 
     # update-grub
     Generating grub configuration file ...
@@ -246,9 +242,9 @@ Later, once the system has rebooted twice and you are sure everything is working
     Found initrd image: /boot/initrd.img-4.4.0-21-generic
     done
 
-5.6  Install the boot loader
+5.5  Install the boot loader
 
-5.6a  For legacy (MBR) booting, install GRUB to the MBR like this:
+5.5a  For legacy (MBR) booting, install GRUB to the MBR like this:
 
     # grub-install /dev/disk/by-id/scsi-SATA_disk1
     Installing for i386-pc platform.
@@ -258,10 +254,14 @@ Do not reboot the computer until you get exactly that result message. Note that 
 
 If you are creating a mirror, repeat the grub-install command for each disk in the pool.
 
-5.6b  For UEFI booting, install GRUB like this:
+5.5b  For UEFI booting, install GRUB like this:
 
     # grub-install --target=x86_64-efi --efi-directory=/boot/efi \
           --bootloader-id=ubuntu --recheck --no-floppy
+
+5.6  Verify that the ZFS module is installed:
+
+    # ls /boot/grub/*/zfs.mod
 
 ## Step 6: First Boot
 
