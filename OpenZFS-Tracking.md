@@ -5,6 +5,7 @@
 
 Status              | OpenZFS Issue                               | OpenZFS                                                           | Linux                                                       | Description
 ------------------- | ------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------
+:white_circle: | [6950] (https://www.illumos.org/issues/6950) | [7fc10f0] (https://github.com/illumos/illumos-gate/commit/7fc10f0) | [#4768](https://github.com/zfsonlinux/zfs/pull/4768) | ARC should cache compressed data
 :red_circle:        | [7082](https://www.illumos.org/issues/7082) | [b8a389e](https://github.com/illumos/illumos-gate/commit/b8a389e) |                                                             | bptree_iterate() passes wrong args to zfs_dbgmsg()
 :large_blue_circle: | [6314](https://www.illumos.org/issues/6314) | [d6160ee](https://github.com/illumos/illumos-gate/commit/d6160ee) | [eca7b76](https://github.com/zfsonlinux/zfs/commit/eca7b76) | buffer overflow in dsl_dataset_name
 :red_circle:        | [7054](https://www.illumos.org/issues/7054) | [de9cc02](https://github.com/illumos/illumos-gate/commit/de9cc02) |                                                             | dmu_tx_hold_t should use refcount_t to track space
