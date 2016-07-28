@@ -55,9 +55,9 @@ When switching from DKMS to kABI-tracking kmods first uninstall the existing DKM
 ```
 $ sudo yum remove $(rpm -qa | egrep "zfs|spl" | grep -v "zfs-release")
 
-$ sudo find /lib/modules/ -name "splat.ko" -or -name "zcommon.ko" \
+$ sudo find /lib/modules/ \( -name "splat.ko" -or -name "zcommon.ko" \
 -or -name "zpios.ko" -or -name "spl.ko" -or -name "zavl.ko" -or \
--name "zfs.ko" -or -name "znvpair.ko" -or -name "zunicode.ko" \
+-name "zfs.ko" -or -name "znvpair.ko" -or -name "zunicode.ko" \) \
 -exec /bin/rm {} \;
 ```
 
