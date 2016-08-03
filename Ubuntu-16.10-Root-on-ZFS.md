@@ -9,7 +9,7 @@
 ### System Requirements
 * [64-bit Ubuntu 16.10 Yakkety Live CD](http://cdimage.ubuntu.com/daily-live/current/yakkety-desktop-amd64.iso) (*not* the alternate installer)
 * 64-bit computer (amd64, a.k.a. x86_64) computer
-* A drive which presents 512B logical sectors.  Installing on a drive which presents 4KiB logical sectors (a "4Kn" drive) should work with UEFI partitioning, but this has not been tested.
+* A drive which presents 512B logical sectors.  Installing on a drive which presents 4KiB logical sectors (a “4Kn” drive) should work with UEFI partitioning, but this has not been tested.
 
 Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory is recommended for normal performance in basic workloads.  If you wish to use deduplication, you will need [massive amounts of RAM](http://wiki.freebsd.org/ZFSTuningGuide#Deduplication). Enabling deduplication is a permanent change that cannot be easily reverted.
 
@@ -19,7 +19,7 @@ Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory i
 
 1.2  Optional: Install the OpenSSH server in the Live CD environment:
 
-If you have a second system, using SSH to access the target system can be convenient and allows copy-and-paste.
+If you have a second system, using SSH to access the target system can be convenient.
 
     $ sudo apt-get --yes install openssh-server
 
@@ -27,7 +27,7 @@ Set a password on the “ubuntu” (Live CD user) account:
 
     $ passwd
 
-**Hint:** You can find your IP address with `ip addr show scope global`.  Then, from your main machine, connect with: `ssh ubuntu@IP`
+**Hint:** You can find your IP address with `ip addr show scope global`.  Then, from your main machine, connect with `ssh ubuntu@IP`.
 
 1.3  Become root:
 
@@ -60,22 +60,22 @@ Set a password on the “ubuntu” (Live CD user) account:
 Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` device nodes directly can cause sporadic import failures, especially on systems that have more than one storage pool.
 
 **Hints:**
-* `# ls -la /dev/disk/by-id` will list the aliases.
-* Are you doing this in a virtual machine? If your virtual disk is missing from `/dev/disk/by-id`, use /dev/vda if you are using KVM with virtio; otherwise, read the [troubleshooting](https://github.com/rlaager/zfs/wiki/HOWTO-Install-Ubuntu-to-a-Native-ZFS-Root-Filesystem#troubleshooting) section.
+* `ls -la /dev/disk/by-id` will list the aliases.
+* Are you doing this in a virtual machine? If your virtual disk is missing from `/dev/disk/by-id`, use `/dev/vda` if you are using KVM with virtio; otherwise, read the [troubleshooting](https://github.com/rlaager/zfs/wiki/HOWTO-Install-Ubuntu-to-a-Native-ZFS-Root-Filesystem#troubleshooting) section.
 
-2.3  Create the root pool on the ZFS partition:
+2.3  Create the root pool:
 
     # zpool create -o ashift=12 \
           -O atime=off -O canmount=off -O compression=lz4 -O normalization=formD \
           -O mountpoint=/ -R /mnt rpool /dev/disk/by-id/scsi-SATA_disk1-part1
 
-The use of ashift=12 is recommended here because many drives today have 4KiB (or larger) physical sectors, even though they present 512B logical sectors.  Also, a future replacement drive may have 4KiB physical sectors (in which case ashift=12 is desirable) or 4KiB logical sectors (in which case ashift=12 is required).
-
-Setting `normalization=formD` eliminates some corner cases relating to UTF-8 filename normalization. It also implies `utf8only=on`, which means that only UTF-8 filenames are allowed. If you care to support non-UTF-8 filenames, do not use this option. For a discussion of why requiring UTF-8 filenames may be a bad idea, see [The problems with enforced UTF-8 only filenames](http://utcc.utoronto.ca/~cks/space/blog/linux/ForcedUTF8Filenames).
+**Notes:**
+* The use of `ashift=12` is recommended here because many drives today have 4KiB (or larger) physical sectors, even though they present 512B logical sectors.  Also, a future replacement drive may have 4KiB physical sectors (in which case `ashift=12` is desirable) or 4KiB logical sectors (in which case `ashift=12` is required).
+* Setting `normalization=formD` eliminates some corner cases relating to UTF-8 filename normalization. It also implies `utf8only=on`, which means that only UTF-8 filenames are allowed. If you care to support non-UTF-8 filenames, do not use this option. For a discussion of why requiring UTF-8 filenames may be a bad idea, see [The problems with enforced UTF-8 only filenames](http://utcc.utoronto.ca/~cks/space/blog/linux/ForcedUTF8Filenames).
 
 **Hints:**
 * The root pool does not have to be a single disk; it can have a mirror or raidz topology.  In that case, repeat the partitioning commands for all the disks which will be part of the pool. Then, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part1 /dev/disk/by-id/scsi-SATA_disk2-part1` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks). Later, install GRUB to all the disks. This is trivial for MBR booting; the UEFI equivalent is currently left as an exercise for the reader.
-* The pool name is arbitrary.  On systems that can automatically install to ZFS, the root pool is named `rpool` by default.  If you work with multiple systems, it might be wise to use something like `hostname`, `hostname0`, or `hostname-1` instead.
+* The pool name is arbitrary.  On systems that can automatically install to ZFS, the root pool is named `rpool` by default.  If you work with multiple systems, it might be wise to use `hostname`, `hostname0`, or `hostname-1` instead.
 
 ## Step 3: System Installation
 
@@ -115,7 +115,7 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
     # zfs create -o com.sun:auto-snapshot=false \
                  -o mountpoint=/var/lib/nfs                 rpool/var/nfs
 
-The primary goal of this dataset layout is to separate the OS (at `rpool/ROOT/ubuntu`) from user data. This allows the root filesystem to be rolled back without rolling back user data like logs (in `/var/log`). This will be especially important if/when a `beadm` or similar utility is integrated. Since we are creating multiple datasets anyway, it is trivial to add some restrictions (for extra security) at the same time. The `com.sun.auto-snapshot` setting is used by some ZFS snapshot utilities to exclude transient data.
+The primary goal of this dataset layout is to separate the OS (at `rpool/ROOT/ubuntu`) from user data. This allows the root filesystem to be rolled back without rolling back user data such as logs (in `/var/log`). This will be especially important if/when a `beadm` or similar utility is integrated. Since we are creating multiple datasets anyway, it is trivial to add some restrictions (for extra security) at the same time. The `com.sun.auto-snapshot` setting is used by some ZFS snapshot utilities to exclude transient data.
 
 3.4  Install the minimal system:
 
@@ -132,15 +132,16 @@ The `debootstrap` command leaves the new system in an unconfigured state.  An al
     # echo HOSTNAME > /mnt/etc/hostname
 
     # vi /mnt/etc/hosts
-    Add a line like this:
+    Add a line:
     127.0.1.1       HOSTNAME
     or if the system has a real name in DNS:
     127.0.1.1       FQDN HOSTNAME
 
 **Hint:** Use `nano` if you find `vi` confusing.
 
-4.2  Edit the `/mnt/etc/network/interfaces.d/eth0` file so that it contains something like this:
+4.2  Configure the network interface:
 
+    # vi /mnt/etc/network/interfaces.d/eth0
     auto eth0
     iface eth0 inet dhcp
 
@@ -164,6 +165,7 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
     # echo 'LANG="en_US.UTF-8"' > /etc/default/locale
 
     # dpkg-reconfigure tzdata
+
     # vi /etc/apt/sources.list
     deb http://archive.ubuntu.com/ubuntu yakkety main universe
     deb-src http://archive.ubuntu.com/ubuntu yakkety main universe
@@ -173,6 +175,7 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
     deb http://archive.ubuntu.com/ubuntu yakkety-updates main universe
     deb-src http://archive.ubuntu.com/ubuntu yakkety-updates main universe
+
     # ln -s /proc/self/mounts /etc/mtab
     # apt-get update
 
@@ -211,8 +214,6 @@ Choose one of the following options:
 
 ## Step 5: GRUB Installation
 
-For extra verification, manually install GRUB again to be certain that the system is bootable.
-
 5.1  Verify that the ZFS root filesystem is recognized:
 
     # grub-probe /
@@ -226,9 +227,9 @@ For extra verification, manually install GRUB again to be certain that the syste
 5.3  Optional (but highly recommended): Make debugging GRUB easier:
 
     # vi /etc/default/grub
-    Comment out GRUB_HIDDEN_TIMEOUT=0
-    Remove quiet and splash from GRUB_CMDLINE_LINUX_DEFAULT
-    Uncomment GRUB_TERMINAL=console
+    Comment out: GRUB_HIDDEN_TIMEOUT=0
+    Remove quiet and splash from: GRUB_CMDLINE_LINUX_DEFAULT
+    Uncomment: GRUB_TERMINAL=console
     Save and quit.
 
 Later, once the system has rebooted twice and you are sure everything is working, you can undo these changes, if desired.
@@ -243,7 +244,7 @@ Later, once the system has rebooted twice and you are sure everything is working
 
 5.5  Install the boot loader
 
-5.5a  For legacy (MBR) booting, install GRUB to the MBR like this:
+5.5a  For legacy (MBR) booting, install GRUB to the MBR:
 
     # grub-install /dev/disk/by-id/scsi-SATA_disk1
     Installing for i386-pc platform.
@@ -253,7 +254,7 @@ Do not reboot the computer until you get exactly that result message. Note that 
 
 If you are creating a mirror, repeat the grub-install command for each disk in the pool.
 
-5.5b  For UEFI booting, install GRUB like this:
+5.5b  For UEFI booting, install GRUB:
 
     # grub-install --target=x86_64-efi --efi-directory=/boot/efi \
           --bootloader-id=ubuntu --recheck --no-floppy
@@ -285,7 +286,7 @@ In the future, you will likely want to take snapshots before each upgrade, and r
 
 6.5  Wait for the newly installed system to boot normally. Login as root.
 
-6.6  Add a user account on the new system:
+6.6  Create a user account:
 
 Choose one of the following options:
 
@@ -307,7 +308,7 @@ Choose one of the following options:
 
 The temporary name for the dataset is required to work-around [a bug in ecryptfs-setup-private](https://bugs.launchpad.net/ubuntu/+source/ecryptfs-utils/+bug/1574174).  Otherwise, it will fail with an error saying the home directory is already mounted; that check is not specific enough in the pattern it uses.
 
-**Note:** Automatically mounted snapshots (i.e. the `.zfs/snapshots` directory) will not work through ecryptfs.  You can do another ecryptfs mount manually if you need to access files in a snapshot.  A script to automate the mounting should be possible, but has not yet been implemented.
+**Note:** Automatically mounted snapshots (i.e. the `.zfs/snapshots` directory) will not work through eCryptfs.  You can do another eCryptfs mount manually if you need to access files in a snapshot.  A script to automate the mounting should be possible, but has not yet been implemented.
 
 6.7  Add your user account to the default set of groups for an administrator:
 
@@ -397,7 +398,7 @@ As `/var/log` is already compressed by ZFS, logrotate’s compression is going t
 
 9.4  Optional (not recommended):
 
-If you really like the graphical boot process, you can re-enable it now. It will make debugging boot problems more difficult, though.
+If you prefer the graphical boot process, you can re-enable it now. It will make debugging boot problems more difficult, though.
 
     $ sudo vi /etc/default/grub
     Uncomment GRUB_HIDDEN_TIMEOUT=0
