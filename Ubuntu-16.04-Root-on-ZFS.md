@@ -74,7 +74,7 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
              -o feature@bookmarks=enabled \
              -o feature@enabled_txg=enabled \
              -o feature@embedded_data=enabled \
-             -o feature@large_blocks=enabled
+             -o feature@large_blocks=enabled \
           rpool /dev/disk/by-id/scsi-SATA_disk1-part1
 
 **Notes:**
