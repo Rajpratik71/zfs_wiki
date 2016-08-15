@@ -234,7 +234,7 @@ Choose one of the following options:
 5.2  Refresh the initrd files:
 
     # update-initramfs -c -k all
-    update-initramfs: Generating /boot/initrd.img-4.4.0-21-generic
+    update-initramfs: Generating /boot/initrd.img-4.4.0-34-generic
 
 5.3  Optional (but highly recommended): Make debugging GRUB easier:
 
@@ -250,8 +250,8 @@ Later, once the system has rebooted twice and you are sure everything is working
 
     # update-grub
     Generating grub configuration file ...
-    Found linux image: /boot/vmlinuz-4.4.0-21-generic
-    Found initrd image: /boot/initrd.img-4.4.0-21-generic
+    Found linux image: /boot/vmlinuz-4.4.0-34-generic
+    Found initrd image: /boot/initrd.img-4.4.0-34-generic
     done
 
 5.5  Install the boot loader
