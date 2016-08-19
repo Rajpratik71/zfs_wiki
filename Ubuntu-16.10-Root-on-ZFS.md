@@ -35,8 +35,6 @@ Set a password on the “ubuntu” (Live CD user) account:
 
 1.4  Install ZFS in the Live CD environment:
 
-    # apt-add-repository universe
-    # apt-get update
     # apt-get install --yes debootstrap gdisk zfs-initramfs
 
 ## Step 2: Disk Formatting
@@ -179,14 +177,14 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
     # dpkg-reconfigure tzdata
 
     # vi /etc/apt/sources.list
-    deb http://archive.ubuntu.com/ubuntu yakkety main universe
-    deb-src http://archive.ubuntu.com/ubuntu yakkety main universe
+    deb http://archive.ubuntu.com/ubuntu yakkety main
+    deb-src http://archive.ubuntu.com/ubuntu yakkety main
 
-    deb http://security.ubuntu.com/ubuntu yakkety-security main universe
-    deb-src http://security.ubuntu.com/ubuntu yakkety-security main universe
+    deb http://security.ubuntu.com/ubuntu yakkety-security main
+    deb-src http://security.ubuntu.com/ubuntu yakkety-security main
 
-    deb http://archive.ubuntu.com/ubuntu yakkety-updates main universe
-    deb-src http://archive.ubuntu.com/ubuntu yakkety-updates main universe
+    deb http://archive.ubuntu.com/ubuntu yakkety-updates main
+    deb-src http://archive.ubuntu.com/ubuntu yakkety-updates main
 
     # ln -s /proc/self/mounts /etc/mtab
     # apt-get update
