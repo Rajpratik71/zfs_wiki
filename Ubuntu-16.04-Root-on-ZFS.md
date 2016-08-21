@@ -150,11 +150,14 @@ The `debootstrap` command leaves the new system in an unconfigured state.  An al
 
 4.2  Configure the network interface:
 
-    # vi /mnt/etc/network/interfaces.d/eth0
-    auto eth0
-    iface eth0 inet dhcp
+    Find the interface name:
+    # ifconfig -a
 
-Customize this file if the interface is not named eth0 or if new system is not a DHCP client on the LAN.
+    # vi /mnt/etc/network/interfaces.d/NAME
+    auto NAME
+    iface NAME inet dhcp
+
+Customize this file if the system is not a DHCP client.
 
 4.3  Bind the virtual filesystems from the LiveCD environment to the new system and `chroot` into it:
 
