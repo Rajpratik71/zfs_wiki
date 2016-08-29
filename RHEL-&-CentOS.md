@@ -6,13 +6,13 @@
 To simplify installation a zfs-release package is provided which includes a zfs.repo configuration file and the ZFS on Linux public signing key.  All official ZFS on Linux packages are signed using this key, and by default yum will verify a package's signature before allowing it be to installed.  Users are strongly encouraged to verify the authenticity of the ZFS on Linux public key using the fingerprint listed here.
 
 **Location:** /etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux  
-**EL6 Package:** http://archive.zfsonlinux.org/epel/zfs-release.el6.noarch.rpm  
-**EL7 Package:** http://archive.zfsonlinux.org/epel/zfs-release.el7.noarch.rpm  
+**EL6 Package:** http://download.zfsonlinux.org/epel/zfs-release.el6.noarch.rpm  
+**EL7 Package:** http://download.zfsonlinux.org/epel/zfs-release.el7.noarch.rpm  
 **Download from:** [pgp.mit.edu][pubkey]  
 **Fingerprint:** C93A FFFD 9F3F 7B03 C310  CEB6 A9D5 A1C0 F14A B620
 
 ```
-$ sudo yum localinstall --nogpgcheck http://archive.zfsonlinux.org/epel/zfs-release$(rpm -E %dist).noarch.rpm
+$ sudo yum localinstall http://download.zfsonlinux.org/epel/zfs-release$(rpm -E %dist).noarch.rpm
 $ gpg --quiet --with-fingerprint /etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
 pub  2048R/F14AB620 2013-03-21 ZFS on Linux <zfs@zfsonlinux.org>
     Key fingerprint = C93A FFFD 9F3F 7B03 C310  CEB6 A9D5 A1C0 F14A B620
