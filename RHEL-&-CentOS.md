@@ -23,15 +23,27 @@ After installing the zfs-release package and verifying the public key users can 
 
 ## kABI-tracking kmod
 
-By default the zfs-release package is configured to install DKMS style packages so they will work with a wide range of kernels.  In order to install the kABI-tracking kmods the *baseurl* in the */etc/yum.repos.d/zfs.repo* file must be updated as shown.  Keep in mind that the kABI-tracking kmods are only verified to work with the distribution provided kernel.
+By default the zfs-release package is configured to install DKMS style packages so they will work with a wide range of kernels.  In order to install the kABI-tracking kmods the default repository in the */etc/yum.repos.d/zfs.repo* file must be switch from *zfs* to *zfs-kmod*.  Keep in mind that the kABI-tracking kmods are only verified to work with the distribution provided kernel.
 
 ```diff
 # /etc/yum.repos.d/zfs.repo
  [zfs]
- name=ZFS on Linux for EL<6|7>
--baseurl=http://archive.zfsonlinux.org/epel/<6|7>/$basearch/
-+baseurl=http://archive.zfsonlinux.org/epel/<6|7>/kmod/$basearch/
- enabled=1
+ name=ZFS on Linux for EL 7 - dkms
+ baseurl=http://download.zfsonlinux.org/epel/7/$basearch/
+-enabled=1
++enabled=0
+ metadata_expire=7d
+ gpgcheck=1
+ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
+@@ -9,7 +9,7 @@
+ [zfs-kmod]
+ name=ZFS on Linux for EL 7 - kmod
+ baseurl=http://download.zfsonlinux.org/epel/7/kmod/$basearch/
+-enabled=0
++enabled=1
+ metadata_expire=7d
+ gpgcheck=1
+ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
 ```
 
 The ZFS on Linux packages can now be installed using yum.
