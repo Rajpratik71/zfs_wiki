@@ -5,7 +5,7 @@
 
 Status              | OpenZFS Issue                               | OpenZFS                                                           | Linux                                                       | Description
 ------------------- | ------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------
-:white_circle: | [6322] (https://www.illumos.org/issues/6322) | [cb92f41] ( ) | [#5040](https://github.com/zfsonlinux/zfs/pull/5040) | ZFS indirect block predictive prefetch
+:white_circle: | [6322] (https://www.illumos.org/issues/6322) | [cb92f41] (https://github.com/illumos/illumos-gate/commit/cb92f4130ce5b2c4ae1fa5fa6c776f4d4dc28ad9) | [#5040](https://github.com/zfsonlinux/zfs/pull/5040) | ZFS indirect block predictive prefetch
 :white_circle: | [7176] (https://www.illumos.org/issues/7176) | [ ] ( ) | [#4950](https://github.com/zfsonlinux/zfs/pull/4950) | Yet another hole birth issue
 :white_circle: | [6950] (https://www.illumos.org/issues/6950) | [7fc10f0] (https://github.com/illumos/illumos-gate/commit/7fc10f0) | [#4768](https://github.com/zfsonlinux/zfs/pull/4768) | ARC should cache compressed data
 :red_circle:        | [7082](https://www.illumos.org/issues/7082) | [b8a389e](https://github.com/illumos/illumos-gate/commit/b8a389e) |                                                             | bptree_iterate() passes wrong args to zfs_dbgmsg()
