@@ -1,11 +1,11 @@
 :large_blue_circle: 358 - Applied to master branch  
-:white_circle:      2 - Open pull request against master branch pending review  
+:white_circle:      3 - Open pull request against master branch pending review  
 :red_circle:        49 - No existing pull request against the master branch  
 :black_circle:      25 - Not applicable to Linux  
 
 Status              | OpenZFS Issue                               | OpenZFS                                                           | Linux                                                       | Description
 ------------------- | ------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------------
-:white_circle: | [6322] (https://www.illumos.org/issues/6322) | [cb92f41] (https://github.com/illumos/illumos-gate/commit/cb92f4130ce5b2c4ae1fa5fa6c776f4d4dc28ad9) | [#5040](https://github.com/zfsonlinux/zfs/pull/5040) | ZFS indirect block predictive prefetch
+:white_circle: | [6940] (https://www.illumos.org/issues/6940) | [1a04bab] (https://github.com/zfsonlinux/zfs/commit/1a04bab34808694f3bf1cef3dc208c9499d103aa) | [#5044](https://github.com/zfsonlinux/zfs/pull/5044) | Cannot unlink directories when over quota
 :white_circle: | [7176] (https://www.illumos.org/issues/7176) | [ ] ( ) | [#4950](https://github.com/zfsonlinux/zfs/pull/4950) | Yet another hole birth issue
 :white_circle: | [6950] (https://www.illumos.org/issues/6950) | [7fc10f0] (https://github.com/illumos/illumos-gate/commit/7fc10f0) | [#4768](https://github.com/zfsonlinux/zfs/pull/4768) | ARC should cache compressed data
 :red_circle:        | [7082](https://www.illumos.org/issues/7082) | [b8a389e](https://github.com/illumos/illumos-gate/commit/b8a389e) |                                                             | bptree_iterate() passes wrong args to zfs_dbgmsg()
