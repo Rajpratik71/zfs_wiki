@@ -6,13 +6,13 @@
 To simplify installation a zfs-release package is provided which includes a zfs.repo configuration file and the ZFS on Linux public signing key.  All official ZFS on Linux packages are signed using this key, and by default yum will verify a package's signature before allowing it be to installed.  Users are strongly encouraged to verify the authenticity of the ZFS on Linux public key using the fingerprint listed here.
 
 **Location:** /etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux  
-**EL6 Package:** http://archive.zfsonlinux.org/epel/zfs-release.el6.noarch.rpm  
-**EL7 Package:** http://archive.zfsonlinux.org/epel/zfs-release.el7.noarch.rpm  
+**EL6 Package:** http://download.zfsonlinux.org/epel/zfs-release.el6.noarch.rpm  
+**EL7 Package:** http://download.zfsonlinux.org/epel/zfs-release.el7.noarch.rpm  
 **Download from:** [pgp.mit.edu][pubkey]  
 **Fingerprint:** C93A FFFD 9F3F 7B03 C310  CEB6 A9D5 A1C0 F14A B620
 
 ```
-$ sudo yum localinstall --nogpgcheck http://archive.zfsonlinux.org/epel/zfs-release$(rpm -E %dist).noarch.rpm
+$ sudo yum localinstall http://download.zfsonlinux.org/epel/zfs-release$(rpm -E %dist).noarch.rpm
 $ gpg --quiet --with-fingerprint /etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
 pub  2048R/F14AB620 2013-03-21 ZFS on Linux <zfs@zfsonlinux.org>
     Key fingerprint = C93A FFFD 9F3F 7B03 C310  CEB6 A9D5 A1C0 F14A B620
@@ -23,15 +23,27 @@ After installing the zfs-release package and verifying the public key users can 
 
 ## kABI-tracking kmod
 
-By default the zfs-release package is configured to install DKMS style packages so they will work with a wide range of kernels.  In order to install the kABI-tracking kmods the *baseurl* in the */etc/yum.repos.d/zfs.repo* file must be updated as shown.  Keep in mind that the kABI-tracking kmods are only verified to work with the distribution provided kernel.
+By default the zfs-release package is configured to install DKMS style packages so they will work with a wide range of kernels.  In order to install the kABI-tracking kmods the default repository in the */etc/yum.repos.d/zfs.repo* file must be switch from *zfs* to *zfs-kmod*.  Keep in mind that the kABI-tracking kmods are only verified to work with the distribution provided kernel.
 
 ```diff
 # /etc/yum.repos.d/zfs.repo
  [zfs]
- name=ZFS on Linux for EL<6|7>
--baseurl=http://archive.zfsonlinux.org/epel/<6|7>/$basearch/
-+baseurl=http://archive.zfsonlinux.org/epel/<6|7>/kmod/$basearch/
- enabled=1
+ name=ZFS on Linux for EL 7 - dkms
+ baseurl=http://download.zfsonlinux.org/epel/7/$basearch/
+-enabled=1
++enabled=0
+ metadata_expire=7d
+ gpgcheck=1
+ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
+@@ -9,7 +9,7 @@
+ [zfs-kmod]
+ name=ZFS on Linux for EL 7 - kmod
+ baseurl=http://download.zfsonlinux.org/epel/7/kmod/$basearch/
+-enabled=0
++enabled=1
+ metadata_expire=7d
+ gpgcheck=1
+ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
 ```
 
 The ZFS on Linux packages can now be installed using yum.
