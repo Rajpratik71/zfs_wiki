@@ -65,22 +65,11 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
     # zpool create -o ashift=12 \
           -O atime=off -O canmount=off -O compression=lz4 -O normalization=formD \
           -O mountpoint=/ -R /mnt \
-          -d -o feature@async_destroy=enabled \
-             -o feature@empty_bpobj=enabled \
-             -o feature@filesystem_limits=enabled \
-             -o feature@lz4_compress=enabled \
-             -o feature@spacemap_histogram=enabled \
-             -o feature@extensible_dataset=enabled \
-             -o feature@bookmarks=enabled \
-             -o feature@enabled_txg=enabled \
-             -o feature@embedded_data=enabled \
-             -o feature@large_blocks=enabled \
           rpool /dev/disk/by-id/scsi-SATA_disk1-part1
 
 **Notes:**
 * The use of `ashift=12` is recommended here because many drives today have 4KiB (or larger) physical sectors, even though they present 512B logical sectors.  Also, a future replacement drive may have 4KiB physical sectors (in which case `ashift=12` is desirable) or 4KiB logical sectors (in which case `ashift=12` is required).
 * Setting `normalization=formD` eliminates some corner cases relating to UTF-8 filename normalization. It also implies `utf8only=on`, which means that only UTF-8 filenames are allowed. If you care to support non-UTF-8 filenames, do not use this option. For a discussion of why requiring UTF-8 filenames may be a bad idea, see [The problems with enforced UTF-8 only filenames](http://utcc.utoronto.ca/~cks/space/blog/linux/ForcedUTF8Filenames).
-* The `hole_birth` feature is currently unsafe, so all zpool features are disabled with `-d` and then each feature except `hole_birth` is manually enabled. See [ZFS "partially filled holes lose birth time"](https://bugs.launchpad.net/ubuntu/+source/zfs-linux/+bug/1600060), [Want tunable to ignore hole_birth](https://github.com/zfsonlinux/zfs/pull/4833), [Silently corrupted file in snapshots after send/receive](https://github.com/zfsonlinux/zfs/issues/4809), [ZFS send fails to transmit some holes](https://www.illumos.org/issues/6370), [partially filled holes lose birth time](https://www.illumos.org/issues/6513), [dnode_next_offset can detect fictional holes](https://www.illumos.org/issues/6844), and [Yet another hole birth issue](https://www.illumos.org/issues/7176).
 
 **Hints:**
 * The root pool does not have to be a single disk; it can have a mirror or raidz topology.  In that case, repeat the partitioning commands for all the disks which will be part of the pool. Then, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part1 /dev/disk/by-id/scsi-SATA_disk2-part1` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks). Later, install GRUB to all the disks. This is trivial for MBR booting; the UEFI equivalent is currently left as an exercise for the reader.
