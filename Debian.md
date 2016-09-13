@@ -1,4 +1,4 @@
-[DKMS][dkms] style packages are provided for Debian from the official GNU/Linux repository.
+[DKMS][dkms] style packages are provided for Debian from the official Debian GNU/Linux repository.
 
 ZFS On Linux are available for the following configurations only from the Debian GNU/Linux repository:
 
