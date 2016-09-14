@@ -12,7 +12,7 @@ To simplify installation a zfs-release package is provided which includes a zfs.
 **Fingerprint:** C93A FFFD 9F3F 7B03 C310  CEB6 A9D5 A1C0 F14A B620
 
 ```
-$ sudo yum localinstall http://download.zfsonlinux.org/epel/zfs-release$(rpm -E %dist).noarch.rpm
+$ sudo yum install http://download.zfsonlinux.org/epel/zfs-release$(rpm -E %dist).noarch.rpm
 $ gpg --quiet --with-fingerprint /etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
 pub  2048R/F14AB620 2013-03-21 ZFS on Linux <zfs@zfsonlinux.org>
     Key fingerprint = C93A FFFD 9F3F 7B03 C310  CEB6 A9D5 A1C0 F14A B620
