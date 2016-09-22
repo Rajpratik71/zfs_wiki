@@ -168,14 +168,14 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
     # dpkg-reconfigure tzdata
 
     # vi /etc/apt/sources.list
-    deb http://archive.ubuntu.com/ubuntu xenial main
-    deb-src http://archive.ubuntu.com/ubuntu xenial main
+    deb http://archive.ubuntu.com/ubuntu xenial main universe
+    deb-src http://archive.ubuntu.com/ubuntu xenial main universe
 
-    deb http://security.ubuntu.com/ubuntu xenial-security main
-    deb-src http://security.ubuntu.com/ubuntu xenial-security main
+    deb http://security.ubuntu.com/ubuntu xenial-security main universe
+    deb-src http://security.ubuntu.com/ubuntu xenial-security main universe
 
-    deb http://archive.ubuntu.com/ubuntu xenial-updates main
-    deb-src http://archive.ubuntu.com/ubuntu xenial-updates main
+    deb http://archive.ubuntu.com/ubuntu xenial-updates main universe
+    deb-src http://archive.ubuntu.com/ubuntu xenial-updates main universe
 
     # ln -s /proc/self/mounts /etc/mtab
     # apt-get update
