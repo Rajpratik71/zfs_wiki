@@ -39,8 +39,6 @@ Set a password on the “ubuntu” (Live CD user) account:
     # apt-get update
     # apt-get install --yes debootstrap gdisk zfs-initramfs
 
-**Note:** You can ignore the two error lines about "AppStream".  They are harmless.
-
 ## Step 2: Disk Formatting
 
 2.1  If you are re-using any disks which were previously in an MD array, zero the MD superblock now to avoid corruption if MD were to try to assemble the old array.
