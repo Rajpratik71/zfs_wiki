@@ -14,26 +14,26 @@ Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory i
 
 1.1  Boot the Ubuntu Live CD, select Try Linux, and open a terminal (press Ctrl-Alt-T).
 
-1.2  Optional: Install the OpenSSH server in the Live CD environment:
+1.2  Setup and update the repositories:
+
+    $ sudo apt-add-repository universe
+    $ sudo apt update
+
+1.3  Optional: Install the OpenSSH server in the Live CD environment:
 
 If you have a second system, using SSH to access the target system can be convenient.
 
-    $ sudo apt --yes install openssh-server
-
-Set a password on the “ubuntu” (Live CD user) account:
-
     $ passwd
+    $ sudo apt --yes install openssh-server
 
 **Hint:** You can find your IP address with `ip addr show scope global`.  Then, from your main machine, connect with `ssh ubuntu@IP`.
 
-1.3  Become root:
+1.4  Become root:
 
-    # sudo -i
+    $ sudo -i
 
-1.4  Install ZFS in the Live CD environment:
+1.5  Install ZFS in the Live CD environment:
 
-    # apt-add-repository universe
-    # apt update
     # apt install --yes debootstrap gdisk zfs-initramfs
 
 **Note:** You can ignore the two error lines about "AppStream".  They are harmless.
