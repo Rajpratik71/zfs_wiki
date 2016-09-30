@@ -65,6 +65,7 @@ Choose one of the following options:
 
 2.2b  LUKS:
 
+    # sgdisk     -n4:0:+512M  -t4:8300 /dev/disk/by-id/scsi-SATA_disk1
     # sgdisk     -n1:0:0      -t1:8300 /dev/disk/by-id/scsi-SATA_disk1
 
 Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` device nodes directly can cause sporadic import failures, especially on systems that have more than one storage pool.
@@ -145,7 +146,13 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
 
 The primary goal of this dataset layout is to separate the OS from user data. This allows the root filesystem to be rolled back without rolling back user data such as logs (in `/var/log`). This will be especially important if/when a `beadm` or similar utility is integrated. Since we are creating multiple datasets anyway, it is trivial to add some restrictions (for extra security) at the same time. The `com.sun.auto-snapshot` setting is used by some ZFS snapshot utilities to exclude transient data.
 
-3.4  Install the minimal system:
+3.4  For LUKS installs only:
+
+    # mke2fs -t ext2 /dev/disk/by-id/scsi-SATA_disk1-part4
+    # mkdir /mnt/boot
+    # mount /dev/disk/by-id/scsi-SATA_disk1-part4 /mnt/boot
+
+3.5  Install the minimal system:
 
     # chmod 1777 /mnt/var/tmp
     # debootstrap yakkety /mnt
@@ -217,31 +224,20 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
 4.6  For LUKS installs only:
 
+    # echo UUID=$(blkid -s UUID -o value \
+          /dev/disk/by-id/scsi-SATA_disk1-part4) \
+          /boot ext2 defaults 0 2 >> /etc/fstab
+
     # apt install --yes cryptsetup
 
-    # mkdir /etc/keys
-    # dd bs=64 count=1 if=/dev/urandom of=/etc/keys/root.key
-    # chmod 600 /etc/keys/root.key
-    # cryptsetup luksAddKey /dev/disk/by-id/scsi-SATA_disk1-part1 /etc/keys/root.key
     # echo luks1 UUID=$(blkid -s UUID -o value \
-          /dev/disk/by-id/scsi-SATA_disk1-part1) /etc/keys/root.key \
+          /dev/disk/by-id/scsi-SATA_disk1-part1) none \
           luks,discard,initramfs > /etc/crypttab
 
-    # vi /etc/initramfs-tools/initramfs.conf
-    Add these lines:
-    export KEYFILE_PATTERN="/etc/keys/*.key"
-    UMASK=077
-
-**Caution**: It is important that the keyfile and the initrd (which contains the keyfile) are only readable by root. If anyone can read the keyfile on the running system, they can decrypt the disk. The keyfile is permissioned directly in the instructions above, and the initrd is handled by the `UMASK` setting in `/etc/initramfs-tools/initramfs.conf`.
-
 **Notes:**
-* The keyfile is [hashed by LUKS as a passphrase](http://www.saout.de/pipermail/dm-crypt/2010-May/000792.html). The recommendation from the maintainer (in that same source) is to provide “some more bits” of entropy, but there is no mention of how much. [NIST SP 800-90B (2nd Draft), section 3.1.5.1.2](http://csrc.nist.gov/publications/drafts/800-90/draft-sp800-90b.pdf) says that the input entropy should be “2×” to ensure full-entropy output from the hash function. Accordingly, the keyfile is 64-bytes (512 bits), twice the 256 bits of the SHA-256 hash function. This is probably overkill by another factor of two, given that the strength of the encryption key is 128 bits.
 * The use of `initramfs` is a work-around for [cryptsetup does not support ZFS](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906).
-* The KEYFILE_PATTERN needs to move to /etc/crytsetup-initramfs/conf-hook in the future.
 
 4.6  Install GRUB
-
-**Note:** When using LUKS, installing GRUB will fail. Choose “Yes” to continue. This will be resolved later.
 
 Choose one of the following options:
 
@@ -306,11 +302,7 @@ Install GRUB to the disk(s), not the partition(s).
 
 Later, once the system has rebooted twice and you are sure everything is working, you can undo these changes, if desired.
 
-5.4  For LUKS installs only:
-    # vi /etc/default/grub
-    Add: GRUB_ENABLE_CRYPTODISK=y
-
-5.5  Update the boot configuration:
+5.4  Update the boot configuration:
 
     # update-grub
     Generating grub configuration file ...
@@ -318,9 +310,9 @@ Later, once the system has rebooted twice and you are sure everything is working
     Found initrd image: /boot/initrd.img-4.8.0-22-generic
     done
 
-5.6  Install the boot loader
+5.5  Install the boot loader
 
-5.6a  For legacy (MBR) booting, install GRUB to the MBR:
+5.5a  For legacy (MBR) booting, install GRUB to the MBR:
 
     # grub-install /dev/disk/by-id/scsi-SATA_disk1
     Installing for i386-pc platform.
@@ -330,12 +322,12 @@ Do not reboot the computer until you get exactly that result message. Note that 
 
 If you are creating a mirror, repeat the grub-install command for each disk in the pool.
 
-5.6b  For UEFI booting, install GRUB:
+5.5b  For UEFI booting, install GRUB:
 
     # grub-install --target=x86_64-efi --efi-directory=/boot/efi \
           --bootloader-id=ubuntu --recheck --no-floppy
 
-5.7  Verify that the ZFS module is installed:
+5.6  Verify that the ZFS module is installed:
 
     # ls /boot/grub/*/zfs.mod
 
@@ -473,9 +465,9 @@ As `/var/log` is already compressed by ZFS, logrotate’s compression is going t
 
     $ sudo usermod -p '*' root
 
-9.4  Optional (not recommended):
+9.4  Optional:
 
-If you prefer the graphical boot process, you can re-enable it now. It will make debugging boot problems more difficult, though.
+If you prefer the graphical boot process, you can re-enable it now. If you are using LUKS, it makes the prompt look nicer.
 
     $ sudo vi /etc/default/grub
     Uncomment GRUB_HIDDEN_TIMEOUT=0
