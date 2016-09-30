@@ -18,7 +18,7 @@ Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory i
 
 If you have a second system, using SSH to access the target system can be convenient.
 
-    $ sudo apt-get --yes install openssh-server
+    $ sudo apt --yes install openssh-server
 
 Set a password on the “ubuntu” (Live CD user) account:
 
@@ -33,8 +33,8 @@ Set a password on the “ubuntu” (Live CD user) account:
 1.4  Install ZFS in the Live CD environment:
 
     # apt-add-repository universe
-    # apt-get update
-    # apt-get install --yes debootstrap gdisk zfs-initramfs
+    # apt update
+    # apt install --yes debootstrap gdisk zfs-initramfs
 
 **Note:** You can ignore the two error lines about "AppStream".  They are harmless.
 
@@ -180,13 +180,13 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
     deb-src http://archive.ubuntu.com/ubuntu xenial-updates main universe
 
     # ln -s /proc/self/mounts /etc/mtab
-    # apt-get update
-    # apt-get install --yes ubuntu-minimal
+    # apt update
+    # apt install --yes ubuntu-minimal
 
 4.5  Install ZFS in the chroot environment for the new system:
 
-    # apt-get install --yes --no-install-recommends linux-image-generic
-    # apt-get install --yes zfs-initramfs
+    # apt install --yes --no-install-recommends linux-image-generic
+    # apt install --yes zfs-initramfs
 
 4.6  Install GRUB
 
@@ -194,18 +194,18 @@ Choose one of the following options:
 
 4.6a  Install GRUB for legacy (MBR) booting
 
-    # apt-get install --yes grub-pc
+    # apt install --yes grub-pc
 
 4.6b  Install GRUB for UEFI booting
 
-    # apt-get install dosfstools
+    # apt install dosfstools
     # mkdosfs -F 32 -n EFI /dev/disk/by-id/scsi-SATA_disk1-part3
     # mkdir /boot/efi
     # echo PARTUUID=$(blkid -s PARTUUID -o value \
           /dev/disk/by-id/scsi-SATA_disk1-part3) \
           /boot/efi vfat defaults 0 1 >> /etc/fstab
     # mount /boot/efi
-    # apt-get install --yes grub-efi-amd64
+    # apt install --yes grub-efi-amd64
 
 4.7  Setup system groups:
 
@@ -303,7 +303,7 @@ Choose one of the following options:
 
 6.6b  Create an encrypted home directory:
 
-    # apt-get install ecryptfs-utils
+    # apt install ecryptfs-utils
 
     # zfs create -o compression=off -o mountpoint=/home/.ecryptfs/YOURUSERNAME \
           rpool/home/temp-YOURUSERNAME
@@ -358,7 +358,7 @@ Choose one of the following options.  If you are going to do an encrypted home d
 
 8.1  Upgrade the minimal system:
 
-    # apt-get dist-upgrade --yes
+    # apt dist-upgrade --yes
 
 8.2  Install a regular set of software:
 
@@ -366,11 +366,11 @@ Choose one of the following options:
 
 8.2a  Install a command-line environment only:
 
-    # apt-get install --yes ubuntu-standard
+    # apt install --yes ubuntu-standard
 
 8.2b  Install a full GUI environment:
 
-    # apt-get install --yes ubuntu-desktop
+    # apt install --yes ubuntu-desktop
 
 **Hint**: If you are installing a full GUI environment, you will likely want to manage your network with NetworkManager. In that case, `rm /etc/network/interfaces.d/eth0`.
 
@@ -440,7 +440,7 @@ Set a unique serial number on each virtual disk (e.g.: `-drive if=none,id=disk1,
 
 To be able to use UEFI in guests (instead of only BIOS booting):
 
-    $ sudo apt-get install ovmf
+    $ sudo apt install ovmf
     $ sudo vi /etc/libvirt/qemu.conf
     Uncomment this line:
     nvram = [ "/usr/share/OVMF/OVMF_CODE.fd:/usr/share/OVMF/OVMF_VARS.fd" ]
