@@ -10,6 +10,10 @@
 
 Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory is recommended for normal performance in basic workloads.  If you wish to use deduplication, you will need [massive amounts of RAM](http://wiki.freebsd.org/ZFSTuningGuide#Deduplication). Enabling deduplication is a permanent change that cannot be easily reverted.
 
+## Reporting Bugs
+
+If you have bugs or feature requests related to this HOWTO, please [file a new issue](https://github.com/zfsonlinux/zfs/issues/new) and mention @rlaager.
+
 ## Step 1: Prepare The Install Environment
 
 1.1  Boot the Ubuntu Live CD, select Try Linux, and open a terminal (press Ctrl-Alt-T).
