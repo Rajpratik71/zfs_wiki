@@ -430,6 +430,38 @@ If you prefer the graphical boot process, you can re-enable it now. It will make
 
 ## Troubleshooting
 
+### Rescuing using a Live CD
+
+Boot the Live CD and open a terminal.
+
+Become root and install the ZFS utilities:
+
+    $ sudo -i
+    # apt update
+    # apt install --yes zfsutils-linux
+
+This will automatically import your pool. Export it and re-import it to get the mounts right:
+
+    # zpool export -a
+    # zpool import -N -R /mnt rpool
+    # zfs mount rpool/ROOT/ubuntu
+    # zfs mount -a
+
+If needed, you can chroot into your installed environment:
+
+    # mount --rbind /dev  /mnt/dev
+    # mount --rbind /proc /mnt/proc
+    # mount --rbind /sys  /mnt/sys
+    # chroot /mnt /bin/bash --login
+
+Do whatever you need to do to fix your system.
+
+When done, cleanup:
+
+    # mount | grep -v zfs | tac | awk '/\/mnt/ {print $3}' | xargs -i{} umount -lf {}
+    # zpool export rpool
+    # reboot
+
 ### MPT2SAS
 
 Most problem reports for this tutorial involve `mpt2sas` hardware that does slow asynchronous drive initialization, like some IBM M1015 or OEM-branded cards that have been flashed to the reference LSI firmware.
