@@ -14,6 +14,18 @@ Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory i
 
 If you need help, reach out to the community using the [zfs-discuss mailing list](http://list.zfsonlinux.org/mailman/listinfo/zfs-discuss) or IRC at #zfsonlinux on [freenode](https://freenode.net/). If you have a bug report or feature request related to this HOWTO, please [file a new issue](https://github.com/zfsonlinux/zfs/issues/new) and mention @gmelikov and @rlaager.
 
+## Encryption
+
+This guide supports the three different Ubuntu encryption options: unencrypted, LUKS (full-disk encryption), and eCryptfs (home directory encryption).
+
+Unencrypted does not encrypt anything, of course. All ZFS features are fully available. With no encryption happening, this option naturally has the best performance.
+
+LUKS encrypts everything: the OS, swap, home directories, and anything else. The system cannot boot without the passphrase being entered at the console. All ZFS features are fully available. Performance is good, but LUKS sits underneath ZFS, so if multiple disks (mirror or raidz configurations) are used, the data has to be encrypted once per disk.
+
+eCryptfs protects the contents of the specified home directories. This guide also recommends encrypted swap when using eCryptfs. Other operating system directories, which may contain sensitive data, logs, and/or configuration information, are not encrypted. ZFS compression is useless on the encrypted home directories. ZFS snapshots are not automatically and transparently mounted when using eCryptfs, and manually mounting them requires serious knowledge of eCryptfs administrative commands. eCryptfs sits above ZFS, so the encryption only happens once, regardless of the number of disks in the pool. The performance of eCryptfs may be lower than LUKS in single-disk scenarios.
+
+If you want encryption, LUKS is recommended.
+
 ## Step 1: Prepare The Install Environment
 
 1.1  Boot the Ubuntu Live CD, select Try Linux, and open a terminal (press Ctrl-Alt-T).
@@ -56,9 +68,18 @@ If you have a second system, using SSH to access the target system can be conven
     Run this for UEFI booting (for use now or in the future):
     # sgdisk     -n3:1M:+512M -t3:EF00 /dev/disk/by-id/scsi-SATA_disk1
 
-    Run these in all cases:
+    Run this in all cases:
     # sgdisk     -n9:-8M:0    -t9:BF07 /dev/disk/by-id/scsi-SATA_disk1
+
+Choose one of the following options:
+
+2.2a  Unencrypted or eCryptfs:
+
     # sgdisk     -n1:0:0      -t1:BF01 /dev/disk/by-id/scsi-SATA_disk1
+
+2.2b  LUKS:
+
+    # sgdisk     -n1:0:0      -t1:8300 /dev/disk/by-id/scsi-SATA_disk1
 
 Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` device nodes directly can cause sporadic import failures, especially on systems that have more than one storage pool.
 
@@ -68,15 +89,31 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
 
 2.3  Create the root pool:
 
+Choose one of the following options:
+
+2.3a  Unencrypted or eCryptfs:
+
     # zpool create -o ashift=12 \
           -O atime=off -O canmount=off -O compression=lz4 -O normalization=formD \
           -O mountpoint=/ -R /mnt \
           rpool /dev/disk/by-id/scsi-SATA_disk1-part1
 
+2.3b  LUKS:
+
+    # cryptsetup luksFormat -c aes-xts-plain64 -s 256 -h sha256 \
+          /dev/disk/by-id/scsi-SATA_disk1-part1
+    # cryptsetup luksOpen /dev/disk/by-id/scsi-SATA_disk1-part1 luks1
+    # zpool create -o ashift=12 \
+          -O atime=off -O canmount=off -O compression=lz4 -O normalization=formD \
+          -O mountpoint=/ -R /mnt \
+          rpool /dev/mapper/luks1
+
 **Notes:**
 * The use of `ashift=12` is recommended here because many drives today have 4KiB (or larger) physical sectors, even though they present 512B logical sectors.  Also, a future replacement drive may have 4KiB physical sectors (in which case `ashift=12` is desirable) or 4KiB logical sectors (in which case `ashift=12` is required).
 * Setting `normalization=formD` eliminates some corner cases relating to UTF-8 filename normalization. It also implies `utf8only=on`, which means that only UTF-8 filenames are allowed. If you care to support non-UTF-8 filenames, do not use this option. For a discussion of why requiring UTF-8 filenames may be a bad idea, see [The problems with enforced UTF-8 only filenames](http://utcc.utoronto.ca/~cks/space/blog/linux/ForcedUTF8Filenames).
 * Make sure to include the `-part1` portion of the drive path. If you forget that, you are specifying the whole disk, which ZFS will then re-partition, and you will lose the bootloader partition(s).
+* For LUKS, the key size chosen is 256 bits. However, XTS mode requires two keys, so the LUKS key is split in half. Thus, `-s 256` means AES-128, which is the LUKS and Ubuntu default.
+* Your passphrase will likely be the weakest link. Choose wisely. See [section 5 of the cryptsetup FAQ](https://gitlab.com/cryptsetup/cryptsetup/wikis/FrequentlyAskedQuestions#5-security-aspects) for guidance.
 
 **Hints:**
 * The root pool does not have to be a single disk; it can have a mirror or raidz topology.  In that case, repeat the partitioning commands for all the disks which will be part of the pool. Then, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part1 /dev/disk/by-id/scsi-SATA_disk2-part1` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks). Later, install GRUB to all the disks. This is trivial for MBR booting; the UEFI equivalent is currently left as an exercise for the reader.
@@ -194,7 +231,49 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
     # apt install --yes --no-install-recommends linux-image-generic
     # apt install --yes zfs-initramfs
 
+4.6  For LUKS installs only:
+
+    # apt install --yes cryptsetup
+
+    # mkdir /etc/keys
+    # dd bs=64 count=1 if=/dev/urandom of=/etc/keys/root.key
+    # chmod 600 /etc/keys/root.key
+    # cryptsetup luksAddKey /dev/disk/by-id/scsi-SATA_disk1-part1 /etc/keys/root.key
+    # echo luks1 UUID=$(blkid -s UUID -o value \
+          /dev/disk/by-id/scsi-SATA_disk1-part1) /etc/keys/root.key \
+          luks,discard,keyscript=/bin/cat > /etc/crypttab
+
+    # vi /etc/initramfs-tools/initramfs.conf
+    Add these lines:
+    export KEYFILE_PATTERN="/etc/keys/*.key"
+    UMASK=077
+
+    # vi /etc/initramfs-tools/hooks/cryptkeyfile
+    #!/bin/sh
+    mkdir -p "$DESTDIR/etc/keys"
+    cp /etc/keys/root.key "$DESTDIR/etc/keys"
+
+    # chmod +x /etc/initramfs-tools/hooks/cryptkeyfile
+
+    # echo /dev/mapper/luks1 / zfs defaults 0 0 >> /etc/fstab
+
+    # vi /etc/udev/rules.d/99-local-crypt.rules
+    ENV{DM_NAME}!="", SYMLINK+="$env{DM_NAME}"
+    ENV{DM_NAME}!="", SYMLINK+="dm-name-$env{DM_NAME}"
+
+    # ln -s mapper/luks1 /dev/luks1
+
+**Caution**: It is important that the keyfile and the initrd (which contains the keyfile) are only readable by root. If anyone can read the keyfile on the running system, they can decrypt the disk. The keyfile is permissioned directly in the instructions above, and the initrd is handled by the `UMASK` setting in `/etc/initramfs-tools/initramfs.conf`.
+
+**Notes:**
+* The keyfile is [hashed by LUKS as a passphrase](http://www.saout.de/pipermail/dm-crypt/2010-May/000792.html). The recommendation from the maintainer (in that same source) is to provide “some more bits” of entropy, but there is no mention of how much. [NIST SP 800-90B (2nd Draft), section 3.1.5.1.2](http://csrc.nist.gov/publications/drafts/800-90/draft-sp800-90b.pdf) says that the input entropy should be “2×” to ensure full-entropy output from the hash function. Accordingly, the keyfile is 64-bytes (512 bits), twice the 256 bits of the SHA-256 hash function. This is probably overkill by another factor of two, given that the strength of the encryption key is 128 bits.
+* The use of keyscript=/bin/cat and /etc/initramfs-tools/hooks/cryptkeyfile are to work-around [cryptsetup: crypt asks passphrase instead of using keyfile](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=786578).
+* The entry in `/etc/fstab` is a work-around for [cryptsetup does not support ZFS](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906).
+* The 99-local-crypt.rules file and symlink in /dev are a work-around for [grub-probe assuming all devices are in /dev](https://bugs.launchpad.net/ubuntu/+source/grub2/+bug/1527727).
+
 4.6  Install GRUB
+
+**Note:** When using LUKS, installing GRUB will fail. Choose “Yes” to continue. This will be resolved later.
 
 Choose one of the following options:
 
@@ -247,6 +326,8 @@ Install GRUB to the disk(s), not the partition(s).
     # update-initramfs -c -k all
     update-initramfs: Generating /boot/initrd.img-4.4.0-21-generic
 
+**Note:** When using LUKS, this will print "WARNING could not determine root device from /etc/fstab". This is because [cryptsetup does not support ZFS](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906).
+
 5.3  Optional (but highly recommended): Make debugging GRUB easier:
 
     # vi /etc/default/grub
@@ -257,7 +338,11 @@ Install GRUB to the disk(s), not the partition(s).
 
 Later, once the system has rebooted twice and you are sure everything is working, you can undo these changes, if desired.
 
-5.4  Update the boot configuration:
+5.4  For LUKS installs only:
+    # vi /etc/default/grub
+    Add: GRUB_ENABLE_CRYPTODISK=y
+
+5.5  Update the boot configuration:
 
     # update-grub
     Generating grub configuration file ...
@@ -265,9 +350,9 @@ Later, once the system has rebooted twice and you are sure everything is working
     Found initrd image: /boot/initrd.img-4.4.0-21-generic
     done
 
-5.5  Install the boot loader
+5.6  Install the boot loader
 
-5.5a  For legacy (MBR) booting, install GRUB to the MBR:
+5.6a  For legacy (MBR) booting, install GRUB to the MBR:
 
     # grub-install /dev/disk/by-id/scsi-SATA_disk1
     Installing for i386-pc platform.
@@ -277,12 +362,12 @@ Do not reboot the computer until you get exactly that result message. Note that 
 
 If you are creating a mirror, repeat the grub-install command for each disk in the pool.
 
-5.5b  For UEFI booting, install GRUB:
+5.6b  For UEFI booting, install GRUB:
 
     # grub-install --target=x86_64-efi --efi-directory=/boot/efi \
           --bootloader-id=ubuntu --recheck --no-floppy
 
-5.6  Verify that the ZFS module is installed:
+5.7  Verify that the ZFS module is installed:
 
     # ls /boot/grub/*/zfs.mod
 
@@ -313,14 +398,14 @@ In the future, you will likely want to take snapshots before each upgrade, and r
 
 Choose one of the following options:
 
-6.6a  Create an unencrypted (regular) home directory:
+6.6a  Unencrypted or LUKS:
 
     # zfs create rpool/home/YOURUSERNAME
     # adduser YOURUSERNAME
     # cp -a /etc/skel/.[!.]* /home/YOURUSERNAME
     # chown -R YOURUSERNAME:YOURUSERNAME /home/YOURUSERNAME
 
-6.6b  Create an encrypted home directory:
+6.6b  eCryptfs:
 
     # apt install ecryptfs-utils
 
@@ -352,16 +437,16 @@ The compression algorithm is set to `zle` because it is the cheapest available a
 
 7.2  Configure the swap device:
 
-Choose one of the following options.  If you are going to do an encrypted home directory later, you should use encrypted swap.
+Choose one of the following options:
 
-7.2a  Create an unencrypted (regular) swap device:
+7.2a  Unencrypted or LUKS:
 
 **Caution**: Always use long `/dev/zvol` aliases in configuration files. Never use a short `/dev/zdX` device name.
 
     # mkswap -f /dev/zvol/rpool/swap
     # echo /dev/zvol/rpool/swap none swap defaults 0 0 >> /etc/fstab
 
-7.2b  Create an encrypted swap device:
+7.2b  eCryptfs:
 
     # apt install cryptsetup
     # echo cryptswap1 /dev/zvol/rpool/swap /dev/urandom \
