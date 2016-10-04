@@ -440,10 +440,13 @@ Upgrade or downgrade the Areca driver if something like `RIP: 0010:[<ffffffff810
 
 Set a unique serial number on each virtual disk using libvirt or qemu (e.g. `-drive if=none,id=disk1,file=disk1.qcow2,serial=1234567890`).
 
-To be able to use UEFI in guests (instead of only BIOS booting):
+To be able to use UEFI in guests (instead of only BIOS booting), run this on the host:
 
     $ sudo apt install ovmf
     $ sudo vi /etc/libvirt/qemu.conf
-    Uncomment this line:
-    nvram = [ "/usr/share/OVMF/OVMF_CODE.fd:/usr/share/OVMF/OVMF_VARS.fd" ]
+    Uncomment these lines:
+    nvram = [
+       "/usr/share/OVMF/OVMF_CODE.fd:/usr/share/OVMF/OVMF_VARS.fd",
+       "/usr/share/AAVMF/AAVMF_CODE.fd:/usr/share/AAVMF/AAVMF_VARS.fd"
+    ]
     $ sudo service libvirt-bin restart
