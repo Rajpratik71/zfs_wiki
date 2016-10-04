@@ -438,7 +438,7 @@ Upgrade or downgrade the Areca driver if something like `RIP: 0010:[<ffffffff810
 
 ### QEMU/KVM/XEN
 
-Set a unique serial number on each virtual disk (e.g.: `-drive if=none,id=disk1,file=disk1.qcow2,serial=1234567890`).
+Set a unique serial number on each virtual disk using libvirt or qemu (e.g. `-drive if=none,id=disk1,file=disk1.qcow2,serial=1234567890`).
 
 To be able to use UEFI in guests (instead of only BIOS booting):
 
