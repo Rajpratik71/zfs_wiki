@@ -17,18 +17,6 @@ Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory i
 
 If you have bugs or feature requests related to this HOWTO, please [file a new issue](https://github.com/zfsonlinux/zfs/issues/new) and mention @rlaager.
 
-## Encryption
-
-This guide supports the three different Ubuntu encryption options: unencrypted, LUKS (full-disk encryption), and eCryptfs (home directory encryption).
-
-Unencrypted does not encrypt anything, of course. All ZFS features are fully available. With no encryption happening, this option naturally has the best performance.
-
-LUKS encrypts almost everything: the OS, swap, home directories, and anything else. The only unencrypted data is the bootloader, kernel, and initrd. The system cannot boot without the passphrase being entered at the console. All ZFS features are fully available. Performance is good, but LUKS sits underneath ZFS, so if multiple disks (mirror or raidz configurations) are used, the data has to be encrypted once per disk.
-
-eCryptfs protects the contents of the specified home directories. This guide also recommends encrypted swap when using eCryptfs. Other operating system directories, which may contain sensitive data, logs, and/or configuration information, are not encrypted. ZFS compression is useless on the encrypted home directories. ZFS snapshots are not automatically and transparently mounted when using eCryptfs, and manually mounting them requires serious knowledge of eCryptfs administrative commands. eCryptfs sits above ZFS, so the encryption only happens once, regardless of the number of disks in the pool. The performance of eCryptfs may be lower than LUKS in single-disk scenarios.
-
-If you want encryption, LUKS is recommended.
-
 ## Step 1: Prepare The Install Environment
 
 1.1  Boot the Ubuntu Live CD, select Try Linux, and open a terminal (press Ctrl-Alt-T).
