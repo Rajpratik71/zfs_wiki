@@ -1,13 +1,10 @@
-### For Development Only
-**Yakkety is still under development. Do not use this for production installations yet.** Use [[Ubuntu 16.04 Root on ZFS]] instead.
-
 ### Caution
 * This HOWTO uses a whole physical disk.
 * Do not use these instructions for dual-booting.
 * Backup your data. Any existing data will be lost.
 
 ### System Requirements
-* [64-bit Ubuntu 16.10 Yakkety Live CD](http://cdimage.ubuntu.com/daily-live/current/yakkety-desktop-amd64.iso) (*not* the alternate installer)
+* [64-bit Ubuntu 16.10 Xenial Live CD](http://releases.ubuntu.com/16.10/ubuntu-16.10-desktop-amd64.iso) (*not* the alternate installer)
 * 64-bit computer (amd64, a.k.a. x86_64) computer
 * A drive which presents 512B logical sectors.  Installing on a drive which presents 4KiB logical sectors (a “4Kn” drive) should work with UEFI partitioning, but this has not been tested.
 
@@ -230,7 +227,7 @@ Choose one of the following options:
 5.2  Refresh the initrd files:
 
     # update-initramfs -c -k all
-    update-initramfs: Generating /boot/initrd.img-4.4.0-34-generic
+    update-initramfs: Generating /boot/initrd.img-4.8.0-22-generic
 
 5.3  Optional (but highly recommended): Make debugging GRUB easier:
 
@@ -246,8 +243,8 @@ Later, once the system has rebooted twice and you are sure everything is working
 
     # update-grub
     Generating grub configuration file ...
-    Found linux image: /boot/vmlinuz-4.4.0-34-generic
-    Found initrd image: /boot/initrd.img-4.4.0-34-generic
+    Found linux image: /boot/vmlinuz-4.8.0-22-generic
+    Found initrd image: /boot/initrd.img-4.8.0-22-generic
     done
 
 5.5  Install the boot loader
