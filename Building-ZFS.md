@@ -13,7 +13,7 @@ The first thing you'll need to do is prepare your environment by installing a fu
 For Debian and Ubuntu:
 
 ```
-sudo apt-get install build-essential gawk alien fakeroot linux-headers-$(uname -r)
+sudo apt-get install build-essential autoconf libtool gawk alien fakeroot linux-headers-$(uname -r)
 sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev
 sudo apt-get install parted lsscsi ksh
 ```
