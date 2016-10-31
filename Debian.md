@@ -1,6 +1,4 @@
-[DKMS][dkms] style packages are provided for Debian from the official Debian GNU/Linux repository.
-
-ZFS On Linux are available for the following configurations only from the Debian GNU/Linux repository:
+Offical ZFS on Linux [DKMS][dkms] style packages are available from the [Debian GNU/Linux repository](https://tracker.debian.org/pkg/zfs-linux) for the following configurations.  The packages previously hosted at archive.zfsonlinux.org will not be updated and are not recommended for new installations.
 
 **Debian Releases:** Sid (Eternal unstable)  
 **Architectures:** amd64  
