@@ -1,4 +1,4 @@
-![OpenZFS on Linux](http://zfsonlinux.org/images/zfs-linux.png)
+<p align="center"><img src="http://zfsonlinux.org/images/zfs-linux.png"/></p>
 
 Welcome to **ZFS on Linux** - the official [OpenZFS][openzfs] implementation
 for Linux.
