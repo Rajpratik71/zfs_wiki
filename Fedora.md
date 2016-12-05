@@ -1,14 +1,14 @@
 Only [DKMS][dkms] style packages can be provided for Fedora from the official zfsonlinux.org repository.  This is because Fedora is a fast moving distribution which does not provide a stable kABI. These packages track the official ZFS on Linux tags and are updated as new versions are released.  Packages are available for the following configurations:
 
-**Fedora Releases:** 22, 23, 24  
+**Fedora Releases:** 23, 24, 25  
 **Architectures:** x86_64  
 
 To simplify installation a zfs-release package is provided which includes a zfs.repo configuration file and the ZFS on Linux public signing key.  All official ZFS on Linux packages are signed using this key, and by default both yum and dnf will verify a package's signature before allowing it be to installed.  Users are strongly encouraged to verify the authenticity of the ZFS on Linux public key using the fingerprint listed here.
 
 **Location:** /etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux  
-**Fedora 22 Package:** http://download.zfsonlinux.org/fedora/zfs-release.fc22.noarch.rpm  
 **Fedora 23 Package:** http://download.zfsonlinux.org/fedora/zfs-release.fc23.noarch.rpm  
 **Fedora 24 Package:** http://download.zfsonlinux.org/fedora/zfs-release.fc24.noarch.rpm  
+**Fedora 25 Package:** http://download.zfsonlinux.org/fedora/zfs-release.fc25.noarch.rpm  
 **Download from:** [pgp.mit.edu][pubkey]  
 **Fingerprint:** C93A FFFD 9F3F 7B03 C310  CEB6 A9D5 A1C0 F14A B620
 
@@ -20,11 +20,23 @@ pub  2048R/F14AB620 2013-03-21 ZFS on Linux <zfs@zfsonlinux.org>
     sub  2048R/99685629 2013-03-21
 ```
 
-The ZFS on Linux packages can now be installed with dnf on Fedora 22 and newer and yum on previous Fedora releases. Note that it is important to make sure that the matching *kernel-devel* package is installed for the running kernel since DKMS requires it to build ZFS.
+The ZFS on Linux packages should be installed with dnf on Fedora. Note that it is important to make sure that the matching *kernel-devel* package is installed for the running kernel since DKMS requires it to build ZFS.
 
 ```
 $ sudo dnf install kernel-devel zfs
 ```
+
+**Systemd Update:**
+
+When upgrading to the zfs-0.6.5.8 release it's recommended that users manually reset the zfs systemd presets.  Failure to do so can result in the pool not automatically importing when the system is rebooted.
+
+```
+systemctl preset zfs-import-cache zfs-import-scan zfs-mount zfs-share zfs-zed zfs.target
+```
+
+**Repository Renamed:**
+
+The repository has been renamed `http://download.zfsonlinux.org/` from `http://archive.zfsonlinux.org/`.  An updated zfs-release package was added to the legacy repository to move users to the new repository.  Users which modifed the `/etc/yum.repos.d/zfs.repo` must manually replace this file with the updated `/etc/yum.repos.d/zfs.repo.rpmsave`.
 
 ## Testing Repositories
 
