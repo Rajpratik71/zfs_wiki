@@ -60,7 +60,9 @@ To install DKMS style packages issue the following yum command.  Note that it is
 $ sudo yum install kernel-devel zfs
 ```
 
-## Switching from DKMS to kABI-tracking kmod
+## Important Notices
+
+**Switching from DKMS to kABI-tracking kmod**
 
 When switching from DKMS to kABI-tracking kmods first uninstall the existing DKMS packages.  This should remove the kernel modules for all installed kernels but in practice it's not always perfectly reliable.  Therefore, it's recommended that you manually remove any remaining ZFS kernel modules as shown.  At this point the kABI-tracking kmods can be installed as described in the section above.
 
@@ -72,6 +74,18 @@ $ sudo find /lib/modules/ \( -name "splat.ko" -or -name "zcommon.ko" \
 -name "zfs.ko" -or -name "znvpair.ko" -or -name "zunicode.ko" \) \
 -exec /bin/rm {} \;
 ```
+
+**Systemd Update:**
+
+When upgrading to the zfs-0.6.5.8 release it's recommended that users manually reset the zfs systemd presets.  Failure to do so can result in the pool not automatically importing when the system is rebooted.
+
+```
+systemctl preset zfs-import-cache zfs-import-scan zfs-mount zfs-share zfs-zed zfs.target
+```
+
+**Repository Renamed:**
+
+The repository has been renamed `http://download.zfsonlinux.org/` from `http://archive.zfsonlinux.org/`.  An updated zfs-release package was added to the legacy repository to move users to the new repository.  Users which modifed the `/etc/yum.repos.d/zfs.repo` must manually replace this file with the updated `/etc/yum.repos.d/zfs.repo.rpmsave`.
 
 ## Testing Repositories
 
