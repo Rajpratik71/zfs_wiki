@@ -62,7 +62,21 @@ $ sudo yum install kernel-devel zfs
 
 ## Important Notices
 
-**Switching from DKMS to kABI-tracking kmod**
+### RHEL/CentOS 7.3 kmod packages
+
+When updating to RHEL/CentOS 7.3 the existing kmod packages will not work due to upstream kABI changes in the 2.6.32-514 kernel series.  RHEL and [CentOS CR](https://wiki.centos.org/AdditionalResources/Repositories/CR) users running 7.3 must manually update their `/etc/yum.repos.d/zfs.repo` to refer to the new 7.3 repository below.  Once CensOS 7.3 is officially released the `zfs-release` package will be updated to reference the compatible repository.
+
+```
+[zfs-kmod]
+name=ZFS on Linux for EL7 - kmod
+baseurl=http://download.zfsonlinux.org/epel/7.3/kmod/$basearch/
+enabled=1
+metadata_expire=7d
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
+```
+
+### Switching from DKMS to kABI-tracking kmod
 
 When switching from DKMS to kABI-tracking kmods first uninstall the existing DKMS packages.  This should remove the kernel modules for all installed kernels but in practice it's not always perfectly reliable.  Therefore, it's recommended that you manually remove any remaining ZFS kernel modules as shown.  At this point the kABI-tracking kmods can be installed as described in the section above.
 
@@ -75,7 +89,7 @@ $ sudo find /lib/modules/ \( -name "splat.ko" -or -name "zcommon.ko" \
 -exec /bin/rm {} \;
 ```
 
-**Systemd Update:**
+### Systemd Update
 
 When upgrading to the zfs-0.6.5.8 release it's recommended that users manually reset the zfs systemd presets.  Failure to do so can result in the pool not automatically importing when the system is rebooted.
 
@@ -83,7 +97,7 @@ When upgrading to the zfs-0.6.5.8 release it's recommended that users manually r
 systemctl preset zfs-import-cache zfs-import-scan zfs-mount zfs-share zfs-zed zfs.target
 ```
 
-**Repository Renamed:**
+### Repository Renamed
 
 The repository has been renamed `http://download.zfsonlinux.org/` from `http://archive.zfsonlinux.org/`.  An updated zfs-release package was added to the legacy repository to move users to the new repository.  Users which modifed the `/etc/yum.repos.d/zfs.repo` must manually replace this file with the updated `/etc/yum.repos.d/zfs.repo.rpmsave`.
 
