@@ -64,7 +64,7 @@ $ sudo yum install kernel-devel zfs
 
 ### RHEL/CentOS 7.3 kmod packages
 
-When updating to RHEL/CentOS 7.3 the existing kmod packages will not work due to upstream kABI changes in the 2.6.32-514 kernel series.  RHEL and [CentOS CR](https://wiki.centos.org/AdditionalResources/Repositories/CR) users running 7.3 must manually update their `/etc/yum.repos.d/zfs.repo` to refer to the new 7.3 repository below.  Once CensOS 7.3 is officially released the `zfs-release` package will be updated to reference the compatible repository.
+When updating to RHEL/CentOS 7.3 the existing kmod packages will not work due to upstream kABI changes in the 2.6.32-514 kernel series.  RHEL and [CentOS CR](https://wiki.centos.org/AdditionalResources/Repositories/CR) users running 7.3 must manually update their `/etc/yum.repos.d/zfs.repo` to refer to the new 7.3 repository below.  Once CentOS 7.3 is officially released the `zfs-release` package will be updated to reference the compatible repository.
 
 ```
 [zfs-kmod]
