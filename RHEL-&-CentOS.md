@@ -8,11 +8,12 @@ To simplify installation a zfs-release package is provided which includes a zfs.
 **Location:** /etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux  
 **EL6 Package:** http://download.zfsonlinux.org/epel/zfs-release.el6.noarch.rpm  
 **EL7 Package:** http://download.zfsonlinux.org/epel/zfs-release.el7.noarch.rpm  
+**EL7.3 Package:** http://download.zfsonlinux.org/epel/zfs-release.el7_3.noarch.rpm  
 **Download from:** [pgp.mit.edu][pubkey]  
 **Fingerprint:** C93A FFFD 9F3F 7B03 C310  CEB6 A9D5 A1C0 F14A B620
 
 ```
-$ sudo yum install http://download.zfsonlinux.org/epel/zfs-release$(rpm -E %dist).noarch.rpm
+$ sudo yum install http://download.zfsonlinux.org/epel/zfs-release.<dist>.noarch.rpm
 $ gpg --quiet --with-fingerprint /etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
 pub  2048R/F14AB620 2013-03-21 ZFS on Linux <zfs@zfsonlinux.org>
     Key fingerprint = C93A FFFD 9F3F 7B03 C310  CEB6 A9D5 A1C0 F14A B620
@@ -62,18 +63,14 @@ $ sudo yum install kernel-devel zfs
 
 ## Important Notices
 
-### RHEL/CentOS 7.3 kmod packages
+### RHEL/CentOS 7.3 kmod package upgrade
 
-When updating to RHEL/CentOS 7.3 the existing kmod packages will not work due to upstream kABI changes in the 3.10.0-514 kernel series.  RHEL and [CentOS CR](https://wiki.centos.org/AdditionalResources/Repositories/CR) users running 7.3 must manually update their `/etc/yum.repos.d/zfs.repo` to refer to the new 7.3 repository below.  Once CentOS 7.3 is officially released the `zfs-release` package will be updated to reference the compatible repository.
+When updating to RHEL/CentOS 7.3 the existing kmod packages will not work due to upstream kABI changes in the 3.10.0-514 kernel series.  After upgrading to 7.3 users must uninstall ZFS and then reinstall it as described in the [kABI-tracking kmod](https://github.com/zfsonlinux/zfs/wiki/RHEL-%26-CentOS/#kabi-tracking-kmod) section.  Compatible kmod packages will be installed from the CentoS 7.3 repository.
 
 ```
-[zfs-kmod]
-name=ZFS on Linux for EL7 - kmod
-baseurl=http://download.zfsonlinux.org/epel/7.3/kmod/$basearch/
-enabled=1
-metadata_expire=7d
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
+$ sudo yum remove zfs zfs-kmod spl spl-kmod libzfs2 libnvpair1 libuutil1 libzpool2 zfs-release
+$ sudo yum install http://download.zfsonlinux.org/epel/zfs-release.el7_3.noarch.rpm
+$ sudo yum install zfs 
 ```
 
 ### Switching from DKMS to kABI-tracking kmod
@@ -81,7 +78,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
 When switching from DKMS to kABI-tracking kmods first uninstall the existing DKMS packages.  This should remove the kernel modules for all installed kernels but in practice it's not always perfectly reliable.  Therefore, it's recommended that you manually remove any remaining ZFS kernel modules as shown.  At this point the kABI-tracking kmods can be installed as described in the section above.
 
 ```
-$ sudo yum remove $(rpm -qa | egrep "zfs|spl" | grep -v "zfs-release")
+$ sudo yum remove zfs zfs-kmod spl spl-kmod libzfs2 libnvpair1 libuutil1 libzpool2 zfs-release
 
 $ sudo find /lib/modules/ \( -name "splat.ko" -or -name "zcommon.ko" \
 -or -name "zpios.ko" -or -name "spl.ko" -or -name "zavl.ko" -or \
