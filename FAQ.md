@@ -206,9 +206,9 @@ $ zpool set cachefile=none tank
 
 ### hole_birth Bugs
 
-The hole_birth feature has/had bugs, the result of which is that, if you do a zfs send -i (or -R, since it uses -i) from an affected dataset, the receiver *will not see any checksum or other errors, but will not match the source*.
+The hole_birth feature has/had bugs, the result of which is that, if you do a `zfs send -i` (or `-R`, since it uses `-i`) from an affected dataset, the receiver *will not see any checksum or other errors, but will not match the source*.
 
-0.6.5.8 and 0.7.0-rc1 (and above) default to ignoring the faulty metadata which causes this issue *on the sender side*.
+ZoL versions 0.6.5.8 and 0.7.0-rc1 (and above) default to ignoring the faulty metadata which causes this issue *on the sender side*.
 
 For more details, see the [[hole_birth FAQ]].
 
