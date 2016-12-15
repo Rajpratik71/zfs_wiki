@@ -8,13 +8,13 @@ The official source for ZFS on Linux is maintained at GitHub by the [zfsonlinux]
 
 ### Installing Dependencies
 
-The first thing you'll need to do is prepare your environment by installing a full development tool chain.  In addition, development headers for both the kernel and the following libraries must be available: **zlib, libattr, libuuid, libblkid, selinux, libudev (optional)**.  Finally, if you wish to run the ZFS Test Suite **ksh** must be installed.
+The first thing you'll need to do is prepare your environment by installing a full development tool chain.  In addition, development headers for both the kernel and the following libraries must be available: **zlib, libattr, libuuid, libblkid, selinux, libudev and libdevmapper (optional)**.  Finally, if you wish to run the ZFS Test Suite **ksh** must be installed.
 
 For Debian and Ubuntu:
 
 ```
 sudo apt-get install build-essential autoconf libtool gawk alien fakeroot linux-headers-$(uname -r)
-sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev
+sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev libdevmapper-dev
 sudo apt-get install parted lsscsi ksh
 ```
 
@@ -22,7 +22,7 @@ For RHEL and CentOS:
 
 ```
 sudo yum groupinstall "Development Tools"
-sudo yum install kernel-devel zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
+sudo yum install kernel-devel zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel device-mapper-devel
 sudo yum install parted lsscsi ksh
 ```
 
@@ -30,7 +30,7 @@ For Fedora:
 
 ```
 sudo dnf groupinstall "C Development Tools and Libraries"
-sudo dnf install kernel-devel zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
+sudo dnf install kernel-devel zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel device-mapper-devel
 sudo dnf install parted lsscsi ksh
 ```
 
