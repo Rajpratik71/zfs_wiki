@@ -1,8 +1,8 @@
-### What is ZFS on Linux
+## What is ZFS on Linux
 
 The ZFS on Linux project is an implementation of [OpenZFS][OpenZFS] designed to work in a Linux environment.  OpenZFS is an outstanding storage platform that encompasses the functionality of traditional filesystems, volume managers, and more, with consistent reliability, functionality and performance across all distributions  Additional information about OpenZFS can be found in the [OpenZFS wikipedia article][wikipedia].
 
-### Hardware Requirements
+## Hardware Requirements
 
 Because ZFS was originally designed for Sun Solaris it was long considered a filesystem for large servers and for companies that could afford the best and most powerful hardware available. But since the porting of ZFS to numerous OpenSource platforms (The BSDs, Illumos and Linux - under the umbrella organization "OpenZFS"), these requirements have been lowered.
 
@@ -10,25 +10,25 @@ The suggested hardware requirements are:
   * ECC memory. This isn't really a requirement, but it's highly recommended.
   * 8GB+ of memory for the best performance.  It's perfectly possible to run with 2GB or less (and people do), but you'll need more if using deduplication.
 
-### Do I have to use ECC memory for ZFS?
+## Do I have to use ECC memory for ZFS?
 
 Using ECC memory for OpenZFS is strongly recommended for enterprise environments where the strongest data integrity guarantees are required. Without ECC memory rare random bit flips caused by cosmic rays or by faulty memory can go undetected. If this were to occur OpenZFS (or any other filesystem) will write the damaged data to disk and be unable to automatically detect the corruption.
 
 Unfortunately, ECC memory is not always supported by consumer grade hardware. And even when it is ECC memory will be more expensive. For home users the additional safety brought by ECC memory might not justify the cost. It's up to you to determine what level of protection your data requires.
 
-### Installation
+## Installation
 
 ZFS on Linux is available for all major Linux distributions.  Refer to the [[getting started]] section of the wiki for links to installations instructions for many popular distributions.  If your distribution isn't listed you can always build ZFS on Linux from the latest official [tarball][releases].
 
-### Supported Architectures
+## Supported Architectures
 
 ZFS on Linux is regularly compiled for the following architectures: x86_64, x86, aarch64, arm, ppc64, ppc.
 
-### Supported Kernels
+## Supported Kernels
 
 The [notes][releases] for a given ZFS on Linux release will include a range of supported kernels.  Point releases will be tagged as needed in order to support the *stable* kernel available from [kernel.org][kernel].  The oldest supported kernel is 2.6.32 due to its prominence in Enterprise Linux distributions.
 
-### 32-bit vs 64-bit Systems
+## 32-bit vs 64-bit Systems
 
 You are **strongly** encouraged to use a 64-bit kernel.  ZFS on Linux will build for 32-bit kernels but you may encounter stability problems.
 
@@ -42,11 +42,11 @@ vmap allocation for size 4198400 failed: use vmalloc=<size> to increase size.
 
 However, even after making this change your system will likely not be entirely stable. Proper support for 32-bit systems is contingent upon the OpenZFS code being weaned off its dependence on virtual memory. This will take some time to do correctly but it is planned for OpenZFS. This change is also expected to improve how efficiently OpenZFS manages the ARC cache and allow for tighter integration with the standard Linux page cache.
 
-### Booting from ZFS
+## Booting from ZFS
 
 Booting from ZFS on Linux is possible and many people do it.  There are excellent walk throughs available for [[Debian]], [[Ubuntu]] and [Gentoo][gentoo-root].
 
-### Selecting /dev/ names when creating a pool
+## Selecting /dev/ names when creating a pool
 
 There are different /dev/ names that can be used when creating a ZFS pool. Each option has advantages and drawbacks, the right choice for your ZFS pool really depends on your requirements. For development and testing using /dev/sdX naming is quick and easy. A typical home server might prefer /dev/disk/by-id/ naming for simplicity and readability. While very large configurations with multiple controllers, enclosures, and switches will likely prefer /dev/disk/by-vdev naming for maximum control. But in the end, how you choose to identify your disks is up to you.
 
@@ -74,7 +74,7 @@ There are different /dev/ names that can be used when creating a ZFS pool. Each 
   * Drawbacks: This method relies on having a /etc/zfs/vdev_id.conf file properly configured for your system. To configure this file please refer to section 1.10 How do I setup the /etc/zfs/vdev_id.conf file? As with benefits, the drawbacks of /dev/disk/by-id or /dev/disk/by-path may apply depending on the naming method employed.
   * Example: `zpool create tank mirror A1 B1 mirror A2 B2`
 
-### Setting up the /etc/zfs/vdev_id.conf file
+## Setting up the /etc/zfs/vdev_id.conf file
 
 In order to use /dev/disk/by-vdev/ naming the `/etc/zfs/vdev_id.conf` must be configured. The format of this file is described in the vdev_id.conf man page. Several examples follow.
 
@@ -177,7 +177,7 @@ config:
 errors: No known data errors
 ```
 
-### Changing /dev/ names on an existing pool
+## Changing /dev/ names on an existing pool
 
 Changing the /dev/ names on an existing pool can be done by simply exporting the pool and re-importing it with the -d option to specify which new names should be used. For example, to use the custom names in /dev/disk/by-vdev:
 
@@ -186,11 +186,11 @@ $ zpool export tank
 $ zpool import -d /dev/disk/by-vdev tank
 ```
 
-### The /etc/zfs/zpool.cache file
+## The /etc/zfs/zpool.cache file
 
 Whenever a pool is imported on the system it will be added to the `/etc/zfs/zpool.cache file`. This file stores pool configuration information, such as the device names and pool state.  If this file exists when running the `zpool import` command then it will be used to determine the list of pools available for import.  When a pool is not listed in the cache file it will need to be detected and imported using the `zpool import -d /dev/disk/by-id` command.
 
-### Generating a new /etc/zfs/zpool.cache file
+## Generating a new /etc/zfs/zpool.cache file
 
 The `/etc/zfs/zpool.cache` file will be automatically updated when your pool configuration is changed. However, if for some reason it becomes stale you can force the generation of a new `/etc/zfs/zpool.cache` file by setting the cachefile property on the pool.
 
@@ -204,7 +204,7 @@ Conversely the cache file can be disabled by setting `cachefile=none`.  This is 
 $ zpool set cachefile=none tank
 ```
 
-### hole_birth Bugs
+## hole_birth Bugs
 
 The hole_birth feature has/had bugs, the result of which is that, if you do a `zfs send -i` (or `-R`, since it uses `-i`) from an affected dataset, the receiver *will not see any checksum or other errors, but will not match the source*.
 
@@ -212,11 +212,11 @@ ZoL versions 0.6.5.8 and 0.7.0-rc1 (and above) default to ignoring the faulty me
 
 For more details, see the [[hole_birth FAQ]].
 
-### CEPH/ZFS
+## CEPH/ZFS
 
 There is a lot of tuning that can be done that's dependent on the workload that is being put on CEPH/ZFS, as well as some general guidelines. Some are as follow;
 
-#### ZFS Configuration
+### ZFS Configuration
 
 The CEPH filestore back-end heavily relies on xattrs, for optimal performance all CEPH workloads will benefit from the following ZFS dataset parameters
 * `xattr=sa` 
@@ -224,7 +224,7 @@ The CEPH filestore back-end heavily relies on xattrs, for optimal performance al
 
 Beyond that typically rbd/cephfs focused workloads benefit from small recordsize({16K-128K), while objectstore/s3/rados focused workloads benefit from large recordsize (128K-1M).
 
-#### CEPH Configuration (ceph.conf}
+### CEPH Configuration (ceph.conf}
 
 Additionally CEPH sets various values internally for handling xattrs based on the underlying filesystem. As CEPH only officially supports/detects XFS and BTRFS, for all other filesystems it falls back to rather [limited "safe" values](https://github.com/ceph/ceph/blob/4fe7e2a458a1521839bc390c2e3233dd809ec3ac/src/common/config_opts.h#L1125-L1148). On newer releases need for larger xattrs will prevent OSD's from even starting. 
 
@@ -239,7 +239,7 @@ filestore_max_inline_xattr_size = 65536
 filestore_max_xattr_value_size = 65536
 ```
 
-#### Other General Guidelines
+### Other General Guidelines
 
 * Use a separate journal device. Do not don't collocate CEPH journal on ZFS dataset if at all possible, this will quickly lead to terrible fragmentation, not to mention terrible performance upfront even before fragmentation (CEPH journal does a dsync for every write).
 * Use a SLOG device, even with a separate CEPH journal device. For some workloads, skipping SLOG and setting `logbias=throughput` may be acceptable.
@@ -248,7 +248,7 @@ filestore_max_xattr_value_size = 65536
 
 Again - CEPH + ZFS will KILL a consumer based SSD VERY quickly. Even ignoring the lack of power-loss protection, and endurance ratings, you will be very disappointed with performance of consumer based SSD under such a workload.
 
-### Performance Considerations
+## Performance Considerations
 
 To achieve good performance with your pool there are some easy best practices you should follow. Additionally, it should be made clear that the ZFS on Linux implementation has not yet been optimized for performance. As the project matures we can expect performance to improve.
 
@@ -257,7 +257,7 @@ To achieve good performance with your pool there are some easy best practices yo
 * **Have enough memory:** A minimum of 2GB of memory is recommended for ZFS. Additional memory is strongly recommended when the compression and deduplication features are enabled.
 * **Improve performance by setting ashift=12:** You may be able to improve performance for some workloads by setting `ashift=12`. This tuning can only be set when block devices are first added to a pool, such as when the pool is first created or when a new vdev is added to the pool. This tuning parameter can result in a decrease of capacity for RAIDZ configuratons.
 
-### Advanced Format Disks
+## Advanced Format Disks
 
 Advanced Format (AF) is a new disk format which natively uses a 4,096 byte, instead of 512 byte, sector size. To maintain compatibility with legacy systems many AF disks emulate a sector size of 512 bytes. By default, ZFS will automatically detect the sector size of the drive. This combination can result in poorly aligned disk accesses which will greatly degrade the pool performance.
 
@@ -275,7 +275,7 @@ To force the pool to use 4,096 byte sectors when adding a vdev to a pool, you ma
 $ zpool add -o ashift=12 tank mirror sdc sdd
 ```
 
-### Using a zvol for a swap device
+## Using a zvol for a swap device
 
 You may use a zvol as a swap device but you'll need to configure it appropriately.
 
@@ -302,7 +302,7 @@ It is usually recommended to keep virtual machine storage and hypervisor pools, 
   * Disable Xen's auto-ballooning in `/etc/xen/xl.conf`
   * Watch out for any Xen bugs, such as [this one][xen-bug] related to ballooning
 
-### Licensing
+## Licensing
 
 ZFS is licensed under the Common Development and Distribution License ([CDDL][cddl]), and the Linux kernel is licensed under the GNU General Public License Version 2 ([GPLv2][gpl]). While both are free open source licenses they are restrictive licenses. The combination of them causes problems because it prevents using pieces of code exclusively available under one license with pieces of code exclusively available under the other in the same binary. In the case of the kernel, this prevents us from distributing ZFS on Linux as part of the kernel binary. However, there is nothing in either license that prevents distributing it in the form of a binary module or in the form of source code.
 
@@ -313,7 +313,7 @@ Additional reading and opinions:
 * [Free Software Foundation][fsf]
 * [Encouraging closed source modules][networkworld]
 
-### Reporting a problem
+## Reporting a problem
 
 You can open a new issue and search existing issues using the public [issue tracker][issues]. The issue tracker is used to organize outstanding bug reports, feature requests, and other development tasks. Anyone may post comments after signing up for a github account.
 
