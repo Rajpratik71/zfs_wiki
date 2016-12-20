@@ -212,6 +212,42 @@ ZoL versions 0.6.5.8 and 0.7.0-rc1 (and above) default to ignoring the faulty me
 
 For more details, see the [[hole_birth FAQ]].
 
+### CEPH/ZFS
+
+There is a lot of tuning that can be done that's dependent on the workload that is being put on CEPH/ZFS, as well as some general guidelines. Some are as follow;
+
+#### ZFS Configuration
+
+The CEPH filestore back-end heavily relies on xattrs, for optimal performance all CEPH workloads will benefit from the following ZFS dataset parameters
+* `xattr=sa` 
+* `dnodesize=auto`
+
+Beyond that typically rbd/cephfs focused workloads benefit from small recordsize({16K-128K), while objectstore/s3/rados focused workloads benefit from large recordsize (128K-1M).
+
+#### CEPH Configuration (ceph.conf}
+
+Additionally CEPH sets various values internally for handling xattrs based on the underlying filesystem. As CEPH only officially supports/detects XFS and BTRFS, for all other filesystems it falls back to rather [limited "safe" values](https://github.com/ceph/ceph/blob/4fe7e2a458a1521839bc390c2e3233dd809ec3ac/src/common/config_opts.h#L1125-L1148). On newer releases need for larger xattrs will prevent OSD's from even starting. 
+
+The officially recommended workaround ([see here](http://docs.ceph.com/docs/jewel/rados/configuration/filesystem-recommendations/#not-recommended)) has some severe downsides, and more specifically is geared toward filesystems with "limited" xattr support such as ext4.
+
+ZFS does not have a limit internally to xattrs length, as such we can treat it similarly to how CEPH treats XFS. We can set overrides to set 3 internal values to the same as those used with XFS([see here](https://github.com/ceph/ceph/blob/9b317f7322848802b3aab9fec3def81dddd4a49b/src/os/filestore/FileStore.cc#L5714-L5737) and [here](https://github.com/ceph/ceph/blob/4fe7e2a458a1521839bc390c2e3233dd809ec3ac/src/common/config_opts.h#L1125-L1148)) and allow it be used without the severe limitations of the "official" workaround. 
+
+```
+[osd]
+filestore_max_inline_xattrs = 10
+filestore_max_inline_xattr_size = 65536
+filestore_max_xattr_value_size = 65536
+```
+
+#### Other General Guidelines
+
+* Use a separate journal device. Do not don't collocate CEPH journal on ZFS dataset if at all possible, this will quickly lead to terrible fragmentation, not to mention terrible performance upfront even before fragmentation (CEPH journal does a dsync for every write).
+* Use a SLOG device, even with a separate CEPH journal device. For some workloads, skipping SLOG and setting `logbias=throughput` may be acceptable.
+* Use a high-quality SLOG/CEPH journal device, consumer based SSD, or even NVMe WILL NOT DO (Samsung 830, 840, 850, etc) for a variety of reasons. CEPH will kill them quickly, on-top of the performance being quite low in this use. Generally recommended are [Intel DC S3610, S3700, S3710, P3600, P3700], or [Samsung SM853, SM863], or better.
+* If using an high quality SSD or NVMe device(as mentioned above), you CAN share SLOG and CEPH Journal to good results on single device. A ratio of 4 HDDs to 1 SSD (Intel DC S3710 200GB), with each SSD partitioned (remember to align!) to 4x10GB (for ZIL/SLOG) + 4x20GB (for CEPH journal) has been reported to work well.
+
+Again - CEPH + ZFS will KILL a consumer based SSD VERY quickly. Even ignoring the lack of power-loss protection, and endurance ratings, you will be very disappointed with performance of consumer based SSD under such a workload.
+
 ### Performance Considerations
 
 To achieve good performance with your pool there are some easy best practices you should follow. Additionally, it should be made clear that the ZFS on Linux implementation has not yet been optimized for performance. As the project matures we can expect performance to improve.
