@@ -11,6 +11,7 @@
   * [[RHEL & CentOS]]
   * [[Ubuntu]]
     * [16.04 Root on ZFS](Ubuntu 16.04 Root on ZFS)
+    * [16.10 Root on ZFS](Ubuntu 16.10 Root on ZFS)
     * [ZFS mountall FAQ](Ubuntu ZFS mountall FAQ and troubleshooting)
 * [[Project & Community]]
   * [[Admin Documentation]]
