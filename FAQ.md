@@ -20,7 +20,7 @@
 - [Performance Considerations](#performance-considerations)
 - [Advanced Format Disks](#advanced-format-disks)
 - [Using a zvol for a swap device](#using-a-zvol-for-a-swap-device)
-  * [Using ZFS on Xen Hypervisor or Xen Dom0](#using-zfs-on-xen-hypervisor-or-xen-dom0)
+- [Using ZFS on Xen Hypervisor or Xen Dom0](#using-zfs-on-xen-hypervisor-or-xen-dom0)
 - [Licensing](#licensing)
 - [Reporting a problem](#reporting-a-problem)
  
@@ -317,7 +317,7 @@ $ zfs create -V 4G -b $(getconf PAGESIZE) \
     -o com.sun:auto-snapshot=false rpool/swap
 ```
 
-### Using ZFS on Xen Hypervisor or Xen Dom0
+## Using ZFS on Xen Hypervisor or Xen Dom0
 
 It is usually recommended to keep virtual machine storage and hypervisor pools, quite separate. Although few people have managed to successfully deploy and run ZFS on Linux using the same machine configured as Dom0. There are few caveats:
 
