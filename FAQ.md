@@ -1,3 +1,29 @@
+## Table Of Contents
+- [What is ZFS on Linux](#what-is-zfs-on-linux)
+- [Hardware Requirements](#hardware-requirements)
+- [Do I have to use ECC memory for ZFS?](#do-i-have-to-use-ecc-memory-for-zfs)
+- [Installation](#installation)
+- [Supported Architectures](#supported-architectures)
+- [Supported Kernels](#supported-kernels)
+- [32-bit vs 64-bit Systems](#32-bit-vs-64-bit-systems)
+- [Booting from ZFS](#booting-from-zfs)
+- [Selecting /dev/ names when creating a pool](#selecting-dev-names-when-creating-a-pool)
+- [Setting up the /etc/zfs/vdev_id.conf file](#setting-up-the-etczfsvdev_idconf-file)
+- [Changing /dev/ names on an existing pool](#changing-dev-names-on-an-existing-pool)
+- [The /etc/zfs/zpool.cache file](#the-etczfszpoolcache-file)
+- [Generating a new /etc/zfs/zpool.cache file](#generating-a-new-etczfszpoolcache-file)
+- [hole_birth Bugs](#hole_birth-bugs)
+- [CEPH/ZFS](#cephzfs)
+  * [ZFS Configuration](#zfs-configuration)
+  * [CEPH Configuration (ceph.conf}](#ceph-configuration-cephconf)
+  * [Other General Guidelines](#other-general-guidelines)
+- [Performance Considerations](#performance-considerations)
+- [Advanced Format Disks](#advanced-format-disks)
+- [Using a zvol for a swap device](#using-a-zvol-for-a-swap-device)
+  * [Using ZFS on Xen Hypervisor or Xen Dom0](#using-zfs-on-xen-hypervisor-or-xen-dom0)
+- [Licensing](#licensing)
+- [Reporting a problem](#reporting-a-problem)
+ 
 ## What is ZFS on Linux
 
 The ZFS on Linux project is an implementation of [OpenZFS][OpenZFS] designed to work in a Linux environment.  OpenZFS is an outstanding storage platform that encompasses the functionality of traditional filesystems, volume managers, and more, with consistent reliability, functionality and performance across all distributions  Additional information about OpenZFS can be found in the [OpenZFS wikipedia article][wikipedia].
