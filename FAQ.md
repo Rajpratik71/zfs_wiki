@@ -376,5 +376,5 @@ When a new issue is opened it's not uncommon for a developer to request addition
 [lawcenter]: https://www.softwarefreedom.org/resources/2016/linux-kernel-cddl.html
 [conservancy]: https://sfconservancy.org/blog/2016/feb/25/zfs-and-linux/
 [fsf]: https://www.fsf.org/licensing/zfs-and-linux
-[networkworld]: http://www.networkworld.com/news/2006/120606-closed-modules1.html
+[networkworld]: http://www.networkworld.com/article/2301697/smb/encouraging-closed-source-modules-part-1--copyright-and-software.html
 [issues]: https://github.com/zfsonlinux/zfs/issues
