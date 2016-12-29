@@ -7,7 +7,7 @@ Now ZFS packages are provided by Debian [backports repository](https://backports
 
 [See this page](https://github.com/zfsonlinux/zfs/wiki/Debian) for more info.
 
-This instruction will be updated soon.
+This instruction will be updated soon, for now you can use [beta version of HOWTO for Debian Jessie](https://github.com/zfsonlinux/zfs/issues/5536#issuecomment-269687475).
 
 **WARNING - this instruction is outdated.**
 ---------
