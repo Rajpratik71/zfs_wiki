@@ -1,3 +1,20 @@
+---------
+---------
+---------
+**WARNING - this instruction is outdated.**
+---------
+Now ZFS packages are provided by Debian [backports repository](https://backports.debian.org/Instructions/).
+
+[See this page](https://github.com/zfsonlinux/zfs/wiki/Debian) for more info.
+
+This instruction will be updated soon.
+
+**WARNING - this instruction is outdated.**
+---------
+---------
+---------
+---------
+
 These instructions are for Debian GNU/Linux. It is an almost exact clone of the [HOWTO install Ubuntu to a Native ZFS Root Filesystem](https://github.com/zfsonlinux/pkg-zfs/wiki/HOWTO-install-Ubuntu-to-a-Native-ZFS-Root-Filesystem) procedure with some very small differences.
 
 ### System Requirements
