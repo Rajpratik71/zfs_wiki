@@ -5,6 +5,7 @@ For Ubuntu 12.04 and 14.04, ZFS packages are provided by the [official zfs-nativ
 If you want to use ZFS as your root filesystem, see these instructions:
 * [[Ubuntu 16.04 Root on ZFS]]
 * [[Ubuntu 16.10 Root on ZFS]]
+* [[Ubuntu 17.04 Root on ZFS]] (development only; not for production use yet)
 
 For troubleshooting root-on-ZFS installations on 12.04 and 14.04:
 * [[Ubuntu ZFS mountall FAQ and troubleshooting]]
