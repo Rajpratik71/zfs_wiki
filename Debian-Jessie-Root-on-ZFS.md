@@ -2,9 +2,10 @@
 * This HOWTO uses a whole physical disk.
 * Do not use these instructions for dual-booting.
 * Backup your data. Any existing data will be lost.
+* This instruction uses GRUB from the `unstable` repository for now!
 
 ### System Requirements
-* [64-bit Ubuntu 16.04 Xenial Live CD](http://releases.ubuntu.com/16.04/ubuntu-16.04-desktop-amd64.iso) (*not* the alternate installer)
+* [64-bit Debian GNU/Linux Jessie Live CD](http://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/debian-live-8.6.0-amd64-standard.iso)
 * 64-bit computer (amd64, a.k.a. x86_64) computer
 * A drive which presents 512B logical sectors.  Installing on a drive which presents 4KiB logical sectors (a “4Kn” drive) should work with UEFI partitioning, but this has not been tested.
 
@@ -12,35 +13,35 @@ Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory i
 
 ## Reporting Bugs
 
-If you have bugs or feature requests related to this HOWTO, please [file a new issue](https://github.com/zfsonlinux/zfs/issues/new) and mention @rlaager.
+If you have bugs or feature requests related to this HOWTO, please [file a new issue](https://github.com/zfsonlinux/zfs/issues/new) and mention @gmelikov and @rlaager.
 
 ## Step 1: Prepare The Install Environment
 
-1.1  Boot the Ubuntu Live CD, select Try Linux, and open a terminal (press Ctrl-Alt-T).
+1.1  Boot the Debian GNU/Linux Live CD. Login with the username `user` and password `live`.
 
-1.2  Setup and update the repositories:
-
-    $ sudo apt-add-repository universe
-    $ sudo apt update
-
-1.3  Optional: Start the OpenSSH server in the Live CD environment:
+1.2  Optional: Start the OpenSSH server in the Live CD environment:
 
 If you have a second system, using SSH to access the target system can be convenient.
 
-    $ passwd
-    $ sudo apt --yes install openssh-server
+    $ sudo sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/g" \
+          /etc/ssh/sshd_config
+    $ sudo service ssh restart
 
-**Hint:** You can find your IP address with `ip addr show scope global`.  Then, from your main machine, connect with `ssh ubuntu@IP`.
+**Hint:** You can find your IP address with `ip addr show scope global`.  Then, from your main machine, connect with `ssh user@IP`.
 
-1.4  Become root:
+1.3  Become root:
 
     $ sudo -i
 
-1.5  Install ZFS in the Live CD environment:
+1.4  Install ZFS in the Live CD environment:
 
-    # apt install --yes debootstrap gdisk zfs-initramfs
+    # echo deb http://ftp.debian.org/debian jessie-backports main contrib \
+          >> /etc/apt/sources.list.d/backports.list
+    # apt update
+    # apt install --yes debootstrap gdisk linux-headers-$(uname -r)
+    # apt install --yes -t jessie-backports zfs-dkms
 
-**Note:** You can ignore the two error lines about "AppStream".  They are harmless.
+**Note:** ZFS is in the `jessie-backports` repository. Adding that repository may result in other packages being upgraded to backported versions.
 
 ## Step 2: Disk Formatting
 
@@ -91,8 +92,9 @@ On Solaris systems, the root filesystem is cloned and the suffix is incremented 
 
 3.2  Create a filesystem dataset for the root filesystem of the Ubuntu system:
 
-    # zfs create -o canmount=noauto -o mountpoint=/ rpool/ROOT/ubuntu
-    # zfs mount rpool/ROOT/ubuntu
+    # zfs create -o canmount=noauto -o mountpoint=/ rpool/ROOT/debian
+    # zfs mount rpool/ROOT/debian
+    # zpool set bootfs=rpool/ROOT/debian rpool
 
 With ZFS, it is not normally necessary to use a mount command (either `mount` or `zfs mount`). This situation is an exception because of `canmount=noauto`.
 
@@ -124,7 +126,7 @@ The primary goal of this dataset layout is to separate the OS from user data. Th
 3.4  Install the minimal system:
 
     # chmod 1777 /mnt/var/tmp
-    # debootstrap xenial /mnt
+    # debootstrap jessie /mnt
     # zfs set devices=off rpool
 
 The `debootstrap` command leaves the new system in an unconfigured state.  An alternative to using `debootstrap` is to copy the entirety of a working system into the new ZFS root.
@@ -165,33 +167,60 @@ Customize this file if the system is not a DHCP client.
 
 4.4 Configure a basic system environment:
 
+    # vi /etc/apt/preferences
+    Package: *
+    Pin: release a=stable
+    Pin-Priority: 700
+
+    Package: *
+    Pin: release a=jessie-backports
+    Pin-Priority: 650
+
+    Package: *
+    Pin: release a=testing
+    Pin-Priority: 600
+
+    Package: *
+    Pin: release a=unstable
+    Pin-Priority: 100
+
     # vi /etc/apt/sources.list
-    deb http://archive.ubuntu.com/ubuntu xenial main universe
-    deb-src http://archive.ubuntu.com/ubuntu xenial main universe
+    deb http://ftp.debian.org/debian jessie main
+    deb-src http://ftp.debian.org/debian jessie main
 
-    deb http://security.ubuntu.com/ubuntu xenial-security main universe
-    deb-src http://security.ubuntu.com/ubuntu xenial-security main universe
+    deb http://ftp.debian.org/debian jessie-backports main contrib
+    deb-src http://ftp.debian.org/debian jessie-backports main contrib
 
-    deb http://archive.ubuntu.com/ubuntu xenial-updates main universe
-    deb-src http://archive.ubuntu.com/ubuntu xenial-updates main universe
+    deb http://ftp.debian.org/debian unstable main contrib
+    deb-src http://ftp.debian.org/debian unstable main contrib
 
     # ln -s /proc/self/mounts /etc/mtab
     # apt update
 
-    # locale-gen en_US.UTF-8
+    # apt install --yes locales
+    # dpkg-reconfigure locales
 
 Even if you prefer a non-English system language, always ensure that `en_US.UTF-8` is available.
 
-    # echo 'LANG="en_US.UTF-8"' > /etc/default/locale
-
     # dpkg-reconfigure tzdata
 
-    # apt install --yes ubuntu-minimal
+    # apt install --yes gdisk linux-headers-$(uname -r) linux-image-amd64
+
+**Note:** ZFS needs GRUB from `unstable` for now.
 
 4.5  Install ZFS in the chroot environment for the new system:
 
-    # apt install --yes --no-install-recommends linux-image-generic
-    # apt install --yes zfs-initramfs
+    # apt install --yes -t jessie-backports zfs-dkms zfs-initramfs
+
+    # vi /usr/share/initramfs-tools/conf.d/zfs
+    for x in $(cat /proc/cmdline)
+    do
+        case $x in
+            root=ZFS=*)
+                BOOT=zfs
+                ;;
+        esac
+    done
 
 4.6  Install GRUB
 
@@ -199,7 +228,7 @@ Choose one of the following options:
 
 4.6a  Install GRUB for legacy (MBR) booting
 
-    # apt install --yes grub-pc
+    # apt install --yes -t unstable grub-pc
 
 4.6b  Install GRUB for UEFI booting
 
@@ -210,14 +239,9 @@ Choose one of the following options:
           /dev/disk/by-id/scsi-SATA_disk1-part3) \
           /boot/efi vfat defaults 0 1 >> /etc/fstab
     # mount /boot/efi
-    # apt install --yes grub-efi-amd64
+    # apt install --yes -t unstable grub-efi-amd64
 
-4.7  Setup system groups:
-
-    # addgroup --system lpadmin
-    # addgroup --system sambashare
-
-4.8  Set a root password
+4.7  Set a root password
 
     # passwd
 
@@ -230,14 +254,13 @@ Choose one of the following options:
 
 5.2  Refresh the initrd files:
 
-    # update-initramfs -c -k all
-    update-initramfs: Generating /boot/initrd.img-4.4.0-21-generic
+    # update-initramfs -u -k all
+    update-initramfs: Generating /boot/initrd.img-3.16.0-4-amd64
 
 5.3  Optional (but highly recommended): Make debugging GRUB easier:
 
     # vi /etc/default/grub
-    Comment out: GRUB_HIDDEN_TIMEOUT=0
-    Remove quiet and splash from: GRUB_CMDLINE_LINUX_DEFAULT
+    Remove quiet from: GRUB_CMDLINE_LINUX_DEFAULT
     Uncomment: GRUB_TERMINAL=console
     Save and quit.
 
@@ -247,8 +270,8 @@ Later, once the system has rebooted twice and you are sure everything is working
 
     # update-grub
     Generating grub configuration file ...
-    Found linux image: /boot/vmlinuz-4.4.0-21-generic
-    Found initrd image: /boot/initrd.img-4.4.0-21-generic
+    Found linux image: /boot/vmlinuz-3.16.0-4-amd64
+    Found initrd image: /boot/initrd.img-3.16.0-4-amd64
     done
 
 5.5  Install the boot loader
@@ -297,31 +320,14 @@ In the future, you will likely want to take snapshots before each upgrade, and r
 
 6.6  Create a user account:
 
-Choose one of the following options:
-
-6.6a  Create an unencrypted (regular) home directory:
-
     # zfs create rpool/home/YOURUSERNAME
     # adduser YOURUSERNAME
     # cp -a /etc/skel/.[!.]* /home/YOURUSERNAME
     # chown -R YOURUSERNAME:YOURUSERNAME /home/YOURUSERNAME
 
-6.6b  Create an encrypted home directory:
-
-    # apt install ecryptfs-utils
-
-    # zfs create -o compression=off -o mountpoint=/home/.ecryptfs/YOURUSERNAME \
-          rpool/home/temp-YOURUSERNAME
-    # adduser --encrypt-home YOURUSERNAME
-    # zfs rename rpool/home/temp-YOURUSERNAME rpool/home/YOURUSERNAME
-
-The temporary name for the dataset is required to work-around [a bug in ecryptfs-setup-private](https://bugs.launchpad.net/ubuntu/+source/ecryptfs-utils/+bug/1574174).  Otherwise, it will fail with an error saying the home directory is already mounted; that check is not specific enough in the pattern it uses.
-
-**Note:** Automatically mounted snapshots (i.e. the `.zfs/snapshots` directory) will not work through eCryptfs.  You can do another eCryptfs mount manually if you need to access files in a snapshot.  A script to automate the mounting should be possible, but has not yet been implemented.
-
 6.7  Add your user account to the default set of groups for an administrator:
 
-    # usermod -a -G adm,cdrom,dip,lpadmin,plugdev,sambashare,sudo YOURUSERNAME
+    # usermod -a -G audio,cdrom,dip,floppy,netdev,plugdev,sudo,video YOURUSERNAME
 
 ## Step 7: Configure Swap
 
@@ -365,21 +371,7 @@ Choose one of the following options.  If you are going to do an encrypted home d
 
     # apt dist-upgrade --yes
 
-8.2  Install a regular set of software:
-
-Choose one of the following options:
-
-8.2a  Install a command-line environment only:
-
-    # apt install --yes ubuntu-standard
-
-8.2b  Install a full GUI environment:
-
-    # apt install --yes ubuntu-desktop
-
-**Hint**: If you are installing a full GUI environment, you will likely want to manage your network with NetworkManager. In that case, `rm /etc/network/interfaces.d/eth0`.
-
-8.3  Optional: Disable log compression:
+8.2  Optional: Disable log compression:
 
 As `/var/log` is already compressed by ZFS, logrotate’s compression is going to burn CPU and disk I/O for (in most cases) very little gain.  Also, if you are making snapshots of `/var/log`, logrotate’s compression will actually waste space, as the uncompressed data will live on in the snapshot.  You can edit the files in `/etc/logrotate.d` by hand to comment out `compress`, or use this loop (copy-and-paste highly recommended):
 
@@ -389,7 +381,7 @@ As `/var/log` is already compressed by ZFS, logrotate’s compression is going t
         fi
     done
 
-8.4  Reboot:
+8.3  Reboot:
 
     # reboot
 
@@ -410,8 +402,7 @@ As `/var/log` is already compressed by ZFS, logrotate’s compression is going t
 If you prefer the graphical boot process, you can re-enable it now. It will make debugging boot problems more difficult, though.
 
     $ sudo vi /etc/default/grub
-    Uncomment GRUB_HIDDEN_TIMEOUT=0
-    Add quiet and splash to GRUB_CMDLINE_LINUX_DEFAULT
+    Add quiet to GRUB_CMDLINE_LINUX_DEFAULT
     Comment out GRUB_TERMINAL=console
     Save and quit.
 
@@ -426,14 +417,17 @@ Boot the Live CD and open a terminal.
 Become root and install the ZFS utilities:
 
     $ sudo -i
+    # echo deb http://ftp.debian.org/debian jessie-backports main contrib \
+          >> /etc/apt/sources.list.d/backports.list
     # apt update
-    # apt install --yes zfsutils-linux
+    # apt install --yes linux-headers-$(uname -r)
+    # apt install --yes -t jessie-backports zfs-dkms
 
 This will automatically import your pool. Export it and re-import it to get the mounts right:
 
     # zpool export -a
     # zpool import -N -R /mnt rpool
-    # zfs mount rpool/ROOT/ubuntu
+    # zfs mount rpool/ROOT/debian
     # zfs mount -a
 
 If needed, you can chroot into your installed environment:

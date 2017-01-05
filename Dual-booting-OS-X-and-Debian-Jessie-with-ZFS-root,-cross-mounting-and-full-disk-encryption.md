@@ -122,8 +122,6 @@ Click "Dismount" in the TrueCrypt GUI to close the container.
 
 ## Step 4: Install Debian Jessie
 
-This is loosely modeled after [HOWTO install Debian GNU Linux to a Native ZFS Root Filesystem](HOWTO-install-Debian-GNU-Linux-to-a-Native-ZFS-Root-Filesystem), I'll skip over details that are thoroughly explained there.
-
 I decided to do an offline installation without any need for Internet
 access, one of the reasons being that most contemporary Macs use
 Broadcom Ethernet chips which require proprietary firmware and

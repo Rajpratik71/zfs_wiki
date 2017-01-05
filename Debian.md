@@ -28,5 +28,5 @@ If you want to boot from ZFS, you'll need `zfs-initramfs` package too:
 [debian-itp]: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=686447
 
 * [[Debian GNU Linux initrd documentation]]  
-* [[HOWTO install Debian GNU Linux to a Native ZFS Root Filesystem]]
+* [[Debian Jessie Root on ZFS]]
 * [[Dual booting OS X and Debian Jessie with ZFS root, cross mounting and full disk encryption]]

@@ -38,7 +38,7 @@ If you want encryption, LUKS is recommended.
     $ sudo apt-add-repository universe
     $ sudo apt update
 
-1.3  Optional: Install the OpenSSH server in the Live CD environment:
+1.3  Optional: Start the OpenSSH server in the Live CD environment:
 
 If you have a second system, using SSH to access the target system can be convenient.
 
@@ -132,7 +132,7 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
     # zfs create -o com.sun:auto-snapshot=false \
                  -o mountpoint=/var/lib/nfs                 rpool/var/nfs
 
-The primary goal of this dataset layout is to separate the OS (at `rpool/ROOT/ubuntu`) from user data. This allows the root filesystem to be rolled back without rolling back user data such as logs (in `/var/log`). This will be especially important if/when a `beadm` or similar utility is integrated. Since we are creating multiple datasets anyway, it is trivial to add some restrictions (for extra security) at the same time. The `com.sun.auto-snapshot` setting is used by some ZFS snapshot utilities to exclude transient data.
+The primary goal of this dataset layout is to separate the OS from user data. This allows the root filesystem to be rolled back without rolling back user data such as logs (in `/var/log`). This will be especially important if/when a `beadm` or similar utility is integrated. Since we are creating multiple datasets anyway, it is trivial to add some restrictions (for extra security) at the same time. The `com.sun.auto-snapshot` setting is used by some ZFS snapshot utilities to exclude transient data.
 
 3.4  Install the minimal system:
 
@@ -140,7 +140,7 @@ The primary goal of this dataset layout is to separate the OS (at `rpool/ROOT/ub
     # debootstrap zesty /mnt
     # zfs set devices=off rpool
 
-The `debootstrap` command leaves the new system in an unconfigured state.  An alternative to using `debootstrap` is to copy the entirety of a working Ubuntu system into the new ZFS root.
+The `debootstrap` command leaves the new system in an unconfigured state.  An alternative to using `debootstrap` is to copy the entirety of a working system into the new ZFS root.
 
 ## Step 4: System Configuration
 
@@ -178,14 +178,6 @@ Customize this file if the system is not a DHCP client.
 
 4.4 Configure a basic system environment:
 
-    # locale-gen en_US.UTF-8
-
-Even if you prefer a non-English system language, always ensure that `en_US.UTF-8` is available.
-
-    # echo 'LANG="en_US.UTF-8"' > /etc/default/locale
-
-    # dpkg-reconfigure tzdata
-
     # vi /etc/apt/sources.list
     deb http://archive.ubuntu.com/ubuntu zesty main universe
     deb-src http://archive.ubuntu.com/ubuntu zesty main universe
@@ -198,6 +190,14 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
     # ln -s /proc/self/mounts /etc/mtab
     # apt update
+
+    # locale-gen en_US.UTF-8
+
+Even if you prefer a non-English system language, always ensure that `en_US.UTF-8` is available.
+
+    # echo 'LANG="en_US.UTF-8"' > /etc/default/locale
+
+    # dpkg-reconfigure tzdata
 
 4.5  Install ZFS in the chroot environment for the new system:
 

@@ -3,7 +3,7 @@
   * [ArchLinux][arch]
   * [[Debian]]
     * [Debian initrd Documentation](Debian GNU Linux initrd documentation)
-    * [Debian Root on ZFS](HOWTO install Debian GNU Linux to a Native ZFS Root Filesystem)
+    * [Debian Root on ZFS](Debian Jessie Root on ZFS)
     * [Dual booting OS X and Debian](Dual booting OS X and Debian Jessie with ZFS root, cross mounting and full disk encryption)
   * [[Fedora]]
   * [Gentoo][gentoo]
