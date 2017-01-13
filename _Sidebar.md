@@ -24,7 +24,7 @@
 * [[Developer Resources]]
   * [[Custom Packages]]
   * [[Building ZFS]]
-  * [[OpenZFS Tracking]]
+  * [OpenZFS Tracking][openzfs-tracking]
   * [[OpenZFS Patches]]
   * [OpenZFS Documentation][openzfs-devel]
 
@@ -35,3 +35,4 @@
 [issues]: https://github.com/zfsonlinux/zfs/issues
 [roadmap]: https://github.com/zfsonlinux/zfs/milestones
 [openzfs-devel]: http://open-zfs.org/wiki/Developer_resources
+[openzfs-tracking]: http://build.zfsonlinux.org/openzfs-tracking.html
