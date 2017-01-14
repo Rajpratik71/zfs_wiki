@@ -1,6 +1,6 @@
 The ZFS on Linux project is an adaptation of the upstream [OpenZFS repository][openzfs-repo] designed to work in a Linux environment.  This upstream repository acts as a location where new features, bug fixes, and performance improvements from all the OpenZFS platforms can be integrated.  Each platform is responsible for tracking the OpenZFS repository and merging the relevant improvements back in to their release.
 
-For the ZFS on Linux project this tracking is managed through an [[OpenZFS tracking]] page.  The page is updated regularly and shows a list of OpenZFS commits and their status in regard to the ZFS on Linux master branch.  The status of each commit is color coded with a red circle indicating that it needs to be ported to ZFS on Linux.
+For the ZFS on Linux project this tracking is managed through an [OpenZFS tracking](http://build.zfsonlinux.org/openzfs-tracking.html) page.  The page is updated regularly and shows a list of OpenZFS commits and their status in regard to the ZFS on Linux master branch.
 
 This page describes the process of applying outstanding OpenZFS commits to ZFS on Linux and submitting those changes for inclusion.  As a developer this is a great way to familiarize yourself with ZFS on Linux and to begin quickly making a valuable contribution to the project.  The following guide assumes you have a [github account][github-account], are familiar with git, and are used to developing in a Linux environment.
 
