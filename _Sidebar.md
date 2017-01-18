@@ -26,6 +26,7 @@
   * [[Building ZFS]]
   * [OpenZFS Tracking][openzfs-tracking]
   * [[OpenZFS Patches]]
+  * [[OpenZFS Exceptions]]
   * [OpenZFS Documentation][openzfs-devel]
 
 [arch]: https://wiki.archlinux.org/index.php/ZFS
