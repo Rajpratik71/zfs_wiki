@@ -25,7 +25,6 @@ OpenZFS issue id | status/ZFS commit | comment
 6841|4254acb|
 6781|15313c5|
 6494|-      |
-6459|!      | ported, but style fix is in progress
 6434|472e7c6|
 6421|ca0bf58|
 6418|131cc95|
