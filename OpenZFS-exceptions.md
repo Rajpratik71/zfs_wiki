@@ -18,6 +18,7 @@ OpenZFS issue id | status/ZFS commit | comment
 7591|541a090|
 7586|c443487|
 7430|68cbd56|
+7402|690fe64|
 7345|-      |
 7041|-	    | spelling mistakes already fixed
 7016|d3c2ae1|
