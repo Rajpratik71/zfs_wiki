@@ -15,6 +15,7 @@ The commit is applicable but not applied for the reason described in the comment
 
 OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
+7740|32d41fb|
 7591|541a090|
 7586|c443487|
 7430|68cbd56|
