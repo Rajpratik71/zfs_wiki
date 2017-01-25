@@ -77,27 +77,27 @@ OpenZFS issue id | status/ZFS commit | comment
 3747|090ff09|
 3705|-      |The Linux implementation uses the lz4 workspace kmem cache to resolve the stack issue.
 3606|c5b247f|
-3580|-      |
+3580|-      |Linux provides generic ioctl handlers get/set block device information.
 3543|8dca0a9|
 3512|67629d0|
 3507|43a696e|
-3301|-      |
+3301|-      |The Linux implementation of `vdev_disk.c` does not include this comment.
 3258|9d81146|
 3254|-      |The `aclmode` property cannot be supported under Linux.
 3246|cc92e9d|
-2933|-      |
+2933|-      |None of the illumos build system is used under Linux.
 2932|!      |The feature has not been ported because Linux fundamentally handles crash dumps differently.  The commit will need to be significantly reworked for Linux.  The only benefit will be to ensure pools from other platforms with this feature set can be easily imported under Linux.
 2897|fb82700|
 2665|32a9872|
-2130|-      |
-1974|-      |
-1898|-      |
-1618|-      |
+2130|460a021|
+1974|-      |This change was entirely replaced in the ARC restructuring.
+1898|-      |The zfs_putpage() function was rewritten to properly integrate with the Linux VM.
+1618|ca67b33|
 1337|2402458|
 1126|e43b290|
-763 |-      |
+763 |3cee226|
 742 |-      |The `aclmode` property cannot be supported under Linux.
 701 |460a021|
-348 |-      |
-243 |-      |
-184 |-      |
+348 |-      |The Linux implementation of `vdev_disk.c` must have this differently.
+243 |-      |Manual updates have been made separately for Linux.
+184 |-      |The zfs_putpage() function was rewritten to properly integrate with the Linux VM.
