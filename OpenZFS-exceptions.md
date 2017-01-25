@@ -20,13 +20,13 @@ OpenZFS issue id | status/ZFS commit | comment
 7586|c443487|
 7430|68cbd56|
 7402|690fe64|
-7345|-      |
+7345|058ac9b|
 7041|33c0819|
 7016|d3c2ae1|
 6843|f5f087e|
 6841|4254acb|
 6781|15313c5|
-6494|-      |
+6494|-      |The `vdev_disk.c` and `vdev_file.c` files have been reworked extensively for Linux.  The proposed changes are not needed.
 6434|472e7c6|
 6421|ca0bf58|
 6418|131cc95|
@@ -36,7 +36,7 @@ OpenZFS issue id | status/ZFS commit | comment
 6386|485c581|
 6385|f3ad9cd|
 6368|2024041|
-6346|-      |
+6346|058ac9b|
 6334|1a04bab|
 6290|017da6 |
 6250|-      |
