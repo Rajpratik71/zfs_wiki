@@ -82,7 +82,13 @@ sh autogen.sh
 make -s -j$(nproc)
 ```
 
-**tip:**  `--with-spl=PATH` and `--with-spl-obj=PATH` can be passed to configure if it is unable to locate the SPL.  
+**tip:**  `--with-spl=PATH` and `--with-spl-obj=PATH` can be passed to configure if it is unable to locate the SPL. 
+
+**Optional**  Build packages
+
+```
+make deb #exmaple for Debian/Ubuntu 
+```
 
 #### Running zloop.sh and zfs-tests.sh
 
