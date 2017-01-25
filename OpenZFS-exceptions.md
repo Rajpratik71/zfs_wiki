@@ -48,18 +48,17 @@ OpenZFS issue id | status/ZFS commit | comment
 5815|-      |This patch could be adapted if needed use equivalent Linux functionality.
 5770|c3275b5|
 5769|dd26aa5|
-5768|-      |
+5768|-      |The change isn't relevant, all of `zfs_ctldir.c` needed to rewritten for Linux.
 5766|4dd1893|
-5704|-      |
 5693|0f7d2a4|
 5410|0bf8501|
 5409|b23d543|
-5316|-      |
+5316|-      |The illumos idmap facility isn't available under Linux.  This patch could still be applied to minimize code delta or all HAVE_IDMAP chunks could be removed on Linux for better readability.
 5313|ec8501e|
 5219|ef56b07|
 5179|3f4058c|
-5149|-      |
-5148|-      |
+5149|-      |Equivalent Linux functionality is provided by the `zvol_max_discard_blocks` module option.
+5148|-      |Discards are handled differently under Linux, there is no DKIOCFREE ioctl.
 5136|e8b96c6|
 4752|aa9af22|
 4745|411bf20|
