@@ -67,16 +67,15 @@ OpenZFS issue id | status/ZFS commit | comment
 4571|6e1b9d0|
 4570|b1d13a6|
 4391|78e2739|
-4242|-      |
+4242|-      |Neither vnodes or their associated events exist under Linux.
 4206|2820bc4|
 4188|2e7b765|
-4181|-      |
-4161|-      |
-4072|-      |
+4161|-      |The Linux user space reader/writer implementation is based on phtread primitives.
+4072|-      |None of the illumos build system is used under Linux.
 3947|7f9d994|
-3928|-      |
+3928|-      |Neither vnodes or their associated events exist under Linux.
 3747|090ff09|
-3705|-      |
+3705|-      |The Linux implementation uses the lz4 workspace kmem cache to resolve the stack issue.
 3606|c5b247f|
 3580|-      |
 3543|8dca0a9|
