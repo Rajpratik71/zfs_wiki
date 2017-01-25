@@ -42,7 +42,7 @@ OpenZFS issue id | status/ZFS commit | comment
 6250|-      |
 6220|-      |
 6209|-      |
-6095|-      |
+6095|f866a4ea|
 5984|480f626|
 5961|-      |
 5815|-      |
