@@ -40,12 +40,12 @@ OpenZFS issue id | status/ZFS commit | comment
 6334|1a04bab|
 6290|017da6 |
 6250|-      |Linux handles crash dumps in a fundamentally different way than Illumos.  The proposed changes are not needed.
-6220|-      |
-6209|-      |
+6220|-      |The b_thawed debug code was unused under Linux and removed.
+6209|-      |The Linux user space mutex implementation is based on phtread primitives. 
 6095|f866a4ea|
 5984|480f626|
-5961|-      |
-5815|-      |
+5961|22872ff|
+5815|-      |This patch could be adapted if needed use equivalent Linux functionality.
 5770|c3275b5|
 5769|dd26aa5|
 5768|-      |
