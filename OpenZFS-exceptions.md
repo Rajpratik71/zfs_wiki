@@ -39,7 +39,7 @@ OpenZFS issue id | status/ZFS commit | comment
 6346|058ac9b|
 6334|1a04bab|
 6290|017da6 |
-6250|-      |
+6250|-      |Linux handles crash dumps in a fundamentally different way than Illumos.  The proposed changes are not needed.
 6220|-      |
 6209|-      |
 6095|f866a4ea|
@@ -83,10 +83,9 @@ OpenZFS issue id | status/ZFS commit | comment
 3543|8dca0a9|
 3512|67629d0|
 3507|43a696e|
-3371|-      |
 3301|-      |
 3258|9d81146|
-3254|-      |
+3254|-      |The `aclmode` property cannot be supported under Linux.
 3246|cc92e9d|
 2933|-      |
 2932|!      |The feature has not been ported because Linux fundamentally handles crash dumps differently.  The commit will need to be significantly reworked for Linux.  The only benefit will be to ensure pools from other platforms with this feature set can be easily imported under Linux.
@@ -99,8 +98,8 @@ OpenZFS issue id | status/ZFS commit | comment
 1337|2402458|
 1126|e43b290|
 763 |-      |
-742 |-      |
-701 |-      |
+742 |-      |The `aclmode` property cannot be supported under Linux.
+701 |460a021|
 348 |-      |
 243 |-      |
 184 |-      |
