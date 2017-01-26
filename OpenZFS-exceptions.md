@@ -24,6 +24,7 @@ OpenZFS issue id | status/ZFS commit | comment
 7345|058ac9b|
 7041|33c0819|
 7016|d3c2ae1|
+6914|-      |Under Linux the arc_meta_limit can be tuned with the zfs_arc_meta_limit_percent module option.
 6843|f5f087e|
 6841|4254acb|
 6781|15313c5|
