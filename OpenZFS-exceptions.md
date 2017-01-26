@@ -22,6 +22,7 @@ OpenZFS issue id | status/ZFS commit | comment
 7430|68cbd56|
 7402|690fe64|
 7345|058ac9b|
+7278|-      |Dynamic ARC tuning is handled slightly differently under Linux and this case is covered by arc_tuning_update()
 7041|33c0819|
 7016|d3c2ae1|
 6914|-      |Under Linux the arc_meta_limit can be tuned with the zfs_arc_meta_limit_percent module option.
