@@ -15,6 +15,7 @@ The commit is applicable but not applied for the reason described in the comment
 
 OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
+7779|-      |The change isn't relevant, `zfs_ctldir.c` was rewritten for Linux.
 7740|32d41fb|
 7591|541a090|
 7586|c443487|
@@ -48,7 +49,7 @@ OpenZFS issue id | status/ZFS commit | comment
 5815|-      |This patch could be adapted if needed use equivalent Linux functionality.
 5770|c3275b5|
 5769|dd26aa5|
-5768|-      |The change isn't relevant, all of `zfs_ctldir.c` needed to rewritten for Linux.
+5768|-      |The change isn't relevant, `zfs_ctldir.c` was rewritten for Linux.
 5766|4dd1893|
 5693|0f7d2a4|
 5410|0bf8501|
