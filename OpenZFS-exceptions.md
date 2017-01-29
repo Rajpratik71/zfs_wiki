@@ -17,6 +17,7 @@ OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
 7779|-      |The change isn't relevant, `zfs_ctldir.c` was rewritten for Linux.
 7740|32d41fb|
+7730|e24e62a|
 7591|541a090|
 7586|c443487|
 7430|68cbd56|
