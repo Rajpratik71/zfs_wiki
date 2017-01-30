@@ -56,6 +56,7 @@ OpenZFS issue id | status/ZFS commit | comment
 5768|-      |The change isn't relevant, `zfs_ctldir.c` was rewritten for Linux.
 5766|4dd1893|
 5693|0f7d2a4|
+5688|!      |This patch should eventually be adopted.  However, since we have no control over which version of grub is shipped by a distribution it's safest to defer until newer versions of grub are part of the default install.
 5410|0bf8501|
 5409|b23d543|
 5316|-      |The illumos idmap facility isn't available under Linux.  This patch could still be applied to minimize code delta or all HAVE_IDMAP chunks could be removed on Linux for better readability.
