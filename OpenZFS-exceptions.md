@@ -65,7 +65,7 @@ OpenZFS issue id | status/ZFS commit | comment
 5149|-      |Equivalent Linux functionality is provided by the `zvol_max_discard_blocks` module option.
 5148|-      |Discards are handled differently under Linux, there is no DKIOCFREE ioctl.
 5136|e8b96c6|
-5120|!      |This patch should eventually be adopted.  However, since we have no control over which version of grub is shipped by a distribution it's safest to defer until newer versions of grub are part of the default install. Was alredy ported without merge to master, see #5688 ZoL PR.
+5120|!      |This patch should eventually be adopted.  However, since we have no control over which version of grub is shipped by a distribution it's safest to defer until newer versions of grub are part of the default install. See #5688 ZoL PR.
 4752|aa9af22|
 4745|411bf20|
 4698|4fcc437|
