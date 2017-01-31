@@ -20,6 +20,7 @@ OpenZFS issue id | status/ZFS commit | comment
 7730|e24e62a|
 7591|541a090|
 7586|c443487|
+7542|-      |The Linux libshare code differs significantly from the upstream OpenZFS code.  Since this change doesn't address a Linux specific issue it doesn't need to be ported.  The eventual plan is to retire all of the existing libshare code and use the ZED to more flexibly control filesystem sharing.
 7430|68cbd56|
 7402|690fe64|
 7345|058ac9b|
