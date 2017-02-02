@@ -87,7 +87,7 @@ make -s -j$(nproc)
 **Optional**  Build packages
 
 ```
-make deb #exmaple for Debian/Ubuntu 
+make deb #example for Debian/Ubuntu 
 ```
 
 #### Running zloop.sh and zfs-tests.sh
