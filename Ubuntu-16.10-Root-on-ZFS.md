@@ -347,6 +347,7 @@ Choose one of the following options.  If you are going to do an encrypted home d
 
 7.2b  Create an encrypted swap device:
 
+    # apt install cryptsetup
     # echo cryptswap1 /dev/zvol/rpool/swap /dev/urandom \
           swap,cipher=aes-xts-plain64:sha256,size=256 >> /etc/crypttab
     # systemctl daemon-reload
