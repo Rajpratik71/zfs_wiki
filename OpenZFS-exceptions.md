@@ -18,6 +18,7 @@ OpenZFS issue id | status/ZFS commit | comment
 7779|-      |The change isn't relevant, `zfs_ctldir.c` was rewritten for Linux.
 7740|32d41fb|
 7730|e24e62a|
+7602|!      |OpenZFS converted all of their man pages to mdoc format which is understood by the Linux utilties.  In order to avoid massive porting headaches the latest version of the OpenZFS man pages should be added to ZoL and the Linux specific documentation notes added.
 7591|541a090|
 7586|c443487|
 7542|-      |The Linux libshare code differs significantly from the upstream OpenZFS code.  Since this change doesn't address a Linux specific issue it doesn't need to be ported.  The eventual plan is to retire all of the existing libshare code and use the ZED to more flexibly control filesystem sharing.
@@ -79,9 +80,11 @@ OpenZFS issue id | status/ZFS commit | comment
 4571|6e1b9d0|
 4570|b1d13a6|
 4391|78e2739|
+4465|!      |See 7602
 4242|-      |Neither vnodes or their associated events exist under Linux.
 4206|2820bc4|
 4188|2e7b765|
+4481|!      |See 7602
 4161|-      |The Linux user space reader/writer implementation is based on phtread primitives.
 4128|!      |The ldi_ev_register_callbacks() interface doesn't exist under Linux.  It may be possible to receive similar notifications via the scsi error handlers or possibly a different interface.
 4072|-      |None of the illumos build system is used under Linux.
@@ -94,6 +97,7 @@ OpenZFS issue id | status/ZFS commit | comment
 3543|8dca0a9|
 3512|67629d0|
 3507|43a696e|
+3371|!      |See 7602
 3301|-      |The Linux implementation of `vdev_disk.c` does not include this comment.
 3258|9d81146|
 3254|-      |The `aclmode` property cannot be supported under Linux.
