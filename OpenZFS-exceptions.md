@@ -63,6 +63,7 @@ OpenZFS issue id | status/ZFS commit | comment
 5768|-      |The change isn't relevant, `zfs_ctldir.c` was rewritten for Linux.
 5766|4dd1893|
 5693|0f7d2a4|
+5692|!      |This functionality should be ported in such a way that it can be integrated with `filefrag(8)`.
 5410|0bf8501|
 5409|b23d543|
 5379|-      |This particular issue never impacted Linux due to the need for a modified zfs_putpage() implementation.
