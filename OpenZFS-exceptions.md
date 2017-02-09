@@ -85,7 +85,7 @@ OpenZFS issue id | status/ZFS commit | comment
 4242|-      |Neither vnodes or their associated events exist under Linux.
 4206|2820bc4|
 4188|2e7b765|
-4481|!      |See 7602
+4181|!      |See 7602
 4161|-      |The Linux user space reader/writer implementation is based on phtread primitives.
 4128|!      |The ldi_ev_register_callbacks() interface doesn't exist under Linux.  It may be possible to receive similar notifications via the scsi error handlers or possibly a different interface.
 4072|-      |None of the illumos build system is used under Linux.
