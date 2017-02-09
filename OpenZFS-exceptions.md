@@ -69,6 +69,7 @@ OpenZFS issue id | status/ZFS commit | comment
 5379|-      |This particular issue never impacted Linux due to the need for a modified zfs_putpage() implementation.
 5316|-      |The illumos idmap facility isn't available under Linux.  This patch could still be applied to minimize code delta or all HAVE_IDMAP chunks could be removed on Linux for better readability.
 5313|ec8501e|
+5312|!      |This change should be made but the ideal time to do it is when the spl repository is folded in to the zfs repository (planned for 0.8).  At this time we'll want to cleanup many of the includes.
 5219|ef56b07|
 5179|3f4058c|
 5149|-      |Equivalent Linux functionality is provided by the `zvol_max_discard_blocks` module option.
