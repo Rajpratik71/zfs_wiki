@@ -38,7 +38,11 @@ OpenZFS issue id | status/ZFS commit | comment
 6764|-      |Under Linux POSIX ACLs are used and largely handled by the VFS.  This change can be ported to minimize code drift but are not required.  
 6763|-      |Under Linux POSIX ACLs are used and largely handled by the VFS.  This change can be ported to minimize code drift but are not required.  
 6762|-      |Under Linux POSIX ACLs are used and largely handled by the VFS.  This change can be ported to minimize code drift but are not required.  
+6648|6bb24f4|
+6568|6bb24f4|
+6528|6bb24f4|
 6494|-      |The `vdev_disk.c` and `vdev_file.c` files have been reworked extensively for Linux.  The proposed changes are not needed.
+6465|6bb24f4|
 6434|472e7c6|
 6421|ca0bf58|
 6418|131cc95|
@@ -47,15 +51,19 @@ OpenZFS issue id | status/ZFS commit | comment
 6388|0de7c55|
 6386|485c581|
 6385|f3ad9cd|
+6369|6bb24f4|
 6368|2024041|
 6346|058ac9b|
 6334|1a04bab|
 6290|017da6 |
 6250|-      |Linux handles crash dumps in a fundamentally different way than Illumos.  The proposed changes are not needed.
+6249|6bb24f4|
+6248|6bb24f4|
 6220|-      |The b_thawed debug code was unused under Linux and removed.
 6209|-      |The Linux user space mutex implementation is based on phtread primitives. 
 6095|f866a4ea|
 5984|480f626|
+5966|6bb24f4|
 5961|22872ff|
 5815|-      |This patch could be adapted if needed use equivalent Linux functionality.
 5770|c3275b5|
@@ -64,6 +72,7 @@ OpenZFS issue id | status/ZFS commit | comment
 5766|4dd1893|
 5693|0f7d2a4|
 5692|!      |This functionality should be ported in such a way that it can be integrated with `filefrag(8)`.
+5684|6bb24f4|
 5410|0bf8501|
 5409|b23d543|
 5379|-      |This particular issue never impacted Linux due to the need for a modified zfs_putpage() implementation.
@@ -79,11 +88,13 @@ OpenZFS issue id | status/ZFS commit | comment
 4752|aa9af22|
 4745|411bf20|
 4698|4fcc437|
+4620|6bb24f4|
 4573|10b7549|
 4571|6e1b9d0|
 4570|b1d13a6|
 4391|78e2739|
 4465|!      |See 7602
+4263|6bb24f4|
 4242|-      |Neither vnodes or their associated events exist under Linux.
 4206|2820bc4|
 4188|2e7b765|
@@ -100,7 +111,9 @@ OpenZFS issue id | status/ZFS commit | comment
 3543|8dca0a9|
 3512|67629d0|
 3507|43a696e|
+3444|6bb24f4|
 3371|!      |See 7602
+3311|6bb24f4|
 3301|-      |The Linux implementation of `vdev_disk.c` does not include this comment.
 3258|9d81146|
 3254|-      |The `aclmode` property cannot be supported under Linux.
