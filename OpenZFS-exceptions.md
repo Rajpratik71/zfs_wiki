@@ -39,9 +39,13 @@ OpenZFS issue id | status/ZFS commit | comment
 6763|-      |Under Linux POSIX ACLs are used and largely handled by the VFS.  This change can be ported to minimize code drift but are not required.  
 6762|-      |Under Linux POSIX ACLs are used and largely handled by the VFS.  This change can be ported to minimize code drift but are not required.  
 6648|6bb24f4|
+6578|6bb24f4|
+6577|6bb24f4|
+6575|6bb24f4|
 6568|6bb24f4|
 6528|6bb24f4|
 6494|-      |The `vdev_disk.c` and `vdev_file.c` files have been reworked extensively for Linux.  The proposed changes are not needed.
+6468|6bb24f4|
 6465|6bb24f4|
 6434|472e7c6|
 6421|ca0bf58|
