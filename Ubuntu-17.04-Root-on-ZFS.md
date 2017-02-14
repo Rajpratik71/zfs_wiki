@@ -236,7 +236,7 @@ Install GRUB to the disk(s), not the partition(s).
 
 4.9  Fix filesystem mount ordering
 
-[Until ZFS gains a systemd mount generator](https://github.com/zfsonlinux/zfs/issues/4898), there are races between mounting filesystems and starting certain daemons. In practice, the issues (e.g. [#5754](https://github.com/zfsonlinux/zfs/issues/4898)) seem to be with certain filesystems in `/var`, specifically `/var/log` and `/var/tmp`. Setting these to use `legacy` mounting, and listing them in `/etc/fstab` makes systemd aware that these are separate mountpoints. In turn, `rsyslog.service` depends on `var-log.mount` by way of `local-fs.target` and services using the `PrivateTmp` feature of systemd automatically use `After=var-tmp.mount`.
+[Until ZFS gains a systemd mount generator](https://github.com/zfsonlinux/zfs/issues/4898), there are races between mounting filesystems and starting certain daemons. In practice, the issues (e.g. [#5754](https://github.com/zfsonlinux/zfs/issues/5754)) seem to be with certain filesystems in `/var`, specifically `/var/log` and `/var/tmp`. Setting these to use `legacy` mounting, and listing them in `/etc/fstab` makes systemd aware that these are separate mountpoints. In turn, `rsyslog.service` depends on `var-log.mount` by way of `local-fs.target` and services using the `PrivateTmp` feature of systemd automatically use `After=var-tmp.mount`.
 
     # zfs set mountpoint=legacy rpool/var/log
     # zfs set mountpoint=legacy rpool/var/tmp
