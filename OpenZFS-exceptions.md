@@ -17,6 +17,7 @@ OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
 7779|-      |The change isn't relevant, `zfs_ctldir.c` was rewritten for Linux.
 7740|32d41fb|
+7739|582cc014|
 7730|e24e62a|
 7602|!      |OpenZFS converted all of their man pages to mdoc format which is understood by the Linux utilties.  In order to avoid massive porting headaches the latest version of the OpenZFS man pages should be added to ZoL and the Linux specific documentation notes added.
 7591|541a090|
