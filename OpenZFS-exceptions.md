@@ -28,6 +28,7 @@ OpenZFS issue id | status/ZFS commit | comment
 7402|690fe64|
 7345|058ac9b|
 7278|-      |Dynamic ARC tuning is handled slightly differently under Linux and this case is covered by arc_tuning_update()
+7238|-      |zvol_swap test already disabled in ZoL
 7194|d7958b4|
 7164|b1b85c87|
 7041|33c0819|
