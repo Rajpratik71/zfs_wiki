@@ -24,6 +24,7 @@ OpenZFS issue id | status/ZFS commit | comment
 7586|c443487|
 7570|-      |Due to differences in the block layer all discards are handled asynchronously under Linux.  This functionality could be ported but it's unclear to what purpose.
 7542|-      |The Linux libshare code differs significantly from the upstream OpenZFS code.  Since this change doesn't address a Linux specific issue it doesn't need to be ported.  The eventual plan is to retire all of the existing libshare code and use the ZED to more flexibly control filesystem sharing.
+7512|-      |None of the illumos build system is used under Linux.
 7497|-      |DTrace is isn't readily available under Linux.
 7430|68cbd56|
 7402|690fe64|
