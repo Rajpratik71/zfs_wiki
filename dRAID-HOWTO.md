@@ -19,7 +19,7 @@ Using /dev/urandom instead.
 Seed chosen: f0cbfeccac3071b0
 ```
 
-The command in the example above creates a configuration for a 17-drive dRAID1 vdev with 4 data blocks per strip and 2 distributed spares. Options:
+The command in the example above creates a configuration for a 17-drive dRAID1 vdev with 4 data blocks per strip and 2 distributed spares, and saves it to file _17.nvl_. Options:
 * p: parity level, can be 1, 2, or 3.
 * d: # data blocks per stripe.
 * s: # distributed spare
@@ -126,7 +126,7 @@ But if a child drive is replaced with a distributed spare, a new process called 
 ```
 # zpool offline tank sdo
 # zpool replace tank sdo '$draid1-0-s0'
-# # zpool status
+# zpool status
   pool: tank
  state: DEGRADED
 status: One or more devices has been taken offline by the administrator.
@@ -172,6 +172,134 @@ The scan status line of the _zpool status_ output now says _"rebuilt"_ instead o
 
 Although rebuild process creates larger IOs, the drives will not necessarily see large IO requests. The block device queue parameter _/sys/block/*/queue/max_sectors_kb_ must be tuned accordingly. However, since the rebuild IO is already sequential, the benefits of enabling larger IO requests might be marginal.
 
+At this point, redundancy has been fully restored without adding any new drive to the pool. If another drive is offlined, the pool is still able to do IO:
+```
+# zpool offline tank sdj
+# zpool status 
+ state: DEGRADED
+status: One or more devices has been taken offline by the administrator.
+        Sufficient replicas exist for the pool to continue functioning in a
+        degraded state.
+action: Online the device using 'zpool online' or replace the device with
+        'zpool replace'.
+  scan: rebuilt 2.00G in 0h0m5s with 0 errors on Fri Feb 24 20:37:06 2017
+config:
 
+        NAME                STATE     READ WRITE CKSUM
+        tank                DEGRADED     0     0     0
+          draid1-0          DEGRADED     0     0     0
+            sdd             ONLINE       0     0     0
+            sde             ONLINE       0     0     0
+            sdf             ONLINE       0     0     0
+            sdg             ONLINE       0     0     0
+            sdh             ONLINE       0     0     0
+            sdu             ONLINE       0     0     0
+            sdj             OFFLINE      0     0     0
+            sdv             ONLINE       0     0     0
+            sdl             ONLINE       0     0     0
+            sdm             ONLINE       0     0     0
+            sdn             ONLINE       0     0     0
+            spare-11        DEGRADED     0     0     0
+              sdo           OFFLINE      0     0     0
+              $draid1-0-s0  ONLINE       0     0     0
+            sdp             ONLINE       0     0     0
+            sdq             ONLINE       0     0     0
+            sdr             ONLINE       0     0     0
+            sds             ONLINE       0     0     0
+            sdt             ONLINE       0     0     0
+        spares
+          $draid1-0-s0      INUSE     currently in use
+          $draid1-0-s1      AVAIL
+```
+
+As shown above, the _draid1-0_ vdev is still in _DEGRADED_ mode although two child drives have failed and it's only single-parity. Since the _$draid1-0-s1_ is still _AVAIL_, full redundancy can be restored by replacing _sdj_ with it, without adding new drive to the pool:
+```
+# zpool replace tank sdj '$draid1-0-s1'
+# zpool status
+ state: DEGRADED
+status: One or more devices has been taken offline by the administrator.
+        Sufficient replicas exist for the pool to continue functioning in a
+        degraded state.
+action: Online the device using 'zpool online' or replace the device with
+        'zpool replace'.
+  scan: rebuilt 2.13G in 0h0m5s with 0 errors on Fri Feb 24 23:20:59 2017
+config:
+
+        NAME                STATE     READ WRITE CKSUM
+        tank                DEGRADED     0     0     0
+          draid1-0          DEGRADED     0     0     0
+            sdd             ONLINE       0     0     0
+            sde             ONLINE       0     0     0
+            sdf             ONLINE       0     0     0
+            sdg             ONLINE       0     0     0
+            sdh             ONLINE       0     0     0
+            sdu             ONLINE       0     0     0
+            spare-6         DEGRADED     0     0     0
+              sdj           OFFLINE      0     0     0
+              $draid1-0-s1  ONLINE       0     0     0
+            sdv             ONLINE       0     0     0
+            sdl             ONLINE       0     0     0
+            sdm             ONLINE       0     0     0
+            sdn             ONLINE       0     0     0
+            spare-11        DEGRADED     0     0     0
+              sdo           OFFLINE      0     0     0
+              $draid1-0-s0  ONLINE       0     0     0
+            sdp             ONLINE       0     0     0
+            sdq             ONLINE       0     0     0
+            sdr             ONLINE       0     0     0
+            sds             ONLINE       0     0     0
+            sdt             ONLINE       0     0     0
+        spares
+          $draid1-0-s0      INUSE     currently in use
+          $draid1-0-s1      INUSE     currently in use
+```
+
+Again, full redundancy has been restored without adding any new drive. If another drive fails, the pool will still be able to handle IO, but there'd be no more distributed spare to rebuild (both are in _INUSE_ state now). At this point, there's no urgency to add a new replacement drive because the pool can survive yet another drive failure.
+
+## Rebalance
+
+Distributed spare space can be made available again by simply replacing any failed drive with a new drive. This process is called _rebalance_ which is essentially a _resilver_:
+```
+# zpool replace -f tank sdo sdw
+# zpool status
+ state: DEGRADED
+status: One or more devices has been taken offline by the administrator.
+        Sufficient replicas exist for the pool to continue functioning in a
+        degraded state.
+action: Online the device using 'zpool online' or replace the device with
+        'zpool replace'.
+  scan: resilvered 2.21G in 0h0m58s with 0 errors on Fri Feb 24 23:31:45 2017
+config:
+
+        NAME                STATE     READ WRITE CKSUM
+        tank                DEGRADED     0     0     0
+          draid1-0          DEGRADED     0     0     0
+            sdd             ONLINE       0     0     0
+            sde             ONLINE       0     0     0
+            sdf             ONLINE       0     0     0
+            sdg             ONLINE       0     0     0
+            sdh             ONLINE       0     0     0
+            sdu             ONLINE       0     0     0
+            spare-6         DEGRADED     0     0     0
+              sdj           OFFLINE      0     0     0
+              $draid1-0-s1  ONLINE       0     0     0
+            sdv             ONLINE       0     0     0
+            sdl             ONLINE       0     0     0
+            sdm             ONLINE       0     0     0
+            sdn             ONLINE       0     0     0
+            sdw             ONLINE       0     0     0
+            sdp             ONLINE       0     0     0
+            sdq             ONLINE       0     0     0
+            sdr             ONLINE       0     0     0
+            sds             ONLINE       0     0     0
+            sdt             ONLINE       0     0     0
+        spares
+          $draid1-0-s0      AVAIL   
+          $draid1-0-s1      INUSE     currently in use
+```
+
+Note that the scan status now says _"resilvered"_. Also, the state of _$draid1-0-s0_ has become _AVAIL_ again. Since the resilver process checks block checksums, it makes up for the lack of checksum verification during previous rebuild.
+
+The dRAID1 vdev in this example shuffles three (4 data + 1 parity) redundancy groups to the 17 drives. For any single drive failure, only about 1/3 of the blocks are affected (and should be resilvered/rebuilt). The rebuild process is able to avoid unnecessary work, but the resilver process by default will not. The rebalance (which is essentially resilver) can speed up a lot by setting module option _zfs_no_resilver_skip_ to 0. This feature is turned off by default because of issue https://github.com/zfsonlinux/zfs/issues/5806. 
 
 # Troubleshooting
