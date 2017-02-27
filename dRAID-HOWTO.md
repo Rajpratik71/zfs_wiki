@@ -256,6 +256,12 @@ config:
 
 Again, full redundancy has been restored without adding any new drive. If another drive fails, the pool will still be able to handle IO, but there'd be no more distributed spare to rebuild (both are in _INUSE_ state now). At this point, there's no urgency to add a new replacement drive because the pool can survive yet another drive failure.
 
+### Rebuild for mirror vdev
+
+The sequential rebuild process also works for the mirror vdev. Currently it's enabled by default, if a drive is attached to a mirror or a mirror child vdev is replaced, the rebuild process will be called instead of resilver.
+
+Later it will be changed to use resilver by default, and rebuild only if the user explicitly requests so. 
+
 ## Rebalance
 
 Distributed spare space can be made available again by simply replacing any failed drive with a new drive. This process is called _rebalance_ which is essentially a _resilver_:
