@@ -303,3 +303,8 @@ Note that the scan status now says _"resilvered"_. Also, the state of _$draid1-0
 The dRAID1 vdev in this example shuffles three (4 data + 1 parity) redundancy groups to the 17 drives. For any single drive failure, only about 1/3 of the blocks are affected (and should be resilvered/rebuilt). The rebuild process is able to avoid unnecessary work, but the resilver process by default will not. The rebalance (which is essentially resilver) can speed up a lot by setting module option _zfs_no_resilver_skip_ to 0. This feature is turned off by default because of issue https://github.com/zfsonlinux/zfs/issues/5806. 
 
 # Troubleshooting
+
+Please report bugs to [the dRAID project](https://github.com/thegreatgazoo/zfs/issues), as long as the code is not merged upstream. The following information would be useful:
+* dRAID configuration, i.e. the *.nvl file created by _draidcfg_ command.
+* Output of _zpool events -v_
+* dRAID debug traces, which by default goes to _dmesg_ via _printk()_. The dRAID debugging traces can also use _trace_printk()_, which is more preferable but unfortunately GPL only. It can be enabled by editing the META file to change the license (strictly for debugging only) and edit _include/sys/vdev_draid_impl.h_ to define the _DRAID_USE_TRACE_PRINTK_ macro.
