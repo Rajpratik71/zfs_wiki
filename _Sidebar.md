@@ -24,6 +24,7 @@
 * [[Developer Resources]]
   * [[Custom Packages]]
   * [[Building ZFS]]
+  * [Buildbot Status][buildbot-status]
   * [OpenZFS Tracking][openzfs-tracking]
   * [[OpenZFS Patches]]
   * [[OpenZFS Exceptions]]
@@ -37,3 +38,4 @@
 [roadmap]: https://github.com/zfsonlinux/zfs/milestones
 [openzfs-devel]: http://open-zfs.org/wiki/Developer_resources
 [openzfs-tracking]: http://build.zfsonlinux.org/openzfs-tracking.html
+[buildbot-status]: http://build.zfsonlinux.org/tgrid?length=100&branch=master&category=Tests&rev_order=desc
