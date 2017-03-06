@@ -15,6 +15,7 @@ The commit is applicable but not applied for the reason described in the comment
 
 OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
+7816|-      |The change is illumos specific and not applicable for Linux.
 7779|-      |The change isn't relevant, `zfs_ctldir.c` was rewritten for Linux.
 7740|32d41fb|
 7739|582cc014|
