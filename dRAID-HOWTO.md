@@ -1,5 +1,28 @@
 # Introduction
-## What is dRAID
+
+## raidz vs draid
+
+ZFS users are most likely very familiar with raidz already, so a comparison with draid would help. The illustrations below are simplified, but sufficient for the purpose of a comparison. For example, 31 drives can be configured as a zpool of 6 raidz1 vdevs and a hot spare:
+![raidz1](https://cloud.githubusercontent.com/assets/6722662/23642396/9790e432-02b7-11e7-8198-ae9f17c61d85.png)
+
+As shown above, if drive 0 fails and is replaced by the hot spare, only 5 out of the 30 surviving drives will work to resilver: drives 1-4 read, and drive 30 writes.
+
+The same 30 drives can be configured as 1 draid1 vdev of the same level of redundancy (i.e. single parity, 1/4 parity ratio) and single spare capacity:
+![draid1](https://cloud.githubusercontent.com/assets/6722662/23642395/9783ef8e-02b7-11e7-8d7e-31d1053ee4ff.png)
+
+The drives are shuffled in a way that, after drive 0 fails, all 30 surviving drives will work together to restore the lost data/parity:
+* All 30 drives read, because unlike the raidz1 configuration shown above, in the draid1 configuration the neighbor drives of the failed drive 0 (i.e. drives in a same data+parity group) are not fixed.
+* All 30 drives write, because now there is no dedicated spare drive. Instead, spare blocks come from all drives.
+
+To summarize:
+* Normal application IO: draid and raidz are very similar. There's a slight advantage in draid, since there's no dedicated spare drive which is idle when not in use.
+* Restore lost data/parity: for raidz, not all surviving drives will work to rebuild, and in addition it's bounded by the write throughput of a single replacement drive. For draid, the rebuild speed will scale with the total number of drives because all surviving drives will work to rebuild.
+
+The dRAID vdev must shuffle its child drives in a way that regardless of which drive has failed, the rebuild IO (both read and write) will distribute evenly among all surviving drives, so the rebuild speed will scale. The exact mechanism used by the dRAID vdev driver is beyond the scope of this simple introduction here. If interested, please refer to the recommended readings in the next section.
+
+## Recommended Reading
+
+Parity declustering (the fancy term for shuffling drives) has been an active research topic, and many papers have been published in this area. The [Permutation Development Data Layout](http://www.cse.scu.edu/~tschwarz/TechReports/hpca.pdf) is a good paper to begin. The dRAID vdev driver uses a shuffling algorithm loosely based on the mechanism described in this paper.
 
 # Use dRAID
 
