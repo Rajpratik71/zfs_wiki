@@ -2,7 +2,7 @@
 * This HOWTO uses a whole physical disk.
 * Do not use these instructions for dual-booting.
 * Backup your data. Any existing data will be lost.
-* This instruction uses GRUB from the `unstable` repository for now!
+* This instruction uses GRUB from the `testing` repository for now!
 
 ### System Requirements
 * [64-bit Debian GNU/Linux Jessie Live CD](http://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/debian-live-8.6.0-amd64-standard.iso)
@@ -191,8 +191,8 @@ Customize this file if the system is not a DHCP client.
     deb http://ftp.debian.org/debian jessie-backports main contrib
     deb-src http://ftp.debian.org/debian jessie-backports main contrib
 
-    deb http://ftp.debian.org/debian unstable main contrib
-    deb-src http://ftp.debian.org/debian unstable main contrib
+    deb http://ftp.debian.org/debian testing main contrib
+    deb-src http://ftp.debian.org/debian testing main contrib
 
     # ln -s /proc/self/mounts /etc/mtab
     # apt update
@@ -206,7 +206,7 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
     # apt install --yes gdisk linux-headers-$(uname -r) linux-image-amd64
 
-**Note:** ZFS needs GRUB from `unstable` for now.
+**Note:** ZFS needs GRUB from `testing` for now.
 
 4.5  Install ZFS in the chroot environment for the new system:
 
@@ -228,7 +228,7 @@ Choose one of the following options:
 
 4.6a  Install GRUB for legacy (MBR) booting
 
-    # apt install --yes -t unstable grub-pc
+    # apt install --yes -t testing grub-pc
 
 4.6b  Install GRUB for UEFI booting
 
@@ -239,7 +239,7 @@ Choose one of the following options:
           /dev/disk/by-id/scsi-SATA_disk1-part3) \
           /boot/efi vfat defaults 0 1 >> /etc/fstab
     # mount /boot/efi
-    # apt install --yes -t unstable grub-efi-amd64
+    # apt install --yes -t testing grub-efi-amd64
 
 4.7  Set a root password
 
