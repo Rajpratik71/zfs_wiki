@@ -5,9 +5,8 @@
 * This instruction uses GRUB from the `testing` repository for now!
 
 ### System Requirements
-* [64-bit Debian GNU/Linux Jessie Live CD](http://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/debian-live-8.6.0-amd64-standard.iso)
-* 64-bit computer (amd64, a.k.a. x86_64) computer
-* A drive which presents 512B logical sectors.  Installing on a drive which presents 4KiB logical sectors (a “4Kn” drive) should work with UEFI partitioning, but this has not been tested.
+* [64-bit Debian GNU/Linux Jessie Live CD](http://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/)
+* 64-bit computer (amd64, a.k.a. x86_64) computer preferred
 
 Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory is recommended for normal performance in basic workloads.  If you wish to use deduplication, you will need [massive amounts of RAM](http://wiki.freebsd.org/ZFSTuningGuide#Deduplication). Enabling deduplication is a permanent change that cannot be easily reverted.
 
@@ -90,7 +89,7 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
 
 On Solaris systems, the root filesystem is cloned and the suffix is incremented for major system changes through `pkg image-update` or `beadm`. Similar functionality for APT is possible but currently unimplemented. Even without such a tool, it can still be used for manually created clones.
 
-3.2  Create a filesystem dataset for the root filesystem of the Ubuntu system:
+3.2  Create a filesystem dataset for the root filesystem of the Debian system:
 
     # zfs create -o canmount=noauto -o mountpoint=/ rpool/ROOT/debian
     # zfs mount rpool/ROOT/debian
@@ -289,7 +288,7 @@ If you are creating a mirror, repeat the grub-install command for each disk in t
 5.5b  For UEFI booting, install GRUB:
 
     # grub-install --target=x86_64-efi --efi-directory=/boot/efi \
-          --bootloader-id=ubuntu --recheck --no-floppy
+          --bootloader-id=debian --recheck --no-floppy
 
 5.6  Verify that the ZFS module is installed:
 
@@ -299,7 +298,7 @@ If you are creating a mirror, repeat the grub-install command for each disk in t
 
 6.1  Snapshot the initial installation:
 
-    # zfs snapshot rpool/ROOT/ubuntu@install
+    # zfs snapshot rpool/ROOT/debian@install
 
 In the future, you will likely want to take snapshots before each upgrade, and remove old snapshots (including this one) at some point to save space.
 
@@ -391,7 +390,7 @@ As `/var/log` is already compressed by ZFS, logrotate’s compression is going t
 
 9.2  Optional: Delete the snapshot of the initial installation:
 
-    $ sudo zfs destroy rpool/ROOT/ubuntu@install
+    $ sudo zfs destroy rpool/ROOT/debian@install
 
 9.3  Optional: Disable the root password
 
