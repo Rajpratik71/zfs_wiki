@@ -192,6 +192,7 @@ The scan status line of the _zpool status_ output now says _"rebuilt"_ instead o
 * The IO from rebuild is sequential, because it rebuilds metaslabs one by one in sequential order.
 * The rebuild process is not limited to block boundaries. For example, if 10 64K blocks are allocated contiguously, then rebuild will fix 640K at one time. So rebuild process will generate larger IOs than resilver.
 * For all the benefits above, there is one price to pay. The rebuild process cannot verify block checksums, since it doesn't have block pointers.
+* Moreover, the rebuild process requires support from on-disk format, and **only** works on draid and mirror vdevs. Resilver, on the other hand, works with any vdev (including draid).
 
 Although rebuild process creates larger IOs, the drives will not necessarily see large IO requests. The block device queue parameter _/sys/block/*/queue/max_sectors_kb_ must be tuned accordingly. However, since the rebuild IO is already sequential, the benefits of enabling larger IO requests might be marginal.
 
