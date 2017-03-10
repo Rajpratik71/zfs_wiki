@@ -286,7 +286,13 @@ Again, full redundancy has been restored without adding any new drive. If anothe
 
 The sequential rebuild process also works for the mirror vdev. Currently it's enabled by default, if a drive is attached to a mirror or a mirror child vdev is replaced, the rebuild process will be called instead of resilver.
 
-Later it will be changed to use resilver by default, and rebuild only if the user explicitly requests so. 
+Later it will be changed to use resilver by default, and rebuild only if the user explicitly requests so.
+
+### Rebuild throttling
+
+The rebuild process may delay _zio_ according to the ZFS options _zfs_scan_idle_ and _zfs_resilver_delay_, which are the same options used by resilver. Moreover, when a dRAID vdev has lost all redundancy, e.g. a draid2 with 2 faulted child drives, the rebuild process will go faster by reducing the delay to _zfs_resilver_delay/2_ because the vdev is now in critical state.
+
+After delaying, the rebuild zio is issued using priority _ZIO_PRIORITY_SCRUB_ for reads and _ZIO_PRIORITY_ASYNC_WRITE_ for writes. Therefore the options that control the queuing of these two IO priorities will affect rebuild _zio_ as well, for example _zfs_vdev_scrub_min_active_, _zfs_vdev_scrub_max_active_, _zfs_vdev_async_write_min_active_, and _zfs_vdev_async_write_max_active_.
 
 ## Rebalance
 
