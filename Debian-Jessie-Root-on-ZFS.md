@@ -227,7 +227,10 @@ Choose one of the following options:
 
 4.6a  Install GRUB for legacy (MBR) booting
 
+    # apt install --yes grub-pc
     # apt install --yes -t testing grub-pc
+
+This intentionally installs GRUB twice: once from `stable` and then from `testing`.  This ensures that dependencies are satisfied from `stable`, if possible, which avoids some conflicts with other packages.
 
 4.6b  Install GRUB for UEFI booting
 
@@ -238,7 +241,10 @@ Choose one of the following options:
           /dev/disk/by-id/scsi-SATA_disk1-part3) \
           /boot/efi vfat defaults 0 1 >> /etc/fstab
     # mount /boot/efi
+    # apt install --yes grub-efi-amd64
     # apt install --yes -t testing grub-efi-amd64
+
+This intentionally installs GRUB twice: once from `stable` and then from `testing`.  This ensures that dependencies are satisfied from `stable`, if possible, which avoids some conflicts with other packages.
 
 4.7  Set a root password
 
