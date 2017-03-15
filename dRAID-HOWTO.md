@@ -283,9 +283,9 @@ Again, full redundancy has been restored without adding any new drive. If anothe
 
 ### Rebuild for mirror vdev
 
-The sequential rebuild process also works for the mirror vdev. Currently it's enabled by default, if a drive is attached to a mirror or a mirror child vdev is replaced, the rebuild process will be called instead of resilver.
+The sequential rebuild process also works for the mirror vdev, when a drive is attached to a mirror or a mirror child vdev is replaced.
 
-Later it will be changed to use resilver by default, and rebuild only if the user explicitly requests so.
+By default, rebuild for mirror vdev is turned off. It can be turned on using the zfs module option _spa_rebuild_mirror=1_.
 
 ### Rebuild throttling
 
