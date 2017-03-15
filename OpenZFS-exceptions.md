@@ -18,7 +18,7 @@ OpenZFS issue id | status/ZFS commit | comment
 7869|df7eecc|
 7816|-      |The change is illumos specific and not applicable for Linux.
 7803|-      |This functionality is provided by `update_vdev_config_dev_strs()` on Linux.
-7801|0eef1bd|
+7801|0eef1bd|Commit f25efb3 in openzfs/master has a small change for linting which is being ported.
 7779|-      |The change isn't relevant, `zfs_ctldir.c` was rewritten for Linux.
 7740|32d41fb|
 7739|582cc014|
