@@ -2,17 +2,17 @@
 * [[Getting Started]]
   * [ArchLinux][arch]
   * [[Debian]]
-    * [Debian initrd Documentation](Debian GNU Linux initrd documentation)
-    * [Debian Root on ZFS](Debian Jessie Root on ZFS)
-    * [Dual booting OS X and Debian](Dual booting OS X and Debian Jessie with ZFS root, cross mounting and full disk encryption)
+    * [Debian initrd Documentation](https://github.com/zfsonlinux/zfs/wiki/Debian-GNU-Linux-initrd-documentation)
+    * [Debian Root on ZFS](https://github.com/zfsonlinux/zfs/wiki/Debian-Jessie-Root-on-ZFS)
+    * [Dual booting OS X and Debian](https://github.com/zfsonlinux/zfs/wiki/Dual-booting-OS-X-and-Debian-Jessie-with-ZFS-root%2C-cross-mounting-and-full-disk-encryption)
   * [[Fedora]]
   * [Gentoo][gentoo]
   * [openSUSE][opensuse]
   * [[RHEL & CentOS]]
   * [[Ubuntu]]
-    * [16.04 Root on ZFS](Ubuntu 16.04 Root on ZFS)
-    * [16.10 Root on ZFS](Ubuntu 16.10 Root on ZFS)
-    * [ZFS mountall FAQ](Ubuntu ZFS mountall FAQ and troubleshooting)
+    * [16.04 Root on ZFS](https://github.com/zfsonlinux/zfs/wiki/Ubuntu-16.04-Root-on-ZFS)
+    * [16.10 Root on ZFS](https://github.com/zfsonlinux/zfs/wiki/Ubuntu-16.10-Root-on-ZFS)
+    * [ZFS mountall FAQ](https://github.com/zfsonlinux/zfs/wiki/Ubuntu-ZFS-mountall-FAQ-and-troubleshooting)
 * [[Project & Community]]
   * [[Admin Documentation]]
   * [[FAQ]]
