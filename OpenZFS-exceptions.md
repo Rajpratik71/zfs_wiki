@@ -15,6 +15,7 @@ The commit is applicable but not applied for the reason described in the comment
 
 OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
+7970|c30e58c|
 7869|df7eecc|
 7816|-      |The change is illumos specific and not applicable for Linux.
 7803|-      |This functionality is provided by `update_vdev_config_dev_strs()` on Linux.
