@@ -61,7 +61,7 @@ $ git am ./openzfs-<commit-nr>.diff
 
 The summary line of an OpenZFS commit is often very long and you should truncate it to 50 characters.  This is useful because it preserves the correct formatting of `git log --pretty=oneline` command.  Make sure to leave a blank line between the summary and body of the commit.  Then include the full OpenZFS commit message wrapping any lines which exceed 72 characters.  Finally, add a `Ported-by` tag with your contact information and both a `OpenZFS-issue` and `OpenZFS-commit` tag with appropriate links.  You'll want to verify your commit contains all of the following information:
 
-  * A short (50 character) subject line of the form: "OpenZFS \<issue-nr\> - short description".
+  * The subject line from the original OpenZFS patch in the form: "OpenZFS \<issue-nr\> - short description".
   * The original patch authorship should be preserved.
   * The OpenZFS commit message.
   * The following tags:
@@ -82,7 +82,6 @@ Authored by: Chris Williamson <chris.williamson@delphix.com>
 Reviewed by: Matthew Ahrens <mahrens@delphix.com>
 Reviewed by: Paul Dagnelie <pcd@delphix.com>
 Ported-by: Denys Rtveliashvili <denys@rtveliashvili.name>
-Signed-off-by: Brian Behlendorf <behlendorf1@llnl.gov>
     
 lzc_destroy_snaps() returns an nvlist in errlist.
 zfs_destroy_snaps_nvl() should nvlist_free() it before returning.
