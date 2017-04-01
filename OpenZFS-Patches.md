@@ -34,9 +34,68 @@ $ cd ../zfs
 $ sh autogen.sh && ./configure --enable-debug && make -s -j$(nproc)
 ```
 
+### Pick a patch
+
+Consult the [OpenZFS tracking](http://build.zfsonlinux.org/openzfs-tracking.html) page and select a patch which has not yet been applied.  For your first patch you will want to select a small patch to familiarize yourself with the process.
+
 ### Porting a Patch
 
-**Pick a patch.**  Consult the [OpenZFS tracking](http://build.zfsonlinux.org/openzfs-tracking.html) page and select a patch which has not yet been applied.  For your first patch you will want to select a small patch to familiarize yourself with the process.
+There are 2 methods:
+- [cherry-pick (easier)](#cherry-pick)
+- [manual merge](#manual-merge)
+
+Please read about [manual merge](#manual-merge) first to learn the whole process.
+
+#### Cherry-pick
+
+You can start to [cherry-pick](https://git-scm.com/docs/git-cherry-pick) by your own, but we have made a special [script](https://github.com/zfsonlinux/zfs-buildbot/blob/master/scripts/openzfs-merge.sh), which tries to [cherry-pick](https://git-scm.com/docs/git-cherry-pick) the patch automatically and generates the description. 
+
+0) Prepare environment:
+
+Mandatory git settings (add to `~/.gitconfig`):
+```
+[merge]
+    renameLimit = 999999
+[user]
+    email = mail@yourmail.com
+    name = Your Name
+```
+
+Download the script:
+```
+wget https://raw.githubusercontent.com/zfsonlinux/zfs-buildbot/master/scripts/openzfs-merge.sh
+```
+
+1) Run:
+```
+./openzfs-merge.sh -d path_to_zfs_folder -c openzfs_commit_hash
+```
+This command will fetch all repositories, create a new branch `autoport-ozXXXX` (XXXX - OpenZFS issue number), try to cherry-pick, compile and check cstyle on success.
+
+If it succeeds without any merge conflicts - go to `autoport-ozXXXX` branch, it will have ready to pull commit. Congratulations, you can go to step 7! 
+
+Otherwise you should go to step 2.
+
+2) Resolve all merge conflicts manually. Easy method - install [Meld](http://meldmerge.org/) or any other diff tool and run `git mergetool`.
+
+3) Check all compile and cstyle errors (See [Testing a patch](#testing-a-patch)).
+
+4) Commit your changes with any description.
+
+5) Update commit description (last commit will be changed):
+```
+./openzfs-merge.sh -d path_to_zfs_folder -g openzfs_commit_hash
+```
+
+6) Add any porting notes (if you have modified something): `git commit --amend`
+
+7) Push your commit to github: `git push origin autoport-ozXXXX -f`
+
+8) Create a pull request to ZoL master branch.
+
+9) Go to [Testing a patch](#testing-a-patch) section.
+
+#### Manual merge
 
 **Create a new branch.**  It is important to create a new branch for every commit you port to ZFS on Linux.  This will allow you to easily submit your work as a GitHub pull request and it makes it possible to work on multiple OpenZFS changes concurrently.  All development branches need to be based off of the ZFS master branch and it's helpful to name the branches after the issue number you're working on.
 
