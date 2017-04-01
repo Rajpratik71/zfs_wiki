@@ -1,3 +1,6 @@
+**IMPORTANT NOTE - this page is obsolete, use** http://build.zfsonlinux.org/openzfs-tracking.html
+
+
 :large_blue_circle: Applied to master branch  
 :white_circle:      Open pull request against master branch pending review  
 :red_circle:        No existing pull request against the master branch  
