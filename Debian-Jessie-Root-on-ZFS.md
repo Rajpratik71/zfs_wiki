@@ -228,10 +228,9 @@ Choose one of the following options:
 
 4.6a  Install GRUB for legacy (MBR) booting
 
-    # apt install --yes grub-pc
-    # apt install --yes -t testing grub-pc
+    # apt install --yes grub-pc/testing
 
-This intentionally installs GRUB twice: once from `stable` and then from `testing`.  This ensures that dependencies are satisfied from `stable`, if possible, which avoids some conflicts with other packages.
+This installs GRUB from `testing`, but satisfies dependencies from `stable`, if possible, which avoids some conflicts with other packages.
 
 4.6b  Install GRUB for UEFI booting
 
