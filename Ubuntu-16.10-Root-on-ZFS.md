@@ -12,7 +12,7 @@ Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory i
 
 ## Support
 
-If you need help, reach out to the community using the [zfs-discuss mailing list](http://list.zfsonlinux.org/mailman/listinfo/zfs-discuss) or IRC at #zfsonlinux on FreeNode. If you have a bug report or feature request related to this HOWTO, please [file a new issue](https://github.com/zfsonlinux/zfs/issues/new) and mention @gmelikov and @rlaager.
+If you need help, reach out to the community using the [zfs-discuss mailing list](http://list.zfsonlinux.org/mailman/listinfo/zfs-discuss) or IRC at #zfsonlinux on [freenode](https://freenode.net/). If you have a bug report or feature request related to this HOWTO, please [file a new issue](https://github.com/zfsonlinux/zfs/issues/new) and mention @gmelikov and @rlaager.
 
 ## Step 1: Prepare The Install Environment
 
