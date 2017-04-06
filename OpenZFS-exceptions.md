@@ -39,7 +39,6 @@ OpenZFS issue id | status/ZFS commit | comment
 7430|68cbd56|
 7402|690fe64|
 7345|058ac9b|
-7290|!      |Until this is ported, porting of test cases should continue to use environment variables to refer to tools.
 7278|-      |Dynamic ARC tuning is handled slightly differently under Linux and this case is covered by arc_tuning_update()
 7238|-      |zvol_swap test already disabled in ZoL
 7194|d7958b4|
