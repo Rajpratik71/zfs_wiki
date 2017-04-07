@@ -139,7 +139,6 @@ OpenZFS issue id | status/ZFS commit | comment
 3254|-      |The `aclmode` property cannot be supported under Linux.
 3246|cc92e9d|
 2933|-      |None of the illumos build system is used under Linux.
-2932|!      |The feature has not been ported because Linux fundamentally handles crash dumps differently.  The commit will need to be significantly reworked for Linux.  The only benefit will be to ensure pools from other platforms with this feature set can be easily imported under Linux.
 2897|fb82700|
 2665|32a9872|
 2130|460a021|
