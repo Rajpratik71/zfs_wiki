@@ -124,6 +124,7 @@ OpenZFS issue id | status/ZFS commit | comment
 4072|-      |None of the illumos build system is used under Linux.
 3947|7f9d994|
 3928|-      |Neither vnodes or their associated events exist under Linux.
+3871|d1d7e268|
 3747|090ff09|
 3705|-      |The Linux implementation uses the lz4 workspace kmem cache to resolve the stack issue.
 3606|c5b247f|
