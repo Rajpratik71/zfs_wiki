@@ -69,9 +69,19 @@ If you have a second system, using SSH to access the target system can be conven
     Run this for UEFI booting (for use now or in the future):
     # sgdisk     -n3:1M:+512M -t3:EF00 /dev/disk/by-id/scsi-SATA_disk1
 
-    Run these in all cases:
+    Run this in all cases:
     # sgdisk     -n9:-8M:0    -t9:BF07 /dev/disk/by-id/scsi-SATA_disk1
+
+Choose one of the following options:
+
+2.2a  Unencrypted or eCryptfs:
+
     # sgdisk     -n1:0:0      -t1:BF01 /dev/disk/by-id/scsi-SATA_disk1
+
+2.2b  LUKS:
+
+    # sgdisk     -n4:0:+512M  -t4:8300 /dev/disk/by-id/scsi-SATA_disk1
+    # sgdisk     -n1:0:0      -t1:8300 /dev/disk/by-id/scsi-SATA_disk1
 
 Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` device nodes directly can cause sporadic import failures, especially on systems that have more than one storage pool.
 
@@ -81,15 +91,31 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
 
 2.3  Create the root pool:
 
+Choose one of the following options:
+
+2.3a  Unencrypted or eCryptfs:
+
     # zpool create -o ashift=12 \
           -O atime=off -O canmount=off -O compression=lz4 -O normalization=formD \
           -O mountpoint=/ -R /mnt \
           rpool /dev/disk/by-id/scsi-SATA_disk1-part1
 
+2.3b  LUKS:
+
+    # cryptsetup luksFormat -c aes-xts-plain64 -s 256 -h sha256 \
+          /dev/disk/by-id/scsi-SATA_disk1-part1
+    # cryptsetup luksOpen /dev/disk/by-id/scsi-SATA_disk1-part1 luks1
+    # zpool create -o ashift=12 \
+          -O atime=off -O canmount=off -O compression=lz4 -O normalization=formD \
+          -O mountpoint=/ -R /mnt \
+          rpool /dev/mapper/luks1
+
 **Notes:**
 * The use of `ashift=12` is recommended here because many drives today have 4KiB (or larger) physical sectors, even though they present 512B logical sectors.  Also, a future replacement drive may have 4KiB physical sectors (in which case `ashift=12` is desirable) or 4KiB logical sectors (in which case `ashift=12` is required).
 * Setting `normalization=formD` eliminates some corner cases relating to UTF-8 filename normalization. It also implies `utf8only=on`, which means that only UTF-8 filenames are allowed. If you care to support non-UTF-8 filenames, do not use this option. For a discussion of why requiring UTF-8 filenames may be a bad idea, see [The problems with enforced UTF-8 only filenames](http://utcc.utoronto.ca/~cks/space/blog/linux/ForcedUTF8Filenames).
 * Make sure to include the `-part1` portion of the drive path. If you forget that, you are specifying the whole disk, which ZFS will then re-partition, and you will lose the bootloader partition(s).
+* For LUKS, the key size chosen is 256 bits. However, XTS mode requires two keys, so the LUKS key is split in half. Thus, `-s 256` means AES-128, which is the LUKS and Ubuntu default.
+* Your passphrase will likely be the weakest link. Choose wisely. See [section 5 of the cryptsetup FAQ](https://gitlab.com/cryptsetup/cryptsetup/wikis/FrequentlyAskedQuestions#5-security-aspects) for guidance.
 
 **Hints:**
 * The root pool does not have to be a single disk; it can have a mirror or raidz topology.  In that case, repeat the partitioning commands for all the disks which will be part of the pool. Then, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part1 /dev/disk/by-id/scsi-SATA_disk2-part1` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks). Later, install GRUB to all the disks. This is trivial for MBR booting; the UEFI equivalent is currently left as an exercise for the reader.
@@ -135,7 +161,13 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
 
 The primary goal of this dataset layout is to separate the OS from user data. This allows the root filesystem to be rolled back without rolling back user data such as logs (in `/var/log`). This will be especially important if/when a `beadm` or similar utility is integrated. Since we are creating multiple datasets anyway, it is trivial to add some restrictions (for extra security) at the same time. The `com.sun.auto-snapshot` setting is used by some ZFS snapshot utilities to exclude transient data.
 
-3.4  Install the minimal system:
+3.4  For LUKS installs only:
+
+    # mke2fs -t ext2 /dev/disk/by-id/scsi-SATA_disk1-part4
+    # mkdir /mnt/boot
+    # mount /dev/disk/by-id/scsi-SATA_disk1-part4 /mnt/boot
+
+3.5  Install the minimal system:
 
     # chmod 1777 /mnt/var/tmp
     # debootstrap zesty /mnt
@@ -205,6 +237,21 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
     # apt install --yes --no-install-recommends linux-image-generic
     # apt install --yes zfs-initramfs
 
+4.6  For LUKS installs only:
+
+    # echo UUID=$(blkid -s UUID -o value \
+          /dev/disk/by-id/scsi-SATA_disk1-part4) \
+          /boot ext2 defaults 0 2 >> /etc/fstab
+
+    # apt install --yes cryptsetup
+
+    # echo luks1 UUID=$(blkid -s UUID -o value \
+          /dev/disk/by-id/scsi-SATA_disk1-part1) none \
+          luks,discard,initramfs > /etc/crypttab
+
+**Notes:**
+* The use of `initramfs` is a work-around for [cryptsetup does not support ZFS](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906).
+
 4.6  Install GRUB
 
 Choose one of the following options:
@@ -257,6 +304,8 @@ Install GRUB to the disk(s), not the partition(s).
 
     # update-initramfs -c -k all
     update-initramfs: Generating /boot/initrd.img-4.4.0-34-generic
+
+**Note:** When using LUKS, this will print "WARNING could not determine root device from /etc/fstab". This is because [cryptsetup does not support ZFS](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906).
 
 5.3  Optional (but highly recommended): Make debugging GRUB easier:
 
@@ -324,14 +373,14 @@ In the future, you will likely want to take snapshots before each upgrade, and r
 
 Choose one of the following options:
 
-6.6a  Create an unencrypted (regular) home directory:
+6.6a  Unencrypted or LUKS:
 
     # zfs create rpool/home/YOURUSERNAME
     # adduser YOURUSERNAME
     # cp -a /etc/skel/.[!.]* /home/YOURUSERNAME
     # chown -R YOURUSERNAME:YOURUSERNAME /home/YOURUSERNAME
 
-6.6b  Create an encrypted home directory:
+6.6b  eCryptfs:
 
     # apt install ecryptfs-utils
 
@@ -363,16 +412,16 @@ The compression algorithm is set to `zle` because it is the cheapest available a
 
 7.2  Configure the swap device:
 
-Choose one of the following options.  If you are going to do an encrypted home directory later, you should use encrypted swap.
+Choose one of the following options:
 
-7.2a  Create an unencrypted (regular) swap device:
+7.2a  Unencrypted or LUKS:
 
 **Caution**: Always use long `/dev/zvol` aliases in configuration files. Never use a short `/dev/zdX` device name.
 
     # mkswap -f /dev/zvol/rpool/swap
     # echo /dev/zvol/rpool/swap none swap defaults 0 0 >> /etc/fstab
 
-7.2b  Create an encrypted swap device:
+7.2b  eCryptfs:
 
     # apt install cryptsetup
     # echo cryptswap1 /dev/zvol/rpool/swap /dev/urandom \
@@ -431,9 +480,9 @@ As `/var/log` is already compressed by ZFS, logrotate’s compression is going t
 
     $ sudo usermod -p '*' root
 
-9.4  Optional (not recommended):
+9.4  Optional:
 
-If you prefer the graphical boot process, you can re-enable it now. It will make debugging boot problems more difficult, though.
+If you prefer the graphical boot process, you can re-enable it now. If you are using LUKS, it makes the prompt look nicer.
 
     $ sudo vi /etc/default/grub
     Uncomment GRUB_HIDDEN_TIMEOUT=0
