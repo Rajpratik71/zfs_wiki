@@ -27,7 +27,7 @@ Parity declustering (the fancy term for shuffling drives) has been an active res
 # Use dRAID
 
 First get the code [here](https://github.com/zfsonlinux/zfs/pull/5841), build spl and zfs with _configure --enable-debug_, and install. Then load the zfs kernel module with the following options:
-* zfs_vdev_scrub_min_active=2 zfs_vdev_scrub_max_active=10 zfs_vdev_async_write_min_active=8: These options help dRAID rebuild performance.
+* zfs_vdev_scrub_max_active=10 zfs_vdev_async_write_min_active=4: These options help dRAID rebuild performance.
 * draid_debug_lvl=5: This option controls the verbosity level of dRAID debug traces, which is very useful for troubleshooting.
 
 Again, very important to _configure_ both spl and zfs with _--enable-debug_.
