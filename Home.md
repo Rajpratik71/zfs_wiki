@@ -12,5 +12,7 @@ to get started.
 |------------------------------|-------------------------------|------------------------ |
 | How to get started with OpenZFS on your favorite Linux distribution | About the project and how to contribute | Technical documentation discussing the OpenZFS implementation |
 
+Platform agnostic [[Performance tuning|http://open-zfs.org/wiki/Performance_tuning]] information is maintained at the OpenZFS wiki. [[Hardware advice|http://open-zfs.org/wiki/Hardware]] is also maintained at the OpenZFS wiki.
+
 [website]: http://zfsonlinux.org
 [openzfs]: http://open-zfs.org
