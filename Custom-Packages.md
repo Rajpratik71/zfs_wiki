@@ -53,7 +53,7 @@ Once the source has been prepared you'll need to decide what kind of packages yo
 
 ## DKMS (rpm-only)
 
-Building rpm-based DKMS and user packages can be done as follows.  However, be aware that the build system currently does does support building deb-based DKMS packages.
+Building rpm-based DKMS and user packages can be done as follows.  However, be aware that the build system currently does not support building deb-based DKMS packages.
 
 
 ```
