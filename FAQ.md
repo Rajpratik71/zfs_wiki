@@ -21,6 +21,7 @@
 - [Advanced Format Disks](#advanced-format-disks)
 - [Using a zvol for a swap device](#using-a-zvol-for-a-swap-device)
 - [Using ZFS on Xen Hypervisor or Xen Dom0](#using-zfs-on-xen-hypervisor-or-xen-dom0)
+- [udisks2 creates /dev/mapper/ entries for zvol](#udisks2-creating-devmapper-entries-for-zvol)
 - [Licensing](#licensing)
 - [Reporting a problem](#reporting-a-problem)
  
