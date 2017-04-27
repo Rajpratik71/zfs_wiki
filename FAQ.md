@@ -328,6 +328,14 @@ It is usually recommended to keep virtual machine storage and hypervisor pools, 
   * Disable Xen's auto-ballooning in `/etc/xen/xl.conf`
   * Watch out for any Xen bugs, such as [this one][xen-bug] related to ballooning
 
+## udisks2 creating /dev/mapper/ entries for zvol
+
+To prevent udisks2 from creating /dev/mapper entries that must be manually removed or maintained during zvol remove / rename, create a udev rule such as `/etc/udev/rules.d/80-udisks2-ignore-zfs.rules` with the following contents:
+
+```
+ENV{ID_PART_ENTRY_SCHEME}=="gpt", ENV{ID_FS_TYPE}=="zfs_member", ENV{ID_PART_ENTRY_TYPE}=="6a898cc3-1dd2-11b2-99a6-080020736631", ENV{UDISKS_IGNORE}="1"
+```
+
 ## Licensing
 
 ZFS is licensed under the Common Development and Distribution License ([CDDL][cddl]), and the Linux kernel is licensed under the GNU General Public License Version 2 ([GPLv2][gpl]). While both are free open source licenses they are restrictive licenses. The combination of them causes problems because it prevents using pieces of code exclusively available under one license with pieces of code exclusively available under the other in the same binary. In the case of the kernel, this prevents us from distributing ZFS on Linux as part of the kernel binary. However, there is nothing in either license that prevents distributing it in the form of a binary module or in the form of source code.
