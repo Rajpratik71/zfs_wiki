@@ -256,7 +256,7 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
     # echo luks1 UUID=$(blkid -s UUID -o value \
           /dev/disk/by-id/scsi-SATA_disk1-part1) none \
-          luks,discard,keyscript=/bin/cat > /etc/crypttab
+          luks,discard,initramfs > /etc/crypttab
 
     # vi /etc/udev/rules.d/99-local-crypt.rules
     ENV{DM_NAME}!="", SYMLINK+="$env{DM_NAME}"
