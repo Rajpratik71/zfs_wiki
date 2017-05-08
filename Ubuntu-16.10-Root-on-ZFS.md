@@ -249,17 +249,17 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 **Notes:**
 * The use of `initramfs` is a work-around for [cryptsetup does not support ZFS](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906).
 
-4.6  Install GRUB
+4.7  Install GRUB
 
 Choose one of the following options:
 
-4.6a  Install GRUB for legacy (MBR) booting
+4.7a  Install GRUB for legacy (MBR) booting
 
     # apt install --yes grub-pc
 
 Install GRUB to the disk(s), not the partition(s).
 
-4.6b  Install GRUB for UEFI booting
+4.7b  Install GRUB for UEFI booting
 
     # apt install dosfstools
     # mkdosfs -F 32 -n EFI /dev/disk/by-id/scsi-SATA_disk1-part3
@@ -270,16 +270,16 @@ Install GRUB to the disk(s), not the partition(s).
     # mount /boot/efi
     # apt install --yes grub-efi-amd64
 
-4.7  Setup system groups:
+4.8  Setup system groups:
 
     # addgroup --system lpadmin
     # addgroup --system sambashare
 
-4.8  Set a root password
+4.9  Set a root password
 
     # passwd
 
-4.9  Fix filesystem mount ordering
+4.10  Fix filesystem mount ordering
 
 [Until ZFS gains a systemd mount generator](https://github.com/zfsonlinux/zfs/issues/4898), there are races between mounting filesystems and starting certain daemons. In practice, the issues (e.g. [#5754](https://github.com/zfsonlinux/zfs/issues/5754)) seem to be with certain filesystems in `/var`, specifically `/var/log` and `/var/tmp`. Setting these to use `legacy` mounting, and listing them in `/etc/fstab` makes systemd aware that these are separate mountpoints. In turn, `rsyslog.service` depends on `var-log.mount` by way of `local-fs.target` and services using the `PrivateTmp` feature of systemd automatically use `After=var-tmp.mount`.
 
