@@ -197,16 +197,7 @@ The `debootstrap` command leaves the new system in an unconfigured state.  An al
 
 Customize this file if the system is not a DHCP client.
 
-4.3  Bind the virtual filesystems from the LiveCD environment to the new system and `chroot` into it:
-
-    # mount --rbind /dev  /mnt/dev
-    # mount --rbind /proc /mnt/proc
-    # mount --rbind /sys  /mnt/sys
-    # chroot /mnt /bin/bash --login
-
-**Note:** This is using `--rbind`, not `--bind`.
-
-4.4 Configure a basic system environment:
+4.3  Configure the package sources:
 
     # vi /etc/apt/sources.list
     deb http://archive.ubuntu.com/ubuntu yakkety main universe
@@ -218,8 +209,16 @@ Customize this file if the system is not a DHCP client.
     deb http://archive.ubuntu.com/ubuntu yakkety-updates main universe
     deb-src http://archive.ubuntu.com/ubuntu yakkety-updates main universe
 
-    # ln -s /proc/self/mounts /etc/mtab
-    # apt update
+4.4  Bind the virtual filesystems from the LiveCD environment to the new system and `chroot` into it:
+
+    # mount --rbind /dev  /mnt/dev
+    # mount --rbind /proc /mnt/proc
+    # mount --rbind /sys  /mnt/sys
+    # chroot /mnt /bin/bash --login
+
+**Note:** This is using `--rbind`, not `--bind`.
+
+4.5 Configure a basic system environment:
 
     # locale-gen en_US.UTF-8
 
@@ -229,12 +228,19 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
     # dpkg-reconfigure tzdata
 
-4.5  Install ZFS in the chroot environment for the new system:
+    # ln -s /proc/self/mounts /etc/mtab
+    # apt update
+    # apt install --yes ubuntu-minimal
+
+    If you prefer nano over vi, install it:
+    # apt install --yes nano
+
+4.6  Install ZFS in the chroot environment for the new system:
 
     # apt install --yes --no-install-recommends linux-image-generic
     # apt install --yes zfs-initramfs
 
-4.6  For LUKS installs only:
+4.7  For LUKS installs only:
 
     # echo UUID=$(blkid -s UUID -o value \
           /dev/disk/by-id/scsi-SATA_disk1-part4) \
@@ -249,17 +255,17 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 **Notes:**
 * The use of `initramfs` is a work-around for [cryptsetup does not support ZFS](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906).
 
-4.7  Install GRUB
+4.8  Install GRUB
 
 Choose one of the following options:
 
-4.7a  Install GRUB for legacy (MBR) booting
+4.8a  Install GRUB for legacy (MBR) booting
 
     # apt install --yes grub-pc
 
 Install GRUB to the disk(s), not the partition(s).
 
-4.7b  Install GRUB for UEFI booting
+4.8b  Install GRUB for UEFI booting
 
     # apt install dosfstools
     # mkdosfs -F 32 -n EFI /dev/disk/by-id/scsi-SATA_disk1-part3
@@ -270,16 +276,16 @@ Install GRUB to the disk(s), not the partition(s).
     # mount /boot/efi
     # apt install --yes grub-efi-amd64
 
-4.8  Setup system groups:
+4.9  Setup system groups:
 
     # addgroup --system lpadmin
     # addgroup --system sambashare
 
-4.9  Set a root password
+4.10  Set a root password
 
     # passwd
 
-4.10  Fix filesystem mount ordering
+4.11  Fix filesystem mount ordering
 
 [Until ZFS gains a systemd mount generator](https://github.com/zfsonlinux/zfs/issues/4898), there are races between mounting filesystems and starting certain daemons. In practice, the issues (e.g. [#5754](https://github.com/zfsonlinux/zfs/issues/5754)) seem to be with certain filesystems in `/var`, specifically `/var/log` and `/var/tmp`. Setting these to use `legacy` mounting, and listing them in `/etc/fstab` makes systemd aware that these are separate mountpoints. In turn, `rsyslog.service` depends on `var-log.mount` by way of `local-fs.target` and services using the `PrivateTmp` feature of systemd automatically use `After=var-tmp.mount`.
 
