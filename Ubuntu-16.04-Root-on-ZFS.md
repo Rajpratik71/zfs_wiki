@@ -227,7 +227,7 @@ Customize this file if the system is not a DHCP client.
 
 Even if you prefer a non-English system language, always ensure that `en_US.UTF-8` is available.
 
-    # echo 'LANG="en_US.UTF-8"' > /etc/default/locale
+    # echo LANG=en_US.UTF-8 > /etc/default/locale
 
     # dpkg-reconfigure tzdata
 
