@@ -15,6 +15,7 @@ The commit is applicable but not applied for the reason described in the comment
 
 OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
+8138|-      |This man update will be picked up when the mandoc pages are merged.
 8021|7657def|
 8022|e55ebf6|
 8013|-      |The change is illumos specific and not applicable for Linux.
