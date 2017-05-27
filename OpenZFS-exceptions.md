@@ -17,6 +17,7 @@ OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
 8265|-      |The large_dnode feature has been implemented for Linux.
 8138|-      |This man update will be picked up when the mandoc pages are merged.
+8064|-      |This change isn't relevant for Linux.
 8021|7657def|
 8022|e55ebf6|
 8013|-      |The change is illumos specific and not applicable for Linux.
