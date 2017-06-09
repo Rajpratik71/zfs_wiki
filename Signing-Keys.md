@@ -9,6 +9,11 @@ All tagged ZFS on Linux [releases][releases] are signed by the official maintain
 **Key ID:** C77B9667  
 **Fingerprint:** 29D5 610E AE29 41E3 55A2  FE8A B974 67AA C77B 9667  
 
+**Maintainer:** [Tony Hutter][tonyhutter]  
+**Download:** [pgp.mit.edu][tonyhutter-pubkey]  
+**Key ID:** D4598027  
+**Fingerprint:** 4F3B A9AB 6D1F 8D68 3DC2  DFB5 6AD8 60EE D459 8027  
+
 ### Master branch (master)
 
 **Maintainer:** [Brian Behlendorf][behlendorf]  
@@ -45,6 +50,8 @@ gpg:                 aka "Brian Behlendorf (LLNL) <behlendorf1@llnl.gov>"
 
 [nedbass]: https://github.com/nedbass
 [nedbass-pubkey]: http://pgp.mit.edu/pks/lookup?op=vindex&search=0xB97467AAC77B9667&fingerprint=on
+[tonyhutter]: https://github.com/tonyhutter
+[tonyhutter-pubkey]: http://pgp.mit.edu/pks/lookup?op=vindex&search=0x6ad860eed4598027&fingerprint=on
 [behlendorf]: https://github.com/behlendorf
 [behlendorf-pubkey]: http://pgp.mit.edu/pks/lookup?op=vindex&search=0x0AB9E991C6AF658B&fingerprint=on
 [releases]: https://github.com/zfsonlinux/zfs/releases
