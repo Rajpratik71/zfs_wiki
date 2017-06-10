@@ -197,7 +197,7 @@ The `debootstrap` command leaves the new system in an unconfigured state.  An al
 4.2  Configure the network interface:
 
     Find the interface name:
-    # ifconfig -a
+    # ip addr show
 
     # vi /mnt/etc/network/interfaces.d/NAME
     auto NAME
