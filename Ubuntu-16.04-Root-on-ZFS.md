@@ -123,7 +123,7 @@ Choose one of the following options:
 * Your passphrase will likely be the weakest link. Choose wisely. See [section 5 of the cryptsetup FAQ](https://gitlab.com/cryptsetup/cryptsetup/wikis/FrequentlyAskedQuestions#5-security-aspects) for guidance.
 
 **Hints:**
-* The root pool does not have to be a single disk; it can have a mirror or raidz topology.  In that case, repeat the partitioning commands for all the disks which will be part of the pool. Then, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part1 /dev/disk/by-id/scsi-SATA_disk2-part1` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks). Later, install GRUB to all the disks. This is trivial for MBR booting; the UEFI equivalent is currently left as an exercise for the reader.
+* The root pool does not have to be a single disk; it can have a mirror or raidz topology.  In that case, repeat the partitioning commands for all the disks which will be part of the pool. Then, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part1 /dev/disk/by-id/scsi-SATA_disk2-part1` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks).
 * The pool name is arbitrary.  On systems that can automatically install to ZFS, the root pool is named `rpool` by default.  If you work with multiple systems, it might be wise to use `hostname`, `hostname0`, or `hostname-1` instead.
 
 ## Step 3: System Installation
@@ -287,7 +287,7 @@ Install GRUB to the disk(s), not the partition(s).
     # mkdir /boot/efi
     # echo PARTUUID=$(blkid -s PARTUUID -o value \
           /dev/disk/by-id/scsi-SATA_disk1-part3) \
-          /boot/efi vfat defaults 0 1 >> /etc/fstab
+          /boot/efi vfat nofail,x-systemd.device-timeout=1 0 1 >> /etc/fstab
     # mount /boot/efi
     # apt install --yes grub-efi-amd64
 
@@ -414,6 +414,28 @@ The temporary name for the dataset is required to work-around [a bug in ecryptfs
 6.7  Add your user account to the default set of groups for an administrator:
 
     # usermod -a -G adm,cdrom,dip,lpadmin,plugdev,sambashare,sudo YOURUSERNAME
+
+6.8   Mirror GRUB
+
+If you installed to multiple disks, install GRUB on the additional disks:
+
+6.8a  For legacy (MBR) booting:
+
+    # dpkg-reconfigure grub-pc
+    Hit enter until you get to the device selection screen.
+    Select (using the space bar) all of the disks (not partitions) in your pool.
+
+6.8b  UEFI
+
+    # umount /boot/efi
+
+    For the second and subsequent disks (increment ubuntu-2 to -3, etc.):
+    # dd if=/dev/disk/by-id/scsi-SATA_disk1-part3 \
+         of=/dev/disk/by-id/scsi-SATA_disk2-part3
+    # efibootmgr -c -g -d /dev/disk/by-id/scsi-SATA_disk2 \
+          -p 3 -L "ubuntu-2" -l '\EFI\Ubuntu\grubx64.efi'
+
+    # mount /boot/efi
 
 ## Step 7: Configure Swap
 
