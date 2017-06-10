@@ -58,10 +58,11 @@ If you have a second system, using SSH to access the target system can be conven
 2.1  If you are re-using a disk, clear it as necessary:
 
     If the disk was previously used in an MD array, zero the superblock:
+    # apt install --yes mdadm
     # mdadm --zero-superblock --force /dev/disk/by-id/scsi-SATA_disk1
 
     Clear the partition table:
-    # sgdisk --zap /dev/disk/by-id/scsi-SATA_disk1
+    # sgdisk --zap-all /dev/disk/by-id/scsi-SATA_disk1
 
 2.2  Partition your disk:
 
