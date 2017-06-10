@@ -207,7 +207,7 @@ Customize this file if the system is not a DHCP client.
 
 4.3  Configure the package sources:
 
-    # vi /etc/apt/sources.list
+    # vi /mnt/etc/apt/sources.list
     deb http://archive.ubuntu.com/ubuntu xenial main universe
     deb-src http://archive.ubuntu.com/ubuntu xenial main universe
 
