@@ -40,9 +40,10 @@ If you want encryption, LUKS is recommended.
 If you have a second system, using SSH to access the target system can be convenient.
 
     $ passwd
+      There is no current password; hit enter at that prompt.
     $ sudo apt --yes install openssh-server
 
-**Hint:** You can find your IP address with `ip addr show scope global`.  Then, from your main machine, connect with `ssh ubuntu@IP`.
+**Hint:** You can find your IP address with `ip addr show scope global | grep inet`.  Then, from your main machine, connect with `ssh ubuntu@IP`.
 
 1.4  Become root:
 

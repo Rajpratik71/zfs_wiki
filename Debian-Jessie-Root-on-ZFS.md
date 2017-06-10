@@ -26,7 +26,7 @@ If you have a second system, using SSH to access the target system can be conven
           /etc/ssh/sshd_config
     $ sudo service ssh restart
 
-**Hint:** You can find your IP address with `ip addr show scope global`.  Then, from your main machine, connect with `ssh user@IP`.
+**Hint:** You can find your IP address with `ip addr show scope global | grep inet`.  Then, from your main machine, connect with `ssh user@IP`.
 
 1.3  Become root:
 
