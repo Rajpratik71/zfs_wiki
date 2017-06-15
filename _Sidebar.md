@@ -25,7 +25,7 @@
   * [[Custom Packages]]
   * [[Building ZFS]]
   * [Buildbot Status][buildbot-status]
-  * [Controlling the ZFS Buildbot][control-buildbot]
+  * [Buildbot Options][control-buildbot]
   * [OpenZFS Tracking][openzfs-tracking]
   * [[OpenZFS Patches]]
   * [[OpenZFS Exceptions]]
