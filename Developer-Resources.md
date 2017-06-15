@@ -2,7 +2,7 @@
 
 [[Custom Packages]]  
 [[Building ZFS]]  
-[[Controlling the ZFS Buildbot]]  
+[[Buildbot Options]]  
 [[OpenZFS Tracking]]  
 [[OpenZFS Patches]]  
 [OpenZFS Documentation][openzfs-devel]  
