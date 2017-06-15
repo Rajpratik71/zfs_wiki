@@ -2,9 +2,6 @@
 * [[Getting Started]]
   * [ArchLinux][arch]
   * [[Debian]]
-    * [Debian initrd Documentation](https://github.com/zfsonlinux/zfs/wiki/Debian-GNU-Linux-initrd-documentation)
-    * [Debian Root on ZFS](https://github.com/zfsonlinux/zfs/wiki/Debian-Jessie-Root-on-ZFS)
-    * [Dual booting OS X and Debian](https://github.com/zfsonlinux/zfs/wiki/Dual-booting-OS-X-and-Debian-Jessie-with-ZFS-root%2C-cross-mounting-and-full-disk-encryption)
   * [[Fedora]]
   * [Gentoo][gentoo]
   * [openSUSE][opensuse]
