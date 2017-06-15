@@ -40,4 +40,4 @@
 [openzfs-devel]: http://open-zfs.org/wiki/Developer_resources
 [openzfs-tracking]: http://build.zfsonlinux.org/openzfs-tracking.html
 [buildbot-status]: http://build.zfsonlinux.org/tgrid?length=100&branch=master&category=Tests&rev_order=desc
-[control-buildbot]: https://github.com/zfsonlinux/zfs/wiki/Controlling-the-ZFS-Buildbot
+[control-buildbot]: https://github.com/zfsonlinux/zfs/wiki/Buildbot-Options
