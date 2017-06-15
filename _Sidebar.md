@@ -7,9 +7,6 @@
   * [openSUSE][opensuse]
   * [[RHEL & CentOS]]
   * [[Ubuntu]]
-    * [16.04 Root on ZFS](https://github.com/zfsonlinux/zfs/wiki/Ubuntu-16.04-Root-on-ZFS)
-    * [16.10 Root on ZFS](https://github.com/zfsonlinux/zfs/wiki/Ubuntu-16.10-Root-on-ZFS)
-    * [ZFS mountall FAQ](https://github.com/zfsonlinux/zfs/wiki/Ubuntu-ZFS-mountall-FAQ-and-troubleshooting)
 * [[Project & Community]]
   * [[Admin Documentation]]
   * [[FAQ]]
