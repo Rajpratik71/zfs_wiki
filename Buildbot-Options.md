@@ -1,5 +1,5 @@
 There are a number of ways to control the ZFS Buildbot at a commit level.  This page will
-provide a summary on the methods to control the ZFS Buildbot and how it performs testing.
+provide a summary various options that the ZFS Buildbot supports and how it impacts testing.
 More detailed information regarding its implementation can be found at the
 [ZFS Buildbot Github page](https://github.com/zfsonlinux/zfs-buildbot).
 
@@ -43,8 +43,22 @@ This text is part of the commit message body.
 Signed-off-by: Contributor <contributor@email.com>
 Requires-builders: style test
 ```
+## Requiring SPL Versions
+The ZFS Buildbot supports specifying the SPL version to build to provide SPL pull
+request testing. By opening a pull request against ZFS and using the `Requires-spl:`
+in a commit message, you can instruct the buildbot to use a specific SPL version.
+Below is an example of a commit message that specifies the SPL version.
 
-## Controlling Tests with the TEST File
+```
+This is a commit message
+
+This text is part of the commit message body.
+
+Signed-off-by: Contributor <contributor@email.com>
+Requires-spl: refs/pull/123/head
+```
+
+## Configuring Tests with the TEST File
 At the top level of the ZFS source tree, there is the [`TEST`
 file](https://github.com/zfsonlinux/zfs/blob/master/TEST) which contains variables
 that control if and how a specific test should run. Below is a list of each variable
@@ -79,5 +93,4 @@ and a brief description of what each variable controls.
 * `TEST_ZFSSTRESS_POOL` - Name of pool to create and use for `zfsstress` testing
 * `TEST_ZFSSTRESS_FS` - Name of dataset for use during `zfsstress` tests
 * `TEST_ZFSSTRESS_VDEV` - Directory to store vdevs for use during `zfsstress` tests
-* `TEST_ZFSSTRESS_DIR` - Unused
 * `TEST_ZFSSTRESS_OPTIONS` - Command line options to provide to `runstress.sh`
