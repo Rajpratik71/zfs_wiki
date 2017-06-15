@@ -1,4 +1,4 @@
-# Controlling the ZFS Buildbot
+# Buildbot Options
 
 There are a number of ways to control the ZFS Buildbot at a commit level.  This page will
 provide a summary on the methods to control the ZFS Buildbot and how it performs testing.
