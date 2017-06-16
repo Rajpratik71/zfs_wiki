@@ -1,6 +1,6 @@
-There are a number of ways to control the ZFS Buildbot at a commit level.  This page will
-provide a summary various options that the ZFS Buildbot supports and how it impacts testing.
-More detailed information regarding its implementation can be found at the
+There are a number of ways to control the ZFS Buildbot at a commit level.  This page
+provides a summary of various options that the ZFS Buildbot supports and how it impacts
+testing.  More detailed information regarding its implementation can be found at the
 [ZFS Buildbot Github page](https://github.com/zfsonlinux/zfs-buildbot).
 
 ## Choosing Builders
