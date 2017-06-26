@@ -15,6 +15,8 @@ The commit is applicable but not applied for the reason described in the comment
 
 OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
+8379|-      |This change isn't relevant for Linux.
+8376|-      |This change isn't relevant for Linux.
 8304|-      |This change isn't relevant for Linux.
 8265|-      |The large_dnode feature has been implemented for Linux.
 8168|78d95ea|
