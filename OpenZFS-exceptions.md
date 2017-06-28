@@ -29,7 +29,7 @@ OpenZFS issue id | status/ZFS commit | comment
 8013|-      |The change is illumos specific and not applicable for Linux.
 7982|-      |The change is illumos specific and not applicable for Linux.
 7970|c30e58c|
-7956|!      |Will be applicable once we port the upstream manpages.
+7956|cda0317|
 7955|!      |Need to assess applicability to Linux.
 7869|df7eecc|
 7816|-      |The change is illumos specific and not applicable for Linux.
@@ -123,7 +123,7 @@ OpenZFS issue id | status/ZFS commit | comment
 4571|6e1b9d0|
 4570|b1d13a6|
 4391|78e2739|
-4465|!      |See 7602
+4465|cda0317|
 4263|6bb24f4|
 4242|-      |Neither vnodes or their associated events exist under Linux.
 4206|2820bc4|
