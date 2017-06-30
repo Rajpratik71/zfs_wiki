@@ -41,7 +41,7 @@ OpenZFS issue id | status/ZFS commit | comment
 7739|582cc014|
 7730|e24e62a|
 7710|-      |None of the illumos build system is used under Linux.
-7602|!      |OpenZFS converted all of their man pages to mdoc format which is understood by the Linux utilties.  In order to avoid massive porting headaches the latest version of the OpenZFS man pages should be added to ZoL and the Linux specific documentation notes added.
+7602|44f09cd|
 7591|541a090|
 7586|c443487|
 7570|-      |Due to differences in the block layer all discards are handled asynchronously under Linux.  This functionality could be ported but it's unclear to what purpose.
@@ -130,7 +130,7 @@ OpenZFS issue id | status/ZFS commit | comment
 4242|-      |Neither vnodes or their associated events exist under Linux.
 4206|2820bc4|
 4188|2e7b765|
-4181|!      |See 7602
+4181|44f09cd|
 4161|-      |The Linux user space reader/writer implementation is based on phtread primitives.
 4128|!      |The ldi_ev_register_callbacks() interface doesn't exist under Linux.  It may be possible to receive similar notifications via the scsi error handlers or possibly a different interface.
 4072|-      |None of the illumos build system is used under Linux.
