@@ -23,7 +23,6 @@ OpenZFS issue id | status/ZFS commit | comment
 8168|78d95ea|
 8138|-      |This man update will be picked up when the mandoc pages are merged.
 8108|-      |An equivalent Linux specific fix was made.
-8067|!      |Reverted by openzfs/openzfs@452fdc0.
 8064|-      |This change isn't relevant for Linux.
 8021|7657def|
 8022|e55ebf6|
