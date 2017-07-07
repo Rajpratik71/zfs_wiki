@@ -17,6 +17,7 @@ OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
 8379|-      |This change isn't relevant for Linux.
 8376|-      |This change isn't relevant for Linux.
+8311|!      |Need to assess applicability to Linux.
 8304|-      |This change isn't relevant for Linux.
 8300|44f09cd|
 8265|-      |The large_dnode feature has been implemented for Linux.
