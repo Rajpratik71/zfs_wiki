@@ -146,7 +146,7 @@ OpenZFS issue id | status/ZFS commit | comment
 3512|67629d0|
 3507|43a696e|
 3444|6bb24f4|
-3371|!      |See 7602
+3371|44f09cd|
 3311|6bb24f4|
 3301|-      |The Linux implementation of `vdev_disk.c` does not include this comment.
 3258|9d81146|
