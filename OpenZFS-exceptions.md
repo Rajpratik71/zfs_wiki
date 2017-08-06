@@ -15,6 +15,7 @@ The commit is applicable but not applied for the reason described in the comment
 
 OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
+8521|ee6370a7|
 8379|-      |This change isn't relevant for Linux.
 8376|-      |This change isn't relevant for Linux.
 8311|!      |Need to assess applicability to Linux.
