@@ -261,7 +261,7 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
     ENV{DM_NAME}!="", SYMLINK+="$env{DM_NAME}"
     ENV{DM_NAME}!="", SYMLINK+="dm-name-$env{DM_NAME}"
 
-    # ln -s mapper/luks1 /dev/luks1
+    # ln -s /dev/mapper/luks1 /dev/luks1
 
 **Notes:**
 * The use of `initramfs` is a work-around for [cryptsetup does not support ZFS](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906).
