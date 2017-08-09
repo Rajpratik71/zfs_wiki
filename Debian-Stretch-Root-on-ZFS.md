@@ -2,10 +2,9 @@
 * This HOWTO uses a whole physical disk.
 * Do not use these instructions for dual-booting.
 * Backup your data. Any existing data will be lost.
-* This instruction uses GRUB from the `testing` repository for now!
 
 ### System Requirements
-* [64-bit Debian GNU/Linux Jessie Live CD](http://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/)
+* [64-bit Debian GNU/Linux Stretch Live CD](http://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/)
 * 64-bit computer (amd64, a.k.a. x86_64) computer preferred
 
 Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory is recommended for normal performance in basic workloads.  If you wish to use deduplication, you will need [massive amounts of RAM](http://wiki.freebsd.org/ZFSTuningGuide#Deduplication). Enabling deduplication is a permanent change that cannot be easily reverted.
@@ -32,15 +31,15 @@ If you have a second system, using SSH to access the target system can be conven
 
     $ sudo -i
 
-1.4  Install ZFS in the Live CD environment:
+1.4  Add `contrib` archive area:
 
-    # echo deb http://ftp.debian.org/debian jessie-backports main contrib \
-          >> /etc/apt/sources.list.d/backports.list
+    # cat "deb http://ftp.debian.org/debian stretch main contrib" > /etc/apt/sources.list
     # apt update
-    # apt install --yes debootstrap gdisk linux-headers-$(uname -r)
-    # apt install --yes -t jessie-backports zfs-dkms
 
-**Note:** ZFS is in the `jessie-backports` repository. Adding that repository may result in other packages being upgraded to backported versions.
+1.5  Install ZFS in the Live CD environment:
+
+    # apt install --yes debootstrap gdisk linux-headers-$(uname -r)
+    # apt install --yes zfs-dkms
 
 ## Step 2: Disk Formatting
 
@@ -68,7 +67,7 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
 
 **Hints:**
 * `ls -la /dev/disk/by-id` will list the aliases.
-* Are you doing this in a virtual machine? If your virtual disk is missing from `/dev/disk/by-id`, use `/dev/vda` if you are using KVM with virtio; otherwise, read the [troubleshooting](https://github.com/zfsonlinux/zfs/wiki/Debian-Jessie-Root-on-ZFS#troubleshooting) section.
+* Are you doing this in a virtual machine? If your virtual disk is missing from `/dev/disk/by-id`, use `/dev/vda` if you are using KVM with virtio; otherwise, read the [troubleshooting](https://github.com/zfsonlinux/zfs/wiki/Debian-Stretch-Root-on-ZFS#troubleshooting) section.
 
 2.3  Create the root pool:
 
@@ -130,7 +129,7 @@ The primary goal of this dataset layout is to separate the OS from user data. Th
 3.4  Install the minimal system:
 
     # chmod 1777 /mnt/var/tmp
-    # debootstrap jessie /mnt
+    # debootstrap stretch /mnt
     # zfs set devices=off rpool
 
 The `debootstrap` command leaves the new system in an unconfigured state.  An alternative to using `debootstrap` is to copy the entirety of a working system into the new ZFS root.
@@ -171,32 +170,9 @@ Customize this file if the system is not a DHCP client.
 
 4.4 Configure a basic system environment:
 
-    # vi /etc/apt/preferences
-    Package: *
-    Pin: release a=stable
-    Pin-Priority: 700
-
-    Package: *
-    Pin: release a=jessie-backports
-    Pin-Priority: 650
-
-    Package: *
-    Pin: release a=testing
-    Pin-Priority: 600
-
-    Package: *
-    Pin: release a=unstable
-    Pin-Priority: 100
-
-    # vi /etc/apt/sources.list
-    deb http://ftp.debian.org/debian jessie main
-    deb-src http://ftp.debian.org/debian jessie main
-
-    deb http://ftp.debian.org/debian jessie-backports main contrib
-    deb-src http://ftp.debian.org/debian jessie-backports main contrib
-
-    deb http://ftp.debian.org/debian testing main contrib
-    deb-src http://ftp.debian.org/debian testing main contrib
+    # vi /etc/apt/sources.list # Add `contrib` archive area:
+    deb http://ftp.debian.org/debian stretch main contrib
+    deb-src http://ftp.debian.org/debian stretch main contrib
 
     # ln -s /proc/self/mounts /etc/mtab
     # apt update
@@ -210,11 +186,9 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
     # apt install --yes gdisk linux-headers-$(uname -r) linux-image-amd64
 
-**Note:** ZFS needs GRUB from `testing` for now.
-
 4.5  Install ZFS in the chroot environment for the new system:
 
-    # apt install --yes -t jessie-backports zfs-dkms zfs-initramfs
+    # apt install --yes zfs-dkms zfs-initramfs
 
     # vi /usr/share/initramfs-tools/conf.d/zfs
     for x in $(cat /proc/cmdline)
@@ -232,9 +206,7 @@ Choose one of the following options:
 
 4.6a  Install GRUB for legacy (MBR) booting
 
-    # apt install --yes grub-pc/testing
-
-This installs GRUB from `testing`, but satisfies dependencies from `stable`, if possible, which avoids some conflicts with other packages.
+    # apt install --yes grub-pc
 
 4.6b  Install GRUB for UEFI booting
 
@@ -246,9 +218,6 @@ This installs GRUB from `testing`, but satisfies dependencies from `stable`, if 
           /boot/efi vfat defaults 0 1 >> /etc/fstab
     # mount /boot/efi
     # apt install --yes grub-efi-amd64
-    # apt install --yes -t testing grub-efi-amd64
-
-This intentionally installs GRUB twice: once from `stable` and then from `testing`.  This ensures that dependencies are satisfied from `stable`, if possible, which avoids some conflicts with other packages.
 
 4.7  Set a root password
 
@@ -426,11 +395,8 @@ Boot the Live CD and open a terminal.
 Become root and install the ZFS utilities:
 
     $ sudo -i
-    # echo deb http://ftp.debian.org/debian jessie-backports main contrib \
-          >> /etc/apt/sources.list.d/backports.list
-    # apt update
     # apt install --yes linux-headers-$(uname -r)
-    # apt install --yes -t jessie-backports zfs-dkms
+    # apt install --yes zfs-dkms
 
 This will automatically import your pool. Export it and re-import it to get the mounts right:
 
