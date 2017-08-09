@@ -4,12 +4,9 @@ Offical ZFS on Linux [DKMS][dkms] style packages are available from the [Debian 
 **Architectures:** amd64  
 
 ## Installation
+For Debian Stretch, ZFS packages are included in [contrib repository](https://packages.debian.org/source/stretch/zfs-linux).
+
 For Debian Jessie, ZFS packages are provided by [backports](https://backports.debian.org/Instructions/).
-
-Add jessie-backports  repository (ZFS packages are in `contrib` area):
-
-	# echo "deb http://ftp.debian.org/debian jessie-backports main contrib" >> /etc/apt/sources.list.d/backports.list
-	# apt update
 
 Install kernel headers:
 
@@ -17,16 +14,16 @@ Install kernel headers:
 
 Install zfs packages:
 
-	# apt-get install -t jessie-backports zfs-dkms
+	# apt-get install zfs-dkms
 
 If you want to boot from ZFS, you'll need `zfs-initramfs` package too:
 
-	# apt-get install -t jessie-backports zfs-initramfs
+	# apt-get install zfs-initramfs
 
 [dkms]: https://en.wikipedia.org/wiki/Dynamic_Kernel_Module_Support
 [debian-announce]: https://lists.debian.org/debian-devel-announce/2015/04/msg00006.html
 [debian-itp]: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=686447
 
 * [[Debian GNU Linux initrd documentation]]  
-* [[Debian Jessie Root on ZFS]]
+* [[Debian Stretch Root on ZFS]]
 * [[Dual booting OS X and Debian Jessie with ZFS root, cross mounting and full disk encryption]]
