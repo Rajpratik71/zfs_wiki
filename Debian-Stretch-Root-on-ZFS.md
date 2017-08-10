@@ -33,7 +33,7 @@ If you have a second system, using SSH to access the target system can be conven
 
 1.4  Add `contrib` archive area:
 
-    # cat "deb http://ftp.debian.org/debian stretch main contrib" > /etc/apt/sources.list
+    # echo "deb http://ftp.debian.org/debian stretch main contrib" > /etc/apt/sources.list
     # apt update
 
 1.5  Install ZFS in the Live CD environment:
