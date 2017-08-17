@@ -190,16 +190,6 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
     # apt install --yes zfs-dkms zfs-initramfs
 
-    # vi /usr/share/initramfs-tools/conf.d/zfs
-    for x in $(cat /proc/cmdline)
-    do
-        case $x in
-            root=ZFS=*)
-                BOOT=zfs
-                ;;
-        esac
-    done
-
 4.6  Install GRUB
 
 Choose one of the following options:
