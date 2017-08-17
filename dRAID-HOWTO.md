@@ -289,7 +289,7 @@ By default, rebuild for mirror vdev is turned off. It can be turned on using the
 
 ### Rebuild throttling
 
-The rebuild process may delay _zio_ according to the ZFS options _zfs_scan_idle_ and _zfs_resilver_delay_, which are the same options used by resilver. Moreover, when a dRAID vdev has lost all redundancy, e.g. a draid2 with 2 faulted child drives, the rebuild process will go faster by reducing the delay to _zfs_resilver_delay/2_ because the vdev is now in critical state.
+The rebuild process may delay _zio_ according to the ZFS options _spa_vdev_scan_delay_ and _spa_vdev_scan_idle_, which works in a similar way as options used by resilver _zfs_scan_idle_ and _zfs_resilver_delay_. Moreover, when a dRAID vdev has lost all redundancy, e.g. a draid2 with 2 faulted child drives, the rebuild process will go full speed by ignoring _spa_vdev_scan_delay_ and _spa_vdev_scan_idle_ altogether because the vdev is now in critical state.
 
 After delaying, the rebuild zio is issued using priority _ZIO_PRIORITY_SCRUB_ for reads and _ZIO_PRIORITY_ASYNC_WRITE_ for writes. Therefore the options that control the queuing of these two IO priorities will affect rebuild _zio_ as well, for example _zfs_vdev_scrub_min_active_, _zfs_vdev_scrub_max_active_, _zfs_vdev_async_write_min_active_, and _zfs_vdev_async_write_max_active_.
 
