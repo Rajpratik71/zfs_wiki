@@ -7,8 +7,8 @@ To simplify installation a zfs-release package is provided which includes a zfs.
 
 **Location:** /etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux  
 **EL6 Package:** http://download.zfsonlinux.org/epel/zfs-release.el6.noarch.rpm  
-**EL7 Package:** http://download.zfsonlinux.org/epel/zfs-release.el7.noarch.rpm  
 **EL7.3 Package:** http://download.zfsonlinux.org/epel/zfs-release.el7_3.noarch.rpm  
+**EL7.4 Package:** http://download.zfsonlinux.org/epel/zfs-release.el7_4.noarch.rpm  
 **Download from:** [pgp.mit.edu][pubkey]  
 **Fingerprint:** C93A FFFD 9F3F 7B03 C310  CEB6 A9D5 A1C0 F14A B620
 
