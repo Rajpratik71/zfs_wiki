@@ -4,7 +4,6 @@ testing.  More detailed information regarding its implementation can be found at
 [ZFS Buildbot Github page](https://github.com/zfsonlinux/zfs-buildbot).
 
 ## Choosing Builders
-
 By default, all commits in your ZFS pull request are compiled by the BUILD
 builders.  Additionally, the top commit of your ZFS pull request is tested by
 TEST builders.  However, there is the option to override which types of builder
@@ -43,6 +42,7 @@ This text is part of the commit message body.
 Signed-off-by: Contributor <contributor@email.com>
 Requires-builders: style test
 ```
+
 ## Requiring SPL Versions
 The ZFS Buildbot supports specifying the SPL version to build to provide SPL pull
 request testing. By opening a pull request against ZFS and using the `Requires-spl:`
@@ -56,6 +56,47 @@ This text is part of the commit message body.
 
 Signed-off-by: Contributor <contributor@email.com>
 Requires-spl: refs/pull/123/head
+```
+
+## Build Steps Overrides
+Each builder will execute or skip build steps based on its default
+preferences. In some scenarios, it might be possible to skip various build
+steps. The ZFS buildbot supports overriding the defaults of all builders
+in a commit message. The list of available overrides are:
+
+* `Build-linux: <Yes|No>`: All builders should build Linux for this commit
+* `Build-lustre: <Yes|No>`: All builders should build Lustre for this commit
+* `Build-spl: <Yes|No>`: All builders should build the SPL for this commit
+* `Build-zfs: <Yes|No>`: All builders should build ZFS for this commit
+* `Built-in: <Yes|No>`: All Linux builds should build in SPL and ZFS
+* `Check-lint: <Yes|No>`: All builders should perform lint checks for this commit
+* `Configure-lustre: <options>`: Provide `<options>` as configure parameters when building Lustre
+* `Configure-spl: <options>`: Provide `<options>` as configure parameters when building the SPL
+* `Configure-zfs: <options>`: Provide `<options>` as configure parameters when building ZFS
+
+A couple of examples on how to use overrides in commit messages can be found below.
+
+### Skip building the SPL and build Lustre without ldiskfs
+```
+This is a commit message
+
+This text is part of the commit message body.
+
+Signed-off-by: Contributor <contributor@email.com>
+Build-lustre: Yes
+Configure-lustre: --disable-ldiskfs
+Build-spl: No
+```
+
+### Build ZFS Only
+```
+This is a commit message
+
+This text is part of the commit message body.
+
+Signed-off-by: Contributor <contributor@email.com>
+Build-lustre: No
+Build-spl: No
 ```
 
 ## Configuring Tests with the TEST File
