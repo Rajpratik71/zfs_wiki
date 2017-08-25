@@ -70,9 +70,9 @@ in a commit message. The list of available overrides are:
 * `Build-zfs: <Yes|No>`: All builders should build ZFS for this commit
 * `Built-in: <Yes|No>`: All Linux builds should build in SPL and ZFS
 * `Check-lint: <Yes|No>`: All builders should perform lint checks for this commit
-* `Configure-lustre: <options>`: Provide `<options>` as configure parameters when building Lustre
-* `Configure-spl: <options>`: Provide `<options>` as configure parameters when building the SPL
-* `Configure-zfs: <options>`: Provide `<options>` as configure parameters when building ZFS
+* `Configure-lustre: <options>`: Provide `<options>` as configure flags when building Lustre
+* `Configure-spl: <options>`: Provide `<options>` as configure flags when building the SPL
+* `Configure-zfs: <options>`: Provide `<options>` as configure flags when building ZFS
 
 A couple of examples on how to use overrides in commit messages can be found below.
 
