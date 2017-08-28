@@ -63,13 +63,13 @@ $ sudo yum install kernel-devel zfs
 
 ## Important Notices
 
-### RHEL/CentOS 7.3 kmod package upgrade
+### RHEL/CentOS 7.x kmod package upgrade
 
-When updating to RHEL/CentOS 7.3 the existing kmod packages will not work due to upstream kABI changes in the 3.10.0-514 kernel series.  After upgrading to 7.3 users must uninstall ZFS and then reinstall it as described in the [kABI-tracking kmod](https://github.com/zfsonlinux/zfs/wiki/RHEL-%26-CentOS/#kabi-tracking-kmod) section.  Compatible kmod packages will be installed from the CentoS 7.3 repository.
+When updating to a new RHEL/CentOS 7.x release the existing kmod packages will not work due to upstream kABI changes in the kernel.  After upgrading to 7.x users must uninstall ZFS and then reinstall it as described in the [kABI-tracking kmod](https://github.com/zfsonlinux/zfs/wiki/RHEL-%26-CentOS/#kabi-tracking-kmod) section.  Compatible kmod packages will be installed from the matching CentOS 7.x repository.
 
 ```
 $ sudo yum remove zfs zfs-kmod spl spl-kmod libzfs2 libnvpair1 libuutil1 libzpool2 zfs-release
-$ sudo yum install http://download.zfsonlinux.org/epel/zfs-release.el7_3.noarch.rpm
+$ sudo yum install http://download.zfsonlinux.org/epel/zfs-release.el7_4.noarch.rpm
 $ sudo yum install zfs 
 ```
 
