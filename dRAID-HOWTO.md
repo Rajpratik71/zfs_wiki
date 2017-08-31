@@ -344,4 +344,4 @@ The dRAID1 vdev in this example shuffles three (4 data + 1 parity) redundancy gr
 Please report bugs to [the dRAID project](https://github.com/thegreatgazoo/zfs/issues), as long as the code is not merged upstream. The following information would be useful:
 * dRAID configuration, i.e. the *.nvl file created by _draidcfg_ command.
 * Output of _zpool events -v_
-* dRAID debug traces, which by default goes to _dmesg_ via _printk()_. The dRAID debugging traces can also use _trace_printk()_, which is more preferable but unfortunately GPL only. It can be enabled by editing the META file to change the license (strictly for debugging only) and edit _include/sys/vdev_draid_impl.h_ to define the _DRAID_USE_TRACE_PRINTK_ macro.
+* dRAID debug traces, which by default goes to _dmesg_ via _printk()_. The dRAID debugging traces can also use _trace_printk()_, which is more preferable but unfortunately GPL only. It can be enabled by editing the META file to change the license (strictly for debugging only).
