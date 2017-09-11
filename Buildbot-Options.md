@@ -44,11 +44,14 @@ Requires-builders: style test
 ```
 
 ## Requiring SPL Versions
-The ZFS Buildbot supports specifying the SPL version to build to provide SPL pull
+Currently, the ZFS Buildbot attempts to choose the correct SPL branch to build
+based on a pull request's base branch.  In the cases where a specific SPL version
+needs to be built, the ZFS builbot supports specifying provide an SPL version for pull
 request testing. By opening a pull request against ZFS and using the `Requires-spl:`
 in a commit message, you can instruct the buildbot to use a specific SPL version.
-Below is an example of a commit message that specifies the SPL version.
+Below are examples of a commit message that specifies the SPL version.
 
+Build SPL from a specific pull request:
 ```
 This is a commit message
 
@@ -56,6 +59,16 @@ This text is part of the commit message body.
 
 Signed-off-by: Contributor <contributor@email.com>
 Requires-spl: refs/pull/123/head
+```
+
+Build SPL branch `spl-branch-name` from `zfsonlinux/spl` repository:
+```
+This is a commit message
+
+This text is part of the commit message body.
+
+Signed-off-by: Contributor <contributor@email.com>
+Requires-spl: spl-branch-name
 ```
 
 ## Build Steps Overrides
