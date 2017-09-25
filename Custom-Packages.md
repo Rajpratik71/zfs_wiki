@@ -129,17 +129,15 @@ Next change to the zfs directory and repeat the same process.
 ```
 $ cd ../zfs
 $ ./configure
-$ make pkg-utils pkg-kmod
 ```
-
 For RHEL, Centos, and Fedora:
-
 ```
+$ make pkg-utils pkg-kmod
 $ sudo yum localinstall *.<arch>.rpm
 ```
 For Debian and Ubuntu:
-
 ```
+$ make deb
 $ for file in *.deb; do sudo gdebi -q --non-interactive $file; done
 ```
 
