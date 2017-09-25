@@ -98,7 +98,16 @@ The key thing to know when building a kmod package is that a specific Linux kern
 ```
 $ cd spl
 $ ./configure
+```
+
+For RHEL, Centos, and Fedora:
+```
 $ make pkg-utils pkg-kmod
+```
+
+For Debian and Ubuntu:
+```
+$ make deb
 ```
 
 Install the spl packages.  They are required dependencies to build zfs in the next step.
@@ -123,16 +132,15 @@ $ ./configure
 $ make pkg-utils pkg-kmod
 ```
 
-For Debian and Ubuntu:
-
-```
-$ for file in *.deb; do sudo gdebi -q --non-interactive $file; done
-```
-
 For RHEL, Centos, and Fedora:
 
 ```
 $ sudo yum localinstall *.<arch>.rpm
+```
+For Debian and Ubuntu:
+
+```
+$ for file in *.deb; do sudo gdebi -q --non-interactive $file; done
 ```
 
 ## kABI-tracking kmod (rpm-only)
