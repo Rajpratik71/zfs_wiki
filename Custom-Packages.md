@@ -16,7 +16,7 @@ For Debian and Ubuntu:
 
 ```
 $ sudo apt-get install build-essential autoconf libtool gawk alien fakeroot gdebi linux-headers-$(uname -r)
-$ sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev parted lsscsi wget ksh
+$ sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev parted lsscsi wget ksh gdebi
 ```
 
 For RHEL and CentOS:
