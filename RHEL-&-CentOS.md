@@ -70,6 +70,7 @@ When updating to a new RHEL/CentOS 7.x release the existing kmod packages will n
 ```
 $ sudo yum remove zfs zfs-kmod spl spl-kmod libzfs2 libnvpair1 libuutil1 libzpool2 zfs-release
 $ sudo yum install http://download.zfsonlinux.org/epel/zfs-release.el7_4.noarch.rpm
+$ sudo yum autoremove
 $ sudo yum install zfs 
 ```
 
