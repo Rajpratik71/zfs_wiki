@@ -5,7 +5,7 @@ To get started with ZFS on Linux refer to the provided documentation for your di
 [[Fedora]]  
 [Gentoo][gentoo]  
 [openSUSE][opensuse]  
-[[RHEL & CentOS]]  
+[[RHEL and CentOS]]  
 [[Ubuntu]]  
 
 [arch]: https://wiki.archlinux.org/index.php/ZFS

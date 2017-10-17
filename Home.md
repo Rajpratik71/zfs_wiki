@@ -8,7 +8,7 @@ with (or contributing to) the ZFS on Linux project.  New users or system
 administrators should refer to the documentation for their favorite distribution
 to get started.
 
-| [[Getting Started]]          | [[Project & Community]]       | [[Developer Resources]] |
+| [[Getting Started]]          | [[Project and Community]]     | [[Developer Resources]] |
 |------------------------------|-------------------------------|------------------------ |
 | How to get started with OpenZFS on your favorite Linux distribution | About the project and how to contribute | Technical documentation discussing the OpenZFS implementation |
 
