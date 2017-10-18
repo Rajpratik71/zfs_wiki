@@ -14,7 +14,7 @@ For Debian and Ubuntu:
 
 ```
 sudo apt-get install build-essential autoconf libtool gawk alien fakeroot linux-headers-$(uname -r)
-sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev libdevmapper-dev
+sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev libssl-dev
 sudo apt-get install parted lsscsi ksh
 ```
 
@@ -22,7 +22,7 @@ For RHEL and CentOS:
 
 ```
 sudo yum groupinstall "Development Tools"
-sudo yum install kernel-devel zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel device-mapper-devel
+sudo yum install kernel-devel zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel openssl-devel
 sudo yum install parted lsscsi ksh
 ```
 
@@ -30,7 +30,7 @@ For Fedora:
 
 ```
 sudo dnf groupinstall "C Development Tools and Libraries"
-sudo dnf install kernel-devel zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel device-mapper-devel
+sudo dnf install kernel-devel zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel openssl-devel
 sudo dnf install parted lsscsi ksh
 ```
 
