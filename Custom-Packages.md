@@ -16,21 +16,21 @@ For Debian and Ubuntu:
 
 ```
 $ sudo apt-get install build-essential autoconf libtool gawk alien fakeroot gdebi linux-headers-$(uname -r)
-$ sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev parted lsscsi wget ksh gdebi
+$ sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev libssl-dev parted lsscsi wget ksh gdebi
 ```
 
 For RHEL and CentOS:
 
 ```
 $ sudo yum groupinstall "Development Tools" parted lsscsi wget ksh
-$ sudo yum install kernel-devel zlib-devel libattr-devel libuuid-devel libblkid-devel libselinux-devel libudev-devel
+$ sudo yum install kernel-devel zlib-devel libattr-devel libuuid-devel libblkid-devel libselinux-devel libudev-devel openssl-devel
 ```
 
 For Fedora:
 
 ```
 sudo dnf groupinstall "C Development Tools and Libraries"
-sudo dnf install kernel-devel zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
+sudo dnf install kernel-devel zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel openssl-devel
 ```
 
 If you want to use the official released tarballs, then use the following commands to fetch and prepare the source.
