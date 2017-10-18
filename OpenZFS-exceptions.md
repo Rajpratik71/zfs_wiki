@@ -15,6 +15,7 @@ The commit is applicable but not applied for the reason described in the comment
 
 OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
+8661|!      |Apply when porting zil commit batching.
 8648|f763c3d1|
 8605|!      |Apply when porting channel programs.
 8600|!      |Apply when porting channel programs.
