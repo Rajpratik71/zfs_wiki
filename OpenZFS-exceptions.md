@@ -15,6 +15,10 @@ The commit is applicable but not applied for the reason described in the comment
 
 OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
+8648|f763c3d1|
+8605|!      |Apply when porting channel programs.
+8600|!      |Apply when porting channel programs.
+8592|!      |Apply when porting channel programs.
 8552|!      |Apply when porting channel programs.
 8521|ee6370a7|
 8379|-      |This change isn't relevant for Linux.
