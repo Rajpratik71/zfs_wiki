@@ -22,6 +22,7 @@ OpenZFS issue id | status/ZFS commit | comment
 8592|!      |Apply when porting channel programs.
 8552|!      |Apply when porting channel programs.
 8521|ee6370a7|
+8502|!      | Apply when porting OpenZFS 7955
 8379|-      |This change isn't relevant for Linux.
 8376|-      |This change isn't relevant for Linux.
 8311|!      |Need to assess applicability to Linux.
