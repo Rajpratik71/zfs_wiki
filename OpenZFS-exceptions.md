@@ -20,6 +20,7 @@ OpenZFS issue id | status/ZFS commit | comment
 8605|!      |Apply when porting channel programs.
 8600|!      |Apply when porting channel programs.
 8592|!      |Apply when porting channel programs.
+8590|!      |Apply when porting channel programs.
 8567|-      |An alternate fix was applied for Linux
 8552|!      |Apply when porting channel programs.
 8521|ee6370a7|
