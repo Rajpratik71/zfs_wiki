@@ -108,6 +108,7 @@ OpenZFS issue id | status/ZFS commit | comment
 6220|-      |The b_thawed debug code was unused under Linux and removed.
 6209|-      |The Linux user space mutex implementation is based on phtread primitives. 
 6095|f866a4ea|
+6091|c11f100|
 5984|480f626|
 5966|6bb24f4|
 5961|22872ff|
