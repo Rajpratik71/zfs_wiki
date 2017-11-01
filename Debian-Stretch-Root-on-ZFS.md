@@ -124,6 +124,9 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
     # zfs create -o com.sun:auto-snapshot=false \
                  -o mountpoint=/var/lib/nfs                 rpool/var/nfs
 
+**Notes:**
+Properties are inherited, if you want to create (for example) `rpool/var/lib` you may need to set `-o exec=on` manually.
+
 The primary goal of this dataset layout is to separate the OS from user data. This allows the root filesystem to be rolled back without rolling back user data such as logs (in `/var/log`). This will be especially important if/when a `beadm` or similar utility is integrated. Since we are creating multiple datasets anyway, it is trivial to add some restrictions (for extra security) at the same time. The `com.sun.auto-snapshot` setting is used by some ZFS snapshot utilities to exclude transient data.
 
 3.4  Install the minimal system:
