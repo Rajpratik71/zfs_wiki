@@ -4,7 +4,7 @@
 * Backup your data. Any existing data will be lost.
 
 ### System Requirements
-* [64-bit Ubuntu 16.10 Yakkety Live CD](http://releases.ubuntu.com/16.10/ubuntu-16.10-desktop-amd64.iso) (*not* the alternate installer)
+* [64-bit Ubuntu 17.10 Artful Live CD](http://releases.ubuntu.com/17.10/ubuntu-17.10-desktop-amd64.iso) (*not* the alternate installer)
 * 64-bit computer (amd64, a.k.a. x86_64) computer
 * A drive which presents 512B logical sectors.  Installing on a drive which presents 4KiB logical sectors (a “4Kn” drive) should work with UEFI partitioning, but this has not been tested.
 
@@ -87,7 +87,7 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
 
 **Hints:**
 * `ls -la /dev/disk/by-id` will list the aliases.
-* Are you doing this in a virtual machine? If your virtual disk is missing from `/dev/disk/by-id`, use `/dev/vda` if you are using KVM with virtio; otherwise, read the [troubleshooting](https://github.com/zfsonlinux/zfs/wiki/Ubuntu-16.10-Root-on-ZFS#troubleshooting) section.
+* Are you doing this in a virtual machine? If your virtual disk is missing from `/dev/disk/by-id`, use `/dev/vda` if you are using KVM with virtio; otherwise, read the [troubleshooting](https://github.com/zfsonlinux/zfs/wiki/Ubuntu-17.10-Root-on-ZFS#troubleshooting) section.
 
 2.3  Create the root pool:
 
@@ -170,7 +170,7 @@ The primary goal of this dataset layout is to separate the OS from user data. Th
 3.5  Install the minimal system:
 
     # chmod 1777 /mnt/var/tmp
-    # debootstrap yakkety /mnt
+    # debootstrap artful /mnt
     # zfs set devices=off rpool
 
 The `debootstrap` command leaves the new system in an unconfigured state.  An alternative to using `debootstrap` is to copy the entirety of a working system into the new ZFS root.
@@ -194,23 +194,26 @@ The `debootstrap` command leaves the new system in an unconfigured state.  An al
     Find the interface name:
     # ip addr show
 
-    # vi /mnt/etc/network/interfaces.d/NAME
-    auto NAME
-    iface NAME inet dhcp
+    # vi /mnt/etc/netplan/NAME.yaml
+    network:
+      version: 2
+      ethernets:
+        ens3:
+          dhcp4: true
 
 Customize this file if the system is not a DHCP client.
 
 4.3  Configure the package sources:
 
     # vi /mnt/etc/apt/sources.list
-    deb http://archive.ubuntu.com/ubuntu yakkety main universe
-    deb-src http://archive.ubuntu.com/ubuntu yakkety main universe
+    deb http://archive.ubuntu.com/ubuntu artful main universe
+    deb-src http://archive.ubuntu.com/ubuntu artful main universe
 
-    deb http://security.ubuntu.com/ubuntu yakkety-security main universe
-    deb-src http://security.ubuntu.com/ubuntu yakkety-security main universe
+    deb http://security.ubuntu.com/ubuntu artful-security main universe
+    deb-src http://security.ubuntu.com/ubuntu artful-security main universe
 
-    deb http://archive.ubuntu.com/ubuntu yakkety-updates main universe
-    deb-src http://archive.ubuntu.com/ubuntu yakkety-updates main universe
+    deb http://archive.ubuntu.com/ubuntu artful-updates main universe
+    deb-src http://archive.ubuntu.com/ubuntu artful-updates main universe
 
 4.4  Bind the virtual filesystems from the LiveCD environment to the new system and `chroot` into it:
 
@@ -233,7 +236,6 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
     # ln -s /proc/self/mounts /etc/mtab
     # apt update
-    # apt install --yes ubuntu-minimal
 
     If you prefer nano over vi, install it:
     # apt install --yes nano
@@ -309,7 +311,7 @@ Install GRUB to the disk(s), not the partition(s).
 5.2  Refresh the initrd files:
 
     # update-initramfs -c -k all
-    update-initramfs: Generating /boot/initrd.img-4.8.0-22-generic
+    update-initramfs: Generating /boot/initrd.img-4.13.0-16-generic
 
 **Note:** When using LUKS, this will print "WARNING could not determine root device from /etc/fstab". This is because [cryptsetup does not support ZFS](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906).
 
@@ -327,8 +329,8 @@ Later, once the system has rebooted twice and you are sure everything is working
 
     # update-grub
     Generating grub configuration file ...
-    Found linux image: /boot/vmlinuz-4.8.0-22-generic
-    Found initrd image: /boot/initrd.img-4.8.0-22-generic
+    Found linux image: /boot/vmlinuz-4.13.0-16-generic
+    Found initrd image: /boot/initrd.img-4.13.0-16-generic
     done
 
 5.5  Install the boot loader
@@ -480,7 +482,7 @@ Choose one of the following options:
 
     # apt install --yes ubuntu-desktop
 
-**Hint**: If you are installing a full GUI environment, you will likely want to manage your network with NetworkManager. In that case, `rm /etc/network/interfaces.d/eth0`.
+**Hint**: If you are installing a full GUI environment, you will likely want to manage your network with NetworkManager. In that case, delete the /mnt/etc/netplan/NAME.yaml you created.
 
 8.3  Optional: Disable log compression:
 
