@@ -8,7 +8,7 @@ The official source for ZFS on Linux is maintained at GitHub by the [zfsonlinux]
 
 ### Installing Dependencies
 
-The first thing you'll need to do is prepare your environment by installing a full development tool chain.  In addition, development headers for both the kernel and the following libraries must be available: **zlib, libattr, libuuid, libblkid, selinux, libudev and libdevmapper (optional)**.  Finally, if you wish to run the ZFS Test Suite **ksh** must be installed.
+The first thing you'll need to do is prepare your environment by installing a full development tool chain.  In addition, development headers for both the kernel and the following libraries must be available: **zlib, libattr, libuuid, libblkid, selinux, and libudev**.  Finally, if you wish to run the ZFS Test Suite **ksh** must be installed.
 
 For Debian and Ubuntu:
 
