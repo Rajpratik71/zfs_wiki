@@ -139,7 +139,9 @@ and a brief description of what each variable controls.
 * `TEST_ZFSTESTS_SKIP` - Determines if `zfs-tests` testing is skipped
 * `TEST_ZFSTESTS_DISKS` - Space delimited list of disks that `zfs-tests` is allowed to use
 * `TEST_ZFSTESTS_DISKSIZE` - File size of file based vdevs used by `zfs-tests`
+* `TEST_ZFSTESTS_ITERS` - Number of times `test-runner` should execute its set of tests
 * `TEST_ZFSTESTS_RUNFILE` - The runfile to use when running `zfs-tests`
+* `TEST_ZFSTESTS_TAGS` - List of tags to provide to `test-runner`
 * `TEST_ZFSSTRESS_SKIP` - Determines if `zfsstress` testing is skipped
 * `TEST_ZFSSTRESS_URL` - URL to download `zfsstress` from
 * `TEST_ZFSSTRESS_VER` - Name of the tarball to download from `TEST_ZFSSTRESS_URL`
