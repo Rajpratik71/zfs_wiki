@@ -119,11 +119,14 @@ that control if and how a specific test should run. Below is a list of each vari
 and a brief description of what each variable controls.
 
 * `TEST_PREPARE_WATCHDOG` - Enables the Linux kernel watchdog
+* `TEST_PREPARE_SHARES` - Start NFS and Samba servers
 * `TEST_SPLAT_SKIP` - Determines if `splat` testing is skipped
 * `TEST_SPLAT_OPTIONS` - Command line options to provide to `splat`
 * `TEST_ZTEST_SKIP` - Determines if `ztest` testing is skipped
 * `TEST_ZTEST_TIMEOUT` - The length of time `ztest` should run
 * `TEST_ZTEST_DIR` - Directory where `ztest` will create vdevs
+* `TEST_ZTEST_OPTIONS` - Options to pass to `ztest`
+* `TEST_ZTEST_CORE_DIR` - Directory for `ztest` to store core dumps
 * `TEST_ZIMPORT_SKIP` - Determines if `zimport` testing is skipped
 * `TEST_ZIMPORT_DIR` - Directory used during `zimport`
 * `TEST_ZIMPORT_VERSIONS` - Source versions to test
@@ -137,9 +140,11 @@ and a brief description of what each variable controls.
 * `TEST_XFSTESTS_VDEV` - Name of the vdev used by `xfstest`
 * `TEST_XFSTESTS_OPTIONS` - Command line options to provide to `xfstest`
 * `TEST_ZFSTESTS_SKIP` - Determines if `zfs-tests` testing is skipped
+* `TEST_ZFSTESTS_DIR` - Directory to store files and loopback devices
 * `TEST_ZFSTESTS_DISKS` - Space delimited list of disks that `zfs-tests` is allowed to use
 * `TEST_ZFSTESTS_DISKSIZE` - File size of file based vdevs used by `zfs-tests`
 * `TEST_ZFSTESTS_ITERS` - Number of times `test-runner` should execute its set of tests
+* `TEST_ZFSTESTS_OPTIONS` - Options to provide `zfs-tests`
 * `TEST_ZFSTESTS_RUNFILE` - The runfile to use when running `zfs-tests`
 * `TEST_ZFSTESTS_TAGS` - List of tags to provide to `test-runner`
 * `TEST_ZFSSTRESS_SKIP` - Determines if `zfsstress` testing is skipped
@@ -148,5 +153,6 @@ and a brief description of what each variable controls.
 * `TEST_ZFSSTRESS_RUNTIME` - Duration to run `runstress.sh`
 * `TEST_ZFSSTRESS_POOL` - Name of pool to create and use for `zfsstress` testing
 * `TEST_ZFSSTRESS_FS` - Name of dataset for use during `zfsstress` tests
+* `TEST_ZFSSTRESS_FSOPT` - File system options to provide to `zfsstress`
 * `TEST_ZFSSTRESS_VDEV` - Directory to store vdevs for use during `zfsstress` tests
 * `TEST_ZFSSTRESS_OPTIONS` - Command line options to provide to `runstress.sh`
