@@ -14,7 +14,7 @@ Install kernel headers:
 
 Install zfs packages:
 
-	# apt-get install zfs-dkms
+	# apt-get install zfs-dkms zfsutils-linux
 
 If you want to boot from ZFS, you'll need `zfs-initramfs` package too:
 
