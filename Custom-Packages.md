@@ -30,7 +30,7 @@ For Fedora:
 
 ```
 sudo dnf groupinstall "C Development Tools and Libraries"
-sudo dnf install kernel-devel zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel openssl-devel
+sudo dnf install kernel-devel zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel openssl-devel rpm-build
 ```
 
 If you want to use the official released tarballs, then use the following commands to fetch and prepare the source.
