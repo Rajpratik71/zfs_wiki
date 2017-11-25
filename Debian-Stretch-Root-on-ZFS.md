@@ -385,11 +385,7 @@ If you prefer the graphical boot process, you can re-enable it now. It will make
 
 Boot the Live CD and open a terminal.
 
-Become root and install the ZFS utilities:
-
-    $ sudo -i
-    # apt install --yes linux-headers-$(uname -r)
-    # apt install --yes zfs-dkms
+Become root and install the ZFS utilities, see [Step 1: Prepare The Install Environment](#step-1-prepare-the-install-environment).
 
 This will automatically import your pool. Export it and re-import it to get the mounts right:
 
