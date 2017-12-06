@@ -20,7 +20,6 @@ OpenZFS issue id | status/ZFS commit | comment
 8661|!      |Apply when porting zil commit batching.
 8648|f763c3d1|
 8605|!      |Apply when porting channel programs.
-8603|!      |Apply when porting zil commit batching.
 8604|!      |Apply when porting channel programs.
 8602|a032ac4|
 8600|!      |Apply when porting channel programs.
