@@ -28,10 +28,10 @@ $ sudo dnf install kernel-devel zfs
 
 **Systemd Update:**
 
-When upgrading to the zfs-0.6.5.8 release it's recommended that users manually reset the zfs systemd presets.  Failure to do so can result in the pool not automatically importing when the system is rebooted.
+When upgrading to the zfs-0.7.4 release it's recommended that users manually reset the zfs systemd presets.  Failure to do so can result in the pool not automatically importing when the system is rebooted.
 
 ```
-systemctl preset zfs-import-cache zfs-import-scan zfs-mount zfs-share zfs-zed zfs.target
+systemctl preset zfs-import-cache zfs-import-scan zfs-import.target zfs-mount zfs-share zfs-zed zfs.target
 ```
 
 **Repository Renamed:**
