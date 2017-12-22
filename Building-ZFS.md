@@ -30,7 +30,7 @@ For Fedora:
 
 ```
 sudo dnf groupinstall "C Development Tools and Libraries"
-sudo dnf install kernel-devel zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel openssl-devel
+sudo dnf install kernel-devel zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel openssl-devel elfutils-libelf-devel
 sudo dnf install parted lsscsi ksh
 ```
 
