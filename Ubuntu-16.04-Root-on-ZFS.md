@@ -315,16 +315,9 @@ Install GRUB to the disk(s), not the partition(s).
     # grub-probe /
     zfs
 
-**Note** GRUB uses zpool status in order to determine the location of zfs devs.  Depending on the version of zfs & GRUB, you may experience a problem with grub-probe when performing the install under chroot, leading to an error similar to:
-grub-probe: error: failed to get canonical path of `/dev/scsi-SATA_disk1-part1'.
+**Note:** GRUB uses `zpool status` in order to determine the location of devices. [grub-probe assumes all devices are in /dev](https://bugs.launchpad.net/ubuntu/+source/grub2/+bug/1527727). The `zfs-initramfs` package [ships udev rules that create symlinks](https://packages.ubuntu.com/xenial-updates/all/zfs-initramfs/filelist) to [work around the problem](https://bugs.launchpad.net/ubuntu/+source/zfs-initramfs/+bug/1530953), but [there have still been reports of problems](https://github.com/zfsonlinux/grub/issues/5#issuecomment-249427634). If this happens, you will get an error saying `grub-probe: error: failed to get canonical path` and should run the following:
 
-The problem is GRUB expects zpool to return a path to a device directly in /dev, but in the case of this guide, the device is in /dev/disk/by-id.  A quick fix is to tell zpool to export the full path of the VDEV, which GRUB is able to properly consume:
-
-export ZPOOL_VDEV_NAME_PATH=YES
-
-References:
-https://github.com/zfsonlinux/grub/issues/5#issuecomment-325221448
-https://askubuntu.com/questions/827126/zfs-grub-probe-error-failed-to-get-canonical-path-of-dev-disk-name/943425#943425
+    # export ZPOOL_VDEV_NAME_PATH=YES
 
 5.2  Refresh the initrd files:
 
