@@ -15,8 +15,9 @@ The commit is applicable but not applied for the reason described in the comment
 
 OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
+8856|-       |No applicable to Linux due to Encryption (b525630) 
 8713|871e0732|
-8677|!      |Apply when porting channel programs.
+8677|!       |Apply when porting channel programs.
 8661|1ce23dca|
 8648|f763c3d1|
 8605|!      |Apply when porting channel programs.
