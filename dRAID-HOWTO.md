@@ -289,7 +289,7 @@ By default, rebuild for mirror vdev is turned off. It can be turned on using the
 
 ### Rebuild throttling
 
-The rebuild process may delay _zio_ according to the ZFS options _spa_vdev_scan_delay_ and _spa_vdev_scan_idle_, which works in a similar way as options used by resilver _zfs_scan_idle_ and _zfs_resilver_delay_. Moreover, when a dRAID vdev has lost all redundancy, e.g. a draid2 with 2 faulted child drives, the rebuild process will go full speed by ignoring _spa_vdev_scan_delay_ and _spa_vdev_scan_idle_ altogether because the vdev is now in critical state.
+The rebuild process may delay _zio_ by _spa_vdev_scan_delay_ if the draid vdev has seen any important IO in the recent _spa_vdev_scan_idle_ period. But when a dRAID vdev has lost all redundancy, e.g. a draid2 with 2 faulted child drives, the rebuild process will go full speed by ignoring _spa_vdev_scan_delay_ and _spa_vdev_scan_idle_ altogether because the vdev is now in critical state.
 
 After delaying, the rebuild zio is issued using priority _ZIO_PRIORITY_SCRUB_ for reads and _ZIO_PRIORITY_ASYNC_WRITE_ for writes. Therefore the options that control the queuing of these two IO priorities will affect rebuild _zio_ as well, for example _zfs_vdev_scrub_min_active_, _zfs_vdev_scrub_max_active_, _zfs_vdev_async_write_min_active_, and _zfs_vdev_async_write_max_active_.
 
@@ -344,4 +344,4 @@ The dRAID1 vdev in this example shuffles three (4 data + 1 parity) redundancy gr
 Please report bugs to [the dRAID project](https://github.com/thegreatgazoo/zfs/issues), as long as the code is not merged upstream. The following information would be useful:
 * dRAID configuration, i.e. the *.nvl file created by _draidcfg_ command.
 * Output of _zpool events -v_
-* dRAID debug traces, which by default goes to _dmesg_ via _printk()_. The dRAID debugging traces can also use _trace_printk()_, which is more preferable but unfortunately GPL only. It can be enabled by editing the META file to change the license (strictly for debugging only).
+* dRAID debug traces, which by default goes to _dmesg_ via _printk()_. The dRAID debugging traces can also use _trace_printk()_, which is more preferable but unfortunately GPL only.
