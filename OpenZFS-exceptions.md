@@ -36,6 +36,7 @@ OpenZFS issue id | status/ZFS commit | comment
 8521|ee6370a7|
 8502|!      | Apply when porting OpenZFS 7955
 8477|92e43c1|
+8408|5f1346c|
 8379|-      |This change isn't relevant for Linux.
 8376|-      |This change isn't relevant for Linux.
 8311|!      |Need to assess applicability to Linux.
