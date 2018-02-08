@@ -16,6 +16,7 @@ The commit is applicable but not applied for the reason described in the comment
 OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
 8969|-       |Not applicable to Linux
+8942|650258d7|
 8858|-       |Not applicable to Linux
 8856|-       |Not applicable to Linux due to Encryption (b525630) 
 8713|871e0732|
