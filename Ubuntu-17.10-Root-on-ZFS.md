@@ -198,7 +198,7 @@ The `debootstrap` command leaves the new system in an unconfigured state.  An al
     network:
       version: 2
       ethernets:
-        ens3:
+        NAME:
           dhcp4: true
 
 Customize this file if the system is not a DHCP client.
