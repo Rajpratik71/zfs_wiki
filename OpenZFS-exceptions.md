@@ -15,6 +15,7 @@ The commit is applicable but not applied for the reason described in the comment
 
 OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
+9064|!       |Port over with Device Removal (PR 6900)
 8969|-       |Not applicable to Linux
 8942|650258d7|
 8941|390d679a|
