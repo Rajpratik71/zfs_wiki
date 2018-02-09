@@ -26,6 +26,7 @@ OpenZFS issue id | status/ZFS commit | comment
 8602|a032ac4|
 8569|-      |This change isn't relevant for Linux.
 8567|-      |An alternate fix was applied for Linux
+8552|935e2c2|
 8521|ee6370a7|
 8502|!      | Apply when porting OpenZFS 7955
 8477|92e43c1|
