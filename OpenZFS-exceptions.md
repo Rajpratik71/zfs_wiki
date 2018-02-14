@@ -20,6 +20,8 @@ OpenZFS issue id | status/ZFS commit | comment
 9077|-       |Not applicable to Linux
 9064|!       |Port with Device Removal (PR #6900)
 8969|-       |Not applicable to Linux
+8962|!       |Depends on 8961
+8961|!       |Waiting on Device Removal (PR #6900)
 8942|650258d7|
 8941|390d679a|
 8858|-       |Not applicable to Linux
@@ -62,6 +64,7 @@ OpenZFS issue id | status/ZFS commit | comment
 7739|582cc014|
 7730|e24e62a|
 7710|-      |None of the illumos build system is used under Linux.
+7638|!      |Waiting on Device Removal (PR #6900)
 7602|44f09cd|
 7591|541a090|
 7586|c443487|
