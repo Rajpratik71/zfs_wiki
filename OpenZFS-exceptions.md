@@ -20,6 +20,7 @@ OpenZFS issue id | status/ZFS commit | comment
 9077|-       |Not applicable to Linux
 9075|!       |Waiting on Device Removal (PR #6900)
 9064|!       |Port with Device Removal (PR #6900)
+9036|!       |Port with Device Removal (PR #6900)
 8969|-       |Not applicable to Linux
 8962|!       |Depends on 8961
 8961|!       |Waiting on Device Removal (PR #6900)
