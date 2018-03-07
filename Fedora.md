@@ -1,6 +1,6 @@
 Only [DKMS][dkms] style packages can be provided for Fedora from the official zfsonlinux.org repository.  This is because Fedora is a fast moving distribution which does not provide a stable kABI. These packages track the official ZFS on Linux tags and are updated as new versions are released.  Packages are available for the following configurations:
 
-**Fedora Releases:** 25, 26, 27
+**Fedora Releases:** 25, 26, 27  
 **Architectures:** x86_64  
 
 To simplify installation a zfs-release package is provided which includes a zfs.repo configuration file and the ZFS on Linux public signing key.  All official ZFS on Linux packages are signed using this key, and by default both yum and dnf will verify a package's signature before allowing it be to installed.  Users are strongly encouraged to verify the authenticity of the ZFS on Linux public key using the fingerprint listed here.
