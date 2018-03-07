@@ -20,6 +20,7 @@
   * [[Building ZFS]]
   * [Buildbot Status][buildbot-status]
   * [Buildbot Options][control-buildbot]
+  * [ZTS Known Issues][known-zts-failures]
   * [OpenZFS Tracking][openzfs-tracking]
   * [[OpenZFS Patches]]
   * [[OpenZFS Exceptions]]
@@ -35,3 +36,4 @@
 [openzfs-tracking]: http://build.zfsonlinux.org/openzfs-tracking.html
 [buildbot-status]: http://build.zfsonlinux.org/tgrid?length=100&branch=master&category=Tests&rev_order=desc
 [control-buildbot]: https://github.com/zfsonlinux/zfs/wiki/Buildbot-Options
+[known-zts-failures]: http://build.zfsonlinux.org/known-issues.html
