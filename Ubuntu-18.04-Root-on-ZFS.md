@@ -16,15 +16,11 @@ If you need help, reach out to the community using the [zfs-discuss mailing list
 
 ## Encryption
 
-This guide supports the three different Ubuntu encryption options: unencrypted, LUKS (full-disk encryption), and eCryptfs (home directory encryption).
+This guide supports the two different Ubuntu encryption options: unencrypted and LUKS (full-disk encryption). ZFS native encryption has not yet been released.
 
 Unencrypted does not encrypt anything, of course. All ZFS features are fully available. With no encryption happening, this option naturally has the best performance.
 
 LUKS encrypts almost everything: the OS, swap, home directories, and anything else. The only unencrypted data is the bootloader, kernel, and initrd. The system cannot boot without the passphrase being entered at the console. All ZFS features are fully available. Performance is good, but LUKS sits underneath ZFS, so if multiple disks (mirror or raidz configurations) are used, the data has to be encrypted once per disk.
-
-eCryptfs protects the contents of the specified home directories. This guide also recommends encrypted swap when using eCryptfs. Other operating system directories, which may contain sensitive data, logs, and/or configuration information, are not encrypted. ZFS compression is useless on the encrypted home directories. ZFS snapshots are not automatically and transparently mounted when using eCryptfs, and manually mounting them requires serious knowledge of eCryptfs administrative commands. eCryptfs sits above ZFS, so the encryption only happens once, regardless of the number of disks in the pool. The performance of eCryptfs may be lower than LUKS in single-disk scenarios.
-
-If you want encryption, LUKS is recommended.
 
 ## Step 1: Prepare The Install Environment
 
@@ -74,7 +70,7 @@ If you have a second system, using SSH to access the target system can be conven
 
 Choose one of the following options:
 
-2.2a  Unencrypted or eCryptfs:
+2.2a  Unencrypted:
 
     # sgdisk     -n1:0:0      -t1:BF01 /dev/disk/by-id/scsi-SATA_disk1
 
@@ -93,7 +89,7 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
 
 Choose one of the following options:
 
-2.3a  Unencrypted or eCryptfs:
+2.3a  Unencrypted:
 
     # zpool create -o ashift=12 \
           -O atime=off -O canmount=off -O compression=lz4 -O normalization=formD \
@@ -379,27 +375,10 @@ In the future, you will likely want to take snapshots before each upgrade, and r
 
 6.6  Create a user account:
 
-Choose one of the following options:
-
-6.6a  Unencrypted or LUKS:
-
     # zfs create rpool/home/YOURUSERNAME
     # adduser YOURUSERNAME
     # cp -a /etc/skel/.[!.]* /home/YOURUSERNAME
     # chown -R YOURUSERNAME:YOURUSERNAME /home/YOURUSERNAME
-
-6.6b  eCryptfs:
-
-    # apt install ecryptfs-utils
-
-    # zfs create -o compression=off -o mountpoint=/home/.ecryptfs/YOURUSERNAME \
-          rpool/home/temp-YOURUSERNAME
-    # adduser --encrypt-home YOURUSERNAME
-    # zfs rename rpool/home/temp-YOURUSERNAME rpool/home/YOURUSERNAME
-
-The temporary name for the dataset is required to work-around [a bug in ecryptfs-setup-private](https://bugs.launchpad.net/ubuntu/+source/ecryptfs-utils/+bug/1574174).  Otherwise, it will fail with an error saying the home directory is already mounted; that check is not specific enough in the pattern it uses.
-
-**Note:** Automatically mounted snapshots (i.e. the `.zfs/snapshots` directory) will not work through eCryptfs.  You can do another eCryptfs mount manually if you need to access files in a snapshot.  A script to automate the mounting should be possible, but has not yet been implemented.
 
 6.7  Add your user account to the default set of groups for an administrator:
 
@@ -442,23 +421,10 @@ The compression algorithm is set to `zle` because it is the cheapest available a
 
 7.2  Configure the swap device:
 
-Choose one of the following options:
-
-7.2a  Unencrypted or LUKS:
-
 **Caution**: Always use long `/dev/zvol` aliases in configuration files. Never use a short `/dev/zdX` device name.
 
     # mkswap -f /dev/zvol/rpool/swap
     # echo /dev/zvol/rpool/swap none swap defaults 0 0 >> /etc/fstab
-
-7.2b  eCryptfs:
-
-    # apt install cryptsetup
-    # echo cryptswap1 /dev/zvol/rpool/swap /dev/urandom \
-          swap,cipher=aes-xts-plain64:sha256,size=256 >> /etc/crypttab
-    # systemctl daemon-reload
-    # systemctl start systemd-cryptsetup@cryptswap1.service
-    # echo /dev/mapper/cryptswap1 none swap defaults 0 0 >> /etc/fstab
 
 7.3  Enable the swap device:
 
