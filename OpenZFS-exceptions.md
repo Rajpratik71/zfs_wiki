@@ -15,6 +15,7 @@ The commit is applicable but not applied for the reason described in the comment
 
 OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
+9190|!       |Port with OpenZFS 9075
 9084|!       |Port with Device Removal (PR #6900)
 9080|!       |Port with Device Removal (PR #6900)
 9079|!       |Port with Device Removal (PR #6900)
