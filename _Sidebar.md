@@ -19,7 +19,7 @@
   * [[Custom Packages]]
   * [[Building ZFS]]
   * [Buildbot Status][buildbot-status]
-  * [Buildbot Spurious Issues][known-zts-failures]
+  * [Buildbot Issue Tracking][known-zts-failures]
   * [Buildbot Options][control-buildbot]
   * [OpenZFS Tracking][openzfs-tracking]
   * [[OpenZFS Patches]]
