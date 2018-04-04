@@ -20,6 +20,7 @@ OpenZFS issue id | status/ZFS commit | comment
 9191|!       |Depends on OpenZFS 9075
 9190|!       |Port with OpenZFS 9075
 9189|!       |Depends on OpenZFS 8961
+9187|!       |Port after OpenZFS 9075
 9084|!       |Port with Device Removal (PR #6900)
 9080|!       |Port with Device Removal (PR #6900)
 9079|!       |Port with Device Removal (PR #6900)
