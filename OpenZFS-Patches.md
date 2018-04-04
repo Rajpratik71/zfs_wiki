@@ -89,7 +89,7 @@ Otherwise you should go to step 2.
 
 6) Add any porting notes (if you have modified something): `git commit --amend`
 
-7) Push your commit to github: `git push origin autoport-ozXXXX -f`
+7) Push your commit to github: `git push <your-github-account> autoport-ozXXXX`
 
 8) Create a pull request to ZoL master branch.
 
