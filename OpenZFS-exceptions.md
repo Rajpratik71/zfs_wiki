@@ -15,23 +15,15 @@ The commit is applicable but not applied for the reason described in the comment
 
 OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
-9280|!       |Port with Device Removal (PR #6900)
 9235|!       |Port after OpenZFS 9075
 9191|!       |Depends on OpenZFS 9075
 9190|!       |Port with OpenZFS 9075
 9189|!       |Depends on OpenZFS 8961
 9187|!       |Port after OpenZFS 9075
-9084|!       |Port with Device Removal (PR #6900)
-9080|!       |Port with Device Removal (PR #6900)
-9079|!       |Port with Device Removal (PR #6900)
 9077|-       |Not applicable to Linux
-9075|!       |Waiting on Device Removal (PR #6900)
-9064|!       |Port with Device Removal (PR #6900)
-9036|!       |Port with Device Removal (PR #6900)
 9027|4a5d7f82|
 8969|-       |Not applicable to Linux
 8962|!       |Depends on OpenZFS 8961
-8961|!       |Waiting on Device Removal (PR #6900)
 8942|650258d7|
 8941|390d679a|
 8858|-       |Not applicable to Linux
@@ -74,7 +66,6 @@ OpenZFS issue id | status/ZFS commit | comment
 7739|582cc014|
 7730|e24e62a|
 7710|-      |None of the illumos build system is used under Linux.
-7638|!      |Waiting on Device Removal (PR #6900)
 7602|44f09cd|
 7591|541a090|
 7586|c443487|
