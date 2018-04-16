@@ -15,6 +15,7 @@ The commit is applicable but not applied for the reason described in the comment
 
 OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
+9284|!       |Needs evaluation, similar to the existing mechanism on Linux.
 9235|!       |Port after OpenZFS 9075
 9191|!       |Depends on OpenZFS 9075
 9190|!       |Port with OpenZFS 9075
@@ -22,7 +23,7 @@ OpenZFS issue id | status/ZFS commit | comment
 9187|!       |Port after OpenZFS 9075
 9077|-       |Not applicable to Linux
 9027|4a5d7f82|
-9018|-       |Not applicable to Linux, similar to the existing behavior.
+9018|!       |Needs evaluation, similar to the existing mechanism on Linux.
 8969|-       |Not applicable to Linux
 8962|!       |Depends on OpenZFS 8961
 8942|650258d7|
