@@ -81,7 +81,7 @@ By opening a pull request against ZFS and adding `Requires-kernel:` in a commit
 message, you can instruct the buildbot to use a specific Linux kernel.
 Below is an example commit message that specifies a specific Linux kernel tag.
 
-### Build Linux Kernel v 4.14
+### Build Linux Kernel Version 4.14
 ```
 This is a commit message
 
