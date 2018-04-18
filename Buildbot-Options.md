@@ -73,6 +73,24 @@ Signed-off-by: Contributor <contributor@email.com>
 Requires-spl: spl-branch-name
 ```
 
+## Requiring Kernel Version
+Currently, Kernel.org builders will clone and build the master branch of Linux.
+In cases where a specific version of the Linux kernel needs to be built, the ZFS
+buildbot supports specifying the Linux kernel to be built via commit message.
+By opening a pull request against ZFS and adding `Requires-kernel:` in a commit
+message, you can instruct the buildbot to use a specific Linux kernel.
+Below is an example commit message that specifies a specific Linux kernel tag.
+
+### Build Linux Kernel v 4.14
+```
+This is a commit message
+
+This text is part of the commit message body.
+
+Signed-off-by: Contributor <contributor@email.com>
+Requires-kernel: v4.14
+```
+
 ## Build Steps Overrides
 Each builder will execute or skip build steps based on its default
 preferences. In some scenarios, it might be possible to skip various build
