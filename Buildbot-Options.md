@@ -8,7 +8,7 @@ By default, all commits in your ZFS pull request are compiled by the BUILD
 builders.  Additionally, the top commit of your ZFS pull request is tested by
 TEST builders.  However, there is the option to override which types of builder
 should be used on a per commit basis.  In this case, you can add
-`Requires-builders: <none|all|style|build|arch|distro|test|perf|coverage>` to your
+`Requires-builders: <none|all|style|build|arch|distro|test|perf|coverage|unstable>` to your
 commit message.  A comma separated list of options can be
 provided.  Supported options are:
 
