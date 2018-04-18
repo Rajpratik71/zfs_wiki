@@ -21,6 +21,7 @@ provided.  Supported options are:
 * `test`: This commit should be built and tested by the TEST builders (excluding the Coverage TEST builders)
 * `perf`: This commit should be built and tested by the PERF builders
 * `coverage` : This commit should be built and tested by the Coverage TEST builders
+* `unstable` : This commit should be built and tested by the Unstable TEST builders (currently only the Fedora Rawhide TEST builder)
 
 A couple of examples on how to use `Requires-builders:` in commit messages can be found below.
 
