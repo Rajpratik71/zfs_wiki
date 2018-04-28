@@ -98,7 +98,7 @@ There are different /dev/ names that can be used when creating a ZFS pool. Each 
 * **/dev/disk/by-vdev/:** Best for large pools (greater than 10 disks)
   * Summary: This approach provides administrative control over device naming using the configuration file /etc/zfs/vdev_id.conf. Names for disks in JBODs can be generated automatically to reflect their physical location by enclosure IDs and slot numbers. The names can also be manually assigned based on existing udev device links, including those in /dev/disk/by-path or /dev/disk/by-id. This allows you to pick your own unique meaningful names for the disks. These names will be displayed by all the zfs utilities so it can be used to clarify the administration of a large complex pool. See the vdev_id and vdev_id.conf man pages for further details.
   * Benefits: The main benefit of this approach is that it allows you to choose meaningful human-readable names. Beyond that, the benefits depend on the naming method employed. If the names are derived from the physical path the benefits of /dev/disk/by-path are realized. On the other hand, aliasing the names based on drive identifiers or WWNs has the same benefits as using /dev/disk/by-id.
-  * Drawbacks: This method relies on having a /etc/zfs/vdev_id.conf file properly configured for your system. To configure this file please refer to section 1.10 How do I setup the /etc/zfs/vdev_id.conf file? As with benefits, the drawbacks of /dev/disk/by-id or /dev/disk/by-path may apply depending on the naming method employed.
+  * Drawbacks: This method relies on having a /etc/zfs/vdev_id.conf file properly configured for your system. To configure this file please refer to section [Setting up the /etc/zfs/vdev_id.conf file](#setting-up-the-etczfsvdev_idconf-file). As with benefits, the drawbacks of /dev/disk/by-id or /dev/disk/by-path may apply depending on the naming method employed.
   * Example: `zpool create tank mirror A1 B1 mirror A2 B2`
 
 ## Setting up the /etc/zfs/vdev_id.conf file
@@ -161,7 +161,7 @@ A configuration using device link aliases.
             alias d2       wwn-0x5000c5002def789e
 ```
 
-After defining the new disk names run udevadm trigger to prompt udev to parse the configuration file. This will result in a new /dev/disk/by-vdev directory which is populated with symlinks to /dev/sdX names. Following the first example above, you could then create the new pool of mirrors with the following command:
+After defining the new disk names run `udevadm trigger` to prompt udev to parse the configuration file. This will result in a new /dev/disk/by-vdev directory which is populated with symlinks to /dev/sdX names. Following the first example above, you could then create the new pool of mirrors with the following command:
 
 ```
 $ zpool create tank \
