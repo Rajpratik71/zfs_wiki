@@ -21,7 +21,7 @@ Make sure that the required packages are installed:
 
 ```
 $ sudo yum groupinstall "Development Tools" autoconf automake libtool elfutils-libelf-devel parted lsscsi wget ksh
-$ sudo yum install kernel-devel zlib-devel libattr-devel libuuid-devel libblkid-devel 
+$ sudo yum install kernel-devel zlib-devel libattr-devel libuuid-devel libblkid-devel libtirpc-devel
 $ sudo yum install libselinux-devel libudev-devel openssl-devel 
 ```
 
