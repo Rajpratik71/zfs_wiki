@@ -20,8 +20,8 @@ Be aware that when building directly from a git repository you must first run th
 Make sure that the required packages are installed:
 
 ```
-$ sudo yum groupinstall "Development Tools" autoconf automake parted lsscsi wget ksh
-$ sudo yum install kernel-devel zlib-devel libattr-devel libuuid-devel libblkid-devel
+$ sudo yum groupinstall "Development Tools" autoconf automake libtool elfutils-libelf-devel parted lsscsi wget ksh
+$ sudo yum install kernel-devel zlib-devel libattr-devel libuuid-devel libblkid-devel 
 $ sudo yum install libselinux-devel libudev-devel openssl-devel 
 ```
 
