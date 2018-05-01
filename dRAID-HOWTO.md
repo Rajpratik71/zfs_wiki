@@ -131,12 +131,12 @@ config:
             sds         ONLINE       0     0     0
             sdt         ONLINE       0     0     0
         spares
-          $draid1-0-s0  AVAIL   
-          $draid1-0-s1  AVAIL
+          %draid1-0-s0  AVAIL   
+          %draid1-0-s1  AVAIL
 ```
 
 There are two logical spare vdevs shown above at the bottom:
-* The names begin with a '$' followed by the name of the parent dRAID vdev.
+* The names begin with a '%' followed by the name of the parent dRAID vdev.
 * These spare are logical, made from reserved blocks on all the 17 child drives of the dRAID vdev.
 * Unlike traditional hot spares, the distributed spare can only replace a drive in its parent dRAID vdev.
 
@@ -149,7 +149,7 @@ When there's a bad/offlined/failed child drive, the dRAID vdev supports a comple
 But if a child drive is replaced with a distributed spare, a new process called rebuild is used instead of resilver:
 ```
 # zpool offline tank sdo
-# zpool replace tank sdo '$draid1-0-s0'
+# zpool replace tank sdo '%draid1-0-s0'
 # zpool status
   pool: tank
  state: DEGRADED
@@ -177,15 +177,15 @@ config:
             sdn             ONLINE       0     0     0
             spare-11        DEGRADED     0     0     0
               sdo           OFFLINE      0     0     0
-              $draid1-0-s0  ONLINE       0     0     0
+              %draid1-0-s0  ONLINE       0     0     0
             sdp             ONLINE       0     0     0
             sdq             ONLINE       0     0     0
             sdr             ONLINE       0     0     0
             sds             ONLINE       0     0     0
             sdt             ONLINE       0     0     0
         spares
-          $draid1-0-s0      INUSE     currently in use
-          $draid1-0-s1      AVAIL
+          %draid1-0-s0      INUSE     currently in use
+          %draid1-0-s1      AVAIL
 ```
 
 The scan status line of the _zpool status_ output now says _"rebuilt"_ instead of _"resilvered"_, because the lost data/parity was rebuilt to the distributed spare by a brand new process called _"rebuild"_. The main differences from _resilver_ are:
@@ -226,20 +226,20 @@ config:
             sdn             ONLINE       0     0     0
             spare-11        DEGRADED     0     0     0
               sdo           OFFLINE      0     0     0
-              $draid1-0-s0  ONLINE       0     0     0
+              %draid1-0-s0  ONLINE       0     0     0
             sdp             ONLINE       0     0     0
             sdq             ONLINE       0     0     0
             sdr             ONLINE       0     0     0
             sds             ONLINE       0     0     0
             sdt             ONLINE       0     0     0
         spares
-          $draid1-0-s0      INUSE     currently in use
-          $draid1-0-s1      AVAIL
+          %draid1-0-s0      INUSE     currently in use
+          %draid1-0-s1      AVAIL
 ```
 
-As shown above, the _draid1-0_ vdev is still in _DEGRADED_ mode although two child drives have failed and it's only single-parity. Since the _$draid1-0-s1_ is still _AVAIL_, full redundancy can be restored by replacing _sdj_ with it, without adding new drive to the pool:
+As shown above, the _draid1-0_ vdev is still in _DEGRADED_ mode although two child drives have failed and it's only single-parity. Since the _%draid1-0-s1_ is still _AVAIL_, full redundancy can be restored by replacing _sdj_ with it, without adding new drive to the pool:
 ```
-# zpool replace tank sdj '$draid1-0-s1'
+# zpool replace tank sdj '%draid1-0-s1'
 # zpool status
  state: DEGRADED
 status: One or more devices has been taken offline by the administrator.
@@ -261,22 +261,22 @@ config:
             sdu             ONLINE       0     0     0
             spare-6         DEGRADED     0     0     0
               sdj           OFFLINE      0     0     0
-              $draid1-0-s1  ONLINE       0     0     0
+              %draid1-0-s1  ONLINE       0     0     0
             sdv             ONLINE       0     0     0
             sdl             ONLINE       0     0     0
             sdm             ONLINE       0     0     0
             sdn             ONLINE       0     0     0
             spare-11        DEGRADED     0     0     0
               sdo           OFFLINE      0     0     0
-              $draid1-0-s0  ONLINE       0     0     0
+              %draid1-0-s0  ONLINE       0     0     0
             sdp             ONLINE       0     0     0
             sdq             ONLINE       0     0     0
             sdr             ONLINE       0     0     0
             sds             ONLINE       0     0     0
             sdt             ONLINE       0     0     0
         spares
-          $draid1-0-s0      INUSE     currently in use
-          $draid1-0-s1      INUSE     currently in use
+          %draid1-0-s0      INUSE     currently in use
+          %draid1-0-s1      INUSE     currently in use
 ```
 
 Again, full redundancy has been restored without adding any new drive. If another drive fails, the pool will still be able to handle IO, but there'd be no more distributed spare to rebuild (both are in _INUSE_ state now). At this point, there's no urgency to add a new replacement drive because the pool can survive yet another drive failure.
@@ -319,7 +319,7 @@ config:
             sdu             ONLINE       0     0     0
             spare-6         DEGRADED     0     0     0
               sdj           OFFLINE      0     0     0
-              $draid1-0-s1  ONLINE       0     0     0
+              %draid1-0-s1  ONLINE       0     0     0
             sdv             ONLINE       0     0     0
             sdl             ONLINE       0     0     0
             sdm             ONLINE       0     0     0
@@ -331,11 +331,11 @@ config:
             sds             ONLINE       0     0     0
             sdt             ONLINE       0     0     0
         spares
-          $draid1-0-s0      AVAIL   
-          $draid1-0-s1      INUSE     currently in use
+          %draid1-0-s0      AVAIL   
+          %draid1-0-s1      INUSE     currently in use
 ```
 
-Note that the scan status now says _"resilvered"_. Also, the state of _$draid1-0-s0_ has become _AVAIL_ again. Since the resilver process checks block checksums, it makes up for the lack of checksum verification during previous rebuild.
+Note that the scan status now says _"resilvered"_. Also, the state of _%draid1-0-s0_ has become _AVAIL_ again. Since the resilver process checks block checksums, it makes up for the lack of checksum verification during previous rebuild.
 
 The dRAID1 vdev in this example shuffles three (4 data + 1 parity) redundancy groups to the 17 drives. For any single drive failure, only about 1/3 of the blocks are affected (and should be resilvered/rebuilt). The rebuild process is able to avoid unnecessary work, but the resilver process by default will not. The rebalance (which is essentially resilver) can speed up a lot by setting module option _zfs_no_resilver_skip_ to 0. This feature is turned off by default because of issue https://github.com/zfsonlinux/zfs/issues/5806. 
 
