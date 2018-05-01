@@ -23,7 +23,7 @@ Make sure that the required packages are installed:
 $ sudo yum groupinstall "Development Tools"
 $ sudo yum install autoconf automake libtool elfutils-libelf-devel parted lsscsi wget ksh
 $ sudo yum install kernel-devel zlib-devel libattr-devel libuuid-devel libblkid-devel libtirpc-devel
-$ sudo yum install libselinux-devel libudev-devel openssl-devel 
+$ sudo yum install libselinux-devel libudev-devel openssl-devel rpm-build
 ```
 
 [Get the source code](#get-the-source-code).
