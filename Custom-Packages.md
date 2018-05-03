@@ -91,7 +91,7 @@ Make sure that the required packages are installed:
 ```
 $ sudo apt-get install build-essential autoconf libtool gawk alien fakeroot gdebi
 $ sudo apt-get install linux-headers-$(uname -r) zlib1g-dev uuid-dev libattr1-dev libblkid-dev
-$ sudo apt-get libselinux-dev libudev-dev libssl-dev parted lsscsi wget ksh gdebi
+$ sudo apt-get install libselinux-dev libudev-dev libssl-dev parted lsscsi wget ksh gdebi
 ```
 
 [Get the source code](#get-the-source-code).
