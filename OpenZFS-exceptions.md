@@ -18,18 +18,12 @@ OpenZFS issue id | status/ZFS commit | comment
 9421|64c1dcef|
 9284|!       |Needs evaluation, similar to the existing mechanism on Linux
 9237|-       |Introduced by 8567 which was never applied to Linux
-9235|!       |Port after OpenZFS 9075
 9194|-       |Not applicable the '-o ashift=value' option is provided on Linux
-9191|!       |Depends on OpenZFS 9075
-9190|!       |Port with OpenZFS 9075
-9189|!       |Depends on OpenZFS 8961
-9187|!       |Port after OpenZFS 9075
 9077|-       |Not applicable to Linux
 9027|4a5d7f82|
 9018|!       |Needs evaluation, similar to the existing mechanism on Linux.
 8984|-       |Under Linux POSIX ACLs are used and largely handled by the VFS. This change can be ported to minimize code drift but are not required.
 8969|-       |Not applicable to Linux
-8962|!       |Depends on OpenZFS 8961
 8942|650258d7|
 8941|390d679a|
 8858|-       |Not applicable to Linux
