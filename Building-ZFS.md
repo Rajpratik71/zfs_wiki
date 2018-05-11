@@ -14,7 +14,7 @@ For Debian and Ubuntu:
 
 ```
 sudo apt-get install build-essential autoconf libtool gawk alien fakeroot linux-headers-$(uname -r)
-sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev libssl-dev
+sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev libssl-dev libelf-dev
 sudo apt-get install parted lsscsi ksh
 ```
 
