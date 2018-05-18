@@ -15,6 +15,9 @@ The commit is applicable but not applied for the reason described in the comment
 
 OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
+9539|5228cf01|
+9512|b4555c77|
+9487|48fbb9dd|
 9421|64c1dcef|
 9284|!       |Needs evaluation, similar to the existing mechanism on Linux
 9237|-       |Introduced by 8567 which was never applied to Linux
