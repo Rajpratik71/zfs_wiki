@@ -26,7 +26,7 @@ For RHEL and CentOS:
 ```
 sudo yum groupinstall "Development Tools"
 sudo yum install zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
-sudo yum install parted lsscsi ksh openssl-devel
+sudo yum install parted lsscsi ksh openssl-devel elfutils-libelf-devel
 sudo yum install kernel-devel-$(uname -r)
 ```
 
