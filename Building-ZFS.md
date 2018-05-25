@@ -10,28 +10,33 @@ The official source for ZFS on Linux is maintained at GitHub by the [zfsonlinux]
 
 The first thing you'll need to do is prepare your environment by installing a full development tool chain.  In addition, development headers for both the kernel and the following libraries must be available: **zlib, libattr, libuuid, libblkid, selinux, and libudev**.  Finally, if you wish to run the ZFS Test Suite **ksh** must be installed.
 
+It is important to note that if the development kernel headers for the currently running kernel aren't installed, the modules won't compile properly.
+
 For Debian and Ubuntu:
 
 ```
-sudo apt-get install build-essential autoconf libtool gawk alien fakeroot linux-headers-$(uname -r)
-sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev libssl-dev libelf-dev
-sudo apt-get install parted lsscsi ksh
+sudo apt-get install build-essential autoconf libtool gawk alien fakeroot
+sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev
+sudo apt-get install parted lsscsi ksh libssl-dev libelf-dev
+sudo apt-get install linux-headers-$(uname -r)
 ```
 
 For RHEL and CentOS:
 
 ```
 sudo yum groupinstall "Development Tools"
-sudo yum install kernel-devel zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel openssl-devel
-sudo yum install parted lsscsi ksh
+sudo yum install zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
+sudo yum install parted lsscsi ksh openssl-devel
+sudo yum install kernel-devel-$(uname -r)
 ```
 
 For Fedora:
 
 ```
 sudo dnf groupinstall "C Development Tools and Libraries"
-sudo dnf install kernel-devel zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel openssl-devel elfutils-libelf-devel
-sudo dnf install parted lsscsi ksh
+sudo dnf install zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
+sudo dnf install parted lsscsi ksh openssl-devel elfutils-libelf-devel
+sudo dnf install kernel-devel-$(uname -r)
 ```
 
 ### Build Options
