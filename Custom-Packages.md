@@ -23,9 +23,9 @@ Make sure that the required packages are installed:
 
 ```
 $ sudo yum groupinstall "Development Tools"
-$ sudo yum install autoconf automake libtool elfutils-libelf-devel wget libtirpc-devel rpm-build
+$ sudo yum install autoconf automake libtool wget libtirpc-devel rpm-build
 $ sudo yum install zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
-$ sudo yum install parted lsscsi ksh openssl-devel
+$ sudo yum install parted lsscsi ksh openssl-devel elfutils-libelf-devel
 $ sudo yum install kernel-devel-$(uname -r)
 ```
 
