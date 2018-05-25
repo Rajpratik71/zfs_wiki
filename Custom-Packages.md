@@ -12,6 +12,8 @@ By default the build system will generate user packages and both DKMS and kmod s
 
 Be aware that when building directly from a git repository you must first run the *autogen.sh* script to create the *configure* script. This will require installing the GNU autotools packages for your distribution.  To perform any of the builds, you must install all the necessary development tools and headers for your distribution.
 
+It is important to note that if the development kernel headers for the currently running kernel aren't installed, the modules won't compile properly.
+
 * [Red Hat, CentOS and Fedora](#red-hat-centos-and-fedora)
 * [Debian and Ubuntu](#debian-and-ubuntu)
 
@@ -21,9 +23,10 @@ Make sure that the required packages are installed:
 
 ```
 $ sudo yum groupinstall "Development Tools"
-$ sudo yum install autoconf automake libtool elfutils-libelf-devel parted lsscsi wget ksh
-$ sudo yum install kernel-devel zlib-devel libattr-devel libuuid-devel libblkid-devel libtirpc-devel
-$ sudo yum install libselinux-devel libudev-devel openssl-devel rpm-build
+$ sudo yum install autoconf automake libtool elfutils-libelf-devel wget libtirpc-devel rpm-build
+$ sudo yum install zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
+$ sudo yum install parted lsscsi ksh openssl-devel
+$ sudo yum install kernel-devel-$(uname -r)
 ```
 
 [Get the source code](#get-the-source-code).
@@ -89,9 +92,11 @@ $ sudo yum localinstall *.$(uname -p).rpm
 Make sure that the required packages are installed:
 
 ```
-$ sudo apt-get install build-essential autoconf libtool gawk alien fakeroot gdebi
-$ sudo apt-get install linux-headers-$(uname -r) zlib1g-dev uuid-dev libattr1-dev libblkid-dev
-$ sudo apt-get install libselinux-dev libudev-dev libssl-dev parted lsscsi wget ksh gdebi
+$ sudo apt-get install build-essential autoconf libtool gawk alien fakeroot
+$ sudo apt-get install gdebi wget
+$ sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev
+$ sudo apt-get install parted lsscsi ksh libssl-dev libelf-dev
+$ sudo apt-get install linux-headers-$(uname -r)
 ```
 
 [Get the source code](#get-the-source-code).
