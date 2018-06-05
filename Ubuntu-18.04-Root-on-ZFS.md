@@ -160,7 +160,7 @@ The primary goal of this dataset layout is to separate the OS from user data. Th
 
 [We enable POSIX ACLs on /var/log for journald.](https://askubuntu.com/questions/970886/journalctl-says-failed-to-search-journal-acl-operation-not-supported) See the note above in the `zpool create` step about `xattr=sa` being Linux-specific. That said, even if you do not want `xattr=sa` for the whole pool, it is probably fine to use it for `/var/log`.
 
-If you want ACL support on other filesystems, set `-o acltype=posixacl` on them. If you want ACL support on everything, you can set it on the whole pool: `zfs set -o acltype=posixacl rpool`
+If you want ACL support on other filesystems, set `-o acltype=posixacl` on them. If you want ACL support on everything, you can set it on the whole pool: `zfs set acltype=posixacl rpool`
 
 3.4  For LUKS installs only:
 
