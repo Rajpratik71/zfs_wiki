@@ -227,16 +227,15 @@ Customize this file if the system is not a DHCP client.
 
 4.5 Configure a basic system environment:
 
-    # locale-gen en_US.UTF-8
+    # ln -s /proc/self/mounts /etc/mtab
+    # apt update
+
+    # apt install --yes locales
+    # dpkg-reconfigure locales
 
 Even if you prefer a non-English system language, always ensure that `en_US.UTF-8` is available.
 
-    # echo LANG=en_US.UTF-8 > /etc/default/locale
-
     # dpkg-reconfigure tzdata
-
-    # ln -s /proc/self/mounts /etc/mtab
-    # apt update
 
     If you prefer nano over vi, install it:
     # apt install --yes nano
