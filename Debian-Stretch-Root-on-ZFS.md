@@ -292,6 +292,9 @@ In the future, you will likely want to take snapshots before each upgrade, and r
 
 6.5  Wait for the newly installed system to boot normally. Login as root.
 
+**Notes:**
+- If you get a type of `rpool does not exist` message, you can try to add `rootdelay=10` to the kernel parameters.
+
 6.6  Create a user account:
 
     # zfs create rpool/home/YOURUSERNAME
