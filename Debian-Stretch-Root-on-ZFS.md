@@ -73,8 +73,8 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
 
     # zpool create -o ashift=12 \
           -o feature@large_dnode=disabled \
-          -O atime=off -O canmount=off -O compression=lz4 -O normalization=formD -O xattr=sa \
-          -O mountpoint=/ -R /mnt \
+          -O atime=off -O canmount=off -O compression=lz4 -O normalization=formD \
+          -O xattr=sa -O mountpoint=/ -R /mnt \
           rpool /dev/disk/by-id/scsi-SATA_disk1-part1
 
 **Notes:**
