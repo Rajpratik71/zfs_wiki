@@ -17,10 +17,11 @@ If you need help, reach out to the community using the [zfs-discuss mailing list
 
 1.1  Boot the Debian GNU/Linux Live CD. Login with the username `user` and password `live`.
 
-1.2  Optional: Start the OpenSSH server in the Live CD environment:
+1.2  Optional: Install and start the OpenSSH server in the Live CD environment:
 
 If you have a second system, using SSH to access the target system can be convenient.
 
+    $ sudo apt install openssh-server
     $ sudo sed -i "s/PasswordAuthentication no/PasswordAuthentication yes/g" \
           /etc/ssh/sshd_config
     $ sudo service ssh restart
