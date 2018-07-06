@@ -39,7 +39,7 @@ If you have a second system, using SSH to access the target system can be conven
 
 1.5  Install ZFS in the Live CD environment:
 
-    # apt install --yes debootstrap gdisk linux-headers-$(uname -r)
+    # apt install --yes debootstrap gdisk dpkg-dev linux-headers-$(uname -r)
     # apt install --yes zfs-dkms
 
 ## Step 2: Disk Formatting
@@ -72,8 +72,9 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
 
 2.3  Create the root pool:
 
+**Caution**: **[GRUB doesn't support all pool features](http://savannah.gnu.org/bugs/?func=detailitem&item_id=48885) of 0.7 release**, if you install ZFS from backports or use Proxmox, disable them: add `-o feature@large_dnode=disabled` to next command, otherwise grub won't find ZFS pool.
+
     # zpool create -o ashift=12 \
-          -o feature@large_dnode=disabled \
           -O atime=off -O canmount=off -O compression=lz4 -O normalization=formD \
           -O xattr=sa -O mountpoint=/ -R /mnt \
           rpool /dev/disk/by-id/scsi-SATA_disk1-part1
@@ -83,7 +84,6 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
 * Setting `xattr=sa` [vastly improves the performance of extended attributes](https://github.com/zfsonlinux/zfs/commit/82a37189aac955c81a59a5ecc3400475adb56355). Inside ZFS, extended attributes are used to implement POSIX ACLs (e.g. `acltype=posixacl`) discussed later. Extended attributes can also be used by user-space applications. [They are used by some desktop GUI applications.](https://en.wikipedia.org/wiki/Extended_file_attributes#Linux) [They can be used by Samba to store Windows ACLs and DOS attributes; they are required for a Samba Active Directory domain controller.](https://wiki.samba.org/index.php/Setting_up_a_Share_Using_Windows_ACLs) Note that [`xattr=sa` is Linux-specific.](http://open-zfs.org/wiki/Platform_code_differences) If you move your `xattr=sa` pool to another OpenZFS implementation besides ZFS-on-Linux, extended attributes will not be readable. If this is important to you, omit the `-O xattr=sa` above.
 * Setting `normalization=formD` eliminates some corner cases relating to UTF-8 filename normalization. It also implies `utf8only=on`, which means that only UTF-8 filenames are allowed. If you care to support non-UTF-8 filenames, do not use this option. For a discussion of why requiring UTF-8 filenames may be a bad idea, see [The problems with enforced UTF-8 only filenames](http://utcc.utoronto.ca/~cks/space/blog/linux/ForcedUTF8Filenames).
 * Make sure to include the `-part1` portion of the drive path. If you forget that, you are specifying the whole disk, which ZFS will then re-partition, and you will lose the bootloader partition(s).
-* **[GRUB doesn't support all pool features](http://savannah.gnu.org/bugs/?func=detailitem&item_id=48885) of 0.7 release**, if you install ZFS from backports or use Proxmox, disable them: `-o feature@large_dnode=disabled`. If you use 0.6 release, remove this text from command.
 
 **Hints:**
 * The root pool does not have to be a single disk; it can have a mirror or raidz topology.  In that case, repeat the partitioning commands for all the disks which will be part of the pool. Then, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part1 /dev/disk/by-id/scsi-SATA_disk2-part1` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks). Later, install GRUB to all the disks. This is trivial for MBR booting; the UEFI equivalent is currently left as an exercise for the reader.
@@ -193,7 +193,7 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
     # dpkg-reconfigure tzdata
 
-    # apt install --yes gdisk linux-headers-$(uname -r) linux-image-amd64
+    # apt install --yes gdisk linux-headers-$(uname -r) linux-image-amd64 dpkg-dev
 
 4.5  Install ZFS in the chroot environment for the new system:
 
