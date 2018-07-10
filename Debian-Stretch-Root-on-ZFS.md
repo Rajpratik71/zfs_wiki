@@ -41,6 +41,7 @@ If you have a second system, using SSH to access the target system can be conven
 
     # apt install --yes debootstrap gdisk dpkg-dev linux-headers-$(uname -r)
     # apt install --yes zfs-dkms
+    # modprobe zfs
 
 ## Step 2: Disk Formatting
 
