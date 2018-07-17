@@ -22,7 +22,6 @@ OpenZFS issue id | status/ZFS commit | comment
 9284|!       |Needs evaluation, similar to the existing mechanism on Linux
 9237|-       |Introduced by 8567 which was never applied to Linux
 9194|-       |Not applicable the '-o ashift=value' option is provided on Linux
-9102|094e47e9|
 9077|-       |Not applicable to Linux
 9027|4a5d7f82|
 9018|!       |Needs evaluation, similar to the existing mechanism on Linux.
