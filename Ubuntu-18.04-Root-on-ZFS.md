@@ -4,7 +4,7 @@
 * Backup your data. Any existing data will be lost.
 
 ### System Requirements
-* [64-bit Ubuntu 18.04 Bionic Live CD](http://releases.ubuntu.com/18.04/ubuntu-18.04-desktop-amd64.iso) (*not* the alternate installer)
+* [64-bit Ubuntu 18.04.1 Bionic Live CD](http://releases.ubuntu.com/18.04/ubuntu-18.04.1-desktop-amd64.iso) (*not* the alternate installer)
 * 64-bit computer (amd64, a.k.a. x86_64) computer
 * A drive which presents 512B logical sectors.  Installing on a drive which presents 4KiB logical sectors (a “4Kn” drive) should work with UEFI partitioning, but this has not been tested.
 
