@@ -25,6 +25,12 @@
   * [[OpenZFS Patches]]
   * [[OpenZFS Exceptions]]
   * [OpenZFS Documentation][openzfs-devel]
+* Performance and Tuning
+  * [[ZFS on Linux Module Parameters]]
+  * [ZFS Transaction Delay and Write Throttle][ZFS-Transaction-Delay]
+  * [[ZIO Scheduler]]
+  * [[Checksums]]
+  * [Asynchronous Writes][Async-Write]
 
 [arch]: https://wiki.archlinux.org/index.php/ZFS
 [gentoo]: https://wiki.gentoo.org/wiki/ZFS
@@ -37,3 +43,5 @@
 [buildbot-status]: http://build.zfsonlinux.org/tgrid?length=100&branch=master&category=Tests&rev_order=desc
 [control-buildbot]: https://github.com/zfsonlinux/zfs/wiki/Buildbot-Options
 [known-zts-failures]: http://build.zfsonlinux.org/known-issues.html
+[ZFS-Transaction-Delay]: https://github.com/zfsonlinux/zfs/wiki/ZFS-Transaction-Delay
+[Async-Write]: https://github.com/zfsonlinux/zfs/wiki/Async-Write
