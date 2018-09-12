@@ -24,7 +24,7 @@ Make sure that the required packages are installed:
 ```
 $ sudo yum groupinstall "Development Tools"
 $ sudo yum install autoconf automake libtool wget libtirpc-devel rpm-build
-$ sudo yum install zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
+$ sudo yum install zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel libaio-devel
 $ sudo yum install parted lsscsi ksh openssl-devel elfutils-libelf-devel
 $ sudo yum install kernel-devel-$(uname -r)
 ```
@@ -94,7 +94,7 @@ Make sure that the required packages are installed:
 ```
 $ sudo apt-get install build-essential autoconf libtool gawk alien fakeroot
 $ sudo apt-get install gdebi wget
-$ sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev
+$ sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev libaio-dev
 $ sudo apt-get install parted lsscsi ksh libssl-dev libelf-dev
 $ sudo apt-get install linux-headers-$(uname -r)
 ```
