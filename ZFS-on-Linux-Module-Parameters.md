@@ -1056,7 +1056,7 @@ The minimum SPA slop space is limited to 128 MiB.
 | When to change | For large pools, when 3.2% may be too conservative and more usable space is desired, consider increasing `spa_slop_shift`
 | Data Type | int
 | Units | shift
-| Range | 1 to MAX_INT
+| Range | 1 to MAX_INT, however the practical upper limit is 15 for a system with 4TB of RAM
 | Default | 5
 | Change | Dynamic
 | Versions Affected | v0.6.5 and later
