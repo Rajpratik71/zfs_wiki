@@ -7,7 +7,8 @@
 [OpenZFS Tracking][openzfs-tracking]  
 [[OpenZFS Patches]]  
 [[OpenZFS Exceptions]]  
-[OpenZFS Documentation][openzfs-devel]  
+[OpenZFS Documentation][openzfs-devel] 
+[[Git and GitHub for beginners]] 
 
 [openzfs-devel]: http://open-zfs.org/wiki/Developer_resources
 [openzfs-tracking]: http://build.zfsonlinux.org/openzfs-tracking.html
