@@ -25,6 +25,7 @@
   * [[OpenZFS Patches]]
   * [[OpenZFS Exceptions]]
   * [OpenZFS Documentation][openzfs-devel]
+  * [[Git and GitHub for beginners]]
 * Performance and Tuning
   * [[ZFS on Linux Module Parameters]]
   * [ZFS Transaction Delay and Write Throttle][ZFS-Transaction-Delay]
