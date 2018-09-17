@@ -1,0 +1,121 @@
+# Git and GitHub for beginners (ZoL edition)
+
+This is a very basic rundown of how to use Git and GitHub to make changes.
+
+Recommended reading: [ZFS on Linux CONTRIBUTING.md](https://github.com/zfsonlinux/zfs/blob/master/.github/CONTRIBUTING.md)
+
+# First time setup
+
+If you've never used Git before, you'll need a little setup to start things off.
+
+```
+git config --global user.name "My Name"
+git config --global user.email myemail@noreply.non
+```
+
+# Cloning the initial repository
+
+The easiest way to get started is to click the fork icon at the top of the main repository page.  From there you need to download a copy of the forked repository to your computer:
+
+```
+git clone https://github.com/<your-account-name>/zfs.git
+```
+
+Then we need to establish the upstream repository link:
+
+```
+cd zfs
+git remote add upstream https://github.com/zfsonlinux/zfs.git
+```
+
+# Preparing and making changes
+
+In order to make changes it is recommended to make a branch, this lets you work on several unrelated changes at once.  It is also not recommended to make changes to the master branch unless you own the repository.
+
+```
+git checkout -b my-new-branch
+```
+
+From here you can make your changes and move on to the next step.
+
+Recommended reading: [C Style and Coding Standards for SunOS](https://www.cis.upenn.edu/~lee/06cse480/data/cstyle.ms.pdf), [ZFS on Linux Developer Resources](https://github.com/zfsonlinux/zfs/wiki/Developer-Resources), [OpenZFS Developer Resources](http://open-zfs.org/wiki/Developer_resources)
+
+# Commiting your changes to be pushed
+
+When you are done making changes to your branch there are a few more steps before you can make a pull request.
+
+```
+git commit --all --signoff
+```
+
+This command opens an editor and adds all unstaged files from your branch.  Here you need to describe your change and add a few things:
+
+```
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch my-new-branch
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#   modified:   hello.c
+#
+```
+
+The first thing we need to add is the commit message.  This is what is displayed on the git log, and should be a short description of the change.  By style guidelines, this has to be less than 50 characters in length.
+
+Underneath the commit message you can add a more descriptive text to your commit.  The lines in this section have to be less than 72 characters.
+
+When you are done, the commit should look like this:
+
+```
+Add hello command
+
+This is a test commit with a descriptive commit message.
+This message can be more than one line as shown here.
+
+Signed-off-by: My Name <myemail@noreply.non>
+Closes #9998
+Issue #9999
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch my-new-branch
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#   modified:   hello.c
+#
+```
+
+You can also reference issues and pull requests if you are filing a pull request for an existing issue as shown above.  Save and exit the editor when you are done.
+
+# Pushing and creating the pull request
+
+Home stretch.  You've made your change and made the commit.  Now it's time to push it.
+
+```
+git push --set-upstream origin my-new-branch
+```
+
+This should ask you for your github credentials and upload your changes to your repository.
+
+The last step is to either go to your repository or the upstream repository on GitHub and you should see a button for making a new pull request for your recently committed branch.
+
+# Maintaining your repository
+
+When you wish to make changes in the future you will want to have an up-to-date copy of the upstream repository to make your changes on.  Here is how you keep updated:
+
+```
+git checkout master
+git fetch upstream
+git merge upstream/master
+git push origin master
+```
+
+This will make sure you are on the master branch of the repository, grab the changes from upstream, then push them back to your repository.
+
+# Final words
+
+This is a very basic introduction to Git and GitHub, but should get you on your way to contributing to many open source projects.  Not all projects have style requirements and some may have different processes to getting changes committed so please refer to their documentation to see if you need to do anything different.
+
+Additional resources: [Github Help](https://help.github.com/), [Atlassian Git Tutorials](https://www.atlassian.com/git/tutorials)
