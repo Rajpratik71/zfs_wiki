@@ -318,7 +318,7 @@ Install GRUB to the disk(s), not the partition(s).
 5.3  Optional (but highly recommended): Make debugging GRUB easier:
 
     # vi /etc/default/grub
-    Comment out: GRUB_HIDDEN_TIMEOUT=0
+    Comment out: GRUB_TIMEOUT_STYLE=hidden
     Remove quiet and splash from: GRUB_CMDLINE_LINUX_DEFAULT
     Uncomment: GRUB_TERMINAL=console
     Save and quit.
@@ -488,9 +488,9 @@ As `/var/log` is already compressed by ZFS, logrotate’s compression is going t
 If you prefer the graphical boot process, you can re-enable it now. If you are using LUKS, it makes the prompt look nicer.
 
     $ sudo vi /etc/default/grub
-    Uncomment GRUB_HIDDEN_TIMEOUT=0
-    Add quiet and splash to GRUB_CMDLINE_LINUX_DEFAULT
-    Comment out GRUB_TERMINAL=console
+    Uncomment: GRUB_TIMEOUT_STYLE=hidden
+    Add quiet and splash to: GRUB_CMDLINE_LINUX_DEFAULT
+    Comment out: GRUB_TERMINAL=console
     Save and quit.
 
     $ sudo update-grub
