@@ -21,7 +21,10 @@ The easiest way to get started is to click the fork icon at the top of the main 
 git clone https://github.com/<your-account-name>/zfs.git
 ```
 
-Then we need to establish the upstream repository link:
+This sets the "origin" repository to your fork. This will come in handy 
+when creating pull requests. To make pulling from the "upstream" repository
+as changes are made, it is very useful to establish the upstream repository
+as another remote (man git-remote):
 
 ```
 cd zfs
