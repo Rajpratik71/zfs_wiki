@@ -43,7 +43,19 @@ From here you can make your changes and move on to the next step.
 
 Recommended reading: [C Style and Coding Standards for SunOS](https://www.cis.upenn.edu/~lee/06cse480/data/cstyle.ms.pdf), [ZFS on Linux Developer Resources](https://github.com/zfsonlinux/zfs/wiki/Developer-Resources), [OpenZFS Developer Resources](http://open-zfs.org/wiki/Developer_resources)
 
-# Commiting your changes to be pushed
+# Testing your patches before pushing
+
+Before committing and pushing, you may want to test your patches.  There are several tests you can run against your branch such as style checking, and functional tests.  All pull requests go through these tests before being pushed to the main repository, however testing locally takes the load off the build/test servers.  This step is optional but highly recommended, however the test suite should be run on a virtual machine or a host that currently does not use ZFS.  You may need to install `shellcheck` and `flake8` to run the `checkstyle` correctly.
+
+```
+sh autogen.sh
+./configure
+make checkstyle
+```
+
+Recommended reading: [Building ZFS](https://github.com/zfsonlinux/zfs/wiki/Building-ZFS), [ZFS Test Suite README](https://github.com/zfsonlinux/zfs/blob/master/tests/README.md)
+
+# Committing your changes to be pushed
 
 When you are done making changes to your branch there are a few more steps before you can make a pull request.
 
@@ -104,6 +116,17 @@ This should ask you for your github credentials and upload your changes to your 
 
 The last step is to either go to your repository or the upstream repository on GitHub and you should see a button for making a new pull request for your recently committed branch.
 
+# Correcting issues with your pull request
+
+Sometimes things don't always go as planned and you may need to update your pull request with a correction to either your commit message, or your changes.  This can be accomplished by re-pushing your branch.  If you need to make code changes or `git add` a file, you can do those now, along with the following:
+
+```
+git commit --amend
+git push --force
+```
+
+This will return you to the commit editor screen, and push your changes over top of the old ones.  Do note that this will restart the process of any build/test servers currently running and excessively pushing can cause delays in processing of all pull requests.
+
 # Maintaining your repository
 
 When you wish to make changes in the future you will want to have an up-to-date copy of the upstream repository to make your changes on.  Here is how you keep updated:
@@ -119,6 +142,6 @@ This will make sure you are on the master branch of the repository, grab the cha
 
 # Final words
 
-This is a very basic introduction to Git and GitHub, but should get you on your way to contributing to many open source projects.  Not all projects have style requirements and some may have different processes to getting changes committed so please refer to their documentation to see if you need to do anything different.
+This is a very basic introduction to Git and GitHub, but should get you on your way to contributing to many open source projects.  Not all projects have style requirements and some may have different processes to getting changes committed so please refer to their documentation to see if you need to do anything different.  One topic we have not touched on is the `git rebase` command which is a little more advanced for this wiki article.
 
 Additional resources: [Github Help](https://help.github.com/), [Atlassian Git Tutorials](https://www.atlassian.com/git/tutorials)
