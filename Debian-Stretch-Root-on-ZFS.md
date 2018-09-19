@@ -136,6 +136,8 @@ Now you can create datasets:
     # zfs create -o com.sun:auto-snapshot=false \
                  -o mountpoint=/var/lib/nfs                 rpool/var/nfs
 
+**Notes**: in ZFS versions older than 0.8 `/var` and some other directories may be mounted by systemd before ZFS mount. In this case you can add something similar to `/etc/fstab`: `none    /var/lib        none    fake,x-systemd.requires=zfs-mount.service       0 0`
+
 3.4  Install the minimal system:
 
     # chmod 1777 /mnt/var/tmp
