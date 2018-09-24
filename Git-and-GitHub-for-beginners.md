@@ -133,8 +133,7 @@ When you wish to make changes in the future you will want to have an up-to-date 
 
 ```
 git checkout master
-git fetch upstream
-git merge upstream/master
+git pull upstream master
 git push origin master
 ```
 
