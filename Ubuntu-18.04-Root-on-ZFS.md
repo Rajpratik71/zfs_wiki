@@ -107,6 +107,7 @@ Choose one of the following options:
           rpool /dev/mapper/luks1
 
 **Notes:**
+* If you or one of your applications cares about atime updates, you probably want `relatime`. In that case, leave `atime=off`, but also set `relatime=on`. In later steps, when `noatime` is used in `/etc/fstab`, use `relatime` instead. If you only care about atime updates for particular filesystems, you can limit your `relatime` to only those filesystems.
 * The use of `ashift=12` is recommended here because many drives today have 4KiB (or larger) physical sectors, even though they present 512B logical sectors.  Also, a future replacement drive may have 4KiB physical sectors (in which case `ashift=12` is desirable) or 4KiB logical sectors (in which case `ashift=12` is required).
 * Setting `normalization=formD` eliminates some corner cases relating to UTF-8 filename normalization. It also implies `utf8only=on`, which means that only UTF-8 filenames are allowed. If you care to support non-UTF-8 filenames, do not use this option. For a discussion of why requiring UTF-8 filenames may be a bad idea, see [The problems with enforced UTF-8 only filenames](http://utcc.utoronto.ca/~cks/space/blog/linux/ForcedUTF8Filenames).
 * Setting `xattr=sa` [vastly improves the performance of extended attributes](https://github.com/zfsonlinux/zfs/commit/82a37189aac955c81a59a5ecc3400475adb56355). Inside ZFS, extended attributes are used to implement POSIX ACLs (e.g. `acltype=posixacl`) discussed later. Extended attributes can also be used by user-space applications. [They are used by some desktop GUI applications.](https://en.wikipedia.org/wiki/Extended_file_attributes#Linux) [They can be used by Samba to store Windows ACLs and DOS attributes; they are required for a Samba Active Directory domain controller.](https://wiki.samba.org/index.php/Setting_up_a_Share_Using_Windows_ACLs) Note that [`xattr=sa` is Linux-specific.](http://open-zfs.org/wiki/Platform_code_differences) If you move your `xattr=sa` pool to another OpenZFS implementation besides ZFS-on-Linux, extended attributes will not be readable. If this is important to you, omit the `-O xattr=sa` above.
@@ -249,7 +250,7 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
     # echo UUID=$(blkid -s UUID -o value \
           /dev/disk/by-id/scsi-SATA_disk1-part4) \
-          /boot ext2 defaults 0 2 >> /etc/fstab
+          /boot ext2 noatime 0 2 >> /etc/fstab
 
     # apt install --yes cryptsetup
 
@@ -277,7 +278,7 @@ Install GRUB to the disk(s), not the partition(s).
     # mkdir /boot/efi
     # echo PARTUUID=$(blkid -s PARTUUID -o value \
           /dev/disk/by-id/scsi-SATA_disk1-part3) \
-          /boot/efi vfat nofail,x-systemd.device-timeout=1 0 1 >> /etc/fstab
+          /boot/efi vfat noatime,nofail,x-systemd.device-timeout=1 0 1 >> /etc/fstab
     # mount /boot/efi
     # apt install --yes grub-efi-amd64
 
