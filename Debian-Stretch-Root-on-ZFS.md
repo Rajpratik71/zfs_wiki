@@ -146,6 +146,20 @@ Now you can create datasets:
 
 The `debootstrap` command leaves the new system in an unconfigured state.  An alternative to using `debootstrap` is to copy the entirety of a working system into the new ZFS root.
 
+3.5 create /tmp **(optional)**
+
+There are 2 ways - use ondisk /tmp as a dataset, or as tmpfs:
+- as dataset:
+```
+# zfs create -o com.sun:auto-snapshot=false -o exec=on  rpool/var/tmp
+```
+
+- as TMPFS:
+```
+# cp /usr/share/systemd/tmp.mount /etc/systemd/system/
+# systemctl enable tmp.mount
+```
+
 ## Step 4: System Configuration
 
 4.1  Configure the hostname (change `HOSTNAME` to the desired hostname).
