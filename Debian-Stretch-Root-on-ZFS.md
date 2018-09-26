@@ -151,7 +151,7 @@ The `debootstrap` command leaves the new system in an unconfigured state.  An al
 There are 2 ways - use ondisk /tmp as a dataset, or as tmpfs:
 - as dataset:
 ```
-# zfs create -o com.sun:auto-snapshot=false -o exec=on  rpool/var/tmp
+# zfs create -o com.sun:auto-snapshot=false -o exec=on  rpool/tmp
 ```
 
 - as TMPFS:
