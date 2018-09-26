@@ -3124,7 +3124,7 @@ See also [zfs_dirty_data_sync](#zfs_dirty_data_sync) and
 | Versions Affected | all
 
 ### zfs_vdev_aggregation_limit
-To reduce IOPs, small, adjacent I/Os can be aggregated (coalesced) into into a
+To reduce IOPs, small, adjacent I/Os can be aggregated (coalesced) into a
 large I/O.
 For reads, aggregations occur across small adjacency gaps.
 For writes, aggregation can occur at the ZFS or disk level.
