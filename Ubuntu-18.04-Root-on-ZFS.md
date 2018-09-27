@@ -157,11 +157,17 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
     # zfs create -o com.sun:auto-snapshot=false \
                  -o mountpoint=/var/lib/nfs                 rpool/var/nfs
 
+    If you want a separate /tmp dataset (choose this now or tmpfs later):
+    # zfs create -o com.sun:auto-snapshot=false \
+                 -o setuid=off                              rpool/tmp
+
 The primary goal of this dataset layout is to separate the OS from user data. This allows the root filesystem to be rolled back without rolling back user data such as logs (in `/var/log`). This will be especially important if/when a `beadm` or similar utility is integrated. Since we are creating multiple datasets anyway, it is trivial to add some restrictions (for extra security) at the same time. The `com.sun.auto-snapshot` setting is used by some ZFS snapshot utilities to exclude transient data.
 
 [We enable POSIX ACLs on /var/log for journald.](https://askubuntu.com/questions/970886/journalctl-says-failed-to-search-journal-acl-operation-not-supported) See the note above in the `zpool create` step about `xattr=sa` being Linux-specific. That said, even if you do not want `xattr=sa` for the whole pool, it is probably fine to use it for `/var/log`.
 
 If you want ACL support on other filesystems, set `-o acltype=posixacl` on them. If you want ACL support on everything, you can set it on the whole pool: `zfs set acltype=posixacl rpool`
+
+If you do nothing extra, `/tmp` will be stored as part of the root filesystem. Alternatively, you can create a separate dataset for `/tmp`, as shown above. This keeps the `/tmp` data out of snapshots of your root filesystem.  It also allows you to set a quota on `rpool/tmp`, if you want to limit the maximum space used. Otherwise, you can use a tmpfs (RAM filesystem) later.
 
 3.4  For LUKS installs only:
 
@@ -301,6 +307,19 @@ Install GRUB to the disk(s), not the partition(s).
     rpool/var/log /var/log zfs noatime,nodev,noexec,nosuid 0 0
     rpool/var/tmp /var/tmp zfs noatime,nodev,nosuid 0 0
     EOF
+
+    If you created a /tmp dataset, do the same for it:
+    # zfs set mountpoint=legacy rpool/tmp
+    # cat >> /etc/fstab << EOF
+    rpool/tmp /tmp zfs noatime,nodev,nosuid 0 0
+    EOF
+
+4.12  Optional: Mount a tmpfs to /tmp
+
+If you chose to create a `/tmp` dataset above, skip this step, as they are mutually exclusive choices. Otherwise, you can put `/tmp` on a tmpfs (RAM filesystem) by enabling the `tmp.mount` unit.
+
+    # cp /usr/share/systemd/tmp.mount /etc/systemd/system/
+    # systemctl enable tmp.mount
 
 ## Step 5: GRUB Installation
 
