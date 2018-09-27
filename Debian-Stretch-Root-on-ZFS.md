@@ -136,6 +136,12 @@ Now you can create datasets:
     # zfs create -o com.sun:auto-snapshot=false \
                  -o mountpoint=/var/lib/nfs                 rpool/var/nfs
 
+    If you want a separate /tmp dataset (choose this now or tmpfs later):
+    # zfs create -o com.sun:auto-snapshot=false \
+                 -o setuid=off                              rpool/tmp
+
+If you do nothing extra, `/tmp` will be stored as part of the root filesystem. Alternatively, you can create a separate dataset for `/tmp`, as shown above. This keeps the `/tmp` data out of snapshots of your root filesystem.  It also allows you to set a quota on `rpool/tmp`, if you want to limit the maximum space used. Otherwise, you can use a tmpfs (RAM filesystem) later.
+
 **Notes**: in ZFS versions older than 0.8 `/var` and some other directories may be mounted by systemd before ZFS mount. In this case you can add something similar to `/etc/fstab`: `none    /var/lib        none    fake,x-systemd.requires=zfs-mount.service       0 0`
 
 3.4  Install the minimal system:
@@ -145,20 +151,6 @@ Now you can create datasets:
     # zfs set devices=off rpool
 
 The `debootstrap` command leaves the new system in an unconfigured state.  An alternative to using `debootstrap` is to copy the entirety of a working system into the new ZFS root.
-
-3.5 create /tmp **(optional)**
-
-There are 2 ways - use ondisk /tmp as a dataset, or as tmpfs:
-- as dataset:
-```
-# zfs create -o com.sun:auto-snapshot=false -o exec=on  rpool/tmp
-```
-
-- as TMPFS:
-```
-# cp /usr/share/systemd/tmp.mount /etc/systemd/system/
-# systemctl enable tmp.mount
-```
 
 ## Step 4: System Configuration
 
@@ -238,6 +230,13 @@ Choose one of the following options:
 4.7  Set a root password
 
     # passwd
+
+4.8  Optional: Mount a tmpfs to /tmp
+
+If you chose to create a `/tmp` dataset above, skip this step, as they are mutually exclusive choices. Otherwise, you can put `/tmp` on a tmpfs (RAM filesystem) by enabling the `tmp.mount` unit.
+
+    # cp /usr/share/systemd/tmp.mount /etc/systemd/system/
+    # systemctl enable tmp.mount
 
 ## Step 5: GRUB Installation
 
