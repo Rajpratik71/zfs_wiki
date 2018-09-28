@@ -139,6 +139,7 @@ Now you can create datasets:
     If you want a separate /tmp dataset (choose this now or tmpfs later):
     # zfs create -o com.sun:auto-snapshot=false \
                  -o setuid=off                              rpool/tmp
+    # chmod 1777 /mnt/tmp
 
 If you do nothing extra, `/tmp` will be stored as part of the root filesystem. Alternatively, you can create a separate dataset for `/tmp`, as shown above. This keeps the `/tmp` data out of snapshots of your root filesystem.  It also allows you to set a quota on `rpool/tmp`, if you want to limit the maximum space used. Otherwise, you can use a tmpfs (RAM filesystem) later.
 
