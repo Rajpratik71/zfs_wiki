@@ -17,6 +17,7 @@ OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
 9672|29445fe3|
 9626|59e6e7ca|
+9635|-       |Not applicable to Linux
 9621|305bc4b3|
 9539|5228cf01|
 9512|b4555c77|
