@@ -193,6 +193,7 @@ OpenZFS issue id | status/ZFS commit | comment
 2130|460a021|
 1974|-      |This change was entirely replaced in the ARC restructuring.
 1898|-      |The zfs_putpage() function was rewritten to properly integrate with the Linux VM.
+1700|-      |Not applicable to Linux, the discard implementation is entirely different.
 1618|ca67b33|
 1337|2402458|
 1126|e43b290|
