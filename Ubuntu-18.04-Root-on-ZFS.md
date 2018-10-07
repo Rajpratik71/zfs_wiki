@@ -127,7 +127,7 @@ Choose one of the following options:
 
 On Solaris systems, the root filesystem is cloned and the suffix is incremented for major system changes through `pkg image-update` or `beadm`. Similar functionality for APT is possible but currently unimplemented. Even without such a tool, it can still be used for manually created clones.
 
-3.2  Create a filesystem dataset for the root filesystem of the Ubuntu system:
+3.2  Create a filesystem dataset for the root filesystem:
 
     # zfs create -o canmount=noauto -o mountpoint=/ rpool/ROOT/ubuntu
     # zfs mount rpool/ROOT/ubuntu
