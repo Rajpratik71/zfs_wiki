@@ -31,7 +31,7 @@ LUKS encrypts almost everything: the OS, swap, home directories, and anything el
     $ sudo apt-add-repository universe
     $ sudo apt update
 
-1.3  Optional: Start the OpenSSH server in the Live CD environment:
+1.3  Optional: Install and start the OpenSSH server in the Live CD environment:
 
 If you have a second system, using SSH to access the target system can be convenient.
 
