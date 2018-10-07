@@ -176,7 +176,14 @@ The `debootstrap` command leaves the new system in an unconfigured state.  An al
 
 Customize this file if the system is not a DHCP client.
 
-4.3  Bind the virtual filesystems from the LiveCD environment to the new system and `chroot` into it:
+4.3  Configure the package sources:
+
+    Add `contrib` archive area:
+    # vi /mnt/etc/apt/sources.list
+    deb http://ftp.debian.org/debian stretch main contrib
+    deb-src http://ftp.debian.org/debian stretch main contrib
+
+4.4  Bind the virtual filesystems from the LiveCD environment to the new system and `chroot` into it:
 
     # mount --rbind /dev  /mnt/dev
     # mount --rbind /proc /mnt/proc
@@ -185,11 +192,7 @@ Customize this file if the system is not a DHCP client.
 
 **Note:** This is using `--rbind`, not `--bind`.
 
-4.4 Configure a basic system environment:
-
-    # vi /etc/apt/sources.list # Add `contrib` archive area:
-    deb http://ftp.debian.org/debian stretch main contrib
-    deb-src http://ftp.debian.org/debian stretch main contrib
+4.5  Configure a basic system environment:
 
     # ln -s /proc/self/mounts /etc/mtab
     # apt update
@@ -203,19 +206,19 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
     # apt install --yes gdisk linux-headers-$(uname -r) linux-image-amd64 dpkg-dev
 
-4.5  Install ZFS in the chroot environment for the new system:
+4.6  Install ZFS in the chroot environment for the new system:
 
     # apt install --yes zfs-dkms zfs-initramfs
 
-4.6  Install GRUB
+4.7  Install GRUB
 
 Choose one of the following options:
 
-4.6a  Install GRUB for legacy (MBR) booting
+4.7a  Install GRUB for legacy (MBR) booting
 
     # apt install --yes grub-pc
 
-4.6b  Install GRUB for UEFI booting
+4.7b  Install GRUB for UEFI booting
 
     # apt install dosfstools
     # mkdosfs -F 32 -n EFI /dev/disk/by-id/scsi-SATA_disk1-part3
