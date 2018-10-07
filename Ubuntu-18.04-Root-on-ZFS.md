@@ -232,7 +232,7 @@ Customize this file if the system is not a DHCP client.
 
 **Note:** This is using `--rbind`, not `--bind`.
 
-4.5 Configure a basic system environment:
+4.5  Configure a basic system environment:
 
     # ln -s /proc/self/mounts /etc/mtab
     # apt update
