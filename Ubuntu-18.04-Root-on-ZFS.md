@@ -4,8 +4,7 @@
 * Backup your data. Any existing data will be lost.
 
 ### System Requirements
-* [64-bit Ubuntu 18.04.1 Bionic Live CD](http://releases.ubuntu.com/18.04/ubuntu-18.04.1-desktop-amd64.iso) (*not* the alternate installer)
-* A drive which presents 512B logical sectors.  Installing on a drive which presents 4KiB logical sectors (a “4Kn” drive) should work with UEFI partitioning, but this has not been tested.
+* [Ubuntu 18.04.1 ("Bionic") Desktop CD](http://releases.ubuntu.com/18.04/ubuntu-18.04.1-desktop-amd64.iso) (*not* any server images)
 
 Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory is recommended for normal performance in basic workloads.  If you wish to use deduplication, you will need [massive amounts of RAM](http://wiki.freebsd.org/ZFSTuningGuide#Deduplication). Enabling deduplication is a permanent change that cannot be easily reverted.
 
@@ -151,6 +150,11 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
     If this system will store local email in /var/mail:
     # zfs create                                            rpool/var/mail
 
+    If you will use Postfix, it requires exec=on for its chroot.  Choose:
+    # zfs inherit exec rpool/var
+    OR
+    # zfs create -o exec=on rpool/var/spool/postfix
+
     If this system will use NFS (locking):
     # zfs create -o com.sun:auto-snapshot=false \
                  -o mountpoint=/var/lib/nfs                 rpool/var/nfs
@@ -161,6 +165,8 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
     # chmod 1777 /mnt/tmp
 
 The primary goal of this dataset layout is to separate the OS from user data. This allows the root filesystem to be rolled back without rolling back user data such as logs (in `/var/log`). This will be especially important if/when a `beadm` or similar utility is integrated. Since we are creating multiple datasets anyway, it is trivial to add some restrictions (for extra security) at the same time. The `com.sun.auto-snapshot` setting is used by some ZFS snapshot utilities to exclude transient data.
+
+Properties are inherited. If you want to create (for example) `rpool/var/lib` you may need to set `-o exec=on` manually (some apps, like Postfix, will need it).
 
 [We enable POSIX ACLs on /var/log for journald.](https://askubuntu.com/questions/970886/journalctl-says-failed-to-search-journal-acl-operation-not-supported) See the note above in the `zpool create` step about `xattr=sa` being Linux-specific. That said, even if you do not want `xattr=sa` for the whole pool, it is probably fine to use it for `/var/log`.
 
