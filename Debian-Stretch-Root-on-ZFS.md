@@ -204,6 +204,9 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
     # dpkg-reconfigure tzdata
 
+    If you prefer nano over vi, install it:
+    # apt install --yes nano
+
     # apt install --yes gdisk linux-headers-$(uname -r) linux-image-amd64 dpkg-dev
 
 4.6  Install ZFS in the chroot environment for the new system:
