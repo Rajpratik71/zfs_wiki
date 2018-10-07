@@ -518,13 +518,7 @@ If you prefer the graphical boot process, you can re-enable it now. If you are u
 
 ### Rescuing using a Live CD
 
-Boot the Live CD and open a terminal.
-
-Become root and install the ZFS utilities:
-
-    $ sudo -i
-    # apt update
-    # apt install --yes zfsutils-linux
+Go through [Step 1: Prepare The Install Environment](#step-1-prepare-the-install-environment).
 
 This will automatically import your pool. Export it and re-import it to get the mounts right:
 
