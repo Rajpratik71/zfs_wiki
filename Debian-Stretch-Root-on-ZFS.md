@@ -347,20 +347,10 @@ The compression algorithm is set to `zle` because it is the cheapest available a
 
 Choose one of the following options.  If you are going to do an encrypted home directory later, you should use encrypted swap.
 
-7.2a  Create an unencrypted (regular) swap device:
-
 **Caution**: Always use long `/dev/zvol` aliases in configuration files. Never use a short `/dev/zdX` device name.
 
     # mkswap -f /dev/zvol/rpool/swap
     # echo /dev/zvol/rpool/swap none swap defaults 0 0 >> /etc/fstab
-
-7.2b  Create an encrypted swap device:
-
-    # echo cryptswap1 /dev/zvol/rpool/swap /dev/urandom \
-          swap,cipher=aes-xts-plain64:sha256,size=256 >> /etc/crypttab
-    # systemctl daemon-reload
-    # systemctl start systemd-cryptsetup@cryptswap1.service
-    # echo /dev/mapper/cryptswap1 none swap defaults 0 0 >> /etc/fstab
 
 7.3  Enable the swap device:
 
