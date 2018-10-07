@@ -329,7 +329,7 @@ If you chose to create a `/tmp` dataset above, skip this step, as they are mutua
 
 5.2  Refresh the initrd files:
 
-    # update-initramfs -c -k all
+    # update-initramfs -u -k all
     update-initramfs: Generating /boot/initrd.img-4.15.0-12-generic
 
 **Note:** When using LUKS, this will print "WARNING could not determine root device from /etc/fstab". This is because [cryptsetup does not support ZFS](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906).
@@ -552,7 +552,7 @@ Most LSI cards are perfectly compatible with ZoL. If your card has this glitch, 
 
 ### Areca
 
-Systems that require the `arcsas` blob driver should add it to the `/etc/initramfs-tools/modules` file and run `update-initramfs -c -k all`.
+Systems that require the `arcsas` blob driver should add it to the `/etc/initramfs-tools/modules` file and run `update-initramfs -u -k all`.
 
 Upgrade or downgrade the Areca driver if something like `RIP: 0010:[<ffffffff8101b316>]  [<ffffffff8101b316>] native_read_tsc+0x6/0x20` appears anywhere in kernel log.  ZoL is unstable on systems that emit this error message.
 
