@@ -37,7 +37,7 @@ If you have a second system, using SSH to access the target system can be conven
 
     $ passwd
       There is no current password; hit enter at that prompt.
-    $ sudo apt --yes install openssh-server
+    $ sudo apt install --yes openssh-server
 
 **Hint:** You can find your IP address with `ip addr show scope global | grep inet`.  Then, from your main machine, connect with `ssh ubuntu@IP`.
 
