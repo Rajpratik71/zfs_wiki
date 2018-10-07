@@ -8,7 +8,6 @@
 
 ### System Requirements
 * [64-bit Ubuntu 17.10 Artful Live CD](http://releases.ubuntu.com/17.10/ubuntu-17.10-desktop-amd64.iso) (*not* the alternate installer)
-* [A 64-bit kernel is *strongly* encouraged.](https://github.com/zfsonlinux/zfs/wiki/FAQ#32-bit-vs-64-bit-systems)
 * A drive which presents 512B logical sectors.  Installing on a drive which presents 4KiB logical sectors (a “4Kn” drive) should work with UEFI partitioning, but this has not been tested.
 
 Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory is recommended for normal performance in basic workloads.  If you wish to use deduplication, you will need [massive amounts of RAM](http://wiki.freebsd.org/ZFSTuningGuide#Deduplication). Enabling deduplication is a permanent change that cannot be easily reverted.
