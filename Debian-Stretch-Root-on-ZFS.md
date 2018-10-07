@@ -220,6 +220,8 @@ Choose one of the following options:
 
     # apt install --yes grub-pc
 
+Install GRUB to the disk(s), not the partition(s).
+
 4.7b  Install GRUB for UEFI booting
 
     # apt install dosfstools
