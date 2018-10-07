@@ -5,7 +5,7 @@
 
 ### System Requirements
 * [64-bit Debian GNU/Linux Stretch Live CD](http://cdimage.debian.org/debian-cd/current-live/amd64/iso-hybrid/)
-* 64-bit computer (amd64, a.k.a. x86_64) computer preferred
+** [A 64-bit kernel is *strongly* encouraged.](https://github.com/zfsonlinux/zfs/wiki/FAQ#32-bit-vs-64-bit-systems)
 
 Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory is recommended for normal performance in basic workloads.  If you wish to use deduplication, you will need [massive amounts of RAM](http://wiki.freebsd.org/ZFSTuningGuide#Deduplication). Enabling deduplication is a permanent change that cannot be easily reverted.
 
