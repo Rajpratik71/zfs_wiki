@@ -106,7 +106,6 @@ Choose one of the following options:
           -O xattr=sa -O mountpoint=/ -R /mnt \
           rpool /dev/mapper/luks1
 
-**Notes:**
 * Setting `atime=off` completely disables atime updates. If you or one of your applications (e.g. a mail reader following an mbox file for local delivery) cares about atime updates, you almost certainly want `relatime` rather than full `atime`. In that case, leave `atime=off`, but also set `relatime=on`. In steps below, when `noatime` is used in `/etc/fstab`, use `relatime` instead. If you only care about atime updates for particular filesystems, you can limit your `relatime` to only those filesystems. See [RedHat's documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/power_management_guide/relatime) for further information.
 * The use of `ashift=12` is recommended here because many drives today have 4KiB (or larger) physical sectors, even though they present 512B logical sectors.  Also, a future replacement drive may have 4KiB physical sectors (in which case `ashift=12` is desirable) or 4KiB logical sectors (in which case `ashift=12` is required).
 * Setting `normalization=formD` eliminates some corner cases relating to UTF-8 filename normalization. It also implies `utf8only=on`, which means that only UTF-8 filenames are allowed. If you care to support non-UTF-8 filenames, do not use this option. For a discussion of why requiring UTF-8 filenames may be a bad idea, see [The problems with enforced UTF-8 only filenames](http://utcc.utoronto.ca/~cks/space/blog/linux/ForcedUTF8Filenames).
@@ -265,7 +264,6 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
           /dev/disk/by-id/scsi-SATA_disk1-part1) none \
           luks,discard,initramfs > /etc/crypttab
 
-**Notes:**
 * The use of `initramfs` is a work-around for [cryptsetup does not support ZFS](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906).
 
 4.8  Install GRUB

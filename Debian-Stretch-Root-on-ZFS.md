@@ -81,7 +81,6 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
           -O xattr=sa -O mountpoint=/ -R /mnt \
           rpool /dev/disk/by-id/scsi-SATA_disk1-part1
 
-**Notes:**
 * Setting `atime=off` completely disables atime updates. If you or one of your applications (e.g. a mail reader following an mbox file for local delivery) cares about atime updates, you almost certainly want `relatime` rather than full `atime`. In that case, leave `atime=off`, but also set `relatime=on`. In steps below, when `noatime` is used in `/etc/fstab`, use `relatime` instead. If you only care about atime updates for particular filesystems, you can limit your `relatime` to only those filesystems. See [RedHat's documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/power_management_guide/relatime) for further information.
 * The use of `ashift=12` is recommended here because many drives today have 4KiB (or larger) physical sectors, even though they present 512B logical sectors.  Also, a future replacement drive may have 4KiB physical sectors (in which case `ashift=12` is desirable) or 4KiB logical sectors (in which case `ashift=12` is required).
 * Setting `normalization=formD` eliminates some corner cases relating to UTF-8 filename normalization. It also implies `utf8only=on`, which means that only UTF-8 filenames are allowed. If you care to support non-UTF-8 filenames, do not use this option. For a discussion of why requiring UTF-8 filenames may be a bad idea, see [The problems with enforced UTF-8 only filenames](http://utcc.utoronto.ca/~cks/space/blog/linux/ForcedUTF8Filenames).
@@ -110,7 +109,6 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
 
 3.3  Create datasets:
 
-**Notes first:**
 The primary goal of this dataset layout is to separate the OS from user data. This allows the root filesystem to be rolled back without rolling back user data such as logs (in `/var/log`). This will be especially important if/when a `beadm` or similar utility is integrated. Since we are creating multiple datasets anyway, it is trivial to add some restrictions (for extra security) at the same time. The `com.sun.auto-snapshot` setting is used by some ZFS snapshot utilities to exclude transient data.
 
 Properties are inherited, if you want to create (for example) `rpool/var/lib` you may need to set `-o exec=on` manually (some apps, like `Postfix`, will need it).
@@ -145,7 +143,7 @@ Now you can create datasets:
 
 If you do nothing extra, `/tmp` will be stored as part of the root filesystem. Alternatively, you can create a separate dataset for `/tmp`, as shown above. This keeps the `/tmp` data out of snapshots of your root filesystem.  It also allows you to set a quota on `rpool/tmp`, if you want to limit the maximum space used. Otherwise, you can use a tmpfs (RAM filesystem) later.
 
-**Notes**: in ZFS versions older than 0.8 `/var` and some other directories may be mounted by systemd before ZFS mount. In this case you can add something similar to `/etc/fstab`: `none    /var/lib        none    fake,x-systemd.requires=zfs-mount.service       0 0`
+In ZFS versions older than 0.8 `/var` and some other directories may be mounted by systemd before ZFS mount. In this case you can add something similar to `/etc/fstab`: `none    /var/lib        none    fake,x-systemd.requires=zfs-mount.service       0 0`
 
 3.4  Install the minimal system:
 
@@ -314,8 +312,7 @@ In the future, you will likely want to take snapshots before each upgrade, and r
 
 6.5  Wait for the newly installed system to boot normally. Login as root.
 
-**Notes:**
-- If you get a type of `rpool does not exist` message, you can try to add `rootdelay=10` to the kernel parameters.
+If you get a type of `rpool does not exist` message, you can try add `rootdelay=10` to the kernel parameters.
 
 6.6  Create a user account:
 
