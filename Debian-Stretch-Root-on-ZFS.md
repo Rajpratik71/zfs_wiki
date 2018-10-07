@@ -74,7 +74,7 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
 
 2.3  Create the root pool:
 
-**Caution**: **[GRUB doesn't support all pool features](http://savannah.gnu.org/bugs/?func=detailitem&item_id=48885) of 0.7 release**, if you install ZFS from backports or use Proxmox, disable them: add `-o feature@large_dnode=disabled` to next command, otherwise grub won't find ZFS pool.
+**Caution**: **[GRUB doesn't support all pool features](http://savannah.gnu.org/bugs/?func=detailitem&item_id=48885) from ZFS on Linux 0.7 or higher.** If you install ZFS from backports or use Proxmox, add `-o feature@large_dnode=disabled` to the next command. Otherwise, GRUB will not find the ZFS pool.
 
     # zpool create -o ashift=12 \
           -O atime=off -O canmount=off -O compression=lz4 -O normalization=formD \
