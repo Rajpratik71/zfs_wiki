@@ -83,7 +83,7 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
 
 **Hints:**
 * `ls -la /dev/disk/by-id` will list the aliases.
-* Are you doing this in a virtual machine? If your virtual disk is missing from `/dev/disk/by-id`, use `/dev/vda` if you are using KVM with virtio; otherwise, read the [troubleshooting](https://github.com/zfsonlinux/zfs/wiki/Ubuntu-18.04-Root-on-ZFS#troubleshooting) section.
+* Are you doing this in a virtual machine? If your virtual disk is missing from `/dev/disk/by-id`, use `/dev/vda` if you are using KVM with virtio; otherwise, read the [troubleshooting](#troubleshooting) section.
 
 2.3  Create the root pool:
 
