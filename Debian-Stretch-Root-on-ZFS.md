@@ -229,7 +229,7 @@ Install GRUB to the disk(s), not the partition(s).
     # mkdir /boot/efi
     # echo PARTUUID=$(blkid -s PARTUUID -o value \
           /dev/disk/by-id/scsi-SATA_disk1-part3) \
-          /boot/efi vfat defaults 0 1 >> /etc/fstab
+          /boot/efi vfat noatime 0 1 >> /etc/fstab
     # mount /boot/efi
     # apt install --yes grub-efi-amd64
 
