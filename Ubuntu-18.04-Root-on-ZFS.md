@@ -160,6 +160,7 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
     If you want a separate /tmp dataset (choose this now or tmpfs later):
     # zfs create -o com.sun:auto-snapshot=false \
                  -o setuid=off                              rpool/tmp
+    # chmod 1777 /mnt/tmp
 
 The primary goal of this dataset layout is to separate the OS from user data. This allows the root filesystem to be rolled back without rolling back user data such as logs (in `/var/log`). This will be especially important if/when a `beadm` or similar utility is integrated. Since we are creating multiple datasets anyway, it is trivial to add some restrictions (for extra security) at the same time. The `com.sun.auto-snapshot` setting is used by some ZFS snapshot utilities to exclude transient data.
 
