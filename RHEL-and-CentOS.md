@@ -56,9 +56,10 @@ $ sudo yum install zfs
 
 ## DKMS
 
-To install DKMS style packages issue the following yum command.  Note that it is important to make sure that the matching *kernel-devel* package is installed for the running kernel since DKMS requires it to build ZFS.
+To install DKMS style packages issue the following yum commands.  First add the [EPEL repository](https://fedoraproject.org/wiki/EPEL) which provides DKMS by installing the *epel-release* package, then the *kernel-devel* and *zfs* packages.  Note that it is important to make sure that the matching *kernel-devel* package is installed for the running kernel since DKMS requires it to build ZFS.  
 
 ```
+$ sudo yum install epel-release
 $ sudo yum install kernel-devel zfs
 ```
 
