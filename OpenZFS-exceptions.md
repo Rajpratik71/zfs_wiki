@@ -23,6 +23,7 @@ OpenZFS issue id | status/ZFS commit | comment
 9539|5228cf01|
 9512|b4555c77|
 9487|48fbb9dd|
+9466|272b5d73|
 9421|64c1dcef|
 9237|-       |Introduced by 8567 which was never applied to Linux
 9194|-       |Not applicable the '-o ashift=value' option is provided on Linux
