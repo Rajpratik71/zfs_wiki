@@ -38,6 +38,7 @@ From Debian Stretch packages are included in Debian official `contrib` repositor
 ```
 # apt remove debian-zfs libzfs2 zfs-dkms zfsonlinux zfsutils libzpool2 libzfs2linux libnvpair1linux libnvpair1 libuutil1 libuutil1linux  libzpool2linux zfs-zed zfsutils-linux spl-dkms
 ```
+2) Remove ZFSonLinux repository.
 
-2) [Install new packages](#installation), as described above.
+3) [Install new packages](#installation), as described above.
 
