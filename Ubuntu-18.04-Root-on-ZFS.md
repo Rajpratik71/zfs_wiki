@@ -480,7 +480,13 @@ Choose one of the following options:
 
     # apt install --yes ubuntu-desktop
 
-**Hint**: If you are installing a full GUI environment, you will likely want to manage your network with NetworkManager. In that case, delete the /etc/netplan/NAME.yaml you created.
+**Hint**: If you are installing a full GUI environment, you will likely want to manage your network with NetworkManager:
+
+    # rm /etc/netplan/NAME.yaml
+    # vi /etc/netplan/01-netcfg.yaml
+    network:
+      version: 2
+      renderer: NetworkManager
 
 8.3  Optional: Disable log compression:
 
