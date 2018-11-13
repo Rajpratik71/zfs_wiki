@@ -38,12 +38,12 @@ Building rpm-based DKMS and user packages can be done as follows:
 ```
 $ find spl zfs -name \*.ko -delete
 $ cd spl
-$ ./configure
+$ ./configure --with-config=srpm
 $ make -s -j$(nproc)
 $ make -j1 pkg-utils rpm-dkms
 $ sudo yum localinstall *.$(uname -p).rpm *.noarch.rpm
 $ cd ../zfs
-$ ./configure
+$ ./configure --with-config=srpm
 $ make -s -j$(nproc)
 $ make -j1 pkg-utils rpm-dkms
 $ sudo yum localinstall *.$(uname -p).rpm *.noarch.rpm
