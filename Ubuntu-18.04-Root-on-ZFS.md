@@ -23,7 +23,7 @@ LUKS encrypts almost everything: the OS, swap, home directories, and anything el
 
 ## Step 1: Prepare The Install Environment
 
-1.1  Boot the Ubuntu Live CD, select Try Linux, and open a terminal (press Ctrl-Alt-T).
+1.1  Boot the Ubuntu Live CD, select Try Ubuntu, and open a terminal (press Ctrl-Alt-T).
 
 1.2  Setup and update the repositories:
 
