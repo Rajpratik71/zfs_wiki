@@ -243,7 +243,6 @@ Customize this file if the system is not a DHCP client.
     # ln -s /proc/self/mounts /etc/mtab
     # apt update
 
-    # apt install --yes locales
     # dpkg-reconfigure locales
 
 Even if you prefer a non-English system language, always ensure that `en_US.UTF-8` is available.
