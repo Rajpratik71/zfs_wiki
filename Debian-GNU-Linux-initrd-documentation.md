@@ -51,42 +51,20 @@ Although there is currently no support for native encryption in ZFS On Linux, th
 
 ## Separated filesystems
 ### Descended filesystems
-If there is separate filesystems (for example a separate dataset for each of <code>/usr</code>, <code>/var</code> etc), the snapshot boot code will try to find the snapshot under each of these filesystems and clone (or rollback) each of these.
+If there are separate filesystems (for example a separate dataset for <code>/usr</code>), the snapshot boot code will try to find the snapshot under each filesystems and clone (or rollback) them.
 
 Example:
 
 ```
 rpool/ROOT/debian-1@some_snapshot
-rpool/ROOT/debian-1/boot@some_snapshot
 rpool/ROOT/debian-1/usr@some_snapshot
-rpool/ROOT/debian-1/var@some_snapshot
 ```
 
 These will create the following filesystems respectively (if not doing a rollback):
 
 ```
 rpool/ROOT/debian-1_some_snapshot
-rpool/ROOT/debian-1/boot_some_snapshot
 rpool/ROOT/debian-1/usr_some_snapshot
-rpool/ROOT/debian-1/var_some_snapshot
 ```
 
 The initrd code will use the <code>mountpoint</code> option (if any) in the original (without the snapshot part) dataset to find _where_ it should mount the dataset. Or it will use the name of the dataset below the root filesystem (<code>rpool/ROOT/debian-1</code> in this example) for the mount point.
-
-### Equal level filesystems
-It is also possible to have all filesystems in the same 'level' as the root filesystems:
-
-```
-rpool/ROOT/root
-rpool/ROOT/boot
-rpool/ROOT/usr
-rpool/ROOT/var
-```
-
-This, however, require the setting of the <code>ZFS_INITRD_ADDITIONAL_DATASETS</code> variable in the <code>/etc/default/zfs</code> file. They are mounted in the order of appearance in this variable, so take care not to enter a child before it's mother.
-
-This layout does however not allow for automatic snapshot cloning and mounting.
-
-Also, here the <code>mountpoint</code> property is **required** to know where to mount the dataset.
-
-It does not matter (in both variants, _decedent_ or _equal_ filesystems if they're 'native' ZFS filesystems or legacy. The code will figure this out automatically. There is also no need for an entry in <code>/etc/fstab</code> for these filesystems.
