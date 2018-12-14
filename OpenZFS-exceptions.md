@@ -17,6 +17,7 @@ OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
 9884|-       |Not applicable to Linux
 9851|-       |Not applicable to Linux
+9683|-       |Not applicable to Linux due to devids not being used
 9680|-       |Applied and rolled back in OpenZFS, additional changes needed.
 9672|29445fe3|
 9626|59e6e7ca|
