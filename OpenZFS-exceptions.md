@@ -32,7 +32,7 @@ OpenZFS issue id | status/ZFS commit | comment
 9194|-       |Not applicable the '-o ashift=value' option is provided on Linux
 9077|-       |Not applicable to Linux
 9027|4a5d7f82|
-9018|!       |Needs evaluation, similar to the existing mechanism on Linux.
+9018|3ec34e55|
 8984|-       |Under Linux POSIX ACLs are used and largely handled by the VFS. This change can be ported to minimize code drift but are not required.
 8969|-       |Not applicable to Linux
 8942|650258d7|
