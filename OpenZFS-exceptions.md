@@ -33,7 +33,7 @@ OpenZFS issue id | status/ZFS commit | comment
 9077|-       |Not applicable to Linux
 9027|4a5d7f82|
 9018|3ec34e55|
-8984|-       |Under Linux POSIX ACLs are used and largely handled by the VFS. This change can be ported to minimize code drift but are not required.
+8984|!       |WIP to support NFSv4 ACLs
 8969|-       |Not applicable to Linux
 8942|650258d7|
 8941|390d679a|
@@ -98,14 +98,14 @@ OpenZFS issue id | status/ZFS commit | comment
 7041|33c0819|
 7016|d3c2ae1|
 6914|-      |Under Linux the arc_meta_limit can be tuned with the zfs_arc_meta_limit_percent module option.
-6875|-      |Not currently applicable to Linux where POSIX ACLs are primarily used.
+6875|!      |WIP to support NFSv4 ACLs
 6843|f5f087e|
 6841|4254acb|
 6781|15313c5|
-6765|-      |Under Linux POSIX ACLs are used and largely handled by the VFS.  This change can be ported to minimize code drift but are not required.  
-6764|-      |Under Linux POSIX ACLs are used and largely handled by the VFS.  This change can be ported to minimize code drift but are not required.  
-6763|-      |Under Linux POSIX ACLs are used and largely handled by the VFS.  This change can be ported to minimize code drift but are not required.  
-6762|-      |Under Linux POSIX ACLs are used and largely handled by the VFS.  This change can be ported to minimize code drift but are not required.  
+6765|!      |WIP to support NFSv4 ACLs
+6764|!      |WIP to support NFSv4 ACLs
+6763|!      |WIP to support NFSv4 ACLs
+6762|!      |WIP to support NFSv4 ACLs
 6648|6bb24f4|
 6578|6bb24f4|
 6577|6bb24f4|
@@ -189,7 +189,7 @@ OpenZFS issue id | status/ZFS commit | comment
 3311|6bb24f4|
 3301|-      |The Linux implementation of `vdev_disk.c` does not include this comment.
 3258|9d81146|
-3254|-      |The `aclmode` property cannot be supported under Linux.
+3254|!      |WIP to support NFSv4 ACLs
 3246|cc92e9d|
 2933|-      |None of the illumos build system is used under Linux.
 2897|fb82700|
@@ -202,7 +202,7 @@ OpenZFS issue id | status/ZFS commit | comment
 1337|2402458|
 1126|e43b290|
 763 |3cee226|
-742 |-      |The `aclmode` property cannot be supported under Linux.
+742 |!      |WIP to support NFSv4 ACLs
 701 |460a021|
 348 |-      |The Linux implementation of `vdev_disk.c` must have this differently.
 243 |-      |Manual updates have been made separately for Linux.
