@@ -77,7 +77,7 @@ This command opens an editor and adds all unstaged files from your branch.  Here
 #
 ```
 
-The first thing we need to add is the commit message.  This is what is displayed on the git log, and should be a short description of the change.  By style guidelines, this has to be less than 50 characters in length.
+The first thing we need to add is the commit message.  This is what is displayed on the git log, and should be a short description of the change.  By style guidelines, this has to be less than 72 characters in length.
 
 Underneath the commit message you can add a more descriptive text to your commit.  The lines in this section have to be less than 72 characters.
 
