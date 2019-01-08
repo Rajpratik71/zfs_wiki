@@ -39,6 +39,7 @@ OpenZFS issue id | status/ZFS commit | comment
 8941|390d679a|
 8858|-       |Not applicable to Linux
 8856|-       |Not applicable to Linux due to Encryption (b525630) 
+8809|!       |Adding libfakekernel needs to be done by refactoring existing code.
 8713|871e0732|
 8661|1ce23dca|
 8648|f763c3d1|
@@ -49,7 +50,7 @@ OpenZFS issue id | status/ZFS commit | comment
 8567|-      |An alternate fix was applied for Linux.
 8552|935e2c2|
 8521|ee6370a7|
-8502|!      | Apply when porting OpenZFS 7955
+8502|!      |Apply when porting OpenZFS 7955
 8477|92e43c1|
 8454|-      |An alternate fix was applied for Linux.
 8408|5f1346c|
