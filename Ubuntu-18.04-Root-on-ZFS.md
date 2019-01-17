@@ -151,14 +151,14 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
     If this system will store local email in /var/mail:
     # zfs create                                            rpool/var/mail
 
+    If this system will use NFS (locking):
+    # zfs create -o com.sun:auto-snapshot=false \
+                 -o mountpoint=/var/lib/nfs                 rpool/var/nfs
+
     If you will use Postfix, it requires exec=on for its chroot.  Choose:
     # zfs inherit exec rpool/var
     OR
     # zfs create -o exec=on rpool/var/spool/postfix
-
-    If this system will use NFS (locking):
-    # zfs create -o com.sun:auto-snapshot=false \
-                 -o mountpoint=/var/lib/nfs                 rpool/var/nfs
 
     If you want a separate /tmp dataset (choose this now or tmpfs later):
     # zfs create -o com.sun:auto-snapshot=false \
