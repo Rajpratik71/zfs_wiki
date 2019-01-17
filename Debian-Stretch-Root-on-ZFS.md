@@ -130,6 +130,9 @@ Properties are inherited, if you want to create (for example) `rpool/var/lib` yo
     If this system will store local email in /var/mail:
     # zfs create                                            rpool/var/mail
 
+    If this system will use docker-ce (which creates snapshots by default):
+    # zfs create -o mountpoint=/var/lib/docker              rpool/var/docker
+
     If this system will use NFS (locking):
     # zfs create -o com.sun:auto-snapshot=false \
                  -o mountpoint=/var/lib/nfs                 rpool/var/nfs
