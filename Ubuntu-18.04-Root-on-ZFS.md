@@ -151,8 +151,9 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
     If this system will store local email in /var/mail:
     # zfs create                                            rpool/var/mail
 
-    If this system will use docker-ce (which creates snapshots by default):
-    # zfs create -o mountpoint=/var/lib/docker              rpool/var/docker
+    If this system will use Docker (which manages its own datasets & snapshots):
+    # zfs create -o com.sun:auto-snapshot=false \
+                 -o mountpoint=/var/lib/docker              rpool/var/docker
 
     If this system will use NFS (locking):
     # zfs create -o com.sun:auto-snapshot=false \
