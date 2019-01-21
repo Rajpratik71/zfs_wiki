@@ -351,6 +351,8 @@ If you get a type of `rpool does not exist` message, you can try adding `rootdel
 
 ## Step 7: Configure Swap
 
+**CAUTION: Swap on ZFS pool may deadlock on systems with extremely high memory pressure, see** https://github.com/zfsonlinux/zfs/issues/7734
+
 7.1  Create a volume dataset (zvol) for use as a swap device:
 
     # zfs create -V 4G -b $(getconf PAGESIZE) -o compression=zle \
