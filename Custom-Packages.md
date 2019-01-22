@@ -27,6 +27,9 @@ $ sudo yum install autoconf automake libtool wget libtirpc-devel rpm-build
 $ sudo yum install zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel libaio-devel
 $ sudo yum install parted lsscsi ksh openssl-devel elfutils-libelf-devel
 $ sudo yum install kernel-devel-$(uname -r)
+# If you want to use pyzfs, otherwise use `./configure --disable-pyzfs` to disable it later
+$ sudo yum install epel-release
+$ sudo yum install python36
 ```
 
 [Get the source code](#get-the-source-code).
@@ -97,6 +100,8 @@ $ sudo apt-get install gdebi wget
 $ sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev libaio-dev
 $ sudo apt-get install parted lsscsi ksh libssl-dev libelf-dev
 $ sudo apt-get install linux-headers-$(uname -r)
+# If you want to use pyzfs, otherwise use `./configure --disable-pyzfs` to disable it later
+$ sudo apt-get install python3
 ```
 
 [Get the source code](#get-the-source-code).
