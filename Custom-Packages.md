@@ -122,6 +122,20 @@ $ make -j1 deb
 $ for file in *.deb; do sudo gdebi -q --non-interactive $file; done
 ```
 
+### DKMS
+
+Building rpm-based DKMS and user packages can be done as follows:
+
+```
+sudo apt-get install dkms
+cd ../zfs
+./autogen.sh
+./configure --with-config=user
+make -s -j$(nproc)
+make -j1 deb-dkms
+for file in *.deb; do sudo gdebi -q --non-interactive $file; done
+```
+
 ## Get the Source Code
 
 ### Released Tarball
