@@ -101,7 +101,7 @@ $ sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-
 $ sudo apt-get install parted lsscsi ksh libssl-dev libelf-dev
 $ sudo apt-get install linux-headers-$(uname -r)
 # If you want to use pyzfs, otherwise use `./configure --disable-pyzfs` to disable it later
-$ sudo apt-get install python3
+$ sudo apt-get install python3 python3-dev python3-setuptools python3-cffi
 ```
 
 [Get the source code](#get-the-source-code).
