@@ -28,8 +28,7 @@ $ sudo yum install zlib-devel libuuid-devel libattr-devel libblkid-devel libseli
 $ sudo yum install parted lsscsi ksh openssl-devel elfutils-libelf-devel
 $ sudo yum install kernel-devel-$(uname -r)
 # If you want to use pyzfs, otherwise use `./configure --disable-pyzfs` to disable it later
-$ sudo yum install epel-release
-$ sudo yum install python36
+$ sudo yum install --enablerepo=epel python34 python34-devel python34-setuptools python34-cffi
 ```
 
 [Get the source code](#get-the-source-code).
