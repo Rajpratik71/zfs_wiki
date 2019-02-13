@@ -3131,6 +3131,15 @@ For writes, aggregation can occur at the ZFS or disk level.
 `zfs_vdev_aggregation_limit` is the upper bound on the size of the larger,
 aggregated I/O.
 
+Setting `zfs_vdev_aggregation_limit = 0` effectively disables aggregation by ZFS.
+However, the block device scheduler can still merge (aggregate) I/Os. Also, many
+devices, such as modern HDDs, contain schedulers that can aggregate I/Os.
+
+In general, I/O aggregation can improve performance for devices, such as HDDs, 
+where ordering I/O operations for contiguous LBAs is a benefit. For random access
+devices, such as SSDs, aggregation might not improve performance relative to the
+CPU cycles needed to aggregate.
+
 | zfs_vdev_aggregation_limit | Notes
 |---|---
 | Tags | [vdev](#vdev), [ZIO_scheduler](#zio_scheduler)
@@ -3140,6 +3149,7 @@ aggregated I/O.
 | Range | 0 to 131,072 (default) or 16,777,216 (if `zpool` `large_blocks` feature is enabled)
 | Default | 131,072 (128 KiB)
 | Change | Dynamic
+| Verification | ZFS aggregation is observed with `zpool iostat -r` and the block scheduler merging is observed with `iostat -x`
 | Versions Affected | all
 
 ### zfs_vdev_cache_size
