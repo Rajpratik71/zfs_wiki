@@ -142,8 +142,15 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
     # zfs create                                            rpool/var/spool
     # zfs create -o com.sun:auto-snapshot=false -o exec=on  rpool/var/tmp
 
+    If you use /opt on this system:
+    # zfs create                                            rpool/opt
+
     If you use /srv on this system:
     # zfs create                                            rpool/srv
+
+    If you use /usr/local on this system:
+    # zfs create -o canmount=off                            rpool/usr
+    # zfs create                                            rpool/usr/local
 
     If this system will have games installed:
     # zfs create                                            rpool/var/games
