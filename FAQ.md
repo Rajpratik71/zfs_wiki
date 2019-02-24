@@ -317,6 +317,8 @@ Adding the `discard` option for the mounted ZVOL in `\etc\fstab` effectively ena
 
 You may use a zvol as a swap device but you'll need to configure it appropriately.
 
+**CAUTION:** for now swap on zvol may lead to deadlock, in this case please send your logs [here](https://github.com/zfsonlinux/zfs/issues/7734).
+
 * Set the volume block size to match your systems page size.  This tuning prevents ZFS from having to perform read-modify-write options on a larger block while the system is already low on memory.
 * Set the `logbias=throughput` and `sync=always` properties.  Data written to the volume will be flushed immediately to disk freeing up memory as quickly as possible.
 * Set `primarycache=metadata` to avoid keeping swap data in RAM via the ARC.
