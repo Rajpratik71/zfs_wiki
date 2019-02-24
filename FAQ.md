@@ -19,6 +19,7 @@
   * [Other General Guidelines](#other-general-guidelines)
 - [Performance Considerations](#performance-considerations)
 - [Advanced Format Disks](#advanced-format-disks)
+- [ZVOL used space larger than expected](#ZVOL-used-space-larger-than-expected)
 - [Using a zvol for a swap device](#using-a-zvol-for-a-swap-device)
 - [Using ZFS on Xen Hypervisor or Xen Dom0](#using-zfs-on-xen-hypervisor-or-xen-dom0)
 - [udisks2 creates /dev/mapper/ entries for zvol](#udisks2-creating-devmapper-entries-for-zvol)
@@ -301,6 +302,16 @@ To force the pool to use 4,096 byte sectors when adding a vdev to a pool, you ma
 ```
 $ zpool add -o ashift=12 tank mirror sdc sdd
 ```
+
+## ZVOL used space larger than expected
+
+Depending on the filesystem used on the zvol (e.g. ext4) and the usage (e.g. deletion and creation of many files) the `used` and `referenced` properties reported by the zvol may be larger than the "actual" space that is being used as reported by the consumer.  
+This can happen due to the way some filesystems work, in which they prefer to allocate files in new untouched blocks rather than the fragmented used blocks marked as free. This forces zfs to reference all blocks that the underlying filesystem has ever touched.  
+This is in itself not much of a problem, as when the `used` property reaches the configured `volsize` the underlying filesystem will start reusing blocks. But the problem arises if it is desired to snapshot the zvol, as the space referenced by the snapshots will contain the unused blocks.  
+
+This issue can be prevented, by using the `fstrim` command to allow the kernel to specify to zfs which blocks are unused.  
+Executing a `fstrim` command before a snapshot is taken will ensure a minimum snapshot size.  
+Adding the `discard` option for the mounted ZVOL in `\etc\fstab` effectively enables the Linux kernel to issue the trim commands continuously, without the need to execute fstrim on-demand.  
 
 ## Using a zvol for a swap device
 
