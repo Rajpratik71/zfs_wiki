@@ -15,8 +15,7 @@ The commit is applicable but not applied for the reason described in the comment
 
 OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
-10500|03916905
-
+10500|03916905|
 9884|-       |Not applicable to Linux
 9851|-       |Not applicable to Linux
 9683|-       |Not applicable to Linux due to devids not being used
