@@ -15,6 +15,8 @@ The commit is applicable but not applied for the reason described in the comment
 
 OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
+10500|03916905
+
 9884|-       |Not applicable to Linux
 9851|-       |Not applicable to Linux
 9683|-       |Not applicable to Linux due to devids not being used
@@ -27,6 +29,7 @@ OpenZFS issue id | status/ZFS commit | comment
 9512|b4555c77|
 9487|48fbb9dd|
 9466|272b5d73|
+9433|0873bb63|
 9421|64c1dcef|
 9237|-       |Introduced by 8567 which was never applied to Linux
 9194|-       |Not applicable the '-o ashift=value' option is provided on Linux
@@ -138,6 +141,7 @@ OpenZFS issue id | status/ZFS commit | comment
 5984|480f626|
 5966|6bb24f4|
 5961|22872ff|
+5882|83e9986|
 5815|-      |This patch could be adapted if needed use equivalent Linux functionality.
 5770|c3275b5|
 5769|dd26aa5|
