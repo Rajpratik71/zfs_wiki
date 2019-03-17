@@ -177,7 +177,7 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
     If this system will use NFS (locking):
     # zfs create -o com.sun:auto-snapshot=false  rpool/var/lib/nfs
 
-    If you want a separate /tmp dataset (choose this now or tmpfs later):
+    A tmpfs is recommended later, but if you want a separate dataset for /tmp:
     # zfs create -o com.sun:auto-snapshot=false  rpool/tmp
     # chmod 1777 /mnt/tmp
 
@@ -328,7 +328,7 @@ Install GRUB to the disk(s), not the partition(s).
     rpool/tmp /tmp zfs nodev,relatime 0 0
     EOF
 
-4.12  Optional: Mount a tmpfs to /tmp
+4.12  Optional (but recommended): Mount a tmpfs to /tmp
 
 If you chose to create a `/tmp` dataset above, skip this step, as they are mutually exclusive choices. Otherwise, you can put `/tmp` on a tmpfs (RAM filesystem) by enabling the `tmp.mount` unit.
 
