@@ -145,6 +145,12 @@ The primary goal of this dataset layout is to separate the OS from user data. Th
     # zfs create -o com.sun:auto-snapshot=false \
                  -o mountpoint=/var/lib/nfs      rpool/var/nfs
 
+    If this system will use Snap packages:
+    # zfs create                                 rpool/var/snap
+
+    If you use /var/www on this system:
+    # zfs create                                 rpool/var/www
+
     If you want a separate /tmp dataset (choose this now or tmpfs later):
     # zfs create -o com.sun:auto-snapshot=false  rpool/tmp
     # chmod 1777 /mnt/tmp
