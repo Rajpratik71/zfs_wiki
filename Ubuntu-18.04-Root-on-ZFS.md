@@ -141,6 +141,7 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
     # zfs create -o mountpoint=/root             rpool/home/root
     # zfs create -o canmount=off                 rpool/var
     # zfs create -o com.sun:auto-snapshot=false  rpool/var/cache
+    # zfs create -o canmount=off                 rpool/var/lib
     # zfs create                                 rpool/var/log
     # zfs create                                 rpool/var/spool
     # zfs create -o com.sun:auto-snapshot=false  rpool/var/tmp
@@ -161,19 +162,17 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
     If this system will store local email in /var/mail:
     # zfs create                                 rpool/var/mail
 
-    If this system will use Docker (which manages its own datasets & snapshots):
-    # zfs create -o com.sun:auto-snapshot=false \
-                 -o mountpoint=/var/lib/docker   rpool/var/docker
-
-    If this system will use NFS (locking):
-    # zfs create -o com.sun:auto-snapshot=false \
-                 -o mountpoint=/var/lib/nfs      rpool/var/nfs
-
     If this system will use Snap packages:
     # zfs create                                 rpool/var/snap
 
     If you use /var/www on this system:
     # zfs create                                 rpool/var/www
+
+    If this system will use Docker (which manages its own datasets & snapshots):
+    # zfs create -o com.sun:auto-snapshot=false  rpool/var/lib/docker
+
+    If this system will use NFS (locking):
+    # zfs create -o com.sun:auto-snapshot=false  rpool/var/lib/nfs
 
     If you want a separate /tmp dataset (choose this now or tmpfs later):
     # zfs create -o com.sun:auto-snapshot=false  rpool/tmp
