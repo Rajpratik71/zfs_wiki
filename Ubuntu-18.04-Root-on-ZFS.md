@@ -134,51 +134,43 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
 
 3.3  Create datasets:
 
-    # zfs create                 -o setuid=off              rpool/home
-    # zfs create -o mountpoint=/root                        rpool/home/root
-    # zfs create -o canmount=off -o setuid=off  -o exec=off rpool/var
-    # zfs create -o com.sun:auto-snapshot=false             rpool/var/cache
-    # zfs create -o acltype=posixacl -o xattr=sa            rpool/var/log
-    # zfs create                                            rpool/var/spool
-    # zfs create -o com.sun:auto-snapshot=false -o exec=on  rpool/var/tmp
+    # zfs create                                 rpool/home
+    # zfs create -o mountpoint=/root             rpool/home/root
+    # zfs create -o canmount=off                 rpool/var
+    # zfs create -o com.sun:auto-snapshot=false  rpool/var/cache
+    # zfs create -o acltype=posixacl -o xattr=sa rpool/var/log
+    # zfs create                                 rpool/var/spool
+    # zfs create -o com.sun:auto-snapshot=false  rpool/var/tmp
 
     If you use /opt on this system:
-    # zfs create                                            rpool/opt
+    # zfs create                                 rpool/opt
 
     If you use /srv on this system:
-    # zfs create                                            rpool/srv
+    # zfs create                                 rpool/srv
 
     If you use /usr/local on this system:
-    # zfs create -o canmount=off                            rpool/usr
-    # zfs create                                            rpool/usr/local
+    # zfs create -o canmount=off                 rpool/usr
+    # zfs create                                 rpool/usr/local
 
     If this system will have games installed:
-    # zfs create                                            rpool/var/games
+    # zfs create                                 rpool/var/games
 
     If this system will store local email in /var/mail:
-    # zfs create                                            rpool/var/mail
+    # zfs create                                 rpool/var/mail
 
     If this system will use Docker (which manages its own datasets & snapshots):
     # zfs create -o com.sun:auto-snapshot=false \
-                 -o mountpoint=/var/lib/docker              rpool/var/docker
+                 -o mountpoint=/var/lib/docker   rpool/var/docker
 
     If this system will use NFS (locking):
     # zfs create -o com.sun:auto-snapshot=false \
-                 -o mountpoint=/var/lib/nfs                 rpool/var/nfs
-
-    If you will use Postfix, it requires exec=on for its chroot.  Choose:
-    # zfs inherit exec rpool/var
-    OR
-    # zfs create -o exec=on rpool/var/spool/postfix
+                 -o mountpoint=/var/lib/nfs      rpool/var/nfs
 
     If you want a separate /tmp dataset (choose this now or tmpfs later):
-    # zfs create -o com.sun:auto-snapshot=false \
-                 -o setuid=off                              rpool/tmp
+    # zfs create -o com.sun:auto-snapshot=false  rpool/tmp
     # chmod 1777 /mnt/tmp
 
-The primary goal of this dataset layout is to separate the OS from user data. This allows the root filesystem to be rolled back without rolling back user data such as logs (in `/var/log`). This will be especially important if/when a `beadm` or similar utility is integrated. Since we are creating multiple datasets anyway, it is trivial to add some restrictions (for extra security) at the same time. The `com.sun.auto-snapshot` setting is used by some ZFS snapshot utilities to exclude transient data.
-
-Properties are inherited. If you want to create (for example) `rpool/var/lib` you may need to set `-o exec=on` manually (some apps, like Postfix, will need it).
+The primary goal of this dataset layout is to separate the OS from user data. This allows the root filesystem to be rolled back without rolling back user data such as logs (in `/var/log`). This will be especially important if/when a `beadm` or similar utility is integrated. The `com.sun.auto-snapshot` setting is used by some ZFS snapshot utilities to exclude transient data.
 
 [We enable POSIX ACLs on /var/log for journald.](https://askubuntu.com/questions/970886/journalctl-says-failed-to-search-journal-acl-operation-not-supported) See the note above in the `zpool create` step about `xattr=sa` being Linux-specific. That said, even if you do not want `xattr=sa` for the whole pool, it is probably fine to use it for `/var/log`.
 
@@ -319,14 +311,14 @@ Install GRUB to the disk(s), not the partition(s).
     # zfs set mountpoint=legacy rpool/var/log
     # zfs set mountpoint=legacy rpool/var/tmp
     # cat >> /etc/fstab << EOF
-    rpool/var/log /var/log zfs noatime,nodev,noexec,nosuid 0 0
-    rpool/var/tmp /var/tmp zfs noatime,nodev,nosuid 0 0
+    rpool/var/log /var/log zfs noatime,nodev 0 0
+    rpool/var/tmp /var/tmp zfs noatime,nodev 0 0
     EOF
 
     If you created a /tmp dataset, do the same for it:
     # zfs set mountpoint=legacy rpool/tmp
     # cat >> /etc/fstab << EOF
-    rpool/tmp /tmp zfs noatime,nodev,nosuid 0 0
+    rpool/tmp /tmp zfs noatime,nodev 0 0
     EOF
 
 4.12  Optional: Mount a tmpfs to /tmp
