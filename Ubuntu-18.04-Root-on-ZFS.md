@@ -91,8 +91,9 @@ Choose one of the following options:
 2.3a  Unencrypted:
 
     # zpool create -o ashift=12 \
-          -O atime=off -O canmount=off -O compression=lz4 -O normalization=formD \
-          -O xattr=sa -O mountpoint=/ -R /mnt \
+          -O acltype=posixacl -O atime=off -O canmount=off -O compression=lz4 \
+          -O normalization=formD -O xattr=sa \
+          -O mountpoint=/ -R /mnt \
           rpool /dev/disk/by-id/scsi-SATA_disk1-part1
 
 2.3b  LUKS:
@@ -101,14 +102,16 @@ Choose one of the following options:
           /dev/disk/by-id/scsi-SATA_disk1-part1
     # cryptsetup luksOpen /dev/disk/by-id/scsi-SATA_disk1-part1 luks1
     # zpool create -o ashift=12 \
-          -O atime=off -O canmount=off -O compression=lz4 -O normalization=formD \
-          -O xattr=sa -O mountpoint=/ -R /mnt \
+          -O acltype=posixacl -O atime=off -O canmount=off -O compression=lz4 \
+          -O normalization=formD -O xattr=sa \
+          -O mountpoint=/ -R /mnt \
           rpool /dev/mapper/luks1
 
-* Setting `atime=off` completely disables atime updates. If you or one of your applications (e.g. a mail reader following an mbox file for local delivery) cares about atime updates, you almost certainly want `relatime` rather than full `atime`. In that case, replace `atime=off` with `relatime=on`. In steps below, when `noatime` is used in `/etc/fstab`, use `relatime` instead. If you only care about atime updates for particular filesystems, you can limit your `relatime` to only those filesystems; since properties are inherited, set `atime=on` to override the inherited `atime=off` wherever you set `relatime=on`. See [RedHat's documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/power_management_guide/relatime) for further information.
 * The use of `ashift=12` is recommended here because many drives today have 4KiB (or larger) physical sectors, even though they present 512B logical sectors.  Also, a future replacement drive may have 4KiB physical sectors (in which case `ashift=12` is desirable) or 4KiB logical sectors (in which case `ashift=12` is required).
+* Setting `-O acltype=posixacl` enables POSIX ACLs globally. If you do not want this, remove that option, but later add `-o acltype=posixacl` (note: lowercase "o") to the `zfs create` for `/var/log`, as [journald requires ACLs](https://askubuntu.com/questions/970886/journalctl-says-failed-to-search-journal-acl-operation-not-supported)
+* Setting `atime=off` completely disables atime updates. If you or one of your applications (e.g. a mail reader following an mbox file for local delivery) cares about atime updates, you almost certainly want `relatime` rather than full `atime`. In that case, replace `atime=off` with `relatime=on`. In steps below, when `noatime` is used in `/etc/fstab`, use `relatime` instead. If you only care about atime updates for particular filesystems, you can limit your `relatime` to only those filesystems; since properties are inherited, set `atime=on` to override the inherited `atime=off` wherever you set `relatime=on`. See [RedHat's documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/power_management_guide/relatime) for further information.
 * Setting `normalization=formD` eliminates some corner cases relating to UTF-8 filename normalization. It also implies `utf8only=on`, which means that only UTF-8 filenames are allowed. If you care to support non-UTF-8 filenames, do not use this option. For a discussion of why requiring UTF-8 filenames may be a bad idea, see [The problems with enforced UTF-8 only filenames](http://utcc.utoronto.ca/~cks/space/blog/linux/ForcedUTF8Filenames).
-* Setting `xattr=sa` [vastly improves the performance of extended attributes](https://github.com/zfsonlinux/zfs/commit/82a37189aac955c81a59a5ecc3400475adb56355). Inside ZFS, extended attributes are used to implement POSIX ACLs (e.g. `acltype=posixacl`) discussed later. Extended attributes can also be used by user-space applications. [They are used by some desktop GUI applications.](https://en.wikipedia.org/wiki/Extended_file_attributes#Linux) [They can be used by Samba to store Windows ACLs and DOS attributes; they are required for a Samba Active Directory domain controller.](https://wiki.samba.org/index.php/Setting_up_a_Share_Using_Windows_ACLs) Note that [`xattr=sa` is Linux-specific.](http://open-zfs.org/wiki/Platform_code_differences) If you move your `xattr=sa` pool to another OpenZFS implementation besides ZFS-on-Linux, extended attributes will not be readable. If this is important to you, omit the `-O xattr=sa` above.
+* Setting `xattr=sa` [vastly improves the performance of extended attributes](https://github.com/zfsonlinux/zfs/commit/82a37189aac955c81a59a5ecc3400475adb56355). Inside ZFS, extended attributes are used to implement POSIX ACLs. Extended attributes can also be used by user-space applications. [They are used by some desktop GUI applications.](https://en.wikipedia.org/wiki/Extended_file_attributes#Linux) [They can be used by Samba to store Windows ACLs and DOS attributes; they are required for a Samba Active Directory domain controller.](https://wiki.samba.org/index.php/Setting_up_a_Share_Using_Windows_ACLs) Note that [`xattr=sa` is Linux-specific.](http://open-zfs.org/wiki/Platform_code_differences) If you move your `xattr=sa` pool to another OpenZFS implementation besides ZFS-on-Linux, extended attributes will not be readable (though your data will be). If portability of extended attributes is important to you, omit the `-O xattr=sa` above. Even if you do not want `xattr=sa` for the whole pool, it is probably fine to use it for `/var/log`.
 * Make sure to include the `-part1` portion of the drive path. If you forget that, you are specifying the whole disk, which ZFS will then re-partition, and you will lose the bootloader partition(s).
 * For LUKS, the key size chosen is 256 bits. However, XTS mode requires two keys, so the LUKS key is split in half. Thus, `-s 256` means AES-128, which is the LUKS and Ubuntu default.
 * Your passphrase will likely be the weakest link. Choose wisely. See [section 5 of the cryptsetup FAQ](https://gitlab.com/cryptsetup/cryptsetup/wikis/FrequentlyAskedQuestions#5-security-aspects) for guidance.
@@ -138,7 +141,7 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
     # zfs create -o mountpoint=/root             rpool/home/root
     # zfs create -o canmount=off                 rpool/var
     # zfs create -o com.sun:auto-snapshot=false  rpool/var/cache
-    # zfs create -o acltype=posixacl -o xattr=sa rpool/var/log
+    # zfs create                                 rpool/var/log
     # zfs create                                 rpool/var/spool
     # zfs create -o com.sun:auto-snapshot=false  rpool/var/tmp
 
@@ -171,10 +174,6 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
     # chmod 1777 /mnt/tmp
 
 The primary goal of this dataset layout is to separate the OS from user data. This allows the root filesystem to be rolled back without rolling back user data such as logs (in `/var/log`). This will be especially important if/when a `beadm` or similar utility is integrated. The `com.sun.auto-snapshot` setting is used by some ZFS snapshot utilities to exclude transient data.
-
-[We enable POSIX ACLs on /var/log for journald.](https://askubuntu.com/questions/970886/journalctl-says-failed-to-search-journal-acl-operation-not-supported) See the note above in the `zpool create` step about `xattr=sa` being Linux-specific. That said, even if you do not want `xattr=sa` for the whole pool, it is probably fine to use it for `/var/log`.
-
-If you want ACL support on other filesystems, set `-o acltype=posixacl` on them. If you want ACL support on everything, you can set it on the whole pool: `zfs set acltype=posixacl rpool`
 
 If you do nothing extra, `/tmp` will be stored as part of the root filesystem. Alternatively, you can create a separate dataset for `/tmp`, as shown above. This keeps the `/tmp` data out of snapshots of your root filesystem.  It also allows you to set a quota on `rpool/tmp`, if you want to limit the maximum space used. Otherwise, you can use a tmpfs (RAM filesystem) later.
 
