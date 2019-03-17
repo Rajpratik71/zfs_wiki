@@ -168,6 +168,9 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
     If you use /var/www on this system:
     # zfs create                                 rpool/var/www
 
+    If this system will use GNOME:
+    # zfs create                                 rpool/var/lib/AccountsService
+
     If this system will use Docker (which manages its own datasets & snapshots):
     # zfs create -o com.sun:auto-snapshot=false  rpool/var/lib/docker
 
