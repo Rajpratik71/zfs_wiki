@@ -559,6 +559,7 @@ Do whatever you need to do to fix your system.
 
 When done, cleanup:
 
+    # exit
     # mount | grep -v zfs | tac | awk '/\/mnt/ {print $3}' | xargs -i{} umount -lf {}
     # zpool export rpool
     # reboot
