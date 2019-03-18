@@ -356,6 +356,7 @@ If you chose to create a `/tmp` dataset above, skip this step, as they are mutua
 
     # vi /etc/default/grub
     Comment out: GRUB_TIMEOUT_STYLE=hidden
+    Set: GRUB_TIMEOUT=5
     Remove quiet and splash from: GRUB_CMDLINE_LINUX_DEFAULT
     Uncomment: GRUB_TERMINAL=console
     Save and quit.
