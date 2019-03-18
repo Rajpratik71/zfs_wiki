@@ -323,6 +323,9 @@ Install GRUB to the disk(s), not the partition(s).
     # zfs set mountpoint=legacy rpool/var/log
     # echo rpool/var/log /var/log zfs nodev,relatime 0 0 >> /etc/fstab
 
+    # zfs set mountpoint=legacy rpool/var/spool
+    # echo rpool/var/spool /var/spool zfs nodev,relatime 0 0 >> /etc/fstab
+
     If you created a /var/tmp dataset:
     # zfs set mountpoint=legacy rpool/var/tmp
     # echo rpool/var/tmp /var/tmp zfs nodev,relatime 0 0 >> /etc/fstab
