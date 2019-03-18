@@ -345,7 +345,7 @@ If you chose to create a `/tmp` dataset above, skip this step, as they are mutua
 5.2  Refresh the initrd files:
 
     # update-initramfs -u -k all
-    update-initramfs: Generating /boot/initrd.img-4.15.0-12-generic
+    update-initramfs: Generating /boot/initrd.img-4.15.0-46-generic
 
 **Note:** When using LUKS, this will print "WARNING could not determine root device from /etc/fstab". This is because [cryptsetup does not support ZFS](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906).
 
@@ -363,8 +363,8 @@ Later, once the system has rebooted twice and you are sure everything is working
 
     # update-grub
     Generating grub configuration file ...
-    Found linux image: /boot/vmlinuz-4.15.0-12-generic
-    Found initrd image: /boot/initrd.img-4.15.0-12-generic
+    Found linux image: /boot/vmlinuz-4.15.0-46-generic
+    Found initrd image: /boot/initrd.img-4.15.0-46-generic
     done
 
 5.5  Install the boot loader
