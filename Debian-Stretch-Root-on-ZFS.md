@@ -116,11 +116,14 @@ The primary goal of this dataset layout is to separate the OS from user data. Th
     # zfs create                                 rpool/home
     # zfs create -o mountpoint=/root             rpool/home/root
     # zfs create -o canmount=off                 rpool/var
-    # zfs create -o com.sun:auto-snapshot=false  rpool/var/cache
     # zfs create -o canmount=off                 rpool/var/lib
     # zfs create                                 rpool/var/log
     # zfs create                                 rpool/var/spool
+
+    If you wish to exclude these from snapshots:
+    # zfs create -o com.sun:auto-snapshot=false  rpool/var/cache
     # zfs create -o com.sun:auto-snapshot=false  rpool/var/tmp
+    # chmod 1777 /mnt/var/tmp
 
     If you use /opt on this system:
     # zfs create                                 rpool/opt
@@ -161,7 +164,6 @@ If you do nothing extra, `/tmp` will be stored as part of the root filesystem. A
 
 3.4  Install the minimal system:
 
-    # chmod 1777 /mnt/var/tmp
     # debootstrap stretch /mnt
     # zfs set devices=off rpool
 
@@ -258,17 +260,15 @@ Install GRUB to the disk(s), not the partition(s).
 [Until ZFS gains a systemd mount generator](https://github.com/zfsonlinux/zfs/issues/4898), there are races between mounting filesystems and starting certain daemons. In practice, the issues (e.g. [#5754](https://github.com/zfsonlinux/zfs/issues/5754)) seem to be with certain filesystems in `/var`, specifically `/var/log` and `/var/tmp`. Setting these to use `legacy` mounting, and listing them in `/etc/fstab` makes systemd aware that these are separate mountpoints. In turn, `rsyslog.service` depends on `var-log.mount` by way of `local-fs.target` and services using the `PrivateTmp` feature of systemd automatically use `After=var-tmp.mount`.
 
     # zfs set mountpoint=legacy rpool/var/log
-    # zfs set mountpoint=legacy rpool/var/tmp
-    # cat >> /etc/fstab << EOF
-    rpool/var/log /var/log zfs nodev,relatime 0 0
-    rpool/var/tmp /var/tmp zfs nodev,relatime 0 0
-    EOF
+    # echo rpool/var/log /var/log zfs nodev,relatime 0 0 >> /etc/fstab
 
-    If you created a /tmp dataset, do the same for it:
+    If you created a /var/tmp dataset:
+    # zfs set mountpoint=legacy rpool/var/tmp
+    # echo rpool/var/tmp /var/tmp zfs nodev,relatime 0 0 >> /etc/fstab
+
+    If you created a /tmp dataset:
     # zfs set mountpoint=legacy rpool/tmp
-    # cat >> /etc/fstab << EOF
-    rpool/tmp /tmp zfs nodev,relatime 0 0
-    EOF
+    # echo rpool/tmp /tmp zfs nodev,relatime 0 0 >> /etc/fstab
 
 4.9  Optional (but recommended): Mount a tmpfs to /tmp
 
