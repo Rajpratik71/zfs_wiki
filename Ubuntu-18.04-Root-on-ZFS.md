@@ -305,7 +305,7 @@ Install GRUB to the disk(s), not the partition(s).
           /dev/disk/by-id/scsi-SATA_disk1-part2) \
           /boot/efi vfat nofail,x-systemd.device-timeout=1 0 1 >> /etc/fstab
     # mount /boot/efi
-    # apt install --yes grub-efi-amd64
+    # apt install --yes grub-efi-amd64-signed shim-signed
 
 4.9  Setup system groups:
 
