@@ -270,6 +270,8 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
     # apt install --yes --no-install-recommends linux-image-generic
     # apt install --yes zfs-initramfs
 
+**Hint:** For the HWE kernel, install `linux-image-generic-hwe-18.04` instead of `linux-image-generic`.
+
 4.7  For LUKS installs only:
 
     # echo UUID=$(blkid -s UUID -o value \
