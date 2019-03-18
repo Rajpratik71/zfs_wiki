@@ -71,7 +71,7 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
 **Hints:**
 * `ls -la /dev/disk/by-id` will list the aliases.
 * Are you doing this in a virtual machine? If your virtual disk is missing from `/dev/disk/by-id`, use `/dev/vda` if you are using KVM with virtio; otherwise, read the [troubleshooting](#troubleshooting) section.
-* If you are doing a mirror or raidz topology, repeat the partitioning commands for all the disks which will be part of the pool.
+* If you are creating a mirror or raidz topology, repeat the partitioning commands for all the disks which will be part of the pool.
 
 2.3  Create the root pool:
 
@@ -91,7 +91,7 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
 * Make sure to include the `-part4` portion of the drive path. If you forget that, you are specifying the whole disk, which ZFS will then re-partition, and you will lose the bootloader partition(s).
 
 **Hints:**
-* If you are doing a mirror or raidz topology, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part4 /dev/disk/by-id/scsi-SATA_disk2-part4` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks).
+* If you are creating a mirror or raidz topology, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part4 /dev/disk/by-id/scsi-SATA_disk2-part4` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks).
 * The pool name is arbitrary.  On systems that can automatically install to ZFS, the root pool is named `rpool` by default.  If you work with multiple systems, it might be wise to use `hostname`, `hostname0`, or `hostname-1` instead.
 
 ## Step 3: System Installation

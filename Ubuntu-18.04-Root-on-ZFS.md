@@ -19,7 +19,7 @@ This guide supports the two different Ubuntu encryption options: unencrypted and
 
 Unencrypted does not encrypt anything, of course. All ZFS features are fully available. With no encryption happening, this option naturally has the best performance.
 
-LUKS encrypts almost everything: the OS, swap, home directories, and anything else. The only unencrypted data is the bootloader, kernel, and initrd. The system cannot boot without the passphrase being entered at the console. All ZFS features are fully available. Performance is good, but LUKS sits underneath ZFS, so if multiple disks (mirror or raidz configurations) are used, the data has to be encrypted once per disk.
+LUKS encrypts almost everything: the OS, swap, home directories, and anything else. The only unencrypted data is the bootloader, kernel, and initrd. The system cannot boot without the passphrase being entered at the console. All ZFS features are fully available. Performance is good, but LUKS sits underneath ZFS, so if multiple disks (mirror or raidz topologies) are used, the data has to be encrypted once per disk.
 
 ## Step 1: Prepare The Install Environment
 
@@ -83,7 +83,7 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
 **Hints:**
 * `ls -la /dev/disk/by-id` will list the aliases.
 * Are you doing this in a virtual machine? If your virtual disk is missing from `/dev/disk/by-id`, use `/dev/vda` if you are using KVM with virtio; otherwise, read the [troubleshooting](#troubleshooting) section.
-* If you are doing a mirror or raidz topology, repeat the partitioning commands for all the disks which will be part of the pool.
+* If you are creating a mirror or raidz topology, repeat the partitioning commands for all the disks which will be part of the pool.
 
 2.3  Create the root pool:
 
@@ -118,7 +118,7 @@ Choose one of the following options:
 * Your passphrase will likely be the weakest link. Choose wisely. See [section 5 of the cryptsetup FAQ](https://gitlab.com/cryptsetup/cryptsetup/wikis/FrequentlyAskedQuestions#5-security-aspects) for guidance.
 
 **Hints:**
-* If you are doing a mirror or raidz topology, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part4 /dev/disk/by-id/scsi-SATA_disk2-part4` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks).
+* If you are creating a mirror or raidz topology, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part4 /dev/disk/by-id/scsi-SATA_disk2-part4` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks).  For LUKS, use `/dev/mapper/luks1`, `/dev/mapper/luks2`, etc., which you will have to create using `cryptsetup`.
 * The pool name is arbitrary.  On systems that can automatically install to ZFS, the root pool is named `rpool` by default.  If you work with multiple systems, it might be wise to use `hostname`, `hostname0`, or `hostname-1` instead.
 
 ## Step 3: System Installation
@@ -283,6 +283,8 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
           luks,discard,initramfs > /etc/crypttab
 
 * The use of `initramfs` is a work-around for [cryptsetup does not support ZFS](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906).
+
+**Hint:** If you are creating a mirror or raidz topology, repeat the `/etc/crypttab` entries for `luks2`, etc. adjusting for each disk.
 
 4.8  Install GRUB
 
@@ -544,8 +546,9 @@ Go through [Step 1: Prepare The Install Environment](#step-1-prepare-the-install
 
 This will automatically import your pool. Export it and re-import it to get the mounts right:
 
-    For LUKS, first unlock the disk:
+    For LUKS, first unlock the disk(s):
     # cryptsetup luksOpen /dev/disk/by-id/scsi-SATA_disk1-part3 luks1
+    Repeat for additional disks, if this is a mirror or raidz topology.
 
     # zpool export -a
     # zpool import -N -R /mnt rpool
