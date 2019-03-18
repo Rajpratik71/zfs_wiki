@@ -59,7 +59,7 @@ If you have a second system, using SSH to access the target system can be conven
     Clear the partition table:
     # sgdisk --zap-all /dev/disk/by-id/scsi-SATA_disk1
 
-2.2  Partition your disk:
+2.2  Partition your disk(s):
 
     Run this if you need legacy (BIOS) booting:
     # sgdisk -a1 -n2:34:2047  -t2:EF02 /dev/disk/by-id/scsi-SATA_disk1
@@ -83,6 +83,7 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
 **Hints:**
 * `ls -la /dev/disk/by-id` will list the aliases.
 * Are you doing this in a virtual machine? If your virtual disk is missing from `/dev/disk/by-id`, use `/dev/vda` if you are using KVM with virtio; otherwise, read the [troubleshooting](#troubleshooting) section.
+* If you are doing a mirror or raidz topology, repeat the partitioning commands for all the disks which will be part of the pool.
 
 2.3  Create the root pool:
 
@@ -117,7 +118,7 @@ Choose one of the following options:
 * Your passphrase will likely be the weakest link. Choose wisely. See [section 5 of the cryptsetup FAQ](https://gitlab.com/cryptsetup/cryptsetup/wikis/FrequentlyAskedQuestions#5-security-aspects) for guidance.
 
 **Hints:**
-* The root pool does not have to be a single disk; it can have a mirror or raidz topology.  In that case, repeat the partitioning commands for all the disks which will be part of the pool. Then, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part1 /dev/disk/by-id/scsi-SATA_disk2-part1` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks).
+* If you are doing a mirror or raidz topology, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part1 /dev/disk/by-id/scsi-SATA_disk2-part1` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks).
 * The pool name is arbitrary.  On systems that can automatically install to ZFS, the root pool is named `rpool` by default.  If you work with multiple systems, it might be wise to use `hostname`, `hostname0`, or `hostname-1` instead.
 
 ## Step 3: System Installation
