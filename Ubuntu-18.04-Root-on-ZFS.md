@@ -62,7 +62,7 @@ If you have a second system, using SSH to access the target system can be conven
 2.2  Partition your disk(s):
 
     Run this if you need legacy (BIOS) booting:
-    # sgdisk -a1 -n1:34:2047  -t1:EF02 /dev/disk/by-id/scsi-SATA_disk1
+    # sgdisk -a1 -n1:40:2047  -t1:EF02 /dev/disk/by-id/scsi-SATA_disk1
 
     Run this for UEFI booting (for use now or in the future):
     # sgdisk     -n2:1M:+512M -t2:EF00 /dev/disk/by-id/scsi-SATA_disk1
