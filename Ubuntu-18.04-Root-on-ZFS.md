@@ -67,6 +67,9 @@ If you have a second system, using SSH to access the target system can be conven
     Run this for UEFI booting (for use now or in the future):
     # sgdisk     -n2:1M:+512M -t2:EF00 /dev/disk/by-id/scsi-SATA_disk1
 
+    Run this for the boot pool:
+    # sgdisk     -n3:0:+512M  -t3:BF01 /dev/disk/by-id/scsi-SATA_disk1
+
 Choose one of the following options:
 
 2.2a  Unencrypted:
@@ -75,7 +78,6 @@ Choose one of the following options:
 
 2.2b  LUKS:
 
-    # sgdisk     -n3:0:+512M  -t3:8300 /dev/disk/by-id/scsi-SATA_disk1
     # sgdisk     -n4:0:0      -t4:8300 /dev/disk/by-id/scsi-SATA_disk1
 
 Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` device nodes directly can cause sporadic import failures, especially on systems that have more than one storage pool.
@@ -85,11 +87,7 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
 * Are you doing this in a virtual machine? If your virtual disk is missing from `/dev/disk/by-id`, use `/dev/vda` if you are using KVM with virtio; otherwise, read the [troubleshooting](#troubleshooting) section.
 * If you are creating a mirror or raidz topology, repeat the partitioning commands for all the disks which will be part of the pool.
 
-2.3  Create the root pool:
-
-Choose one of the following options:
-
-2.3a  Unencrypted:
+2.3  Create the boot pool:
 
     # zpool create -o ashift=12 -d \
           -o feature@async_destroy=enabled \
@@ -104,36 +102,43 @@ Choose one of the following options:
           -o feature@lz4_compress=enabled \
           -o feature@spacemap_histogram=enabled \
           -o feature@userobj_accounting=enabled \
-          -O acltype=posixacl -O canmount=off -O compression=lz4 \
+          -O acltype=posixacl -O canmount=off -O compression=lz4 -O devices=off \
           -O normalization=formD -O relatime=on -O xattr=sa \
+          -O mountpoint=/ -R /mnt \
+          bpool /dev/disk/by-id/scsi-SATA_disk1-part3
+
+You should not need to customize any of the options for the boot pool.
+
+GRUB does not support all of the zpool features. See `spa_feature_names` in [grub-core/fs/zfs/zfs.c](http://git.savannah.gnu.org/cgit/grub.git/tree/grub-core/fs/zfs/zfs.c#n276). This step creates a separate boot pool for `/boot` with the features limited to only those that GRUB supports, allowing the root pool to use any/all features. Note that GRUB opens the pool read-only, so all read-only compatible features are "supported" by GRUB.
+
+**Hints:**
+* If you are creating a mirror or raidz topology,, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part3 /dev/disk/by-id/scsi-SATA_disk2-part3` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks).
+* The pool name is arbitrary. If changed, the new name must be used consistently. The `bpool` convention originated in this HOWTO.
+
+2.4  Create the root pool:
+
+Choose one of the following options:
+
+2.4a  Unencrypted:
+
+    # zpool create -o ashift=12 \
+          -O acltype=posixacl -O canmount=off -O compression=lz4 \
+          -O dnodesize=auto -O normalization=formD -O relatime=on -O xattr=sa \
           -O mountpoint=/ -R /mnt \
           rpool /dev/disk/by-id/scsi-SATA_disk1-part4
 
-2.3b  LUKS:
+2.4b  LUKS:
 
     # cryptsetup luksFormat -c aes-xts-plain64 -s 256 -h sha256 \
           /dev/disk/by-id/scsi-SATA_disk1-part4
     # cryptsetup luksOpen /dev/disk/by-id/scsi-SATA_disk1-part4 luks1
-    # zpool create -o ashift=12 -d \
-          -o feature@async_destroy=enabled \
-          -o feature@bookmarks=enabled \
-          -o feature@embedded_data=enabled \
-          -o feature@empty_bpobj=enabled \
-          -o feature@enabled_txg=enabled \
-          -o feature@extensible_dataset=enabled \
-          -o feature@filesystem_limits=enabled \
-          -o feature@hole_birth=enabled \
-          -o feature@large_blocks=enabled \
-          -o feature@lz4_compress=enabled \
-          -o feature@spacemap_histogram=enabled \
-          -o feature@userobj_accounting=enabled \
+    # zpool create -o ashift=12 \
           -O acltype=posixacl -O canmount=off -O compression=lz4 \
-          -O normalization=formD -O relatime=on -O xattr=sa \
+          -O dnodesize=auto -O normalization=formD -O relatime=on -O xattr=sa \
           -O mountpoint=/ -R /mnt \
           rpool /dev/mapper/luks1
 
 * The use of `ashift=12` is recommended here because many drives today have 4KiB (or larger) physical sectors, even though they present 512B logical sectors.  Also, a future replacement drive may have 4KiB physical sectors (in which case `ashift=12` is desirable) or 4KiB logical sectors (in which case `ashift=12` is required).
-* GRUB does not support all of the zpool features. See `spa_feature_names` in [grub-core/fs/zfs/zfs.c](http://git.savannah.gnu.org/cgit/grub.git/tree/grub-core/fs/zfs/zfs.c#n276). This step creates a separate boot pool for `/boot` with the features limited to only those that GRUB supports, allowing the root pool to use any/all features. Note that GRUB opens the pool read-only, so all read-only compatible features are "supported" by GRUB.
 * Setting `-O acltype=posixacl` enables POSIX ACLs globally. If you do not want this, remove that option, but later add `-o acltype=posixacl` (note: lowercase "o") to the `zfs create` for `/var/log`, as [journald requires ACLs](https://askubuntu.com/questions/970886/journalctl-says-failed-to-search-journal-acl-operation-not-supported)
 * Setting `normalization=formD` eliminates some corner cases relating to UTF-8 filename normalization. It also implies `utf8only=on`, which means that only UTF-8 filenames are allowed. If you care to support non-UTF-8 filenames, do not use this option. For a discussion of why requiring UTF-8 filenames may be a bad idea, see [The problems with enforced UTF-8 only filenames](http://utcc.utoronto.ca/~cks/space/blog/linux/ForcedUTF8Filenames).
 * Setting `relatime=on` is a middle ground between classic POSIX `atime` behavior (with its significant performance impact) and `atime=off` (which provides the best performance by completely disabling atime updates). Since Linux 2.6.30, `relatime` has been the default for other filesystems. See [RedHat's documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/power_management_guide/relatime) for further information.
@@ -144,20 +149,24 @@ Choose one of the following options:
 
 **Hints:**
 * If you are creating a mirror or raidz topology, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part4 /dev/disk/by-id/scsi-SATA_disk2-part4` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks).  For LUKS, use `/dev/mapper/luks1`, `/dev/mapper/luks2`, etc., which you will have to create using `cryptsetup`.
-* The pool name is arbitrary.  On systems that can automatically install to ZFS, the root pool is named `rpool` by default.  If you work with multiple systems, it might be wise to use `hostname`, `hostname0`, or `hostname-1` instead.
+* The pool name is arbitrary. If changed, the new name must be used consistently. On systems that can automatically install to ZFS, the root pool is named `rpool` by default.
 
 ## Step 3: System Installation
 
-3.1  Create a filesystem dataset to act as a container:
+3.1  Create filesystem datasets to act as containers:
 
     # zfs create -o canmount=off -o mountpoint=none rpool/ROOT
+    # zfs create -o canmount=off -o mountpoint=none bpool/BOOT
 
 On Solaris systems, the root filesystem is cloned and the suffix is incremented for major system changes through `pkg image-update` or `beadm`. Similar functionality for APT is possible but currently unimplemented. Even without such a tool, it can still be used for manually created clones.
 
-3.2  Create a filesystem dataset for the root filesystem:
+3.2  Create filesystem datasets for the root and boot filesystems:
 
     # zfs create -o canmount=noauto -o mountpoint=/ rpool/ROOT/ubuntu
     # zfs mount rpool/ROOT/ubuntu
+
+    # zfs create -o canmount=noauto -o mountpoint=/boot bpool/BOOT/ubuntu
+    # zfs mount bpool/BOOT/ubuntu
 
 With ZFS, it is not normally necessary to use a mount command (either `mount` or `zfs mount`). This situation is an exception because of `canmount=noauto`.
 
@@ -214,13 +223,7 @@ The primary goal of this dataset layout is to separate the OS from user data. Th
 
 If you do nothing extra, `/tmp` will be stored as part of the root filesystem. Alternatively, you can create a separate dataset for `/tmp`, as shown above. This keeps the `/tmp` data out of snapshots of your root filesystem.  It also allows you to set a quota on `rpool/tmp`, if you want to limit the maximum space used. Otherwise, you can use a tmpfs (RAM filesystem) later.
 
-3.4  For LUKS installs only:
-
-    # mke2fs -t ext2 /dev/disk/by-id/scsi-SATA_disk1-part3
-    # mkdir /mnt/boot
-    # mount /dev/disk/by-id/scsi-SATA_disk1-part3 /mnt/boot
-
-3.5  Install the minimal system:
+3.4  Install the minimal system:
 
     # debootstrap bionic /mnt
     # zfs set devices=off rpool
@@ -299,10 +302,6 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
 4.7  For LUKS installs only:
 
-    # echo UUID=$(blkid -s UUID -o value \
-          /dev/disk/by-id/scsi-SATA_disk1-part3) \
-          /boot ext2 relatime 0 2 >> /etc/fstab
-
     # apt install --yes cryptsetup
 
     # echo luks1 UUID=$(blkid -s UUID -o value \
@@ -343,9 +342,109 @@ Install GRUB to the disk(s), not the partition(s).
 
     # passwd
 
-4.11  Fix filesystem mount ordering
+4.11  Enable importing bpool
+
+This ensures that `bpool` is always imported, regardless of whether `/etc/zfs/zpool.cache` exists, whether it is in the cachefile or not, or whether `zfs-import-scan.service` is enabled.
+
+    # cat >> /etc/systemd/system/zfs-import-bpool.service << EOF
+    [Unit]
+    DefaultDependencies=no
+    Before=zfs-import-scan.service
+    Before=zfs-import-cache.service
+    
+    [Service]
+    Type=oneshot
+    RemainAfterExit=yes
+    ExecStart=/sbin/zpool import -N -o cachefile=none bpool
+    
+    [Install]
+    WantedBy=zfs-import.target
+EOF
+    # systemctl enable zfs-import-bpool.service
+
+4.12  Optional (but recommended): Mount a tmpfs to /tmp
+
+If you chose to create a `/tmp` dataset above, skip this step, as they are mutually exclusive choices. Otherwise, you can put `/tmp` on a tmpfs (RAM filesystem) by enabling the `tmp.mount` unit.
+
+    # cp /usr/share/systemd/tmp.mount /etc/systemd/system/
+    # systemctl enable tmp.mount
+
+## Step 5: GRUB Installation
+
+5.1  Verify that the ZFS boot filesystem is recognized:
+
+    # grub-probe /boot
+    zfs
+
+5.2  Refresh the initrd files:
+
+    # update-initramfs -u -k all
+    update-initramfs: Generating /boot/initrd.img-4.15.0-46-generic
+
+**Note:** When using LUKS, this will print "WARNING could not determine root device from /etc/fstab". This is because [cryptsetup does not support ZFS](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906).
+
+5.3  Workaround GRUB's missing zpool-features support:
+
+    # vi /etc/default/grub
+    Set: GRUB_CMDLINE_LINUX="root=ZFS=rpool/ROOT/ubuntu"
+
+5.4  Optional (but highly recommended): Make debugging GRUB easier:
+
+    # vi /etc/default/grub
+    Comment out: GRUB_TIMEOUT_STYLE=hidden
+    Set: GRUB_TIMEOUT=5
+    Remove quiet and splash from: GRUB_CMDLINE_LINUX_DEFAULT
+    Uncomment: GRUB_TERMINAL=console
+    Save and quit.
+
+Later, once the system has rebooted twice and you are sure everything is working, you can undo these changes, if desired.
+
+5.5  Update the boot configuration:
+
+    # update-grub
+    Generating grub configuration file ...
+    Found linux image: /boot/vmlinuz-4.15.0-46-generic
+    Found initrd image: /boot/initrd.img-4.15.0-46-generic
+    done
+
+5.6  Install the boot loader
+
+5.6a  For legacy (MBR) booting, install GRUB to the MBR:
+
+    # grub-install /dev/disk/by-id/scsi-SATA_disk1
+    Installing for i386-pc platform.
+    Installation finished. No error reported.
+
+Do not reboot the computer until you get exactly that result message. Note that you are installing GRUB to the whole disk, not a partition.
+
+If you are creating a mirror, repeat the grub-install command for each disk in the pool.
+
+5.6b  For UEFI booting, install GRUB:
+
+    # grub-install --target=x86_64-efi --efi-directory=/boot/efi \
+          --bootloader-id=ubuntu --recheck --no-floppy
+
+5.7  Verify that the ZFS module is installed:
+
+    # ls /boot/grub/*/zfs.mod
+
+5.8  Fix filesystem mount ordering
 
 [Until ZFS gains a systemd mount generator](https://github.com/zfsonlinux/zfs/issues/4898), there are races between mounting filesystems and starting certain daemons. In practice, the issues (e.g. [#5754](https://github.com/zfsonlinux/zfs/issues/5754)) seem to be with certain filesystems in `/var`, specifically `/var/log` and `/var/tmp`. Setting these to use `legacy` mounting, and listing them in `/etc/fstab` makes systemd aware that these are separate mountpoints. In turn, `rsyslog.service` depends on `var-log.mount` by way of `local-fs.target` and services using the `PrivateTmp` feature of systemd automatically use `After=var-tmp.mount`.
+
+Until there is support for mounting `/boot` in the initramfs, we also need to mount that, because it was marked `canmount=noauto`. Also, with UEFI, we need to ensure it is mounted before its child filesystem `/boot/efi`.
+
+`rpool` is guaranteed to be imported by the initramfs, so there is no point in adding `x-systemd.requires=zfs-import.target` to those filesystems.
+
+
+    For UEFI booting, unmount /boot/efi first:
+    # umount /boot/efi
+
+    Everything else applies to both BIOS and UEFI booting:
+
+    # zfs set mountpoint=legacy bpool/BOOT/ubuntu
+    # echo bpool/BOOT/ubuntu /boot zfs \
+          nodev,relatime,x-systemd.requires=zfs-import-bpool.service 0 0 >> /etc/fstab
 
     # zfs set mountpoint=legacy rpool/var/log
     # echo rpool/var/log /var/log zfs nodev,relatime 0 0 >> /etc/fstab
@@ -361,71 +460,11 @@ Install GRUB to the disk(s), not the partition(s).
     # zfs set mountpoint=legacy rpool/tmp
     # echo rpool/tmp /tmp zfs nodev,relatime 0 0 >> /etc/fstab
 
-4.12  Optional (but recommended): Mount a tmpfs to /tmp
-
-If you chose to create a `/tmp` dataset above, skip this step, as they are mutually exclusive choices. Otherwise, you can put `/tmp` on a tmpfs (RAM filesystem) by enabling the `tmp.mount` unit.
-
-    # cp /usr/share/systemd/tmp.mount /etc/systemd/system/
-    # systemctl enable tmp.mount
-
-## Step 5: GRUB Installation
-
-5.1  Verify that the ZFS root filesystem is recognized:
-
-    # grub-probe /
-    zfs
-
-5.2  Refresh the initrd files:
-
-    # update-initramfs -u -k all
-    update-initramfs: Generating /boot/initrd.img-4.15.0-46-generic
-
-**Note:** When using LUKS, this will print "WARNING could not determine root device from /etc/fstab". This is because [cryptsetup does not support ZFS](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906).
-
-5.3  Optional (but highly recommended): Make debugging GRUB easier:
-
-    # vi /etc/default/grub
-    Comment out: GRUB_TIMEOUT_STYLE=hidden
-    Set: GRUB_TIMEOUT=5
-    Remove quiet and splash from: GRUB_CMDLINE_LINUX_DEFAULT
-    Uncomment: GRUB_TERMINAL=console
-    Save and quit.
-
-Later, once the system has rebooted twice and you are sure everything is working, you can undo these changes, if desired.
-
-5.4  Update the boot configuration:
-
-    # update-grub
-    Generating grub configuration file ...
-    Found linux image: /boot/vmlinuz-4.15.0-46-generic
-    Found initrd image: /boot/initrd.img-4.15.0-46-generic
-    done
-
-5.5  Install the boot loader
-
-5.5a  For legacy (MBR) booting, install GRUB to the MBR:
-
-    # grub-install /dev/disk/by-id/scsi-SATA_disk1
-    Installing for i386-pc platform.
-    Installation finished. No error reported.
-
-Do not reboot the computer until you get exactly that result message. Note that you are installing GRUB to the whole disk, not a partition.
-
-If you are creating a mirror, repeat the grub-install command for each disk in the pool.
-
-5.5b  For UEFI booting, install GRUB:
-
-    # grub-install --target=x86_64-efi --efi-directory=/boot/efi \
-          --bootloader-id=ubuntu --recheck --no-floppy
-
-5.6  Verify that the ZFS module is installed:
-
-    # ls /boot/grub/*/zfs.mod
-
 ## Step 6: First Boot
 
 6.1  Snapshot the initial installation:
 
+    # zfs snapshot bpool/BOOT/ubuntu@install
     # zfs snapshot rpool/ROOT/ubuntu@install
 
 In the future, you will likely want to take snapshots before each upgrade, and remove old snapshots (including this one) at some point to save space.
@@ -437,7 +476,7 @@ In the future, you will likely want to take snapshots before each upgrade, and r
 6.3  Run these commands in the LiveCD environment to unmount all filesystems:
 
     # mount | grep -v zfs | tac | awk '/\/mnt/ {print $3}' | xargs -i{} umount -lf {}
-    # zpool export rpool
+    # zpool export -a
 
 6.4  Reboot:
 
@@ -551,6 +590,7 @@ As `/var/log` is already compressed by ZFS, logrotate’s compression is going t
 
 9.2  Optional: Delete the snapshot of the initial installation:
 
+    $ sudo zfs destroy bpool/BOOT/ubuntu@install
     $ sudo zfs destroy rpool/ROOT/ubuntu@install
 
 9.3  Optional: Disable the root password
@@ -578,11 +618,12 @@ Go through [Step 1: Prepare The Install Environment](#step-1-prepare-the-install
 This will automatically import your pool. Export it and re-import it to get the mounts right:
 
     For LUKS, first unlock the disk(s):
-    # cryptsetup luksOpen /dev/disk/by-id/scsi-SATA_disk1-part3 luks1
+    # cryptsetup luksOpen /dev/disk/by-id/scsi-SATA_disk1-part4 luks1
     Repeat for additional disks, if this is a mirror or raidz topology.
 
     # zpool export -a
     # zpool import -N -R /mnt rpool
+    # zpool import -N -R /mnt bpool
     # zfs mount rpool/ROOT/ubuntu
     # zfs mount -a
 
@@ -592,6 +633,8 @@ If needed, you can chroot into your installed environment:
     # mount --rbind /proc /mnt/proc
     # mount --rbind /sys  /mnt/sys
     # chroot /mnt /bin/bash --login
+    # mount /boot
+    # mount -a
 
 Do whatever you need to do to fix your system.
 
@@ -599,7 +642,7 @@ When done, cleanup:
 
     # exit
     # mount | grep -v zfs | tac | awk '/\/mnt/ {print $3}' | xargs -i{} umount -lf {}
-    # zpool export rpool
+    # zpool export -a
     # reboot
 
 ### MPT2SAS
