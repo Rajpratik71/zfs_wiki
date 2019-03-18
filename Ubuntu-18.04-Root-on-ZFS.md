@@ -91,7 +91,19 @@ Choose one of the following options:
 
 2.3a  Unencrypted:
 
-    # zpool create -o ashift=12 \
+    # zpool create -o ashift=12 -d \
+          -o feature@async_destroy=enabled \
+          -o feature@bookmarks=enabled \
+          -o feature@embedded_data=enabled \
+          -o feature@empty_bpobj=enabled \
+          -o feature@enabled_txg=enabled \
+          -o feature@extensible_dataset=enabled \
+          -o feature@filesystem_limits=enabled \
+          -o feature@hole_birth=enabled \
+          -o feature@large_blocks=enabled \
+          -o feature@lz4_compress=enabled \
+          -o feature@spacemap_histogram=enabled \
+          -o feature@userobj_accounting=enabled \
           -O acltype=posixacl -O canmount=off -O compression=lz4 \
           -O normalization=formD -O relatime=on -O xattr=sa \
           -O mountpoint=/ -R /mnt \
@@ -102,13 +114,26 @@ Choose one of the following options:
     # cryptsetup luksFormat -c aes-xts-plain64 -s 256 -h sha256 \
           /dev/disk/by-id/scsi-SATA_disk1-part4
     # cryptsetup luksOpen /dev/disk/by-id/scsi-SATA_disk1-part4 luks1
-    # zpool create -o ashift=12 \
+    # zpool create -o ashift=12 -d \
+          -o feature@async_destroy=enabled \
+          -o feature@bookmarks=enabled \
+          -o feature@embedded_data=enabled \
+          -o feature@empty_bpobj=enabled \
+          -o feature@enabled_txg=enabled \
+          -o feature@extensible_dataset=enabled \
+          -o feature@filesystem_limits=enabled \
+          -o feature@hole_birth=enabled \
+          -o feature@large_blocks=enabled \
+          -o feature@lz4_compress=enabled \
+          -o feature@spacemap_histogram=enabled \
+          -o feature@userobj_accounting=enabled \
           -O acltype=posixacl -O canmount=off -O compression=lz4 \
           -O normalization=formD -O relatime=on -O xattr=sa \
           -O mountpoint=/ -R /mnt \
           rpool /dev/mapper/luks1
 
 * The use of `ashift=12` is recommended here because many drives today have 4KiB (or larger) physical sectors, even though they present 512B logical sectors.  Also, a future replacement drive may have 4KiB physical sectors (in which case `ashift=12` is desirable) or 4KiB logical sectors (in which case `ashift=12` is required).
+* GRUB does not support all of the zpool features. See `spa_feature_names` in [grub-core/fs/zfs/zfs.c](http://git.savannah.gnu.org/cgit/grub.git/tree/grub-core/fs/zfs/zfs.c#n276). This step creates a separate boot pool for `/boot` with the features limited to only those that GRUB supports, allowing the root pool to use any/all features. Note that GRUB opens the pool read-only, so all read-only compatible features are "supported" by GRUB.
 * Setting `-O acltype=posixacl` enables POSIX ACLs globally. If you do not want this, remove that option, but later add `-o acltype=posixacl` (note: lowercase "o") to the `zfs create` for `/var/log`, as [journald requires ACLs](https://askubuntu.com/questions/970886/journalctl-says-failed-to-search-journal-acl-operation-not-supported)
 * Setting `normalization=formD` eliminates some corner cases relating to UTF-8 filename normalization. It also implies `utf8only=on`, which means that only UTF-8 filenames are allowed. If you care to support non-UTF-8 filenames, do not use this option. For a discussion of why requiring UTF-8 filenames may be a bad idea, see [The problems with enforced UTF-8 only filenames](http://utcc.utoronto.ca/~cks/space/blog/linux/ForcedUTF8Filenames).
 * Setting `relatime=on` is a middle ground between classic POSIX `atime` behavior (with its significant performance impact) and `atime=off` (which provides the best performance by completely disabling atime updates). Since Linux 2.6.30, `relatime` has been the default for other filesystems. See [RedHat's documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/power_management_guide/relatime) for further information.
