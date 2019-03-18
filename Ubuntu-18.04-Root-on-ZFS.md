@@ -543,6 +543,9 @@ Go through [Step 1: Prepare The Install Environment](#step-1-prepare-the-install
 
 This will automatically import your pool. Export it and re-import it to get the mounts right:
 
+    For LUKS, first unlock the disk:
+    # cryptsetup luksOpen /dev/disk/by-id/scsi-SATA_disk1-part4 luks1
+
     # zpool export -a
     # zpool import -N -R /mnt rpool
     # zfs mount rpool/ROOT/ubuntu
