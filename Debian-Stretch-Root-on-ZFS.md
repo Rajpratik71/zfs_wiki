@@ -130,6 +130,9 @@ With ZFS, it is not normally necessary to use a mount command (either `mount` or
     # zfs create                                 rpool/var/log
     # zfs create                                 rpool/var/spool
 
+    The datasets below are optional, depending on your preferences and/or
+    software choices:
+
     If you wish to exclude these from snapshots:
     # zfs create -o com.sun:auto-snapshot=false  rpool/var/cache
     # zfs create -o com.sun:auto-snapshot=false  rpool/var/tmp
