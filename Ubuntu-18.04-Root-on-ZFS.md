@@ -516,7 +516,7 @@ If you installed to multiple disks, install GRUB on the additional disks:
     # dd if=/dev/disk/by-id/scsi-SATA_disk1-part2 \
          of=/dev/disk/by-id/scsi-SATA_disk2-part2
     # efibootmgr -c -g -d /dev/disk/by-id/scsi-SATA_disk2 \
-          -p 3 -L "ubuntu-2" -l '\EFI\Ubuntu\grubx64.efi'
+          -p 3 -L "ubuntu-2" -l '\EFI\ubuntu\grubx64.efi'
 
     # mount /boot/efi
 
