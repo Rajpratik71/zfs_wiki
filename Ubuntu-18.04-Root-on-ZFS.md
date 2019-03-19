@@ -411,6 +411,8 @@ Later, once the system has rebooted twice and you are sure everything is working
     Found initrd image: /boot/initrd.img-4.15.0-46-generic
     done
 
+* Ignore errors from `osprober`, if present.
+
 5.6  Install the boot loader
 
 5.6a  For legacy (BIOS) booting, install GRUB to the MBR:
@@ -611,6 +613,8 @@ If you prefer the graphical boot process, you can re-enable it now. If you are u
     Save and quit.
 
     $ sudo update-grub
+
+* Ignore errors from `osprober`, if present.
 
 ## Troubleshooting
 
