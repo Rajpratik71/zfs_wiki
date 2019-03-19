@@ -398,8 +398,6 @@ The compression algorithm is set to `zle` because it is the cheapest available a
 
 7.2  Configure the swap device:
 
-Choose one of the following options.  If you are going to do an encrypted home directory later, you should use encrypted swap.
-
 **Caution**: Always use long `/dev/zvol` aliases in configuration files. Never use a short `/dev/zdX` device name.
 
     # mkswap -f /dev/zvol/rpool/swap
