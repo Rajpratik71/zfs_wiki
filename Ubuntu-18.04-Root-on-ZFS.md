@@ -420,7 +420,7 @@ Later, once the system has rebooted twice and you are sure everything is working
 
 Do not reboot the computer until you get exactly that result message. Note that you are installing GRUB to the whole disk, not a partition.
 
-If you are creating a mirror, repeat the grub-install command for each disk in the pool.
+If you are creating a mirror or raidz topology, repeat the `grub-install` command for each disk in the pool.
 
 5.6b  For UEFI booting, install GRUB:
 

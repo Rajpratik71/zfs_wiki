@@ -316,7 +316,7 @@ Later, once the system has rebooted twice and you are sure everything is working
 
 Do not reboot the computer until you get exactly that result message. Note that you are installing GRUB to the whole disk, not a partition.
 
-If you are creating a mirror, repeat the grub-install command for each disk in the pool.
+If you are creating a mirror or raidz topology, repeat the `grub-install` command for each disk in the pool.
 
 5.5b  For UEFI booting, install GRUB:
 
@@ -380,6 +380,28 @@ If you get a type of `rpool does not exist` message, you can try adding `rootdel
 6.7  Add your user account to the default set of groups for an administrator:
 
     # usermod -a -G audio,cdrom,dip,floppy,netdev,plugdev,sudo,video YOURUSERNAME
+
+6.8   Mirror GRUB
+
+If you installed to multiple disks, install GRUB on the additional disks:
+
+6.8a  For legacy (BIOS) booting:
+
+    # dpkg-reconfigure grub-pc
+    Hit enter until you get to the device selection screen.
+    Select (using the space bar) all of the disks (not partitions) in your pool.
+
+6.8b  UEFI
+
+    # umount /boot/efi
+
+    For the second and subsequent disks (increment debian-2 to -3, etc.):
+    # dd if=/dev/disk/by-id/scsi-SATA_disk1-part2 \
+         of=/dev/disk/by-id/scsi-SATA_disk2-part2
+    # efibootmgr -c -g -d /dev/disk/by-id/scsi-SATA_disk2 \
+          -p 3 -L "debian-2" -l '\EFI\debian\grubx64.efi'
+
+    # mount /boot/efi
 
 ## Step 7: Configure Swap
 
