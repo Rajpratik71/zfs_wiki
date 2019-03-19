@@ -5,7 +5,7 @@
 
 ### System Requirements
 * [Ubuntu 18.04.2 ("Bionic") Desktop CD](http://releases.ubuntu.com/18.04/ubuntu-18.04.2-desktop-amd64.iso) (*not* any server images)
-* A drive which presents 512B logical sectors.  Installing on a drive which presents 4KiB logical sectors (a “4Kn” drive) should work with UEFI partitioning, but this has not been tested.
+* Installing on a drive which presents 4KiB logical sectors (a “4Kn” drive) only works with UEFI booting. This not unique to ZFS. [GRUB does not and will not work on 4Kn with legacy (BIOS) booting.](http://savannah.gnu.org/bugs/?46700)
 
 Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory is recommended for normal performance in basic workloads.  If you wish to use deduplication, you will need [massive amounts of RAM](http://wiki.freebsd.org/ZFSTuningGuide#Deduplication). Enabling deduplication is a permanent change that cannot be easily reverted.
 
@@ -62,23 +62,23 @@ If you have a second system, using SSH to access the target system can be conven
 2.2  Partition your disk(s):
 
     Run this if you need legacy (BIOS) booting:
-    # sgdisk -a1 -n1:40:2047  -t1:EF02 /dev/disk/by-id/scsi-SATA_disk1
+    # sgdisk -a1 -n1:24K:+1000K -t1:EF02 /dev/disk/by-id/scsi-SATA_disk1
 
     Run this for UEFI booting (for use now or in the future):
-    # sgdisk     -n2:1M:+512M -t2:EF00 /dev/disk/by-id/scsi-SATA_disk1
+    # sgdisk     -n2:1M:+512M   -t2:EF00 /dev/disk/by-id/scsi-SATA_disk1
 
     Run this for the boot pool:
-    # sgdisk     -n3:0:+512M  -t3:BF01 /dev/disk/by-id/scsi-SATA_disk1
+    # sgdisk     -n3:0:+512M    -t3:BF01 /dev/disk/by-id/scsi-SATA_disk1
 
 Choose one of the following options:
 
 2.2a  Unencrypted:
 
-    # sgdisk     -n4:0:0      -t4:BF01 /dev/disk/by-id/scsi-SATA_disk1
+    # sgdisk     -n4:0:0        -t4:BF01 /dev/disk/by-id/scsi-SATA_disk1
 
 2.2b  LUKS:
 
-    # sgdisk     -n4:0:0      -t4:8300 /dev/disk/by-id/scsi-SATA_disk1
+    # sgdisk     -n4:0:0        -t4:8300 /dev/disk/by-id/scsi-SATA_disk1
 
 Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` device nodes directly can cause sporadic import failures, especially on systems that have more than one storage pool.
 
@@ -325,13 +325,15 @@ Install GRUB to the disk(s), not the partition(s).
 4.8b  Install GRUB for UEFI booting
 
     # apt install dosfstools
-    # mkdosfs -F 32 -n EFI /dev/disk/by-id/scsi-SATA_disk1-part2
+    # mkdosfs -F 32 -s 1 -n EFI /dev/disk/by-id/scsi-SATA_disk1-part2
     # mkdir /boot/efi
     # echo PARTUUID=$(blkid -s PARTUUID -o value \
           /dev/disk/by-id/scsi-SATA_disk1-part2) \
           /boot/efi vfat nofail,x-systemd.device-timeout=1 0 1 >> /etc/fstab
     # mount /boot/efi
     # apt install --yes grub-efi-amd64-signed shim-signed
+
+* The `-s 1` for `mkdosfs` is only necessary for drives which present 4 KiB logical sectors (“4Kn” drives) to meet the minimum cluster size (given the partition size of 512 MiB) for FAT32. It also works fine on drives which present 512 B sectors.
 
 4.9  Setup system groups:
 
