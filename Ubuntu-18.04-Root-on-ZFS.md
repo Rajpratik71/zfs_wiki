@@ -249,7 +249,8 @@ The `debootstrap` command leaves the new system in an unconfigured state.  An al
     Find the interface name:
     # ip addr show
 
-    # vi /mnt/etc/netplan/NAME.yaml
+    Adjust NAME below to match your interface name:
+    # vi /etc/netplan/01-netcfg.yaml
     network:
       version: 2
       ethernets:
@@ -566,7 +567,6 @@ Choose one of the following options:
 
 **Hint**: If you are installing a full GUI environment, you will likely want to manage your network with NetworkManager:
 
-    # rm /etc/netplan/NAME.yaml
     # vi /etc/netplan/01-netcfg.yaml
     network:
       version: 2
