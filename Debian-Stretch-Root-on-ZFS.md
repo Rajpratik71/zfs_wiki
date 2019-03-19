@@ -104,7 +104,7 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
 
 **Hints:**
 * If you are creating a mirror or raidz topology, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part4 /dev/disk/by-id/scsi-SATA_disk2-part4` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks).
-* The pool name is arbitrary.  On systems that can automatically install to ZFS, the root pool is named `rpool` by default.  If you work with multiple systems, it might be wise to use `hostname`, `hostname0`, or `hostname-1` instead.
+* The pool name is arbitrary.  On systems that can automatically install to ZFS, the root pool is named `rpool` by default.
 
 ## Step 3: System Installation
 
@@ -123,8 +123,6 @@ On Solaris systems, the root filesystem is cloned and the suffix is incremented 
 With ZFS, it is not normally necessary to use a mount command (either `mount` or `zfs mount`). This situation is an exception because of `canmount=noauto`.
 
 3.3  Create datasets:
-
-The primary goal of this dataset layout is to separate the OS from user data. This allows the root filesystem to be rolled back without rolling back user data such as logs (in `/var/log`). This will be especially important if/when a `beadm` or similar utility is integrated. The `com.sun.auto-snapshot` setting is used by some ZFS snapshot utilities to exclude transient data.
 
     # zfs create                                 rpool/home
     # zfs create -o mountpoint=/root             rpool/home/root
@@ -172,6 +170,8 @@ The primary goal of this dataset layout is to separate the OS from user data. Th
     A tmpfs is recommended later, but if you want a separate dataset for /tmp:
     # zfs create -o com.sun:auto-snapshot=false  rpool/tmp
     # chmod 1777 /mnt/tmp
+
+The primary goal of this dataset layout is to separate the OS from user data. This allows the root filesystem to be rolled back without rolling back user data such as logs (in `/var/log`). This will be especially important if/when a `beadm` or similar utility is integrated. The `com.sun.auto-snapshot` setting is used by some ZFS snapshot utilities to exclude transient data.
 
 If you do nothing extra, `/tmp` will be stored as part of the root filesystem. Alternatively, you can create a separate dataset for `/tmp`, as shown above. This keeps the `/tmp` data out of snapshots of your root filesystem.  It also allows you to set a quota on `rpool/tmp`, if you want to limit the maximum space used. Otherwise, you can use a tmpfs (RAM filesystem) later.
 
@@ -270,25 +270,7 @@ Install GRUB to the disk(s), not the partition(s).
 
     # passwd
 
-4.8  Fix filesystem mount ordering
-
-[Until ZFS gains a systemd mount generator](https://github.com/zfsonlinux/zfs/issues/4898), there are races between mounting filesystems and starting certain daemons. In practice, the issues (e.g. [#5754](https://github.com/zfsonlinux/zfs/issues/5754)) seem to be with certain filesystems in `/var`, specifically `/var/log` and `/var/tmp`. Setting these to use `legacy` mounting, and listing them in `/etc/fstab` makes systemd aware that these are separate mountpoints. In turn, `rsyslog.service` depends on `var-log.mount` by way of `local-fs.target` and services using the `PrivateTmp` feature of systemd automatically use `After=var-tmp.mount`.
-
-    # zfs set mountpoint=legacy rpool/var/log
-    # echo rpool/var/log /var/log zfs nodev,relatime 0 0 >> /etc/fstab
-
-    # zfs set mountpoint=legacy rpool/var/spool
-    # echo rpool/var/spool /var/spool zfs nodev,relatime 0 0 >> /etc/fstab
-
-    If you created a /var/tmp dataset:
-    # zfs set mountpoint=legacy rpool/var/tmp
-    # echo rpool/var/tmp /var/tmp zfs nodev,relatime 0 0 >> /etc/fstab
-
-    If you created a /tmp dataset:
-    # zfs set mountpoint=legacy rpool/tmp
-    # echo rpool/tmp /tmp zfs nodev,relatime 0 0 >> /etc/fstab
-
-4.9  Optional (but recommended): Mount a tmpfs to /tmp
+4.8  Optional (but recommended): Mount a tmpfs to /tmp
 
 If you chose to create a `/tmp` dataset above, skip this step, as they are mutually exclusive choices. Otherwise, you can put `/tmp` on a tmpfs (RAM filesystem) by enabling the `tmp.mount` unit.
 
@@ -345,6 +327,24 @@ If you are creating a mirror, repeat the grub-install command for each disk in t
 
     # ls /boot/grub/*/zfs.mod
 
+5.7  Fix filesystem mount ordering
+
+[Until ZFS gains a systemd mount generator](https://github.com/zfsonlinux/zfs/issues/4898), there are races between mounting filesystems and starting certain daemons. In practice, the issues (e.g. [#5754](https://github.com/zfsonlinux/zfs/issues/5754)) seem to be with certain filesystems in `/var`, specifically `/var/log` and `/var/tmp`. Setting these to use `legacy` mounting, and listing them in `/etc/fstab` makes systemd aware that these are separate mountpoints. In turn, `rsyslog.service` depends on `var-log.mount` by way of `local-fs.target` and services using the `PrivateTmp` feature of systemd automatically use `After=var-tmp.mount`.
+
+    # zfs set mountpoint=legacy rpool/var/log
+    # echo rpool/var/log /var/log zfs nodev,relatime 0 0 >> /etc/fstab
+
+    # zfs set mountpoint=legacy rpool/var/spool
+    # echo rpool/var/spool /var/spool zfs nodev,relatime 0 0 >> /etc/fstab
+
+    If you created a /var/tmp dataset:
+    # zfs set mountpoint=legacy rpool/var/tmp
+    # echo rpool/var/tmp /var/tmp zfs nodev,relatime 0 0 >> /etc/fstab
+
+    If you created a /tmp dataset:
+    # zfs set mountpoint=legacy rpool/tmp
+    # echo rpool/tmp /tmp zfs nodev,relatime 0 0 >> /etc/fstab
+
 ## Step 6: First Boot
 
 6.1  Snapshot the initial installation:
@@ -360,7 +360,7 @@ In the future, you will likely want to take snapshots before each upgrade, and r
 6.3  Run these commands in the LiveCD environment to unmount all filesystems:
 
     # mount | grep -v zfs | tac | awk '/\/mnt/ {print $3}' | xargs -i{} umount -lf {}
-    # zpool export rpool
+    # zpool export -a
 
 6.4  Reboot:
 
@@ -476,7 +476,7 @@ When done, cleanup:
 
     # exit
     # mount | grep -v zfs | tac | awk '/\/mnt/ {print $3}' | xargs -i{} umount -lf {}
-    # zpool export rpool
+    # zpool export -a
     # reboot
 
 ### MPT2SAS
