@@ -88,7 +88,6 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
           -o feature@large_blocks=enabled \
           -o feature@lz4_compress=enabled \
           -o feature@spacemap_histogram=enabled \
-          -o feature@userobj_accounting=enabled \
           -O acltype=posixacl -O canmount=off -O compression=lz4 \
           -O normalization=formD -O relatime=on -O xattr=sa \
           -O mountpoint=/ -R /mnt \
