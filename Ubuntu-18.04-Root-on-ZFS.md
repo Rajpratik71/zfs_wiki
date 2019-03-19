@@ -317,7 +317,7 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
 Choose one of the following options:
 
-4.8a  Install GRUB for legacy (MBR) booting
+4.8a  Install GRUB for legacy (BIOS) booting
 
     # apt install --yes grub-pc
 
@@ -412,7 +412,7 @@ Later, once the system has rebooted twice and you are sure everything is working
 
 5.6  Install the boot loader
 
-5.6a  For legacy (MBR) booting, install GRUB to the MBR:
+5.6a  For legacy (BIOS) booting, install GRUB to the MBR:
 
     # grub-install /dev/disk/by-id/scsi-SATA_disk1
     Installing for i386-pc platform.
@@ -502,7 +502,7 @@ In the future, you will likely want to take snapshots before each upgrade, and r
 
 If you installed to multiple disks, install GRUB on the additional disks:
 
-6.8a  For legacy (MBR) booting:
+6.8a  For legacy (BIOS) booting:
 
     # dpkg-reconfigure grub-pc
     Hit enter until you get to the device selection screen.
