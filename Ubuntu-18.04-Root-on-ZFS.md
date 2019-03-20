@@ -351,7 +351,7 @@ Install GRUB to the disk(s), not the partition(s).
 4.11  Enable importing bpool
 
 This ensures that `bpool` is always imported, regardless of whether `/etc/zfs/zpool.cache` exists, whether it is in the cachefile or not, or whether `zfs-import-scan.service` is enabled.
-
+```
     # cat >> /etc/systemd/system/zfs-import-bpool.service << EOF
     [Unit]
     DefaultDependencies=no
@@ -367,7 +367,7 @@ This ensures that `bpool` is always imported, regardless of whether `/etc/zfs/zp
     WantedBy=zfs-import.target
 EOF
     # systemctl enable zfs-import-bpool.service
-
+```
 4.12  Optional (but recommended): Mount a tmpfs to /tmp
 
 If you chose to create a `/tmp` dataset above, skip this step, as they are mutually exclusive choices. Otherwise, you can put `/tmp` on a tmpfs (RAM filesystem) by enabling the `tmp.mount` unit.
