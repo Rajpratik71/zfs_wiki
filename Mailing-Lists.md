@@ -17,5 +17,5 @@
 [zfs-devel-archive]: http://list.zfsonlinux.org/pipermail/zfs-devel/
 [zfs-devel-groups]: https://groups.google.com/a/zfsonlinux.org/group/zfs-devel/topics?lnk
 [open-zfs]: http://open-zfs.org/wiki/Mailing_list
-[open-zfs-archive]: http://lists.open-zfs.org/pipermail/developer/
+[open-zfs-archive]: https://openzfs.topicbox.com/groups/developer
 
