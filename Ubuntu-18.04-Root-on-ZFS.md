@@ -544,7 +544,7 @@ The compression algorithm is set to `zle` because it is the cheapest available a
 **Caution**: Always use long `/dev/zvol` aliases in configuration files. Never use a short `/dev/zdX` device name.
 
     # mkswap -f /dev/zvol/rpool/swap
-    # echo /dev/zvol/rpool/swap none swap defaults 0 0 >> /etc/fstab
+    # echo /dev/zvol/rpool/swap none swap discard 0 0 >> /etc/fstab
     # echo RESUME=none > /etc/initramfs-tools/conf.d/resume
 
 The `RESUME=none` is necessary to disable resuming from hibernation.  This does not work, as the zvol is not present (because the pool has not yet been imported) at the time the resume script runs.  If it is not disabled, the boot process hangs for 30 seconds waiting for the swap zvol to appear.

@@ -425,7 +425,7 @@ The compression algorithm is set to `zle` because it is the cheapest available a
 **Caution**: Always use long `/dev/zvol` aliases in configuration files. Never use a short `/dev/zdX` device name.
 
     # mkswap -f /dev/zvol/rpool/swap
-    # echo /dev/zvol/rpool/swap none swap defaults 0 0 >> /etc/fstab
+    # echo /dev/zvol/rpool/swap none swap discard 0 0 >> /etc/fstab
 
 7.3  Enable the swap device:
 
