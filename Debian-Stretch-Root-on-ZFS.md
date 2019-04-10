@@ -16,7 +16,7 @@ If you need help, reach out to the community using the [zfs-discuss mailing list
 
 ## Encryption
 
-This guide supports the two different Ubuntu encryption options: unencrypted and LUKS (full-disk encryption). ZFS native encryption has not yet been released.
+This guide supports two different encryption options: unencrypted and LUKS (full-disk encryption). ZFS native encryption has not yet been released.
 
 Unencrypted does not encrypt anything, of course. All ZFS features are fully available. With no encryption happening, this option naturally has the best performance.
 
