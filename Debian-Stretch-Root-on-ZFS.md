@@ -41,7 +41,7 @@ If you have a second system, using SSH to access the target system can be conven
 
     $ sudo -i
 
-1.4  Add `contrib` archive area:
+1.4  Setup and update the repositories:
 
     # echo deb http://deb.debian.org/debian stretch contrib >> /etc/apt/sources.list
     # echo deb http://deb.debian.org/debian stretch-backports main contrib >> /etc/apt/sources.list
@@ -52,6 +52,8 @@ If you have a second system, using SSH to access the target system can be conven
     # apt install --yes debootstrap gdisk dkms dpkg-dev linux-headers-$(uname -r)
     # apt install --yes -t stretch-backports zfs-dkms
     # modprobe zfs
+
+* The dkms dependency is installed manually just so it comes from stretch and not stretch-backports. This is not critical.
 
 ## Step 2: Disk Formatting
 
@@ -270,8 +272,14 @@ Customize this file if the system is not a DHCP client.
     deb http://deb.debian.org/debian stretch main contrib
     deb-src http://deb.debian.org/debian stretch main contrib
 
+    # vi /etc/apt/sources.list.d/stretch-backports.list
     deb http://deb.debian.org/debian stretch-backports main contrib
     deb-src http://deb.debian.org/debian stretch-backports main contrib
+
+    # vi /etc/apt/preferences.d/90_zfs
+    Package: libnvpair1linux libuutil1linux libzfs2linux libzpool2linux spl-dkms zfs-dkms zfs-test zfsutils-linux zfsutils-linux-dev zfs-zed
+    Pin: release n=stretch-backports
+    Pin-Priority: 990
 
 4.4  Bind the virtual filesystems from the LiveCD environment to the new system and `chroot` into it:
 
@@ -296,8 +304,8 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
 4.6  Install ZFS in the chroot environment for the new system:
 
-    # apt install --yes dkms dpkg-dev linux-headers-$(uname -r) linux-image-amd64
-    # apt install --yes -t stretch-backports zfs-initramfs
+    # apt install --yes dpkg-dev linux-headers-$(uname -r) linux-image-amd64
+    # apt install --yes zfs-initramfs
 
 4.7  For LUKS installs only:
 

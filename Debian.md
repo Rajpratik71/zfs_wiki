@@ -11,25 +11,30 @@ Offical ZFS on Linux [DKMS](https://en.wikipedia.org/wiki/Dynamic_Kernel_Module_
 ## Installation
 For Debian Stretch, ZFS packages are included in the [contrib repository](https://packages.debian.org/source/stretch/zfs-linux). Newer ZFS packages are provided by the [backports repository](https://backports.debian.org/Instructions/).
 
+If you want to boot from ZFS, see [[Debian Stretch Root on ZFS]] instead.
+
 Add the backports repository:
 
-        # echo "deb http://deb.debian.org/debian stretch-backports main contrib" > /etc/apt/sources.list.d/stretch-backports.list
+    # vi /etc/apt/sources.list.d/stretch-backports.list
+    deb http://deb.debian.org/debian stretch-backports main contrib
+    deb-src http://deb.debian.org/debian stretch-backports main contrib
+
+    # vi /etc/apt/preferences.d/90_zfs
+    Package: libnvpair1linux libuutil1linux libzfs2linux libzpool2linux spl-dkms zfs-dkms zfs-test zfsutils-linux zfsutils-linux-dev zfs-zed
+    Pin: release n=stretch-backports
+    Pin-Priority: 990
 
 Update the list of packages:
 
-        # apt update
+    # apt update
 
 Install the kernel headers and other dependencies:
 
-        # apt install linux-headers-$(uname -r) linux-headers-amd64 dkms build-essential libelf-dev
+    # apt install --yes dpkg-dev linux-headers-$(uname -r) linux-image-amd64
 
 Install the zfs packages:
 
-        # apt-get install -t stretch-backports zfs-dkms zfsutils-linux
-
-If you want to boot from ZFS (for more information, see [[Debian Stretch Root on ZFS]]), you'll need the `zfs-initramfs` package too:
-
-        # apt-get install -t stretch-backports zfs-initramfs
+    # apt-get install zfs-dkms zfsutils-linux
 
 ## Jessie to Stretch update
 From Debian Stretch packages are included in Debian official `contrib` repository. Steps to reinstall packages:
