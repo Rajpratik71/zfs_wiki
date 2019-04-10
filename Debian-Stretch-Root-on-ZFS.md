@@ -405,9 +405,9 @@ If you installed to multiple disks, install GRUB on the additional disks:
 
     # mount /boot/efi
 
-## Step 7: Configure Swap
+## Step 7: (Optional) Configure Swap
 
-**CAUTION: Swap on ZFS pool may deadlock on systems with extremely high memory pressure, see** https://github.com/zfsonlinux/zfs/issues/7734
+**Caution**: On systems with extremely high memory pressure, using a zvol for swap can result in lockup, regardless of how much swap is still available.  This issue is currently being investigated in: https://github.com/zfsonlinux/zfs/issues/7734
 
 7.1  Create a volume dataset (zvol) for use as a swap device:
 
