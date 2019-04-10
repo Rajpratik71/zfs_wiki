@@ -9,7 +9,7 @@ Offical ZFS on Linux [DKMS](https://en.wikipedia.org/wiki/Dynamic_Kernel_Module_
 - [Related Links](#related-links)
 
 ## Installation
-For Debian Stretch, ZFS packages are included in the [contrib repository](https://packages.debian.org/source/stretch/zfs-linux). Newer ZFS packages are provided by [backports](https://backports.debian.org/Instructions/).
+For Debian Stretch, ZFS packages are included in the [contrib repository](https://packages.debian.org/source/stretch/zfs-linux). Newer ZFS packages are provided by the [backports repository](https://backports.debian.org/Instructions/).
 
 Add the backports repository:
 
@@ -19,15 +19,15 @@ Update the list of packages:
 
         # apt update
 
-Install kernel headers and other dependencies:
+Install the kernel headers and other dependencies:
 
         # apt install linux-headers-$(uname -r) linux-headers-amd64 dkms build-essential libelf-dev
 
-Install zfs packages:
+Install the zfs packages:
 
         # apt-get install -t stretch-backports zfs-dkms zfsutils-linux
 
-If you want to boot from ZFS (for more information, see [[Debian Stretch Root on ZFS]]), you'll need `zfs-initramfs` package too:
+If you want to boot from ZFS (for more information, see [[Debian Stretch Root on ZFS]]), you'll need the `zfs-initramfs` package too:
 
         # apt-get install -t stretch-backports zfs-initramfs
 
