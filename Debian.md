@@ -27,7 +27,7 @@ Install zfs packages:
 
         # apt-get install -t stretch-backports zfs-dkms zfsutils-linux
 
-If you want to boot from ZFS, you'll need `zfs-initramfs` package too:
+If you want to boot from ZFS (for more information, see [[Debian Stretch Root on ZFS]]), you'll need `zfs-initramfs` package too:
 
         # apt-get install -t stretch-backports zfs-initramfs
 
