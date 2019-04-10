@@ -371,7 +371,13 @@ If you chose to create a `/tmp` dataset above, skip this step, as they are mutua
     # cp /usr/share/systemd/tmp.mount /etc/systemd/system/
     # systemctl enable tmp.mount
 
-4.12  Setup system groups:
+4.12  Optional (but kindly requested): Install popcon
+
+The `popularity-contest` package reports the list of packages install on your system. Showing that ZFS is popular may be helpful in terms of long-term attention from the distro.
+
+    # apt install --yes popularity-contest
+
+4.13  Setup system groups:
 
     # addgroup --system lpadmin
     # addgroup --system sambashare

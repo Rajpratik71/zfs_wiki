@@ -389,6 +389,12 @@ If you chose to create a `/tmp` dataset above, skip this step, as they are mutua
     # cp /usr/share/systemd/tmp.mount /etc/systemd/system/
     # systemctl enable tmp.mount
 
+4.11  Optional (but kindly requested): Install popcon
+
+The `popularity-contest` package reports the list of packages install on your system. Showing that ZFS is popular may be helpful in terms of long-term attention from the distro.
+
+    # apt install --yes popularity-contest
+
 ## Step 5: GRUB Installation
 
 5.1  Verify that the ZFS boot filesystem is recognized:
