@@ -316,6 +316,7 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
     # apt install --yes git-buildpackage build-essential dkms libattr1-dev \
       libblkid-dev libselinux1-dev libssl-dev python3-cffi python3-setuptools \
       python3-sphinx python3-all-dev uuid-dev zlib1g-dev
+    # cd /root
     # git clone https://salsa.debian.org/zfsonlinux-team/zfs.git
     # cd zfs
     # git checkout pristine-tar
