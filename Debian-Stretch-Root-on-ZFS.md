@@ -35,7 +35,7 @@ If you have a second system, using SSH to access the target system can be conven
 
 1.4  Add `contrib` archive area:
 
-    # echo "deb http://ftp.debian.org/debian stretch main contrib" > /etc/apt/sources.list
+    # echo deb http://deb.debian.org/debian stretch contrib >> /etc/apt/sources.list
     # apt update
 
 1.5  Install ZFS in the Live CD environment:
@@ -210,10 +210,9 @@ Customize this file if the system is not a DHCP client.
 
 4.3  Configure the package sources:
 
-    Add `contrib` archive area:
     # vi /mnt/etc/apt/sources.list
-    deb http://ftp.debian.org/debian stretch main contrib
-    deb-src http://ftp.debian.org/debian stretch main contrib
+    deb http://deb.debian.org/debian stretch main contrib
+    deb-src http://deb.debian.org/debian stretch main contrib
 
 4.4  Bind the virtual filesystems from the LiveCD environment to the new system and `chroot` into it:
 
