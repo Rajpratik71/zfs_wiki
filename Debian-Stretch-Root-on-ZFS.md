@@ -304,7 +304,7 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
 4.6  Install ZFS in the chroot environment for the new system:
 
-    # apt install --yes dpkg-dev linux-headers-$(uname -r) linux-image-amd64
+    # apt install --yes dpkg-dev linux-headers-amd64 linux-image-amd64
     # apt install --yes zfs-initramfs
 
 4.7  For LUKS installs only:
