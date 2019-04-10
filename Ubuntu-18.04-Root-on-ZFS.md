@@ -347,7 +347,7 @@ Install GRUB to the disk(s), not the partition(s).
 
 This ensures that `bpool` is always imported, regardless of whether `/etc/zfs/zpool.cache` exists, whether it is in the cachefile or not, or whether `zfs-import-scan.service` is enabled.
 ```
-    # cat >> /etc/systemd/system/zfs-import-bpool.service << EOF
+    # vi /etc/systemd/system/zfs-import-bpool.service
     [Unit]
     DefaultDependencies=no
     Before=zfs-import-scan.service
@@ -360,7 +360,7 @@ This ensures that `bpool` is always imported, regardless of whether `/etc/zfs/zp
     
     [Install]
     WantedBy=zfs-import.target
-EOF
+
     # systemctl enable zfs-import-bpool.service
 ```
 
