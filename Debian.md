@@ -1,4 +1,4 @@
-Offical ZFS on Linux [DKMS][dkms] style packages are available from the [Debian GNU/Linux repository](https://tracker.debian.org/pkg/zfs-linux) for the following configurations.  The packages previously hosted at archive.zfsonlinux.org will not be updated and are not recommended for new installations.
+Offical ZFS on Linux [DKMS](https://en.wikipedia.org/wiki/Dynamic_Kernel_Module_Support) style packages are available from the [Debian GNU/Linux repository](https://tracker.debian.org/pkg/zfs-linux) for the following configurations.  The packages previously hosted at archive.zfsonlinux.org will not be updated and are not recommended for new installations.
 
 **Debian Releases:** Jessie, Stretch, and newer (testing, sid)
 **Architectures:** amd64
@@ -6,9 +6,7 @@ Offical ZFS on Linux [DKMS][dkms] style packages are available from the [Debian 
 # Table of contents
 - [Installation](#installation)
 - [Jessie to Stretch update](#jessie-to-stretch-update)
-- [[Debian GNU Linux initrd documentation]]
-- [[Debian Stretch Root on ZFS]]
-- [[Dual booting OS X and Debian Jessie with ZFS root, cross mounting and full disk encryption]]
+- [Related Links](#related-links)
 
 ## Installation
 For Debian Stretch, ZFS packages are included in the [contrib repository](https://packages.debian.org/source/stretch/zfs-linux). Newer ZFS packages are provided by [backports](https://backports.debian.org/Instructions/).
@@ -33,8 +31,6 @@ If you want to boot from ZFS, you'll need `zfs-initramfs` package too:
 
         # apt-get install -t stretch-backports zfs-initramfs
 
-[dkms]: https://en.wikipedia.org/wiki/Dynamic_Kernel_Module_Support
-
 ## Jessie to Stretch update
 From Debian Stretch packages are included in Debian official `contrib` repository. Steps to reinstall packages:
 
@@ -45,3 +41,8 @@ From Debian Stretch packages are included in Debian official `contrib` repositor
 2) Remove ZFSonLinux repository.
 
 3) [Install new packages](#installation), as described above.
+
+## Related Links
+- [[Debian GNU Linux initrd documentation]]
+- [[Debian Stretch Root on ZFS]]
+- [[Dual booting OS X and Debian Jessie with ZFS root, cross mounting and full disk encryption]]
