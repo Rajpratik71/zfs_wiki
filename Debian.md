@@ -11,7 +11,7 @@ Offical ZFS on Linux [DKMS](https://en.wikipedia.org/wiki/Dynamic_Kernel_Module_
 ## Installation
 For Debian Stretch, ZFS packages are included in the [contrib repository](https://packages.debian.org/source/stretch/zfs-linux). Newer ZFS packages are provided by the [backports repository](https://backports.debian.org/Instructions/).
 
-If you want to boot from ZFS, see [[Debian Stretch Root on ZFS]] instead.
+If you want to boot from ZFS, see [[Debian Stretch Root on ZFS]] instead. Or, for the not-yet-released Buster, see [[Debian Buster Root on ZFS]].
 
 Add the backports repository:
 
