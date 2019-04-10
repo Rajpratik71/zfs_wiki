@@ -339,16 +339,11 @@ Install GRUB to the disk(s), not the partition(s).
 
 * The `-s 1` for `mkdosfs` is only necessary for drives which present 4 KiB logical sectors (“4Kn” drives) to meet the minimum cluster size (given the partition size of 512 MiB) for FAT32. It also works fine on drives which present 512 B sectors.
 
-4.9  Setup system groups:
-
-    # addgroup --system lpadmin
-    # addgroup --system sambashare
-
-4.10  Set a root password
+4.9  Set a root password
 
     # passwd
 
-4.11  Enable importing bpool
+4.10  Enable importing bpool
 
 This ensures that `bpool` is always imported, regardless of whether `/etc/zfs/zpool.cache` exists, whether it is in the cachefile or not, or whether `zfs-import-scan.service` is enabled.
 ```
@@ -368,12 +363,18 @@ This ensures that `bpool` is always imported, regardless of whether `/etc/zfs/zp
 EOF
     # systemctl enable zfs-import-bpool.service
 ```
-4.12  Optional (but recommended): Mount a tmpfs to /tmp
+
+4.11  Optional (but recommended): Mount a tmpfs to /tmp
 
 If you chose to create a `/tmp` dataset above, skip this step, as they are mutually exclusive choices. Otherwise, you can put `/tmp` on a tmpfs (RAM filesystem) by enabling the `tmp.mount` unit.
 
     # cp /usr/share/systemd/tmp.mount /etc/systemd/system/
     # systemctl enable tmp.mount
+
+4.12  Setup system groups:
+
+    # addgroup --system lpadmin
+    # addgroup --system sambashare
 
 ## Step 5: GRUB Installation
 
