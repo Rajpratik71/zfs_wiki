@@ -6,7 +6,7 @@ Offical ZFS on Linux [DKMS][dkms] style packages are available from the [Debian 
 # Table of contents
 - [Installation](#installation)
 - [Jessie to Stretch update](#jessie-to-stretch-update)
-- [[Debian GNU Linux initrd documentation]]  
+- [[Debian GNU Linux initrd documentation]]
 - [[Debian Stretch Root on ZFS]]
 - [[Dual booting OS X and Debian Jessie with ZFS root, cross mounting and full disk encryption]]
 
