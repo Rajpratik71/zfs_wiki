@@ -599,7 +599,7 @@ As `/var/log` is already compressed by ZFS, logrotate’s compression is going t
 
 9.1  Wait for the system to boot normally. Login using the account you created. Ensure the system (including networking) works normally.
 
-9.2  Optional: Delete the snapshot of the initial installation:
+9.2  Optional: Delete the snapshots of the initial installation:
 
     $ sudo zfs destroy bpool/BOOT/ubuntu@install
     $ sudo zfs destroy rpool/ROOT/ubuntu@install
