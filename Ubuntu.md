@@ -1,4 +1,4 @@
-For Ubuntu 15.10 and newer, ZFS packages are [provided by the distribution][ubuntu-wiki].
+ZFS packages are [provided by the distribution][ubuntu-wiki].
 
 If you want to use ZFS as your root filesystem, see these instructions:
 * [[Ubuntu 18.04 Root on ZFS]]
