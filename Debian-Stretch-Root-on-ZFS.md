@@ -272,11 +272,11 @@ Customize this file if the system is not a DHCP client.
     deb http://deb.debian.org/debian stretch main contrib
     deb-src http://deb.debian.org/debian stretch main contrib
 
-    # vi /etc/apt/sources.list.d/stretch-backports.list
+    # vi /mnt/etc/apt/sources.list.d/stretch-backports.list
     deb http://deb.debian.org/debian stretch-backports main contrib
     deb-src http://deb.debian.org/debian stretch-backports main contrib
 
-    # vi /etc/apt/preferences.d/90_zfs
+    # vi /mnt/etc/apt/preferences.d/90_zfs
     Package: libnvpair1linux libuutil1linux libzfs2linux libzpool2linux spl-dkms zfs-dkms zfs-test zfsutils-linux zfsutils-linux-dev zfs-zed
     Pin: release n=stretch-backports
     Pin-Priority: 990
