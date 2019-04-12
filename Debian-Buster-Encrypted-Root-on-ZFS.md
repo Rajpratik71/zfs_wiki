@@ -155,6 +155,10 @@ Choose one of the following options:
 
 2.4b  Encrypted:
 
+**Warning:** Encryption is not yet stable.  See [errata #4 (scroll down on the page)](https://zfsonlinux.org/msg/ZFS-8000-ER/). If you use the encryption option below, on the next (release candidate or final) version of ZFS on Linux 0.8.0, you _will_ have to backup your data, then destroy and re-create the pool.  Because the encryption starts at the root of the pool, using `zfs send` and `zfs receive` within the pool is [not an option](https://github.com/zfsonlinux/zfs/pull/8308#issuecomment-476116094).
+
+**Warning:** Both [raw (#7378)](https://github.com/zfsonlinux/zfs/issues/7378) and [non-raw (#8616)](https://github.com/zfsonlinux/zfs/issues/8616) sends are broken, at least when encryption is involved. See also [#8540](https://github.com/zfsonlinux/zfs/issues/8540) and [#8565](https://github.com/zfsonlinux/zfs/issues/8565).
+
     # zpool create -o ashift=12 \
           -O acltype=posixacl -O canmount=off -O compression=lz4 \
           -O dnodesize=auto -O normalization=formD -O relatime=on -O xattr=sa \
