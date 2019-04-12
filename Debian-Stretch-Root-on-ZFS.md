@@ -16,11 +16,11 @@ If you need help, reach out to the community using the [zfs-discuss mailing list
 
 ## Encryption
 
-This guide supports two different encryption options: unencrypted and LUKS (full-disk encryption). ZFS native encryption has not yet been released.
+This guide supports two different encryption options: unencrypted and LUKS (full-disk encryption). ZFS native encryption has not yet been released. With either option, all ZFS features are fully available.
 
-Unencrypted does not encrypt anything, of course. All ZFS features are fully available. With no encryption happening, this option naturally has the best performance.
+Unencrypted does not encrypt anything, of course. With no encryption happening, this option naturally has the best performance.
 
-LUKS encrypts almost everything: the OS, swap, home directories, and anything else. The only unencrypted data is the bootloader, kernel, and initrd. The system cannot boot without the passphrase being entered at the console. All ZFS features are fully available. Performance is good, but LUKS sits underneath ZFS, so if multiple disks (mirror or raidz topologies) are used, the data has to be encrypted once per disk.
+LUKS encrypts almost everything: the OS, swap, home directories, and anything else. The only unencrypted data is the bootloader, kernel, and initrd. The system cannot boot without the passphrase being entered at the console. Performance is good, but LUKS sits underneath ZFS, so if multiple disks (mirror or raidz topologies) are used, the data has to be encrypted once per disk.
 
 ## Step 1: Prepare The Install Environment
 

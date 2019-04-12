@@ -20,7 +20,11 @@ If you need help, reach out to the community using the [zfs-discuss mailing list
 
 ## Encryption
 
-This guide supports two different encryption options: unencrypted and ZFS native encryption.
+This guide supports two different encryption options: unencrypted and ZFS native encryption. With either option, all ZFS features are fully available.
+
+Unencrypted does not encrypt anything, of course. With no encryption happening, this option naturally has the best performance.
+
+ZFS native encryption encrypts the data and most metadata in the root pool. It does not encrypt dataset or snapshot names. The boot pool is not encrypted at all, but it only contains the bootloader, kernel, and initrd. The system cannot boot without the passphrase being entered at the console. Performance is good. As the encryption happens in ZFS, even if multiple disks (mirror or raidz topologies) are used, the data only has to be encrypted once.
 
 ## Step 1: Prepare The Install Environment
 
