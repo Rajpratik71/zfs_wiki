@@ -14,6 +14,18 @@ Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory i
 
 If you need help, reach out to the community using the [zfs-discuss mailing list](http://list.zfsonlinux.org/mailman/listinfo/zfs-discuss) or IRC at #zfsonlinux on [freenode](https://freenode.net/). If you have a bug report or feature request related to this HOWTO, please [file a new issue](https://github.com/zfsonlinux/zfs/issues/new) and mention @rlaager.
 
+## Contributing
+
+Edit permission on this wiki is restricted. Also, GitHub wikis do not support pull requests. However, you can clone the wiki using git.
+
+1) Clone the repository:
+    git clone https://github.com:zfsonlinux/zfs.wiki.git
+    or, if you prefer SSH:
+    git clone git@github.com:zfsonlinux/zfs.wiki.git
+2) Make your changes.
+3) Use `git diff > my-changes.patch` to create a patch. (Advanced git users may wish to use a branch and `git format-patch`.)
+4) [File a new issue](https://github.com/zfsonlinux/zfs/issues/new), mention @rlaager, and attach the patch.
+
 ## Encryption
 
 This guide supports two different encryption options: unencrypted and LUKS (full-disk encryption). ZFS native encryption has not yet been released. With either option, all ZFS features are fully available.
