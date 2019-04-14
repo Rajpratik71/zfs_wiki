@@ -306,7 +306,7 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
     # apt install --yes dpkg-dev linux-headers-amd64 linux-image-amd64
     # apt install --yes zfs-initramfs
 
-4.7  For LUKS installs only:
+4.7  For LUKS installs only, setup crypttab:
 
     # apt install --yes cryptsetup
 
@@ -593,7 +593,7 @@ As `/var/log` is already compressed by ZFS, logrotate’s compression is going t
 
     $ sudo usermod -p '*' root
 
-9.4  Optional:
+9.4  Optional: Re-enable the graphical boot process:
 
 If you prefer the graphical boot process, you can re-enable it now. If you are using LUKS, it makes the prompt look nicer.
 

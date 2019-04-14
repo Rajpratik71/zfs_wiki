@@ -617,7 +617,7 @@ As `/var/log` is already compressed by ZFS, logrotate’s compression is going t
 
     $ sudo usermod -p '*' root
 
-9.4  Optional:
+9.4  Optional: Re-enable the graphical boot process:
 
 If you prefer the graphical boot process, you can re-enable it now.
 
