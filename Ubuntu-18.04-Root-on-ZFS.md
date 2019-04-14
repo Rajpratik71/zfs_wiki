@@ -644,7 +644,7 @@ If you prefer the graphical boot process, you can re-enable it now. If you are u
 
 Store that backup somewhere safe (e.g. cloud storage). It is protected by your LUKS passphrase, but you may wish to use additional encryption.
 
-**Hint:** If you created a mirror or raidz topology, repeat this for each luks volume (`luks2`, etc.).
+**Hint:** If you created a mirror or raidz topology, repeat this for each LUKS volume (`luks2`, etc.).
 
 ## Troubleshooting
 
