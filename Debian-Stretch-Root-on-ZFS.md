@@ -616,6 +616,15 @@ If you prefer the graphical boot process, you can re-enable it now. If you are u
 
 * Ignore errors from `osprober`, if present.
 
+9.5  Optional: For LUKS installs only, backup the LUKS header:
+
+    $ sudo cryptsetup luksHeaderBackup /dev/disk/by-id/scsi-SATA_disk1-part4 \
+        --header-backup-file luks1-header.dat
+
+Store that backup somewhere safe (e.g. cloud storage). It is protected by your LUKS passphrase, but you may wish to use additional encryption.
+
+**Hint:** If you created a mirror or raidz topology, repeat this for each luks volume (`luks2`, etc.).
+
 ## Troubleshooting
 
 ### Rescuing using a Live CD
