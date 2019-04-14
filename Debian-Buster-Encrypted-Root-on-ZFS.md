@@ -69,8 +69,6 @@ If you have a second system, using SSH to access the target system can be conven
       libuutil1linux_0.8.0~rc3-1_amd64.deb \
       libzfs2linux_0.8.0~rc3-1_amd64.deb \
       libzpool2linux_0.8.0~rc3-1_amd64.deb \
-      spl_0.8.0~rc3-1_all.deb \
-      spl-dkms_0.8.0~rc3-1_all.deb \
       zfs-dkms_0.8.0~rc3-1_all.deb \
       zfsutils-linux_0.8.0~rc3-1_amd64.deb \
       zfs-zed_0.8.0~rc3-1_amd64.deb
@@ -332,8 +330,6 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
       libuutil1linux_0.8.0~rc3-1_amd64.deb \
       libzfs2linux_0.8.0~rc3-1_amd64.deb \
       libzpool2linux_0.8.0~rc3-1_amd64.deb \
-      spl_0.8.0~rc3-1_all.deb \
-      spl-dkms_0.8.0~rc3-1_all.deb \
       zfs-dkms_0.8.0~rc3-1_all.deb \
       zfs-initramfs_0.8.0~rc3-1_all.deb \
       zfsutils-linux_0.8.0~rc3-1_amd64.deb \
