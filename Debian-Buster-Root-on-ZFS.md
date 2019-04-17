@@ -145,7 +145,7 @@ Choose one of the following options:
 2.4b  LUKS:
 
     # apt install --yes cryptsetup
-    # cryptsetup luksFormat -c aes-xts-plain64 -s 256 -h sha256 \
+    # cryptsetup luksFormat -c aes-xts-plain64 -s 512 -h sha256 \
           /dev/disk/by-id/scsi-SATA_disk1-part4
     # cryptsetup luksOpen /dev/disk/by-id/scsi-SATA_disk1-part4 luks1
     # zpool create -o ashift=12 \
@@ -160,7 +160,7 @@ Choose one of the following options:
 * Setting `relatime=on` is a middle ground between classic POSIX `atime` behavior (with its significant performance impact) and `atime=off` (which provides the best performance by completely disabling atime updates). Since Linux 2.6.30, `relatime` has been the default for other filesystems. See [RedHat's documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/power_management_guide/relatime) for further information.
 * Setting `xattr=sa` [vastly improves the performance of extended attributes](https://github.com/zfsonlinux/zfs/commit/82a37189aac955c81a59a5ecc3400475adb56355). Inside ZFS, extended attributes are used to implement POSIX ACLs. Extended attributes can also be used by user-space applications. [They are used by some desktop GUI applications.](https://en.wikipedia.org/wiki/Extended_file_attributes#Linux) [They can be used by Samba to store Windows ACLs and DOS attributes; they are required for a Samba Active Directory domain controller.](https://wiki.samba.org/index.php/Setting_up_a_Share_Using_Windows_ACLs) Note that [`xattr=sa` is Linux-specific.](http://open-zfs.org/wiki/Platform_code_differences) If you move your `xattr=sa` pool to another OpenZFS implementation besides ZFS-on-Linux, extended attributes will not be readable (though your data will be). If portability of extended attributes is important to you, omit the `-O xattr=sa` above. Even if you do not want `xattr=sa` for the whole pool, it is probably fine to use it for `/var/log`.
 * Make sure to include the `-part4` portion of the drive path. If you forget that, you are specifying the whole disk, which ZFS will then re-partition, and you will lose the bootloader partition(s).
-* For LUKS, the key size chosen is 256 bits. However, XTS mode requires two keys, so the LUKS key is split in half. Thus, `-s 256` means AES-128, which is the LUKS and Ubuntu default.
+* For LUKS, the key size chosen is 512 bits. However, XTS mode requires two keys, so the LUKS key is split in half. Thus, `-s 512` means AES-256.
 * Your passphrase will likely be the weakest link. Choose wisely. See [section 5 of the cryptsetup FAQ](https://gitlab.com/cryptsetup/cryptsetup/wikis/FrequentlyAskedQuestions#5-security-aspects) for guidance.
 
 **Hints:**
