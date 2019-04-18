@@ -145,7 +145,7 @@ You should not need to customize any of the options for the boot pool.
 GRUB does not support all of the zpool features. See `spa_feature_names` in [grub-core/fs/zfs/zfs.c](http://git.savannah.gnu.org/cgit/grub.git/tree/grub-core/fs/zfs/zfs.c#n276). This step creates a separate boot pool for `/boot` with the features limited to only those that GRUB supports, allowing the root pool to use any/all features. Note that GRUB opens the pool read-only, so all read-only compatible features are "supported" by GRUB.
 
 **Hints:**
-* If you are creating a mirror or raidz topology, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part3 /dev/disk/by-id/scsi-SATA_disk2-part3` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks).
+* If you are creating a mirror or raidz topology, create the pool using `zpool create ... bpool mirror /dev/disk/by-id/scsi-SATA_disk1-part3 /dev/disk/by-id/scsi-SATA_disk2-part3` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks).
 * The pool name is arbitrary. If changed, the new name must be used consistently. The `bpool` convention originated in this HOWTO.
 
 2.4  Create the root pool:
