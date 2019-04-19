@@ -41,7 +41,6 @@ If you have a second system, using SSH to access the target system can be conven
 
     $ sudo apt update
     $ sudo apt install --yes openssh-server
-    $ sudo sed -i "s/#Password/Password/" /etc/ssh/sshd_config
     $ sudo systemctl restart ssh
 
 **Hint:** You can find your IP address with `ip addr show scope global | grep inet`.  Then, from your main machine, connect with `ssh user@IP`.
