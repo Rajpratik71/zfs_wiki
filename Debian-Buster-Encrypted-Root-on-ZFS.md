@@ -14,7 +14,7 @@ Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory i
 
 If you want a supported system, see [[Debian Buster Root on ZFS]].
 
-This *experimental* HOWTO uses 0.8.0~rc3-1 packages from Debian experimental, rebuilt from git. That version of ZFS is not a stable release. The packages are not a final release. The packages are not in the Buster repository. (They have not even landed in experimental, as they are in the NEW queue.) Do not ask for support with this version of the HOWTO unless you are able to help with development.
+This *experimental* HOWTO uses 0.8.0~rc4-1 packages from Debian experimental, rebuilt from git. That version of ZFS is not a stable release. The packages are not a final release. The packages are not in the Buster repository. (They have not even landed in experimental, as they are in the NEW queue.) Do not ask for support with this version of the HOWTO unless you are able to help with development.
 
 If you need help, reach out to the community using the [zfs-discuss mailing list](http://list.zfsonlinux.org/mailman/listinfo/zfs-discuss) or IRC at #zfsonlinux on [freenode](https://freenode.net/). If you have a bug report or feature request related to this HOWTO, please [file a new issue](https://github.com/zfsonlinux/zfs/issues/new) and mention @rlaager.
 
@@ -73,13 +73,13 @@ If you have a second system, using SSH to access the target system can be conven
     # gbp buildpackage --git-debian-branch=experimental -uc -us
     # cd ..
     # dpkg --install \
-      libnvpair1linux_0.8.0~rc3-1_amd64.deb \
-      libuutil1linux_0.8.0~rc3-1_amd64.deb \
-      libzfs2linux_0.8.0~rc3-1_amd64.deb \
-      libzpool2linux_0.8.0~rc3-1_amd64.deb \
-      zfs-dkms_0.8.0~rc3-1_all.deb \
-      zfsutils-linux_0.8.0~rc3-1_amd64.deb \
-      zfs-zed_0.8.0~rc3-1_amd64.deb
+      libnvpair1linux_0.8.0~rc4-1_amd64.deb \
+      libuutil1linux_0.8.0~rc4-1_amd64.deb \
+      libzfs2linux_0.8.0~rc4-1_amd64.deb \
+      libzpool2linux_0.8.0~rc4-1_amd64.deb \
+      zfs-dkms_0.8.0~rc4-1_all.deb \
+      zfsutils-linux_0.8.0~rc4-1_amd64.deb \
+      zfs-zed_0.8.0~rc4-1_amd64.deb
     # modprobe zfs
 
 ## Step 2: Disk Formatting
@@ -160,10 +160,6 @@ Choose one of the following options:
           rpool /dev/disk/by-id/scsi-SATA_disk1-part4
 
 2.4b  Encrypted:
-
-**Warning:** Encryption is not yet stable.  See [errata #4 (scroll down on the page)](https://zfsonlinux.org/msg/ZFS-8000-ER/). If you use the encryption option below, on the next release (0.8.0rc4), you _will_ have to backup your data, then destroy and re-create the pool.  Because the encryption starts at the root of the pool, using `zfs send` and `zfs receive` within the pool is [not an option](https://github.com/zfsonlinux/zfs/pull/8308#issuecomment-476116094).
-
-**Warning:** Both [raw (#7378)](https://github.com/zfsonlinux/zfs/issues/7378) and [non-raw (#8616)](https://github.com/zfsonlinux/zfs/issues/8616) sends are broken, at least when encryption is involved. See also [#8540](https://github.com/zfsonlinux/zfs/issues/8540) and [#8565](https://github.com/zfsonlinux/zfs/issues/8565).
 
     # zpool create -o ashift=12 \
           -O acltype=posixacl -O canmount=off -O compression=lz4 \
@@ -334,14 +330,14 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
     # gbp buildpackage --git-debian-branch=experimental -uc -us
     # cd ..
     # dpkg --install \
-      libnvpair1linux_0.8.0~rc3-1_amd64.deb \
-      libuutil1linux_0.8.0~rc3-1_amd64.deb \
-      libzfs2linux_0.8.0~rc3-1_amd64.deb \
-      libzpool2linux_0.8.0~rc3-1_amd64.deb \
-      zfs-dkms_0.8.0~rc3-1_all.deb \
-      zfs-initramfs_0.8.0~rc3-1_all.deb \
-      zfsutils-linux_0.8.0~rc3-1_amd64.deb \
-      zfs-zed_0.8.0~rc3-1_amd64.deb
+      libnvpair1linux_0.8.0~rc4-1_amd64.deb \
+      libuutil1linux_0.8.0~rc4-1_amd64.deb \
+      libzfs2linux_0.8.0~rc4-1_amd64.deb \
+      libzpool2linux_0.8.0~rc4-1_amd64.deb \
+      zfs-dkms_0.8.0~rc4-1_all.deb \
+      zfs-initramfs_0.8.0~rc4-1_all.deb \
+      zfsutils-linux_0.8.0~rc4-1_amd64.deb \
+      zfs-zed_0.8.0~rc4-1_amd64.deb
 
 4.7  Install GRUB
 
