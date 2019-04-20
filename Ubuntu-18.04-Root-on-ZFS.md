@@ -262,7 +262,7 @@ The `debootstrap` command leaves the new system in an unconfigured state.  An al
     # ip addr show
 
     Adjust NAME below to match your interface name:
-    # vi /etc/netplan/01-netcfg.yaml
+    # vi /mnt/etc/netplan/01-netcfg.yaml
     network:
       version: 2
       ethernets:
