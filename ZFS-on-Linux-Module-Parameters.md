@@ -2939,7 +2939,11 @@ by sequential scan algorithm.
 When the limit is reached scanning metadata is stopped and 
 data verification I/O is started.
 Data verification I/O continues until the memory used by the sorting 
-algorith drops below below [zfs_scan_mem_lim_soft_fact](#zfs_scan_mem_lim_soft_fact)
+algorithm drops below below [zfs_scan_mem_lim_soft_fact](#zfs_scan_mem_lim_soft_fact)
+
+Memory used by the sequential scan algorithm can be observed as the kmem sio_cache.
+This is visible from procfs as `grep sio_cache /proc/slabinfo` and can be monitored
+using slab-monitoring tools such as `slabtop`
 
 | zfs_scan_mem_lim_fact | Notes
 |---|---
