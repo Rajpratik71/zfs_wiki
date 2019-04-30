@@ -25,6 +25,7 @@
 - [udisks2 creates /dev/mapper/ entries for zvol](#udisks2-creating-devmapper-entries-for-zvol)
 - [Licensing](#licensing)
 - [Reporting a problem](#reporting-a-problem)
+- [Does ZFS on Linux have a Code of Conduct?](#does-zfs-on-linux-have-a-code-of-conduct)
  
 ## What is ZFS on Linux
 
@@ -387,6 +388,10 @@ When a new issue is opened it's not uncommon for a developer to request addition
   * Values of the spl/zfs module parameters.
 * Stack traces which may be logged to `dmesg`.
 
+## Does ZFS on Linux have a Code of Conduct?
+
+Yes, the ZFS on Linux community has a code of conduct.  See the [Code of Conduct][CoC] for details.
+
 [OpenZFS]: http://open-zfs.org/wiki/Main_Page
 [wikipedia]: https://en.wikipedia.org/wiki/OpenZFS
 [releases]: https://github.com/zfsonlinux/zfs/releases
@@ -400,3 +405,4 @@ When a new issue is opened it's not uncommon for a developer to request addition
 [fsf]: https://www.fsf.org/licensing/zfs-and-linux
 [networkworld]: http://www.networkworld.com/article/2301697/smb/encouraging-closed-source-modules-part-1--copyright-and-software.html
 [issues]: https://github.com/zfsonlinux/zfs/issues
+[CoC]: http://open-zfs.org/wiki/Code_of_Conduct
