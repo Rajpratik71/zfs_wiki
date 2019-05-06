@@ -75,7 +75,7 @@ OpenZFS issue id | status/ZFS commit | comment
 7982|-      |The change is illumos specific and not applicable for Linux.
 7970|c30e58c|
 7956|cda0317|
-7955|!      |Need to assess applicability to Linux.
+7955|!      |Need to assess applicability to Linux. If porting, apply 8502.
 7869|df7eecc|
 7816|-      |The change is illumos specific and not applicable for Linux.
 7803|-      |This functionality is provided by `update_vdev_config_dev_strs()` on Linux.
