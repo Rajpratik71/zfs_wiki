@@ -66,7 +66,7 @@ OpenZFS issue id | status/ZFS commit | comment
 8300|44f09cd|
 8265|-      |The large_dnode feature has been implemented for Linux.
 8168|78d95ea|
-8138|-      |This man update will be picked up when the mandoc pages are merged.
+8138|44f09cd|The spelling fix to the zfs man page came in with the mdoc conversion.
 8108|-      |An equivalent Linux specific fix was made.
 8064|-      |This change isn't relevant for Linux.
 8021|7657def|
