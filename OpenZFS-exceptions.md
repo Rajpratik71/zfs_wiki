@@ -17,6 +17,7 @@ OpenZFS issue id | status/ZFS commit | comment
 ---|---|---
 10500|03916905|
 10154|-       |Not applicable to Linux
+10067|-       |The only ZFS change was to zfs remap, which was removed on Linux.
 9884|-       |Not applicable to Linux
 9851|-       |Not applicable to Linux
 9683|-       |Not applicable to Linux due to devids not being used
@@ -24,6 +25,7 @@ OpenZFS issue id | status/ZFS commit | comment
 9672|29445fe3|
 9626|59e6e7ca|
 9635|-       |Not applicable to Linux
+9623|22448f08|
 9621|305bc4b3|
 9539|5228cf01|
 9512|b4555c77|
