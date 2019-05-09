@@ -2716,9 +2716,10 @@ does not throttle other, perhaps more important, writes.
 A side effect of this throttle can impact `zfs receive` workloads that contain a 
 large number of frees and the [ignore_hole_birth](#ignore_hole_birth) optimization is
 disabled. The symptom is that the receive workload causes an increase
-in the frequency of txg commits when. Since txg commits also flush data from volatile 
-caches in HDDs to media, HDD performance can be negatively impacted. Also, since
-the frees do not consume much bandwith over the pipe, the pipe can appear to stall.
+in the frequency of txg commits. The frequency of txg commits is observable via the
+`otime` column of `/proc/spl/kstat/zfs/POOLNAME/txgs`. Since txg commits also flush data
+from volatile caches in HDDs to media, HDD performance can be negatively impacted. 
+Also, since the frees do not consume much bandwidth over the pipe, the pipe can appear to stall.
 Thus the overall progress of receives is slower than expected.
 
 A value of zero will disable this throttle.
