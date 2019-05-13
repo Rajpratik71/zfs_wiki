@@ -1726,7 +1726,7 @@ is considered "hung" resulting in one of three behaviors controlled by the
 | When to change | When debugging slow I/O
 | Data Type | ulong
 | Units | milliseconds
-| Range | 1 to 
+| Range | 1 to ULONG_MAX
 | Default | 600,000 (10 minutes)
 | Change | Dynamic
 | Versions Affected | v0.6.5 and later
