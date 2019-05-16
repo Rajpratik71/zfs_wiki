@@ -2109,8 +2109,8 @@ read I/Os active to each device.
 | Change | Dynamic
 | Versions Affected | v0.6.4 and later
 
-### zfs_vdev_max_active
-`zfs_vdev_max_active` sets the minimum scrub or scan read I/Os active 
+### zfs_vdev_scrub_min_active
+`zfs_vdev_scrub_min_active` sets the minimum scrub or scan read I/Os active 
 to each device.
 
 | zfs_vdev_scrub_min_active | Notes
