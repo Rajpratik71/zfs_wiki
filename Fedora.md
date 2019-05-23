@@ -26,18 +26,6 @@ The ZFS on Linux packages should be installed with dnf on Fedora. Note that it i
 $ sudo dnf install kernel-devel zfs
 ```
 
-**Systemd Update:**
-
-When upgrading to the zfs-0.7.4 release it's recommended that users manually reset the zfs systemd presets.  Failure to do so can result in the pool not automatically importing when the system is rebooted.
-
-```
-systemctl preset zfs-import-cache zfs-import-scan zfs-import.target zfs-mount zfs-share zfs-zed zfs.target
-```
-
-**Repository Renamed:**
-
-The repository has been renamed `http://download.zfsonlinux.org/` from `http://archive.zfsonlinux.org/`.  An updated zfs-release package was added to the legacy repository to move users to the new repository.  Users which modifed the `/etc/yum.repos.d/zfs.repo` must manually replace this file with the updated `/etc/yum.repos.d/zfs.repo.rpmsave`.
-
 ## Testing Repositories
 
 In addition to the primary *zfs* repository a *zfs-testing* repository is available. This repository, which is disabled by default, contains the latest version of ZFS on Linux which is under active development. These packages are made available in order to get feedback from users regarding the functionality and stability of upcoming releases. These packages **should not** be used on production systems. Packages from the testing repository can be installed as follows.
