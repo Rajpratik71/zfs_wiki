@@ -20,5 +20,6 @@ Likely cause: kernel thread hung or panic
 Log files of interest: [Generic Kernel Log](#generic-kernel-log), [ZFS Kernel Module Debug Messages](#zfs-kernel-module-debug-messages)
 
 Important information: if a kernel thread is stuck, then a backtrace of the stuck thread can be in the logs.
+In some cases, the stuck thread is not logged until the deadman timer expires. See also [debug tunables](https://github.com/zfsonlinux/zfs/wiki/ZFS-on-Linux-Module-Parameters#debug)
 
 # DRAFT
