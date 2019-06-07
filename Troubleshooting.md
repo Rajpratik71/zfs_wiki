@@ -1,6 +1,12 @@
 # DRAFT
 This page contains tips for troubleshooting ZFS on Linux and what info developers might want for bug triage.
 
+- [About Log Files](#about-log-files)
+    - [Generic Kernel Log](#generic-kernel-log)
+    - [ZFS Kernel Module Debug Messages](#zfs-kernel-module-debug-messages)
+- [Unkillable Process](#unkillable-process)
+- [ZFS Events](#zfs-events)
+
 ***
 ## About Log Files
 Log files can be very useful for troubleshooting. In some cases, interesting information is stored in multiple log files that are correlated to system events.
