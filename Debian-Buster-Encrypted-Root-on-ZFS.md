@@ -14,7 +14,7 @@ Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory i
 
 If you want a supported system, see [[Debian Buster Root on ZFS]].
 
-This *experimental* HOWTO uses 0.8.0~rc4-1 packages from Debian experimental, rebuilt from git. That version of ZFS is not a stable release. The packages are not a final release. The packages are not in the Buster repository. (They have not even landed in experimental, as they are in the NEW queue.) Do not ask for support with this version of the HOWTO unless you are able to help with development.
+This *experimental* HOWTO uses 0.8.0-2 packages from Debian experimental, rebuilt from git. That version of ZFS is not a stable release. The packages are not a final release. The packages are not in the Buster repository. (They have not even landed in experimental, as they are in the NEW queue.) Do not ask for support with this version of the HOWTO unless you are able to help with development.
 
 If you need help, reach out to the community using the [zfs-discuss mailing list](http://list.zfsonlinux.org/mailman/listinfo/zfs-discuss) or IRC at #zfsonlinux on [freenode](https://freenode.net/). If you have a bug report or feature request related to this HOWTO, please [file a new issue](https://github.com/zfsonlinux/zfs/issues/new) and mention @rlaager.
 
@@ -73,13 +73,13 @@ If you have a second system, using SSH to access the target system can be conven
     # gbp buildpackage --git-debian-branch=experimental -uc -us
     # cd ..
     # dpkg --install \
-      libnvpair1linux_0.8.0~rc4-1_amd64.deb \
-      libuutil1linux_0.8.0~rc4-1_amd64.deb \
-      libzfs2linux_0.8.0~rc4-1_amd64.deb \
-      libzpool2linux_0.8.0~rc4-1_amd64.deb \
-      zfs-dkms_0.8.0~rc4-1_all.deb \
-      zfsutils-linux_0.8.0~rc4-1_amd64.deb \
-      zfs-zed_0.8.0~rc4-1_amd64.deb
+      libnvpair1linux_0.8.0-2_amd64.deb \
+      libuutil1linux_0.8.0-2_amd64.deb \
+      libzfs2linux_0.8.0-2_amd64.deb \
+      libzpool2linux_0.8.0-2_amd64.deb \
+      zfs-dkms_0.8.0-2_all.deb \
+      zfsutils-linux_0.8.0-2_amd64.deb \
+      zfs-zed_0.8.0-2_amd64.deb
     # modprobe zfs
 
 ## Step 2: Disk Formatting
@@ -330,14 +330,14 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
     # gbp buildpackage --git-debian-branch=experimental -uc -us
     # cd ..
     # dpkg --install \
-      libnvpair1linux_0.8.0~rc4-1_amd64.deb \
-      libuutil1linux_0.8.0~rc4-1_amd64.deb \
-      libzfs2linux_0.8.0~rc4-1_amd64.deb \
-      libzpool2linux_0.8.0~rc4-1_amd64.deb \
-      zfs-dkms_0.8.0~rc4-1_all.deb \
-      zfs-initramfs_0.8.0~rc4-1_all.deb \
-      zfsutils-linux_0.8.0~rc4-1_amd64.deb \
-      zfs-zed_0.8.0~rc4-1_amd64.deb
+      libnvpair1linux_0.8.0-2_amd64.deb \
+      libuutil1linux_0.8.0-2_amd64.deb \
+      libzfs2linux_0.8.0-2_amd64.deb \
+      libzpool2linux_0.8.0-2_amd64.deb \
+      zfs-dkms_0.8.0-2_all.deb \
+      zfs-initramfs_0.8.0-2_all.deb \
+      zfsutils-linux_0.8.0-2_amd64.deb \
+      zfs-zed_0.8.0-2_amd64.deb
 
 4.7  Install GRUB
 
