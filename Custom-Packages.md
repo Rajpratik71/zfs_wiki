@@ -1,4 +1,4 @@
-The following instructions assume you are building from an official [release tarball][release] or directly from the [git repository][git]. Most users should not need to do this and should preferentially use the distribution packages. As a general rule the distribution packages will be more tightly integrated, widely tested, and better supported. However, if your distribution of choice doesn't provide packages, or you're a developer and want to roll your own, here's how to do it.
+The following instructions assume you are building from an official [release tarball][release] (version 0.8.0 or newer) or directly from the [git repository][git]. Most users should not need to do this and should preferentially use the distribution packages. As a general rule the distribution packages will be more tightly integrated, widely tested, and better supported. However, if your distribution of choice doesn't provide packages, or you're a developer and want to roll your own, here's how to do it.
 
 The first thing to be aware of is that the build system is capable of generating several different types of packages. Which type of package you choose depends on what's supported on your platform and exactly what your needs are.
 
@@ -21,14 +21,20 @@ It is important to note that if the development kernel headers for the currently
 
 Make sure that the required packages are installed:
 
-```
-$ sudo yum groupinstall "Development Tools"
-$ sudo yum install autoconf automake libtool wget libtirpc-devel rpm-build
-$ sudo yum install zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel libaio-devel
-$ sudo yum install parted lsscsi ksh openssl-devel elfutils-libelf-devel
-$ sudo yum install kernel-devel-$(uname -r)
-# If you want to use pyzfs, otherwise use `./configure --disable-pyzfs` to disable it later
-$ sudo yum install --enablerepo=epel python36 python36-devel python36-setuptools python36-cffi
+```sh
+$ sudo dnf install autoconf automake libtool rpm-build
+$ sudo dnf install zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
+$ sudo dnf install libacl-devel libaio-devel device-mapper-devel openssl-devel libtirpc-devel elfutils-libelf-devel
+$ sudo dnf install kernel-devel-$(uname -r)
+
+# To enable the pyzfs packages additionally install the following:
+
+# Fedora
+$ sudo dnf install python3 python3-devel python3-setuptools python3-cffi 
+
+# For Red Hat / CentOS 7
+$ sudo yum install epel-release
+$ sudo yum install python36 python36-devel python36-setuptools python36-cffi
 ```
 
 [Get the source code](#get-the-source-code).
@@ -37,16 +43,9 @@ $ sudo yum install --enablerepo=epel python36 python36-devel python36-setuptools
 
 Building rpm-based DKMS and user packages can be done as follows:
 
-```
-$ find spl zfs -name \*.ko -delete
-$ cd spl
+```sh
+$ cd zfs
 $ ./configure --with-config=srpm
-$ make -s -j$(nproc)
-$ make -j1 pkg-utils rpm-dkms
-$ sudo yum localinstall *.$(uname -p).rpm *.noarch.rpm
-$ cd ../zfs
-$ ./configure --with-config=srpm
-$ make -s -j$(nproc)
 $ make -j1 pkg-utils rpm-dkms
 $ sudo yum localinstall *.$(uname -p).rpm *.noarch.rpm
 ```
@@ -55,16 +54,9 @@ $ sudo yum localinstall *.$(uname -p).rpm *.noarch.rpm
 
 The key thing to know when building a kmod package is that a specific Linux kernel must be specified. At configure time the build system will make an educated guess as to which kernel you want to build against. However, if configure is unable to locate your kernel development headers, or you want to build against a different kernel, you must specify the exact path with the *--with-linux* and *--with-linux-obj* options.
 
-```
-$ find spl zfs -name \*.ko -delete
-$ cd spl
+```sh
+$ cd zfs
 $ ./configure
-$ make -s -j$(nproc)
-$ make -j1 pkg-utils pkg-kmod
-$ sudo yum localinstall *.$(uname -p).rpm
-$ cd ../zfs
-$ ./configure
-$ make -s -j$(nproc)
 $ make -j1 pkg-utils pkg-kmod
 $ sudo yum localinstall *.$(uname -p).rpm
 ```
@@ -75,16 +67,9 @@ The process for building kABI-tracking kmods is almost identical to for building
 
 **NOTE:** This type of package is not available for Fedora.
 
-```
-$ find spl zfs -name \*.ko -delete
-$ cd spl
+```sh
+$ cd zfs
 $ ./configure --with-spec=redhat
-$ make -s -j$(nproc)
-$ make -j1 pkg-utils pkg-kmod
-$ sudo yum localinstall *.$(uname -p).rpm
-$ cd ../zfs
-$ ./configure --with-spec=redhat
-$ make -s -j$(nproc)
 $ make -j1 pkg-utils pkg-kmod
 $ sudo yum localinstall *.$(uname -p).rpm
 ```
@@ -93,13 +78,13 @@ $ sudo yum localinstall *.$(uname -p).rpm
 
 Make sure that the required packages are installed:
 
-```
-$ sudo apt-get install build-essential autoconf libtool gawk alien fakeroot
-$ sudo apt-get install gdebi wget
-$ sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev libaio-dev
-$ sudo apt-get install parted lsscsi ksh libssl-dev libelf-dev
+```sh
+$ sudo apt-get install build-essential autoconf automake libtool gawk alien fakeroot gdebi
+$ sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev
+$ sudo apt-get install libacl1-dev libaio-dev libdevmapper-dev libssl-dev libelf-dev
 $ sudo apt-get install linux-headers-$(uname -r)
-# If you want to use pyzfs, otherwise use `./configure --disable-pyzfs` to disable it later
+
+# To enable the pyzfs packages additionally install the following:
 $ sudo apt-get install python3 python3-dev python3-setuptools python3-cffi
 ```
 
@@ -109,16 +94,10 @@ $ sudo apt-get install python3 python3-dev python3-setuptools python3-cffi
 
 The key thing to know when building a kmod package is that a specific Linux kernel must be specified. At configure time the build system will make an educated guess as to which kernel you want to build against. However, if configure is unable to locate your kernel development headers, or you want to build against a different kernel, you must specify the exact path with the *--with-linux* and *--with-linux-obj* options.
 
-```
-$ find spl zfs -name \*.ko -delete
-$ cd spl$ ./configure
-$ make -s -j$(nproc)
-$ make -j1 deb
-$ for file in *.deb; do sudo gdebi -q --non-interactive $file; done
-$ cd ../zfs
+```sh
+$ cd zfs
 $ ./configure
-$ make -s -j$(nproc)
-$ make -j1 deb
+$ make -j1 pkg-utils deb-kmod
 $ for file in *.deb; do sudo gdebi -q --non-interactive $file; done
 ```
 
@@ -126,14 +105,12 @@ $ for file in *.deb; do sudo gdebi -q --non-interactive $file; done
 
 Building rpm-based DKMS and user packages can be done as follows:
 
-```
-sudo apt-get install dkms
-cd ../zfs
-./autogen.sh
-./configure --with-config=user
-make -s -j$(nproc)
-make -j1 deb-dkms
-for file in *.deb; do sudo gdebi -q --non-interactive $file; done
+```sh
+$ sudo apt-get install dkms
+$ cd zfs
+$ ./configure --with-config=srpm
+$ make -j1 pkg-utils deb-dkms
+$ for file in *.deb; do sudo gdebi -q --non-interactive $file; done
 ```
 
 ## Get the Source Code
@@ -142,10 +119,8 @@ for file in *.deb; do sudo gdebi -q --non-interactive $file; done
 
 The released tarball contains the latest fully tested and released version of ZFS.  This is the preferred source code location for use in production systems.  If you want to use the official released tarballs, then use the following commands to fetch and prepare the source.
 
-```
-$ wget http://archive.zfsonlinux.org/downloads/zfsonlinux/spl/spl-x.y.z.tar.gz
+```sh
 $ wget http://archive.zfsonlinux.org/downloads/zfsonlinux/zfs/zfs-x.y.z.tar.gz
-$ tar -xzf spl-x.y.z.tar.gz
 $ tar -xzf zfs-x.y.z.tar.gz
 ```
 
@@ -153,17 +128,13 @@ $ tar -xzf zfs-x.y.z.tar.gz
 
 The Git *master* branch contains the latest version of the software, and will probably contain fixes that, for some reason, weren't included in the released tarball.  This is the preferred source code location for developers who intend to modify ZFS.  If you would like to use the git version, you can clone it from Github and prepare the source like this.
 
-```
-$ git clone https://github.com/zfsonlinux/spl.git
+```sh
 $ git clone https://github.com/zfsonlinux/zfs.git
-$ cd spl
+$ cd zfs
 $ ./autogen.sh
-$ cd ../zfs
-$ ./autogen.sh
-$ cd ..
 ```
 
-Once the source has been prepared you'll need to decide what kind of packages you're building and jump the to appropriate section below.  Note that not all package types are supported for all platforms.
+Once the source has been prepared you'll need to decide what kind of packages you're building and jump the to appropriate section above.  Note that not all package types are supported for all platforms.
 
 [release]: https://github.com/zfsonlinux/zfs/releases/latest
 [git]: https://github.com/zfsonlinux/zfs
