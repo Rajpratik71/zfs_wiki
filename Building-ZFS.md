@@ -2,7 +2,7 @@
 
 The official source for ZFS on Linux is maintained at GitHub by the [zfsonlinux][zol-org] organization.  The project consists of two primary git repositories named [spl][spl-repo] and [zfs][zfs-repo], both are required to build ZFS on Linux.  
 
-**NOTE:** SPL was merged in to the [zfs][zfs-repo] repository, last major release with separate SPL is `0.7`.
+**NOTE:** The SPL was merged in to the [zfs][zfs-repo] repository, the last major release with a separate SPL is `0.7`.
 
 * **SPL**: The SPL is thin shim layer which is responsible for implementing the fundamental interfaces required by OpenZFS.  It's this layer which allows OpenZFS to be used across multiple platforms.
 
@@ -10,35 +10,39 @@ The official source for ZFS on Linux is maintained at GitHub by the [zfsonlinux]
 
 ### Installing Dependencies
 
-The first thing you'll need to do is prepare your environment by installing a full development tool chain.  In addition, development headers for both the kernel and the following libraries must be available: **zlib, libattr, libuuid, libblkid, selinux, and libudev**.  Finally, if you wish to run the ZFS Test Suite **ksh** must be installed.
+The first thing you'll need to do is prepare your environment by installing a full development tool chain.  In addition, development headers for both the kernel and the following libraries must be available.  Finally, if you wish to run the ZFS Test Suite `ksh` must be installed.
 
 It is important to note that if the development kernel headers for the currently running kernel aren't installed, the modules won't compile properly.
 
-For Debian and Ubuntu:
-
-```
-sudo apt-get install build-essential autoconf libtool gawk alien fakeroot
-sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev
-sudo apt-get install parted lsscsi ksh libssl-dev libelf-dev
-sudo apt-get install linux-headers-$(uname -r)
-```
-
 For RHEL and CentOS:
 
-```
-sudo yum groupinstall "Development Tools"
-sudo yum install zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
-sudo yum install parted lsscsi ksh openssl-devel elfutils-libelf-devel
-sudo yum install kernel-devel-$(uname -r)
+```sh
+$ sudo yum install autoconf automake libtool rpm-build ksh
+$ sudo yum install zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
+$ sudo yum install libacl-devel libaio-devel device-mapper-devel openssl-devel libtirpc-devel elfutils-libelf-devel
+$ sudo yum install kernel-devel-$(uname -r)
+$ sudo yum install epel-release
+$ sudo yum install python36 python36-devel python36-setuptools python36-cffi
 ```
 
 For Fedora:
 
+```sh
+$ sudo dnf install autoconf automake libtool rpm-build ksh
+$ sudo dnf install zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
+$ sudo dnf install libacl-devel libaio-devel device-mapper-devel openssl-devel libtirpc-devel elfutils-libelf-devel
+$ sudo dnf install kernel-devel-$(uname -r)
+$ sudo dnf install python3 python3-devel python3-setuptools python3-cffi 
 ```
-sudo dnf groupinstall "C Development Tools and Libraries"
-sudo dnf install zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
-sudo dnf install parted lsscsi ksh openssl-devel elfutils-libelf-devel libtirpc-devel
-sudo dnf install kernel-devel-$(uname -r)
+
+For Debian and Ubuntu:
+
+```sh
+$ sudo apt-get install build-essential autoconf automake libtool gawk alien fakeroot ksh
+$ sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev
+$ sudo apt-get install libacl1-dev libaio-dev libdevmapper-dev libssl-dev libelf-dev
+$ sudo apt-get install linux-headers-$(uname -r)
+$ sudo apt-get install python3 python3-dev python3-setuptools python3-cffi
 ```
 
 ### Build Options
