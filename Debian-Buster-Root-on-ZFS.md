@@ -340,6 +340,8 @@ Install GRUB to the disk(s), not the partition(s).
 
 * The `-s 1` for `mkdosfs` is only necessary for drives which present 4 KiB logical sectors (“4Kn” drives) to meet the minimum cluster size (given the partition size of 512 MiB) for FAT32. It also works fine on drives which present 512 B sectors.
 
+**Note:** If you are creating a mirror or raidz topology, this step only installs GRUB on the first disk. The other disk(s) will be handled later.
+
 4.9  Set a root password
 
     # passwd
