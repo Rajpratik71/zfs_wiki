@@ -17,7 +17,7 @@ It is important to note that if the development kernel headers for the currently
 For RHEL and CentOS:
 
 ```sh
-$ sudo yum install autoconf automake libtool rpm-build ksh
+$ sudo yum install autoconf automake libtool make rpm-build ksh
 $ sudo yum install zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
 $ sudo yum install libacl-devel libaio-devel device-mapper-devel openssl-devel libtirpc-devel elfutils-libelf-devel
 $ sudo yum install kernel-devel-$(uname -r)
@@ -28,7 +28,7 @@ $ sudo yum install python36 python36-devel python36-setuptools python36-cffi
 For Fedora:
 
 ```sh
-$ sudo dnf install autoconf automake libtool rpm-build ksh
+$ sudo dnf install autoconf automake libtool make rpm-build ksh
 $ sudo dnf install zlib-devel libuuid-devel libattr-devel libblkid-devel libselinux-devel libudev-devel
 $ sudo dnf install libacl-devel libaio-devel device-mapper-devel openssl-devel libtirpc-devel elfutils-libelf-devel
 $ sudo dnf install kernel-devel-$(uname -r)
