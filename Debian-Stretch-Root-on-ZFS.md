@@ -1,3 +1,6 @@
+### Newer release available
+* See [[Debian Buster Root on ZFS]] for new installs.
+
 ### Caution
 * This HOWTO uses a whole physical disk.
 * Do not use these instructions for dual-booting.

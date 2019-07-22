@@ -4,7 +4,7 @@
 * Backup your data. Any existing data will be lost.
 
 ### System Requirements
-* [64-bit Debian GNU/Linux Buster Weekly Live CD](https://cdimage.debian.org/cdimage/weekly-live-builds/amd64/iso-hybrid/)
+* [64-bit Debian GNU/Linux Buster Live CD](https://cdimage.debian.org/mirror/cdimage/release/current-live/amd64/iso-hybrid/)
 * [A 64-bit kernel is *strongly* encouraged.](https://github.com/zfsonlinux/zfs/wiki/FAQ#32-bit-vs-64-bit-systems)
 * Installing on a drive which presents 4KiB logical sectors (a “4Kn” drive) only works with UEFI booting. This not unique to ZFS. [GRUB does not and will not work on 4Kn with legacy (BIOS) booting.](http://savannah.gnu.org/bugs/?46700)
 
@@ -56,11 +56,9 @@ If you have a second system, using SSH to access the target system can be conven
 
 1.5  Install ZFS in the Live CD environment:
 
-    # apt install --yes gcc=4:7.1.0-2 debootstrap gdisk dpkg-dev linux-headers-$(uname -r)
+    # apt install --yes debootstrap gdisk dpkg-dev linux-headers-$(uname -r)
     # apt install --yes zfs-dkms
     # modprobe zfs
-
-* Until the kernel is updated in the live CD, we need to stay on the old version of gcc so we stay on the old version of binutils. Otherwise, the resulting kernel modules will fail to load.
 
 ## Step 2: Disk Formatting
 
