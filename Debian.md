@@ -40,3 +40,4 @@ Install the zfs packages:
 ## Related Links
 - [[Debian GNU Linux initrd documentation]]
 - [[Debian Buster Root on ZFS]]
+- [[Dual booting OS X and Debian Jessie with ZFS root, cross mounting and full disk encryption]]
