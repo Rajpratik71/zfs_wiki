@@ -486,7 +486,8 @@ We need to activate `zfs-mount-generator`. This makes systemd aware of the separ
     # zfs set canmount=noauto rpool/ROOT/debian
 
     Stop zed:
-    # killall zed
+    # fg
+    Press Ctrl-C.
 
     Fix the paths to eliminate /mnt:
     # sed -Ei "s|/mnt/?|/|" /etc/zfs/zfs-list.cache/rpool
