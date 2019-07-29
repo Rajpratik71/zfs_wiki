@@ -33,7 +33,7 @@ LUKS encrypts almost everything: the OS, swap, home directories, and anything el
 
 ## Step 1: Prepare The Install Environment
 
-1.1  Boot the Debian GNU/Linux Live CD. If prompted, login with the username `user` and password `live`.
+1.1  Boot the Debian GNU/Linux Live CD. If prompted, login with the username `user` and password `live`. Connect your system to the Internet as appropriate (e.g. join your WiFi network).
 
 1.2  Optional: Install and start the OpenSSH server in the Live CD environment:
 
