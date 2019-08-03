@@ -358,7 +358,7 @@ Install GRUB to the disk(s), not the partition(s).
           /dev/disk/by-id/scsi-SATA_disk1-part2) \
           /boot/efi vfat nofail,x-systemd.device-timeout=1 0 1 >> /etc/fstab
     # mount /boot/efi
-    # apt install --yes grub-efi-amd64 shim
+    # apt install --yes grub-efi-amd64 shim-signed
 
 * The `-s 1` for `mkdosfs` is only necessary for drives which present 4 KiB logical sectors (“4Kn” drives) to meet the minimum cluster size (given the partition size of 512 MiB) for FAT32. It also works fine on drives which present 512 B sectors.
 
