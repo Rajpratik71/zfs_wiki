@@ -63,9 +63,10 @@ If you have a second system, using SSH to access the target system can be conven
 **Warning:** If you do not have at least 3 GiB of RAM, this may not work, as the Live CD overlay can run out of space.
 
     # apt install --yes debootstrap gdisk dpkg-dev linux-headers-$(uname -r)
-    # apt install --yes git-buildpackage build-essential libattr1-dev \
-      libblkid-dev libselinux1-dev libssl-dev python3-cffi python3-setuptools \
-      python3-sphinx python3-all-dev uuid-dev zlib1g-dev
+    # apt install --yes git-buildpackage build-essential dkms libaio-dev \
+      libattr1-dev libelf-dev libblkid-dev libselinux1-dev libssl-dev \
+      libudev-dev python3-cffi python3-setuptools python3-sphinx \
+      python3-all-dev uuid-dev zlib1g-dev
     # git clone https://salsa.debian.org/zfsonlinux-team/zfs.git
     # cd zfs
     # git checkout pristine-tar
@@ -319,9 +320,10 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
     # apt install --yes dpkg-dev linux-headers-amd64 linux-image-amd64
 
-    # apt install --yes git-buildpackage build-essential dkms libattr1-dev \
-      libblkid-dev libselinux1-dev libssl-dev python3-cffi python3-setuptools \
-      python3-sphinx python3-all-dev uuid-dev zlib1g-dev
+    # apt install --yes git-buildpackage build-essential dkms libaio-dev \
+      libattr1-dev libelf-dev libblkid-dev libselinux1-dev libssl-dev \
+      libudev-dev python3-cffi python3-setuptools python3-sphinx \
+      python3-all-dev uuid-dev zlib1g-dev
     # cd /root
     # git clone https://salsa.debian.org/zfsonlinux-team/zfs.git
     # cd zfs
