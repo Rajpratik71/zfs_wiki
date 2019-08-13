@@ -328,8 +328,8 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
     # git clone https://salsa.debian.org/zfsonlinux-team/zfs.git
     # cd zfs
     # git checkout pristine-tar
-    # git checkout experimental
-    # gbp buildpackage --git-debian-branch=experimental -uc -us
+    # git checkout master
+    # gbp buildpackage -uc -us
     # cd ..
     # dpkg --install \
       libnvpair1linux_0.8.1-4_amd64.deb \
