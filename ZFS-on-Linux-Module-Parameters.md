@@ -21,8 +21,10 @@ In some cases, the parameter must be set prior to loading the kernel modules
 or it is desired to have the parameters set automatically at boot time. For 
 many distros, this can be accomplished by creating a file named 
 `/etc/modprobe.d/zfs.conf` containing text lines of the format 
-`options zfs PARAMETER=VALUE` See the man page for _modprobe.d_ for 
-more information.
+
+```options zfs PARAMETER=VALUE``` 
+
+See the man page for _modprobe.d_ for more information.
 
 ## zfs-module-parameters Manual Page
 The _zfs-module-parameters(5)_ man page contains brief descriptions of the 
