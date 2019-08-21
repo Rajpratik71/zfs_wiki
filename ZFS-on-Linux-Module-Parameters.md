@@ -1133,7 +1133,7 @@ The value calculated for `zfs_arc_dnode_limit_percent` can be overridden by
 | zfs_arc_dnode_limit_percent | Notes
 |---|---
 | Tags | [ARC](#arc)
-| When to change | Testing dnode cache efficiency
+| When to change | Consider increasing if `arc_prune` is using excessive system time and `/proc/spl/kstat/zfs/arcstats` shows `arc_dnode_size` is near or over `arc_dnode_limit`
 | Data Type | int
 | Units | percent of arc_meta_limit
 | Range | 0 to 100
@@ -1155,7 +1155,7 @@ purpose for metadata.
 | zfs_arc_dnode_limit | Notes
 |---|---
 | Tags | [ARC](#arc)
-| When to change | Testing dnode cache efficiency
+| When to change | Consider increasing if `arc_prune` is using excessive system time and `/proc/spl/kstat/zfs/arcstats` shows `arc_dnode_size` is near or over `arc_dnode_limit`
 | Data Type | uint64
 | Units | bytes
 | Range | 0 to MAX_UINT64
