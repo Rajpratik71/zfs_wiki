@@ -12,7 +12,7 @@ To simplify installation a zfs-release package is provided which includes a zfs.
 **Download from:** [pgp.mit.edu][pubkey]  
 **Fingerprint:** C93A FFFD 9F3F 7B03 C310  CEB6 A9D5 A1C0 F14A B620
 
-```
+```sh
 $ sudo dnf install http://download.zfsonlinux.org/fedora/zfs-release$(rpm -E %dist).noarch.rpm
 $ gpg --quiet --with-fingerprint /etc/pki/rpm-gpg/RPM-GPG-KEY-zfsonlinux
 pub  2048R/F14AB620 2013-03-21 ZFS on Linux <zfs@zfsonlinux.org>
@@ -20,10 +20,16 @@ pub  2048R/F14AB620 2013-03-21 ZFS on Linux <zfs@zfsonlinux.org>
     sub  2048R/99685629 2013-03-21
 ```
 
-The ZFS on Linux packages should be installed with dnf on Fedora. Note that it is important to make sure that the matching *kernel-devel* package is installed for the running kernel since DKMS requires it to build ZFS.
+The ZFS on Linux packages should be installed with `dnf` on Fedora. Note that it is important to make sure that the matching *kernel-devel* package is installed for the running kernel since DKMS requires it to build ZFS.
 
-```
+```sh
 $ sudo dnf install kernel-devel zfs
+```
+
+If the Fedora provided *zfs-fuse* package is already installed on the system.  Then the `dnf swap` command should be used to replace the existing fuse packages with the ZFS on Linux packages.
+
+```sh
+$ sudo dnf swap zfs-fuse zfs
 ```
 
 ## Testing Repositories
