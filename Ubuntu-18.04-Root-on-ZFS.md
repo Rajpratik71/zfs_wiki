@@ -77,7 +77,7 @@ If you have a second system, using SSH to access the target system can be conven
     # sgdisk     -n2:1M:+512M   -t2:EF00 /dev/disk/by-id/scsi-SATA_disk1
 
     Run this for the boot pool:
-    # sgdisk     -n3:0:+512M    -t3:BF01 /dev/disk/by-id/scsi-SATA_disk1
+    # sgdisk     -n3:0:+1G      -t3:BF01 /dev/disk/by-id/scsi-SATA_disk1
 
 Choose one of the following options:
 
