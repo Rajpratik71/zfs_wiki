@@ -12,3 +12,12 @@ If you have an existing system installed from the experimental guide, adjust you
     Pin-Priority: 990
 
 This will allow you to upgrade from the locally-built packages to the official buster-backports packages.
+
+You should set a root password before upgrading:
+
+    # passwd
+
+If the bpool fails to import, then enter the rescue shell (which requires a root password) and run:
+    # zpool import -f bpool
+    # zpool export bpool
+    # reboot
