@@ -4,17 +4,13 @@
 * Backup your data. Any existing data will be lost.
 
 ### System Requirements
-* [64-bit Debian GNU/Linux Buster Live CD](https://cdimage.debian.org/mirror/cdimage/release/current-live/amd64/iso-hybrid/)
+* [64-bit Debian GNU/Linux Buster Live CD w/ GUI (e.g. gnome iso)](https://cdimage.debian.org/mirror/cdimage/release/current-live/amd64/iso-hybrid/)
 * [A 64-bit kernel is *strongly* encouraged.](https://github.com/zfsonlinux/zfs/wiki/FAQ#32-bit-vs-64-bit-systems)
 * Installing on a drive which presents 4KiB logical sectors (a “4Kn” drive) only works with UEFI booting. This not unique to ZFS. [GRUB does not and will not work on 4Kn with legacy (BIOS) booting.](http://savannah.gnu.org/bugs/?46700)
 
 Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory is recommended for normal performance in basic workloads.  If you wish to use deduplication, you will need [massive amounts of RAM](http://wiki.freebsd.org/ZFSTuningGuide#Deduplication). Enabling deduplication is a permanent change that cannot be easily reverted.
 
 ## Support
-
-If you want a supported system, see [[Debian Buster Root on ZFS]].
-
-This *experimental* HOWTO uses 0.8.1-4 packages from Debian unstable, rebuilt from git. The packages are not in the Buster repository. Do not ask for support with this version of the HOWTO unless you are able to help with development.
 
 If you need help, reach out to the community using the [zfs-discuss mailing list](http://list.zfsonlinux.org/mailman/listinfo/zfs-discuss) or IRC at #zfsonlinux on [freenode](https://freenode.net/). If you have a bug report or feature request related to this HOWTO, please [file a new issue](https://github.com/zfsonlinux/zfs/issues/new) and mention @rlaager.
 
@@ -56,32 +52,18 @@ If you have a second system, using SSH to access the target system can be conven
 1.4  Setup and update the repositories:
 
     # echo deb http://deb.debian.org/debian buster contrib >> /etc/apt/sources.list
+    # echo deb http://deb.debian.org/debian buster-backports main contrib >> /etc/apt/sources.list
     # apt update
 
 1.5  Install ZFS in the Live CD environment:
 
 **Warning:** If you do not have at least 3 GiB of RAM, this may not work, as the Live CD overlay can run out of space.
 
-    # apt install --yes debootstrap gdisk dpkg-dev linux-headers-$(uname -r)
-    # apt install --yes git-buildpackage build-essential dkms libaio-dev \
-      libattr1-dev libelf-dev libblkid-dev libselinux1-dev libssl-dev \
-      libudev-dev python3-cffi python3-setuptools python3-sphinx \
-      python3-all-dev uuid-dev zlib1g-dev
-    # git clone https://salsa.debian.org/zfsonlinux-team/zfs.git
-    # cd zfs
-    # git checkout pristine-tar
-    # git checkout master
-    # gbp buildpackage -uc -us
-    # cd ..
-    # dpkg --install \
-      libnvpair1linux_0.8.1-4_amd64.deb \
-      libuutil1linux_0.8.1-4_amd64.deb \
-      libzfs2linux_0.8.1-4_amd64.deb \
-      libzpool2linux_0.8.1-4_amd64.deb \
-      zfs-dkms_0.8.1-4_all.deb \
-      zfsutils-linux_0.8.1-4_amd64.deb \
-      zfs-zed_0.8.1-4_amd64.deb
+    # apt install --yes debootstrap gdisk dkms dpkg-dev linux-headers-$(uname -r)
+    # apt install --yes -t buster-backports zfs-dkms
     # modprobe zfs
+
+* The dkms dependency is installed manually just so it comes from buster and not buster-backports. This is not critical.
 
 ## Step 2: Disk Formatting
 
@@ -294,6 +276,15 @@ Customize this file if the system is not a DHCP client.
     # vi /mnt/etc/apt/sources.list
     deb http://deb.debian.org/debian buster main contrib
     deb-src http://deb.debian.org/debian buster main contrib
+    
+    # vi /mnt/etc/apt/sources.list.d/buster-backports.list
+    deb http://deb.debian.org/debian buster-backports main contrib
+    deb-src http://deb.debian.org/debian buster-backports main contrib
+    
+    # vi /mnt/etc/apt/preferences.d/90_zfs
+    Package: libnvpair1linux libuutil1linux libzfs2linux libzpool2linux zfs-dkms zfs-initramfs zfs-test zfsutils-linux zfsutils-linux-dev zfs-zed
+    Pin: release n=buster-backports
+    Pin-Priority: 990
 
 4.4  Bind the virtual filesystems from the LiveCD environment to the new system and `chroot` into it:
 
@@ -319,27 +310,7 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 4.6  Install ZFS in the chroot environment for the new system:
 
     # apt install --yes dpkg-dev linux-headers-amd64 linux-image-amd64
-
-    # apt install --yes git-buildpackage build-essential dkms libaio-dev \
-      libattr1-dev libelf-dev libblkid-dev libselinux1-dev libssl-dev \
-      libudev-dev python3-cffi python3-setuptools python3-sphinx \
-      python3-all-dev uuid-dev zlib1g-dev
-    # cd /root
-    # git clone https://salsa.debian.org/zfsonlinux-team/zfs.git
-    # cd zfs
-    # git checkout pristine-tar
-    # git checkout master
-    # gbp buildpackage -uc -us
-    # cd ..
-    # dpkg --install \
-      libnvpair1linux_0.8.1-4_amd64.deb \
-      libuutil1linux_0.8.1-4_amd64.deb \
-      libzfs2linux_0.8.1-4_amd64.deb \
-      libzpool2linux_0.8.1-4_amd64.deb \
-      zfs-dkms_0.8.1-4_all.deb \
-      zfs-initramfs_0.8.1-4_all.deb \
-      zfsutils-linux_0.8.1-4_amd64.deb \
-      zfs-zed_0.8.1-4_amd64.deb
+    # apt install --yes zfs-initramfs
 
 4.7  Install GRUB
 
@@ -403,6 +374,8 @@ If you chose to create a `/tmp` dataset above, skip this step, as they are mutua
 The `popularity-contest` package reports the list of packages install on your system. Showing that ZFS is popular may be helpful in terms of long-term attention from the distro.
 
     # apt install --yes popularity-contest
+    
+    Choose Yes at the
 
 ## Step 5: GRUB Installation
 
@@ -414,7 +387,7 @@ The `popularity-contest` package reports the list of packages install on your sy
 5.2  Refresh the initrd files:
 
     # update-initramfs -u -k all
-    update-initramfs: Generating /boot/initrd.img-4.19.0-4-amd64
+    update-initramfs: Generating /boot/initrd.img-4.19.0-6-amd64
 
 5.3  Workaround GRUB's missing zpool-features support:
 
@@ -434,8 +407,8 @@ Later, once the system has rebooted twice and you are sure everything is working
 
     # update-grub
     Generating grub configuration file ...
-    Found linux image: /boot/vmlinuz-4.19.0-4-amd64
-    Found initrd image: /boot/initrd.img-4.19.0-4-amd64
+    Found linux image: /boot/vmlinuz-4.19.0-6-amd64
+    Found initrd image: /boot/initrd.img-4.19.0-6-amd64
     done
 
 * Ignore errors from `osprober`, if present.
