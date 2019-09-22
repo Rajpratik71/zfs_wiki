@@ -4,11 +4,11 @@
 * Backup your data. Any existing data will be lost.
 
 ### System Requirements
-* [64-bit Debian GNU/Linux Buster Live CD](https://cdimage.debian.org/mirror/cdimage/release/current-live/amd64/iso-hybrid/)
+* [64-bit Debian GNU/Linux Buster Live CD w/ GUI (e.g. gnome iso)](https://cdimage.debian.org/mirror/cdimage/release/current-live/amd64/iso-hybrid/)
 * [A 64-bit kernel is *strongly* encouraged.](https://github.com/zfsonlinux/zfs/wiki/FAQ#32-bit-vs-64-bit-systems)
 * Installing on a drive which presents 4KiB logical sectors (a “4Kn” drive) only works with UEFI booting. This not unique to ZFS. [GRUB does not and will not work on 4Kn with legacy (BIOS) booting.](http://savannah.gnu.org/bugs/?46700)
 
-Computers that have less than 2 GiB of memory may run ZFS slowly due to small available space for ZFS cache.  4 GiB of memory is recommended for normal performance in basic workloads.  If you wish to use deduplication, you will need [massive amounts of RAM](http://wiki.freebsd.org/ZFSTuningGuide#Deduplication). Enabling deduplication is a permanent change that cannot be easily reverted.
+Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory is recommended for normal performance in basic workloads.  If you wish to use deduplication, you will need [massive amounts of RAM](http://wiki.freebsd.org/ZFSTuningGuide#Deduplication). Enabling deduplication is a permanent change that cannot be easily reverted.
 
 ## Support
 
@@ -25,11 +25,11 @@ Edit permission on this wiki is restricted. Also, GitHub wikis do not support pu
 
 ## Encryption
 
-This guide supports two different encryption options: unencrypted and LUKS (full-disk encryption). ZFS native encryption has not yet been released. With either option, all ZFS features are fully available.
+This guide supports two different encryption options: unencrypted and ZFS native encryption. With either option, all ZFS features are fully available.
 
 Unencrypted does not encrypt anything, of course. With no encryption happening, this option naturally has the best performance.
 
-LUKS encrypts almost everything: the OS, swap, home directories, and anything else. The only unencrypted data is the bootloader, kernel, and initrd. The system cannot boot without the passphrase being entered at the console. Performance is good, but LUKS sits underneath ZFS, so if multiple disks (mirror or raidz topologies) are used, the data has to be encrypted once per disk.
+ZFS native encryption encrypts the data and most metadata in the root pool. It does not encrypt dataset or snapshot names or properties. The boot pool is not encrypted at all, but it only contains the bootloader, kernel, and initrd. (Unless you put a password in `/etc/fstab`, the initrd is unlikely to contain sensitive data.) The system cannot boot without the passphrase being entered at the console. Performance is good. As the encryption happens in ZFS, even if multiple disks (mirror or raidz topologies) are used, the data only has to be encrypted once.
 
 ## Step 1: Prepare The Install Environment
 
@@ -52,13 +52,18 @@ If you have a second system, using SSH to access the target system can be conven
 1.4  Setup and update the repositories:
 
     # echo deb http://deb.debian.org/debian buster contrib >> /etc/apt/sources.list
+    # echo deb http://deb.debian.org/debian buster-backports main contrib >> /etc/apt/sources.list
     # apt update
 
 1.5  Install ZFS in the Live CD environment:
 
-    # apt install --yes debootstrap gdisk dpkg-dev linux-headers-$(uname -r)
-    # apt install --yes zfs-dkms
+**Warning:** If you do not have at least 3 GiB of RAM, this may not work, as the Live CD overlay can run out of space.
+
+    # apt install --yes debootstrap gdisk dkms dpkg-dev linux-headers-$(uname -r)
+    # apt install --yes -t buster-backports zfs-dkms
     # modprobe zfs
+
+* The dkms dependency is installed manually just so it comes from buster and not buster-backports. This is not critical.
 
 ## Step 2: Disk Formatting
 
@@ -82,15 +87,8 @@ If you have a second system, using SSH to access the target system can be conven
     Run this for the boot pool:
     # sgdisk     -n3:0:+1G      -t3:BF01 /dev/disk/by-id/scsi-SATA_disk1
 
-Choose one of the following options:
-
-2.2a  Unencrypted:
-
+    Run this for the root pool:
     # sgdisk     -n4:0:0        -t4:BF01 /dev/disk/by-id/scsi-SATA_disk1
-
-2.2b  LUKS:
-
-    # sgdisk     -n4:0:0        -t4:8300 /dev/disk/by-id/scsi-SATA_disk1
 
 Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` device nodes directly can cause sporadic import failures, especially on systems that have more than one storage pool.
 
@@ -114,6 +112,11 @@ Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` 
           -o feature@lz4_compress=enabled \
           -o feature@spacemap_histogram=enabled \
           -o feature@userobj_accounting=enabled \
+          -o feature@zpool_checkpoint=enabled \
+          -o feature@spacemap_v2=enabled \
+          -o feature@project_quota=enabled \
+          -o feature@resilver_defer=enabled \
+          -o feature@allocation_classes=enabled \
           -O acltype=posixacl -O canmount=off -O compression=lz4 -O devices=off \
           -O normalization=formD -O relatime=on -O xattr=sa \
           -O mountpoint=/ -R /mnt \
@@ -139,17 +142,14 @@ Choose one of the following options:
           -O mountpoint=/ -R /mnt \
           rpool /dev/disk/by-id/scsi-SATA_disk1-part4
 
-2.4b  LUKS:
+2.4b  Encrypted:
 
-    # apt install --yes cryptsetup
-    # cryptsetup luksFormat -c aes-xts-plain64 -s 512 -h sha256 \
-          /dev/disk/by-id/scsi-SATA_disk1-part4
-    # cryptsetup luksOpen /dev/disk/by-id/scsi-SATA_disk1-part4 luks1
     # zpool create -o ashift=12 \
           -O acltype=posixacl -O canmount=off -O compression=lz4 \
           -O dnodesize=auto -O normalization=formD -O relatime=on -O xattr=sa \
+          -O encryption=aes-256-gcm -O keylocation=prompt -O keyformat=passphrase \
           -O mountpoint=/ -R /mnt \
-          rpool /dev/mapper/luks1
+          rpool /dev/disk/by-id/scsi-SATA_disk1-part4
 
 * The use of `ashift=12` is recommended here because many drives today have 4KiB (or larger) physical sectors, even though they present 512B logical sectors.  Also, a future replacement drive may have 4KiB physical sectors (in which case `ashift=12` is desirable) or 4KiB logical sectors (in which case `ashift=12` is required).
 * Setting `-O acltype=posixacl` enables POSIX ACLs globally. If you do not want this, remove that option, but later add `-o acltype=posixacl` (note: lowercase "o") to the `zfs create` for `/var/log`, as [journald requires ACLs](https://askubuntu.com/questions/970886/journalctl-says-failed-to-search-journal-acl-operation-not-supported)
@@ -157,11 +157,11 @@ Choose one of the following options:
 * Setting `relatime=on` is a middle ground between classic POSIX `atime` behavior (with its significant performance impact) and `atime=off` (which provides the best performance by completely disabling atime updates). Since Linux 2.6.30, `relatime` has been the default for other filesystems. See [RedHat's documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/power_management_guide/relatime) for further information.
 * Setting `xattr=sa` [vastly improves the performance of extended attributes](https://github.com/zfsonlinux/zfs/commit/82a37189aac955c81a59a5ecc3400475adb56355). Inside ZFS, extended attributes are used to implement POSIX ACLs. Extended attributes can also be used by user-space applications. [They are used by some desktop GUI applications.](https://en.wikipedia.org/wiki/Extended_file_attributes#Linux) [They can be used by Samba to store Windows ACLs and DOS attributes; they are required for a Samba Active Directory domain controller.](https://wiki.samba.org/index.php/Setting_up_a_Share_Using_Windows_ACLs) Note that [`xattr=sa` is Linux-specific.](http://open-zfs.org/wiki/Platform_code_differences) If you move your `xattr=sa` pool to another OpenZFS implementation besides ZFS-on-Linux, extended attributes will not be readable (though your data will be). If portability of extended attributes is important to you, omit the `-O xattr=sa` above. Even if you do not want `xattr=sa` for the whole pool, it is probably fine to use it for `/var/log`.
 * Make sure to include the `-part4` portion of the drive path. If you forget that, you are specifying the whole disk, which ZFS will then re-partition, and you will lose the bootloader partition(s).
-* For LUKS, the key size chosen is 512 bits. However, XTS mode requires two keys, so the LUKS key is split in half. Thus, `-s 512` means AES-256.
+* ZFS uses `aes-256-ccm` by default. AES-GCM seems to be generally preferred over AES-CCM elsewhere, and is likely faster.
 * Your passphrase will likely be the weakest link. Choose wisely. See [section 5 of the cryptsetup FAQ](https://gitlab.com/cryptsetup/cryptsetup/wikis/FrequentlyAskedQuestions#5-security-aspects) for guidance.
 
 **Hints:**
-* If you are creating a mirror or raidz topology, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part4 /dev/disk/by-id/scsi-SATA_disk2-part4` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks).  For LUKS, use `/dev/mapper/luks1`, `/dev/mapper/luks2`, etc., which you will have to create using `cryptsetup`.
+* If you are creating a mirror or raidz topology, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part4 /dev/disk/by-id/scsi-SATA_disk2-part4` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks).
 * The pool name is arbitrary. If changed, the new name must be used consistently. On systems that can automatically install to ZFS, the root pool is named `rpool` by default.
 
 ## Step 3: System Installation
@@ -276,6 +276,15 @@ Customize this file if the system is not a DHCP client.
     # vi /mnt/etc/apt/sources.list
     deb http://deb.debian.org/debian buster main contrib
     deb-src http://deb.debian.org/debian buster main contrib
+    
+    # vi /mnt/etc/apt/sources.list.d/buster-backports.list
+    deb http://deb.debian.org/debian buster-backports main contrib
+    deb-src http://deb.debian.org/debian buster-backports main contrib
+    
+    # vi /mnt/etc/apt/preferences.d/90_zfs
+    Package: libnvpair1linux libuutil1linux libzfs2linux libzpool2linux zfs-dkms zfs-initramfs zfs-test zfsutils-linux zfsutils-linux-dev zfs-zed
+    Pin: release n=buster-backports
+    Pin-Priority: 990
 
 4.4  Bind the virtual filesystems from the LiveCD environment to the new system and `chroot` into it:
 
@@ -303,29 +312,17 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
     # apt install --yes dpkg-dev linux-headers-amd64 linux-image-amd64
     # apt install --yes zfs-initramfs
 
-4.7  For LUKS installs only, setup crypttab:
-
-    # apt install --yes cryptsetup
-
-    # echo luks1 UUID=$(blkid -s UUID -o value \
-          /dev/disk/by-id/scsi-SATA_disk1-part4) none \
-          luks,discard,initramfs > /etc/crypttab
-
-* The use of `initramfs` is a work-around for [cryptsetup does not support ZFS](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906).
-
-**Hint:** If you are creating a mirror or raidz topology, repeat the `/etc/crypttab` entries for `luks2`, etc. adjusting for each disk.
-
-4.8  Install GRUB
+4.7  Install GRUB
 
 Choose one of the following options:
 
-4.8a  Install GRUB for legacy (BIOS) booting
+4.7a  Install GRUB for legacy (BIOS) booting
 
     # apt install --yes grub-pc
 
 Install GRUB to the disk(s), not the partition(s).
 
-4.8b  Install GRUB for UEFI booting
+4.7b  Install GRUB for UEFI booting
 
     # apt install dosfstools
     # mkdosfs -F 32 -s 1 -n EFI /dev/disk/by-id/scsi-SATA_disk1-part2
@@ -340,11 +337,11 @@ Install GRUB to the disk(s), not the partition(s).
 
 **Note:** If you are creating a mirror or raidz topology, this step only installs GRUB on the first disk. The other disk(s) will be handled later.
 
-4.9  Set a root password
+4.8  Set a root password
 
     # passwd
 
-4.10  Enable importing bpool
+4.9  Enable importing bpool
 
 This ensures that `bpool` is always imported, regardless of whether `/etc/zfs/zpool.cache` exists, whether it is in the cachefile or not, or whether `zfs-import-scan.service` is enabled.
 ```
@@ -365,18 +362,20 @@ This ensures that `bpool` is always imported, regardless of whether `/etc/zfs/zp
     # systemctl enable zfs-import-bpool.service
 ```
 
-4.11  Optional (but recommended): Mount a tmpfs to /tmp
+4.10  Optional (but recommended): Mount a tmpfs to /tmp
 
 If you chose to create a `/tmp` dataset above, skip this step, as they are mutually exclusive choices. Otherwise, you can put `/tmp` on a tmpfs (RAM filesystem) by enabling the `tmp.mount` unit.
 
     # cp /usr/share/systemd/tmp.mount /etc/systemd/system/
     # systemctl enable tmp.mount
 
-4.12  Optional (but kindly requested): Install popcon
+4.11  Optional (but kindly requested): Install popcon
 
 The `popularity-contest` package reports the list of packages install on your system. Showing that ZFS is popular may be helpful in terms of long-term attention from the distro.
 
     # apt install --yes popularity-contest
+    
+    Choose Yes at the
 
 ## Step 5: GRUB Installation
 
@@ -388,9 +387,7 @@ The `popularity-contest` package reports the list of packages install on your sy
 5.2  Refresh the initrd files:
 
     # update-initramfs -u -k all
-    update-initramfs: Generating /boot/initrd.img-4.19.0-4-amd64
-
-**Note:** When using LUKS, this will print "WARNING could not determine root device from /etc/fstab". This is because [cryptsetup does not support ZFS](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906).
+    update-initramfs: Generating /boot/initrd.img-4.19.0-6-amd64
 
 5.3  Workaround GRUB's missing zpool-features support:
 
@@ -410,8 +407,8 @@ Later, once the system has rebooted twice and you are sure everything is working
 
     # update-grub
     Generating grub configuration file ...
-    Found linux image: /boot/vmlinuz-4.19.0-4-amd64
-    Found initrd image: /boot/initrd.img-4.19.0-4-amd64
+    Found linux image: /boot/vmlinuz-4.19.0-6-amd64
+    Found initrd image: /boot/initrd.img-4.19.0-6-amd64
     done
 
 * Ignore errors from `osprober`, if present.
@@ -439,12 +436,9 @@ If you are creating a mirror or raidz topology, repeat the `grub-install` comman
 
 5.8  Fix filesystem mount ordering
 
-[Until ZFS gains a systemd mount generator](https://github.com/zfsonlinux/zfs/issues/4898), there are races between mounting filesystems and starting certain daemons. In practice, the issues (e.g. [#5754](https://github.com/zfsonlinux/zfs/issues/5754)) seem to be with certain filesystems in `/var`, specifically `/var/log` and `/var/tmp`. Setting these to use `legacy` mounting, and listing them in `/etc/fstab` makes systemd aware that these are separate mountpoints. In turn, `rsyslog.service` depends on `var-log.mount` by way of `local-fs.target` and services using the `PrivateTmp` feature of systemd automatically use `After=var-tmp.mount`.
-
 Until there is support for mounting `/boot` in the initramfs, we also need to mount that, because it was marked `canmount=noauto`. Also, with UEFI, we need to ensure it is mounted before its child filesystem `/boot/efi`.
 
-`rpool` is guaranteed to be imported by the initramfs, so there is no point in adding `x-systemd.requires=zfs-import.target` to those filesystems.
-
+We need to activate `zfs-mount-generator`. This makes systemd aware of the separate mountpoints, which is important for things like `/var/log` and `/var/tmp`. In turn, `rsyslog.service` depends on `var-log.mount` by way of `local-fs.target` and services using the `PrivateTmp` feature of systemd automatically use `After=var-tmp.mount`.
 
     For UEFI booting, unmount /boot/efi first:
     # umount /boot/efi
@@ -455,19 +449,23 @@ Until there is support for mounting `/boot` in the initramfs, we also need to mo
     # echo bpool/BOOT/debian /boot zfs \
           nodev,relatime,x-systemd.requires=zfs-import-bpool.service 0 0 >> /etc/fstab
 
-    # zfs set mountpoint=legacy rpool/var/log
-    # echo rpool/var/log /var/log zfs nodev,relatime 0 0 >> /etc/fstab
+    # mkdir /etc/zfs/zfs-list.cache
+    # touch /etc/zfs/zfs-list.cache/rpool
+    # ln -s /usr/lib/zfs-linux/zed.d/history_event-zfs-list-cacher.sh /etc/zfs/zed.d
+    # zed -F &
 
-    # zfs set mountpoint=legacy rpool/var/spool
-    # echo rpool/var/spool /var/spool zfs nodev,relatime 0 0 >> /etc/fstab
+    Verify that zed updated the cache by making sure this is not empty:
+    # cat /etc/zfs/zfs-list.cache/rpool
 
-    If you created a /var/tmp dataset:
-    # zfs set mountpoint=legacy rpool/var/tmp
-    # echo rpool/var/tmp /var/tmp zfs nodev,relatime 0 0 >> /etc/fstab
+    If it is empty, force a cache update and check again:
+    # zfs set canmount=noauto rpool/ROOT/debian
 
-    If you created a /tmp dataset:
-    # zfs set mountpoint=legacy rpool/tmp
-    # echo rpool/tmp /tmp zfs nodev,relatime 0 0 >> /etc/fstab
+    Stop zed:
+    # fg
+    Press Ctrl-C.
+
+    Fix the paths to eliminate /mnt:
+    # sed -Ei "s|/mnt/?|/|" /etc/zfs/zfs-list.cache/rpool
 
 ## Step 6: First Boot
 
@@ -594,7 +592,7 @@ As `/var/log` is already compressed by ZFS, logrotate’s compression is going t
 
 9.4  Optional: Re-enable the graphical boot process:
 
-If you prefer the graphical boot process, you can re-enable it now. If you are using LUKS, it makes the prompt look nicer.
+If you prefer the graphical boot process, you can re-enable it now.
 
     $ sudo vi /etc/default/grub
     Add quiet to GRUB_CMDLINE_LINUX_DEFAULT
@@ -605,31 +603,18 @@ If you prefer the graphical boot process, you can re-enable it now. If you are u
 
 * Ignore errors from `osprober`, if present.
 
-9.5  Optional: For LUKS installs only, backup the LUKS header:
-
-    $ sudo cryptsetup luksHeaderBackup /dev/disk/by-id/scsi-SATA_disk1-part4 \
-        --header-backup-file luks1-header.dat
-
-Store that backup somewhere safe (e.g. cloud storage). It is protected by your LUKS passphrase, but you may wish to use additional encryption.
-
-**Hint:** If you created a mirror or raidz topology, repeat this for each LUKS volume (`luks2`, etc.).
-
 ## Troubleshooting
 
 ### Rescuing using a Live CD
 
 Go through [Step 1: Prepare The Install Environment](#step-1-prepare-the-install-environment).
 
-This will automatically import your pool. Export it and re-import it to get the mounts right:
-
-    For LUKS, first unlock the disk(s):
-    # apt install --yes cryptsetup
-    # cryptsetup luksOpen /dev/disk/by-id/scsi-SATA_disk1-part4 luks1
-    Repeat for additional disks, if this is a mirror or raidz topology.
+This may automatically import your pool. Export it and re-import it to get the mounts right:
 
     # zpool export -a
     # zpool import -N -R /mnt rpool
     # zpool import -N -R /mnt bpool
+    # zfs load-key -a
     # zfs mount rpool/ROOT/debian
     # zfs mount -a
 
