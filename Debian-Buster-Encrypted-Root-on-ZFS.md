@@ -7,7 +7,7 @@ If you have an existing system installed from the experimental guide, adjust you
     deb-src http://deb.debian.org/debian buster-backports main contrib
     
     # vi /etc/apt/preferences.d/90_zfs
-    Package: libnvpair1linux libuutil1linux libzfs2linux libzpool2linux zfs-dkms zfs-initramfs zfs-test zfsutils-linux zfsutils-linux-dev zfs-zed
+    Package: libnvpair1linux libuutil1linux libzfs2linux libzpool2linux zfs-dkms zfs-initramfs zfs-test zfsutils-linux zfs-zed
     Pin: release n=buster-backports
     Pin-Priority: 990
 
