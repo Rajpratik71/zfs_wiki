@@ -11,6 +11,7 @@ To simplify installation a zfs-release package is provided which includes a zfs.
 **EL7.4 Package:** http://download.zfsonlinux.org/epel/zfs-release.el7_4.noarch.rpm  
 **EL7.5 Package:** http://download.zfsonlinux.org/epel/zfs-release.el7_5.noarch.rpm  
 **EL7.6 Package:** http://download.zfsonlinux.org/epel/zfs-release.el7_6.noarch.rpm  
+**EL7.7 Package:** http://download.zfsonlinux.org/epel/zfs-release.el7_7.noarch.rpm  
 **Note:** Starting with EL7.7 **zfs-0.8** will become the default, EL7.6 and older will continue to track the **zfs-0.7** point releases.
 
 **Download from:** [pgp.mit.edu][pubkey]  
