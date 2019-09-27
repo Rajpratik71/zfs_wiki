@@ -25,9 +25,11 @@ Edit permission on this wiki is restricted. Also, GitHub wikis do not support pu
 
 ## Encryption
 
-This guide supports two different encryption options: unencrypted and ZFS native encryption. With either option, all ZFS features are fully available.
+This guide supports three different encryption options: unencrypted, LUKS (full-disk encryption), and ZFS native encryption. With any option, all ZFS features are fully available.
 
 Unencrypted does not encrypt anything, of course. With no encryption happening, this option naturally has the best performance.
+
+LUKS encrypts almost everything: the OS, swap, home directories, and anything else. The only unencrypted data is the bootloader, kernel, and initrd. The system cannot boot without the passphrase being entered at the console. Performance is good, but LUKS sits underneath ZFS, so if multiple disks (mirror or raidz topologies) are used, the data has to be encrypted once per disk.
 
 ZFS native encryption encrypts the data and most metadata in the root pool. It does not encrypt dataset or snapshot names or properties. The boot pool is not encrypted at all, but it only contains the bootloader, kernel, and initrd. (Unless you put a password in `/etc/fstab`, the initrd is unlikely to contain sensitive data.) The system cannot boot without the passphrase being entered at the console. Performance is good. As the encryption happens in ZFS, even if multiple disks (mirror or raidz topologies) are used, the data only has to be encrypted once.
 
@@ -85,8 +87,15 @@ If you have a second system, using SSH to access the target system can be conven
     Run this for the boot pool:
     # sgdisk     -n3:0:+1G      -t3:BF01 /dev/disk/by-id/scsi-SATA_disk1
 
-    Run this for the root pool:
+Choose one of the following options:
+
+2.2a  Unencrypted or ZFS native encryption:
+
     # sgdisk     -n4:0:0        -t4:BF01 /dev/disk/by-id/scsi-SATA_disk1
+
+2.2b  LUKS:
+
+    # sgdisk     -n4:0:0        -t4:8300 /dev/disk/by-id/scsi-SATA_disk1
 
 Always use the long `/dev/disk/by-id/*` aliases with ZFS.  Using the `/dev/sd*` device nodes directly can cause sporadic import failures, especially on systems that have more than one storage pool.
 
@@ -140,7 +149,19 @@ Choose one of the following options:
           -O mountpoint=/ -R /mnt \
           rpool /dev/disk/by-id/scsi-SATA_disk1-part4
 
-2.4b  Encrypted:
+2.4b  LUKS:
+
+    # apt install --yes cryptsetup
+    # cryptsetup luksFormat -c aes-xts-plain64 -s 512 -h sha256 \
+          /dev/disk/by-id/scsi-SATA_disk1-part4
+    # cryptsetup luksOpen /dev/disk/by-id/scsi-SATA_disk1-part4 luks1
+    # zpool create -o ashift=12 \
+          -O acltype=posixacl -O canmount=off -O compression=lz4 \
+          -O dnodesize=auto -O normalization=formD -O relatime=on -O xattr=sa \
+          -O mountpoint=/ -R /mnt \
+          rpool /dev/mapper/luks1
+
+2.4c  ZFS native encryption:
 
     # zpool create -o ashift=12 \
           -O acltype=posixacl -O canmount=off -O compression=lz4 \
@@ -155,11 +176,12 @@ Choose one of the following options:
 * Setting `relatime=on` is a middle ground between classic POSIX `atime` behavior (with its significant performance impact) and `atime=off` (which provides the best performance by completely disabling atime updates). Since Linux 2.6.30, `relatime` has been the default for other filesystems. See [RedHat's documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/power_management_guide/relatime) for further information.
 * Setting `xattr=sa` [vastly improves the performance of extended attributes](https://github.com/zfsonlinux/zfs/commit/82a37189aac955c81a59a5ecc3400475adb56355). Inside ZFS, extended attributes are used to implement POSIX ACLs. Extended attributes can also be used by user-space applications. [They are used by some desktop GUI applications.](https://en.wikipedia.org/wiki/Extended_file_attributes#Linux) [They can be used by Samba to store Windows ACLs and DOS attributes; they are required for a Samba Active Directory domain controller.](https://wiki.samba.org/index.php/Setting_up_a_Share_Using_Windows_ACLs) Note that [`xattr=sa` is Linux-specific.](http://open-zfs.org/wiki/Platform_code_differences) If you move your `xattr=sa` pool to another OpenZFS implementation besides ZFS-on-Linux, extended attributes will not be readable (though your data will be). If portability of extended attributes is important to you, omit the `-O xattr=sa` above. Even if you do not want `xattr=sa` for the whole pool, it is probably fine to use it for `/var/log`.
 * Make sure to include the `-part4` portion of the drive path. If you forget that, you are specifying the whole disk, which ZFS will then re-partition, and you will lose the bootloader partition(s).
-* ZFS uses `aes-256-ccm` by default. AES-GCM seems to be generally preferred over AES-CCM elsewhere, and is likely faster.
+* For LUKS, the key size chosen is 512 bits. However, XTS mode requires two keys, so the LUKS key is split in half. Thus, `-s 512` means AES-256.
+* ZFS native encryption uses `aes-256-ccm` by default. AES-GCM seems to be generally preferred over AES-CCM elsewhere, and is likely faster.
 * Your passphrase will likely be the weakest link. Choose wisely. See [section 5 of the cryptsetup FAQ](https://gitlab.com/cryptsetup/cryptsetup/wikis/FrequentlyAskedQuestions#5-security-aspects) for guidance.
 
 **Hints:**
-* If you are creating a mirror or raidz topology, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part4 /dev/disk/by-id/scsi-SATA_disk2-part4` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks).
+* If you are creating a mirror or raidz topology, create the pool using `zpool create ... rpool mirror /dev/disk/by-id/scsi-SATA_disk1-part4 /dev/disk/by-id/scsi-SATA_disk2-part4` (or replace `mirror` with `raidz`, `raidz2`, or `raidz3` and list the partitions from additional disks).  For LUKS, use `/dev/mapper/luks1`, `/dev/mapper/luks2`, etc., which you will have to create using `cryptsetup`.
 * The pool name is arbitrary. If changed, the new name must be used consistently. On systems that can automatically install to ZFS, the root pool is named `rpool` by default.
 
 ## Step 3: System Installation
@@ -314,17 +336,29 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
 The patch fixes zfs-initramfs's Plymouth support for prompting for encryption passphrases. It is included in 0.8.2, so by the time of the next package update, the patch should not need to be reapplied.
 
-4.7  Install GRUB
+4.7  For LUKS installs only, setup crypttab:
+
+    # apt install --yes cryptsetup
+
+    # echo luks1 UUID=$(blkid -s UUID -o value \
+          /dev/disk/by-id/scsi-SATA_disk1-part4) none \
+          luks,discard,initramfs > /etc/crypttab
+
+* The use of `initramfs` is a work-around for [cryptsetup does not support ZFS](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906).
+
+**Hint:** If you are creating a mirror or raidz topology, repeat the `/etc/crypttab` entries for `luks2`, etc. adjusting for each disk.
+
+4.8  Install GRUB
 
 Choose one of the following options:
 
-4.7a  Install GRUB for legacy (BIOS) booting
+4.8a  Install GRUB for legacy (BIOS) booting
 
     # apt install --yes grub-pc
 
 Install GRUB to the disk(s), not the partition(s).
 
-4.7b  Install GRUB for UEFI booting
+4.8b  Install GRUB for UEFI booting
 
     # apt install dosfstools
     # mkdosfs -F 32 -s 1 -n EFI /dev/disk/by-id/scsi-SATA_disk1-part2
@@ -339,11 +373,11 @@ Install GRUB to the disk(s), not the partition(s).
 
 **Note:** If you are creating a mirror or raidz topology, this step only installs GRUB on the first disk. The other disk(s) will be handled later.
 
-4.8  Set a root password
+4.9  Set a root password
 
     # passwd
 
-4.9  Enable importing bpool
+4.10  Enable importing bpool
 
 This ensures that `bpool` is always imported, regardless of whether `/etc/zfs/zpool.cache` exists, whether it is in the cachefile or not, or whether `zfs-import-scan.service` is enabled.
 ```
@@ -364,14 +398,14 @@ This ensures that `bpool` is always imported, regardless of whether `/etc/zfs/zp
     # systemctl enable zfs-import-bpool.service
 ```
 
-4.10  Optional (but recommended): Mount a tmpfs to /tmp
+4.11  Optional (but recommended): Mount a tmpfs to /tmp
 
 If you chose to create a `/tmp` dataset above, skip this step, as they are mutually exclusive choices. Otherwise, you can put `/tmp` on a tmpfs (RAM filesystem) by enabling the `tmp.mount` unit.
 
     # cp /usr/share/systemd/tmp.mount /etc/systemd/system/
     # systemctl enable tmp.mount
 
-4.11  Optional (but kindly requested): Install popcon
+4.12  Optional (but kindly requested): Install popcon
 
 The `popularity-contest` package reports the list of packages install on your system. Showing that ZFS is popular may be helpful in terms of long-term attention from the distro.
 
@@ -390,6 +424,8 @@ Choose Yes at the prompt.
 
     # update-initramfs -u -k all
     update-initramfs: Generating /boot/initrd.img-4.19.0-6-amd64
+
+**Note:** When using LUKS, this will print "WARNING could not determine root device from /etc/fstab". This is because [cryptsetup does not support ZFS](https://bugs.launchpad.net/ubuntu/+source/cryptsetup/+bug/1612906).
 
 5.3  Workaround GRUB's missing zpool-features support:
 
@@ -594,7 +630,7 @@ As `/var/log` is already compressed by ZFS, logrotate’s compression is going t
 
 9.4  Optional: Re-enable the graphical boot process:
 
-If you prefer the graphical boot process, you can re-enable it now.
+If you prefer the graphical boot process, you can re-enable it now. If you are using LUKS, it makes the prompt look nicer.
 
     $ sudo vi /etc/default/grub
     Add quiet to GRUB_CMDLINE_LINUX_DEFAULT
@@ -605,13 +641,28 @@ If you prefer the graphical boot process, you can re-enable it now.
 
 * Ignore errors from `osprober`, if present.
 
+9.5  Optional: For LUKS installs only, backup the LUKS header:
+
+    $ sudo cryptsetup luksHeaderBackup /dev/disk/by-id/scsi-SATA_disk1-part4 \
+        --header-backup-file luks1-header.dat
+
+Store that backup somewhere safe (e.g. cloud storage). It is protected by your LUKS passphrase, but you may wish to use additional encryption.
+
+**Hint:** If you created a mirror or raidz topology, repeat this for each LUKS volume (`luks2`, etc.).
+
 ## Troubleshooting
 
 ### Rescuing using a Live CD
 
 Go through [Step 1: Prepare The Install Environment](#step-1-prepare-the-install-environment).
 
-This may automatically import your pool. Export it and re-import it to get the mounts right:
+For LUKS, first unlock the disk(s):
+
+    # apt install --yes cryptsetup
+    # cryptsetup luksOpen /dev/disk/by-id/scsi-SATA_disk1-part4 luks1
+    Repeat for additional disks, if this is a mirror or raidz topology.
+
+Mount everything correctly:
 
     # zpool export -a
     # zpool import -N -R /mnt rpool
