@@ -309,8 +309,12 @@ Even if you prefer a non-English system language, always ensure that `en_US.UTF-
 
 4.6  Install ZFS in the chroot environment for the new system:
 
-    # apt install --yes dpkg-dev linux-headers-amd64 linux-image-amd64
+    # apt install --yes curl dpkg-dev linux-headers-amd64 linux-image-amd64
     # apt install --yes zfs-initramfs
+    # curl https://github.com/zfsonlinux/zfs/commit/f335b8f.patch | \
+      patch /usr/share/initramfs-tools/scripts/zfs
+
+The patch fixes zfs-initramfs's Plymouth support for prompting for encryption passphrases. It is included in 0.8.2, so by the time of the next package update, the patch should not need to be reapplied.
 
 4.7  Install GRUB
 

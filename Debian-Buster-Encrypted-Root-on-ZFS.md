@@ -17,6 +17,24 @@ You should set a root password before upgrading:
 
     # passwd
 
+Apply updates:
+
+    # apt update
+    # apt dist-upgrade
+
+Patch zfs-initramfs:
+
+    # apt install curl
+    # curl https://github.com/zfsonlinux/zfs/commit/f335b8f.patch | \
+      patch /usr/share/initramfs-tools/scripts/zfs
+    # update-initramfs -u -k all
+
+The patch fixes zfs-initramfs's Plymouth support for prompting for encryption passphrases. It is included in 0.8.2, so by the time of the next package update, the patch should not need to be reapplied.
+
+Reboot:
+
+    # reboot
+
 If the bpool fails to import, then enter the rescue shell (which requires a root password) and run:
 
     # zpool import -f bpool
