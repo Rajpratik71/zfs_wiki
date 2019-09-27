@@ -4,7 +4,7 @@
 * Backup your data. Any existing data will be lost.
 
 ### System Requirements
-* [Ubuntu 18.04.2 ("Bionic") Desktop CD](http://releases.ubuntu.com/18.04/ubuntu-18.04.2-desktop-amd64.iso) (*not* any server images)
+* [Ubuntu 18.04.3 ("Bionic") Desktop CD](http://releases.ubuntu.com/18.04.3/ubuntu-18.04.3-desktop-amd64.iso) (*not* any server images)
 * Installing on a drive which presents 4KiB logical sectors (a “4Kn” drive) only works with UEFI booting. This not unique to ZFS. [GRUB does not and will not work on 4Kn with legacy (BIOS) booting.](http://savannah.gnu.org/bugs/?46700)
 
 Computers that have less than 2 GiB of memory run ZFS slowly.  4 GiB of memory is recommended for normal performance in basic workloads.  If you wish to use deduplication, you will need [massive amounts of RAM](http://wiki.freebsd.org/ZFSTuningGuide#Deduplication). Enabling deduplication is a permanent change that cannot be easily reverted.
