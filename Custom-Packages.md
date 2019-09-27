@@ -79,7 +79,7 @@ $ sudo yum localinstall *.$(uname -p).rpm
 Make sure that the required packages are installed:
 
 ```sh
-$ sudo apt-get install build-essential autoconf automake libtool gawk alien fakeroot gdebi
+$ sudo apt-get install build-essential autoconf automake libtool gawk alien fakeroot gdebi-core
 $ sudo apt-get install zlib1g-dev uuid-dev libattr1-dev libblkid-dev libselinux-dev libudev-dev
 $ sudo apt-get install libacl1-dev libaio-dev libdevmapper-dev libssl-dev libelf-dev
 $ sudo apt-get install linux-headers-$(uname -r)
