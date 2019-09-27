@@ -656,11 +656,12 @@ Store that backup somewhere safe (e.g. cloud storage). It is protected by your L
 
 Go through [Step 1: Prepare The Install Environment](#step-1-prepare-the-install-environment).
 
-This will automatically import your pool. Export it and re-import it to get the mounts right:
+For LUKS, first unlock the disk(s):
 
-    For LUKS, first unlock the disk(s):
     # cryptsetup luksOpen /dev/disk/by-id/scsi-SATA_disk1-part4 luks1
     Repeat for additional disks, if this is a mirror or raidz topology.
+
+Mount everything correctly:
 
     # zpool export -a
     # zpool import -N -R /mnt rpool
