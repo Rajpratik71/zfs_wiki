@@ -388,6 +388,8 @@ The `popularity-contest` package reports the list of packages install on your sy
 
     # apt install --yes popularity-contest
 
+Choose Yes at the prompt.
+
 4.13  Setup system groups:
 
     # addgroup --system lpadmin

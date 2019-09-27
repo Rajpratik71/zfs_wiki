@@ -376,8 +376,8 @@ If you chose to create a `/tmp` dataset above, skip this step, as they are mutua
 The `popularity-contest` package reports the list of packages install on your system. Showing that ZFS is popular may be helpful in terms of long-term attention from the distro.
 
     # apt install --yes popularity-contest
-    
-    Choose Yes at the
+
+Choose Yes at the prompt.
 
 ## Step 5: GRUB Installation
 

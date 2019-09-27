@@ -393,6 +393,8 @@ The `popularity-contest` package reports the list of packages install on your sy
 
     # apt install --yes popularity-contest
 
+Choose Yes at the prompt.
+
 ## Step 5: GRUB Installation
 
 5.1  Verify that the ZFS boot filesystem is recognized:
