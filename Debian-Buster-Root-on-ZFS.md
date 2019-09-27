@@ -57,8 +57,6 @@ If you have a second system, using SSH to access the target system can be conven
 
 1.5  Install ZFS in the Live CD environment:
 
-**Warning:** If you do not have at least 3 GiB of RAM, this may not work, as the Live CD overlay can run out of space.
-
     # apt install --yes debootstrap gdisk dkms dpkg-dev linux-headers-$(uname -r)
     # apt install --yes -t buster-backports zfs-dkms
     # modprobe zfs
