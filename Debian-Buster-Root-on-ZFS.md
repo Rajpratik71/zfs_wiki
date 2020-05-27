@@ -18,7 +18,7 @@ If you need help, reach out to the community using the [zfs-discuss mailing list
 
 Edit permission on this wiki is restricted. Also, GitHub wikis do not support pull requests. However, you can clone the wiki using git.
 
-1) `git clone https://github.com/zfsonlinux/zfs.wiki.git`
+1) `git clone --depth 1 https://github.com/zfsonlinux/zfs.wiki.git`
 2) Make your changes.
 3) Use `git diff > my-changes.patch` to create a patch. (Advanced git users may wish to `git commit` to a branch and `git format-patch`.)
 4) [File a new issue](https://github.com/zfsonlinux/zfs/issues/new), mention @rlaager, and attach the patch.

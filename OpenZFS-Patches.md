@@ -11,8 +11,8 @@ This page describes the process of applying outstanding OpenZFS commits to ZFS o
 **Clone the source.** Start by making a local clone of the [spl][spl-repo] and [zfs][zfs-repo] repositories.
 
 ```
-$ git clone -o zfsonlinux https://github.com/zfsonlinux/spl.git
-$ git clone -o zfsonlinux https://github.com/zfsonlinux/zfs.git
+$ git clone --depth 1 -o zfsonlinux https://github.com/zfsonlinux/spl.git
+$ git clone --depth 1 -o zfsonlinux https://github.com/zfsonlinux/zfs.git
 ```
 
 **Add remote repositories.** Using the GitHub web interface [fork][github-fork] the [zfs][zfs-repo] repository in to your personal GitHub account.  Add your new zfs fork and the [openzfs][openzfs-repo] repository as remotes and then fetch both repositories.  The OpenZFS repository is large and the initial fetch may take some time over a slow connection.

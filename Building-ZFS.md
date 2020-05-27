@@ -63,12 +63,12 @@ Start by cloning the SPL and ZFS repositories from GitHub.  The repositories hav
 
 **NOTE:** SPL was merged in to the [zfs][zfs-repo] repository, last release with separate SPL is `0.7`.
 ```
-git clone https://github.com/zfsonlinux/zfs
+git clone --depth 1 https://github.com/zfsonlinux/zfs
 ```
 
 If you need 0.7 release or older:
 ```
-git clone https://github.com/zfsonlinux/spl
+git clone --depth 1 https://github.com/zfsonlinux/spl
 ```
 
 #### Configure and Build

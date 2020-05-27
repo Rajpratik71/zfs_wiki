@@ -129,7 +129,7 @@ $ tar -xzf zfs-x.y.z.tar.gz
 The Git *master* branch contains the latest version of the software, and will probably contain fixes that, for some reason, weren't included in the released tarball.  This is the preferred source code location for developers who intend to modify ZFS.  If you would like to use the git version, you can clone it from Github and prepare the source like this.
 
 ```sh
-$ git clone https://github.com/zfsonlinux/zfs.git
+$ git clone --depth 1 https://github.com/zfsonlinux/zfs.git
 $ cd zfs
 $ ./autogen.sh
 ```

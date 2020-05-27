@@ -18,7 +18,7 @@ git config --global user.email myemail@noreply.non
 The easiest way to get started is to click the fork icon at the top of the main repository page.  From there you need to download a copy of the forked repository to your computer:
 
 ```
-git clone https://github.com/<your-account-name>/zfs.git
+git clone --depth 1 https://github.com/<your-account-name>/zfs.git
 ```
 
 This sets the "origin" repository to your fork. This will come in handy 

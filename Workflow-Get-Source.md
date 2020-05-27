@@ -11,8 +11,8 @@ The Git *master* branch contains the latest version of the software, including c
 ```
 $ mkdir zfs-on-linux
 $ cd zfs-on-linux
-$ git clone https://github.com/newzfsdeveloper/spl.git
-$ git clone https://github.com/newzfsdeveloper/zfs.git
+$ git clone --depth 1 https://github.com/newzfsdeveloper/spl.git
+$ git clone --depth 1 https://github.com/newzfsdeveloper/zfs.git
 ```
 3. Enter the following commands to make the necessary linkage to the *upstream master* repositories and prepare the source to be compiled:
 ```
